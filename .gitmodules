@@ -1,0 +1,4 @@
+[submodule "LVGL_V8"]
+	path = LVGL_V8
+	url = git@github.com:AmbiqMicro/LVGL.git
+	branch = v8.1_ambiq_porting

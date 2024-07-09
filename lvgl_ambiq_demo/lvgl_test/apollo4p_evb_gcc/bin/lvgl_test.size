@@ -1,0 +1,1028 @@
+   text	   data	    bss	    dec	    hex	filename
+   1674	     18	    100	   1792	    700	bin/lv_example_anim_3.o
+    512	      0	      0	    512	    200	bin/lv_example_anim_1.o
+   1567	      0	     16	   1583	    62f	bin/lv_example_anim_timeline_1.o
+    490	      0	      0	    490	    1ea	bin/lv_example_anim_2.o
+   1171	      0	     36	   1207	    4b7	bin/lv_example_scroll_4.o
+    482	      4	      0	    486	    1e6	bin/lv_example_scroll_3.o
+    487	      0	      0	    487	    1e7	bin/lv_example_scroll_2.o
+    704	      0	      0	    704	    2c0	bin/lv_example_scroll_6.o
+    293	      0	      0	    293	    125	bin/lv_example_scroll_1.o
+      0	      0	      0	      0	      0	bin/lv_example_scroll_5.o
+    446	      0	      0	    446	    1be	bin/lv_example_snapshot_1.o
+      0	      0	      0	      0	      0	bin/lv_example_sjpg_1.o
+    116	      0	      0	    116	     74	bin/lv_example_freetype_1.o
+      0	      0	      0	      0	      0	bin/img_wing_png.o
+      0	      0	      0	      0	      0	bin/lv_example_png_1.o
+      0	      0	      0	      0	      0	bin/lv_example_qrcode_1.o
+    115	      0	      0	    115	     73	bin/lv_example_rlottie_1.o
+    115	      0	      0	    115	     73	bin/lv_example_rlottie_2.o
+      0	      0	      0	      0	      0	bin/lv_example_rlottie_approve.o
+      0	      0	      0	      0	      0	bin/lv_example_bmp_1.o
+      0	      0	      0	      0	      0	bin/lv_example_gif_1.o
+  17705	      0	      0	  17705	   4529	bin/img_bulb_gif.o
+    202	      0	      8	    210	     d2	bin/lv_example_style_6.o
+    174	      0	      8	    182	     b6	bin/lv_example_style_2.o
+    302	      0	      8	    310	    136	bin/lv_example_style_8.o
+    334	      0	     48	    382	    17e	bin/lv_example_style_14.o
+    242	      0	     56	    298	    12a	bin/lv_example_style_10.o
+    174	      0	      8	    182	     b6	bin/lv_example_style_5.o
+    254	      0	      8	    262	    106	bin/lv_example_style_1.o
+    246	      0	     16	    262	    106	bin/lv_example_style_13.o
+    166	      0	      8	    174	     ae	bin/lv_example_style_4.o
+    158	      0	      8	    166	     a6	bin/lv_example_style_12.o
+    122	      0	      8	    130	     82	bin/lv_example_style_7.o
+    146	     12	      8	    166	     a6	bin/lv_example_style_9.o
+    174	      0	      8	    182	     b6	bin/lv_example_style_3.o
+    474	      0	     16	    490	    1ea	bin/lv_example_style_11.o
+    262	      0	      4	    266	    10a	bin/lv_example_get_started_3.o
+    241	      0	      1	    242	     f2	bin/lv_example_get_started_1.o
+    657	      0	     32	    689	    2b1	bin/lv_example_get_started_2.o
+    217	      0	      8	    225	     e1	bin/lv_example_flex_2.o
+    181	      0	      0	    181	     b5	bin/lv_example_flex_6.o
+    275	      0	      0	    275	    113	bin/lv_example_flex_1.o
+    489	      0	      0	    489	    1e9	bin/lv_example_flex_5.o
+    175	      0	      0	    175	     af	bin/lv_example_flex_4.o
+    182	      0	      0	    182	     b6	bin/lv_example_flex_3.o
+    256	     16	      0	    272	    110	bin/lv_example_grid_6.o
+    482	     16	      0	    498	    1f2	bin/lv_example_grid_2.o
+    568	     16	      0	    584	    248	bin/lv_example_grid_5.o
+    275	     16	      0	    291	    123	bin/lv_example_grid_1.o
+    256	     16	      0	    272	    110	bin/lv_example_grid_4.o
+    248	     16	      0	    264	    108	bin/lv_example_grid_3.o
+    992	      0	      0	    992	    3e0	bin/imgbtn_mid.o
+  88412	      0	      0	  88412	  1595c	bin/animimg003.o
+   5012	      0	      0	   5012	   1394	bin/img_cogwheel_alpha16.o
+   3492	      0	      0	   3492	    da4	bin/img_star.o
+   1612	      0	      0	   1612	    64c	bin/imgbtn_right.o
+   6412	      0	      0	   6412	   190c	bin/img_skew_strip.o
+  40012	      0	      0	  40012	   9c4c	bin/img_cogwheel_chroma_keyed.o
+  88412	      0	      0	  88412	  1595c	bin/animimg001.o
+    428	      0	      0	    428	    1ac	bin/img_caret_down.o
+   3612	      0	      0	   3612	    e1c	bin/img_hand.o
+  88412	      0	      0	  88412	  1595c	bin/animimg002.o
+   1612	      0	      0	   1612	    64c	bin/imgbtn_left.o
+   5076	      0	      0	   5076	   13d4	bin/img_cogwheel_indexed16.o
+  40012	      0	      0	  40012	   9c4c	bin/img_cogwheel_rgb.o
+  40012	      0	      0	  40012	   9c4c	bin/img_cogwheel_argb.o
+    251	      0	      0	    251	     fb	bin/lv_example_event_3.o
+    305	      4	      0	    309	    135	bin/lv_example_event_1.o
+    518	      0	      0	    518	    206	bin/lv_example_event_2.o
+    386	      0	      0	    386	    182	bin/lv_example_dropdown_3.o
+    333	      0	      0	    333	    14d	bin/lv_example_dropdown_1.o
+    290	      4	      0	    294	    126	bin/lv_example_dropdown_2.o
+    617	     32	     16	    665	    299	bin/lv_example_btnmatrix_3.o
+    375	     60	      0	    435	    1b3	bin/lv_example_btnmatrix_1.o
+    780	      0	      0	    780	    30c	bin/lv_example_btnmatrix_2.o
+    236	      0	      0	    236	     ec	bin/lv_example_obj_2.o
+    152	      0	      8	    160	     a0	bin/lv_example_obj_1.o
+    413	      0	     12	    425	    1a9	bin/lv_example_calendar_1.o
+    148	      0	      0	    148	     94	bin/lv_example_led_1.o
+    460	      0	      0	    460	    1cc	bin/lv_example_win_1.o
+    844	      0	      0	    844	    34c	bin/lv_example_chart_4.o
+    792	      0	      0	    792	    318	bin/lv_example_chart_7.o
+    754	      0	      0	    754	    2f2	bin/lv_example_chart_3.o
+    372	      0	      0	    372	    174	bin/lv_example_chart_9.o
+    965	      4	     12	    981	    3d5	bin/lv_example_chart_6.o
+    956	      0	     16	    972	    3cc	bin/lv_example_chart_8.o
+   1012	      0	     16	   1028	    404	bin/lv_example_chart_2.o
+   2534	      0	      4	   2538	    9ea	bin/lv_example_chart_5.o
+    340	      0	      0	    340	    154	bin/lv_example_chart_1.o
+    745	      0	     24	    769	    301	bin/lv_example_checkbox_2.o
+    519	      0	      0	    519	    207	bin/lv_example_checkbox_1.o
+    549	      0	   4522	   5071	   13cf	bin/lv_example_label_4.o
+      0	      0	      0	      0	      0	bin/lv_example_label_3.o
+    334	      0	      8	    342	    156	bin/lv_example_label_2.o
+    316	      0	      0	    316	    13c	bin/lv_example_label_1.o
+    442	      0	      4	    446	    1be	bin/lv_example_spinbox_1.o
+    261	      0	      4	    265	    109	bin/lv_example_slider_1.o
+    710	      0	     52	    762	    2fa	bin/lv_example_slider_2.o
+    630	      0	      0	    630	    276	bin/lv_example_slider_3.o
+    353	      6	     36	    395	    18b	bin/lv_example_imgbtn_1.o
+     94	      0	      0	     94	     5e	bin/lv_example_spinner_1.o
+    292	      0	   1432	   1724	    6bc	bin/lv_example_canvas_2.o
+    495	      0	 600000	 600495	  929af	bin/lv_example_canvas_1.o
+    403	      0	      0	    403	    193	bin/lv_example_btn_1.o
+    629	      6	     36	    671	    29f	bin/lv_example_btn_2.o
+    228	      8	     56	    292	    124	bin/lv_example_btn_3.o
+    716	      0	     20	    736	    2e0	bin/lv_example_img_2.o
+    134	      0	      0	    134	     86	bin/lv_example_img_1.o
+    494	      0	      8	    502	    1f6	bin/lv_example_img_4.o
+    392	      0	      0	    392	    188	bin/lv_example_img_3.o
+    350	      0	      0	    350	    15e	bin/lv_example_tabview_1.o
+    512	      0	      0	    512	    200	bin/lv_example_tabview_2.o
+    304	     12	      0	    316	    13c	bin/lv_example_msgbox_1.o
+    305	      0	      4	    309	    135	bin/lv_example_textarea_3.o
+    656	      0	      4	    660	    294	bin/lv_example_textarea_2.o
+    520	     64	      0	    584	    248	bin/lv_example_textarea_1.o
+    645	      0	      8	    653	    28d	bin/lv_example_span_1.o
+     90	      0	      0	     90	     5a	bin/lv_example_colorwheel_1.o
+    146	     20	      8	    174	     ae	bin/lv_example_line_1.o
+    895	      0	      0	    895	    37f	bin/lv_example_table_2.o
+    849	      0	      0	    849	    351	bin/lv_example_table_1.o
+   1640	      0	     12	   1652	    674	bin/lv_example_list_2.o
+    882	      0	      4	    886	    376	bin/lv_example_list_1.o
+    385	      0	      0	    385	    181	bin/lv_example_switch_1.o
+    118	     12	      0	    130	     82	bin/lv_example_animimg_1.o
+    170	      0	      8	    178	     b2	bin/lv_example_bar_4.o
+    416	      0	      8	    424	    1a8	bin/lv_example_bar_3.o
+    865	      0	      0	    865	    361	bin/lv_example_bar_6.o
+    326	      0	     16	    342	    156	bin/lv_example_bar_2.o
+    285	      0	      0	    285	    11d	bin/lv_example_bar_5.o
+     98	      0	      0	     98	     62	bin/lv_example_bar_1.o
+    366	      0	      0	    366	    16e	bin/lv_example_arc_2.o
+    116	      0	      0	    116	     74	bin/lv_example_arc_1.o
+    396	      0	      0	    396	    18c	bin/lv_example_meter_4.o
+    664	      0	      4	    668	    29c	bin/lv_example_meter_3.o
+    866	      0	      4	    870	    366	bin/lv_example_meter_2.o
+    846	      0	      4	    850	    352	bin/lv_example_meter_1.o
+      0	      0	      0	      0	      0	bin/lv_example_roller_2.o
+    386	      0	      0	    386	    182	bin/lv_example_roller_1.o
+    956	      4	      8	    968	    3c8	bin/lv_example_roller_3.o
+    446	      0	      0	    446	    1be	bin/lv_example_tileview_1.o
+    264	      0	      0	    264	    108	bin/lv_example_keyboard_1.o
+      0	      0	      0	      0	      0	bin/lv_port_disp_template.o
+      0	      0	      0	      0	      0	bin/lv_port_fs_template.o
+      0	      0	      0	      0	      0	bin/lv_port_indev_template.o
+   1226	      0	      0	   1226	    4ca	bin/lv_snapshot.o
+      0	      0	      0	      0	      0	bin/tjpgd.o
+      0	      0	      0	      0	      0	bin/lv_sjpg.o
+      0	      0	      0	      0	      0	bin/lv_freetype.o
+      0	      0	      0	      0	      0	bin/lv_png.o
+      0	      0	      0	      0	      0	bin/lodepng.o
+      0	      0	      0	      0	      0	bin/lv_qrcode.o
+  11337	      4	      0	  11341	   2c4d	bin/qrcodegen.o
+      0	      0	      0	      0	      0	bin/lv_rlottie.o
+      0	      0	      0	      0	      0	bin/lv_fs_stdio.o
+      0	      0	      0	      0	      0	bin/lv_fs_posix.o
+      0	      0	      0	      0	      0	bin/lv_fs_fatfs.o
+      0	      0	      0	      0	      0	bin/lv_fs_win32.o
+      0	      0	      0	      0	      0	bin/lv_bmp.o
+      0	      0	      0	      0	      0	bin/lv_gif.o
+      0	      0	      0	      0	      0	bin/gifdec.o
+   6353	      0	     14	   6367	   18df	bin/lv_flex.o
+   6792	      0	     24	   6816	   1aa0	bin/lv_grid.o
+     14	      0	      0	     14	      e	bin/lv_extra.o
+   4210	      0	     61	   4271	   10af	bin/lv_theme_basic.o
+  12806	      0	    118	  12924	   327c	bin/lv_theme_default.o
+   4806	      0	     45	   4851	   12f3	bin/lv_theme_mono.o
+   1161	      8	      0	   1169	    491	bin/lv_calendar_header_dropdown.o
+    806	     48	      0	    854	    356	bin/lv_calendar_header_arrow.o
+   2711	     28	      0	   2739	    ab3	bin/lv_calendar.o
+   1176	      0	      0	   1176	    498	bin/lv_led.o
+    410	      0	      2	    412	    19c	bin/lv_win.o
+  17458	      0	      0	  17458	   4432	bin/lv_chart.o
+   2508	      0	      0	   2508	    9cc	bin/lv_spinbox.o
+   2120	      0	      0	   2120	    848	bin/lv_imgbtn.o
+    468	      0	      8	    476	    1dc	bin/lv_spinner.o
+   1946	      0	      3	   1949	    79d	bin/lv_tabview.o
+   1623	      0	      0	   1623	    657	bin/lv_msgbox.o
+   7294	      0	   1284	   8578	   2182	bin/lv_span.o
+   5378	      1	      5	   5384	   1508	bin/lv_colorwheel.o
+    405	      0	      0	    405	    195	bin/lv_list.o
+    540	      0	      0	    540	    21c	bin/lv_animimg.o
+   6950	      0	      0	   6950	   1b26	bin/lv_meter.o
+   1030	      0	      9	   1039	    40f	bin/lv_tileview.o
+   2894	     72	      0	   2966	    b96	bin/lv_keyboard.o
+   2286	      0	      0	   2286	    8ee	bin/lv_disp.o
+   2740	      0	      4	   2744	    ab8	bin/lv_group.o
+   6986	      0	      9	   6995	   1b53	bin/lv_indev.o
+   5378	      0	      0	   5378	   1502	bin/lv_indev_scroll.o
+   7017	      0	      5	   7022	   1b6e	bin/lv_obj.o
+    844	      0	      0	    844	    34c	bin/lv_obj_class.o
+   4290	      0	      0	   4290	   10c2	bin/lv_obj_draw.o
+  10733	      0	      5	  10738	   29f2	bin/lv_obj_pos.o
+   8686	      0	      0	   8686	   21ee	bin/lv_obj_scroll.o
+   7648	      1	      0	   7649	   1de1	bin/lv_obj_style.o
+   3504	      0	      0	   3504	    db0	bin/lv_obj_style_gen.o
+   2258	      0	      0	   2258	    8d2	bin/lv_obj_tree.o
+   2751	      4	      4	   2759	    ac7	bin/lv_event.o
+   6462	      0	     32	   6494	   195e	bin/lv_refr.o
+    412	      0	      0	    412	    19c	bin/lv_theme.o
+   8494	      0	      0	   8494	   212e	bin/lv_draw_arc.o
+   6678	      0	      0	   6678	   1a16	bin/lv_draw_blend.o
+   4166	      0	      0	   4166	   1046	bin/lv_draw_img.o
+   4870	      0	    261	   5131	   140b	bin/lv_draw_label.o
+   4655	      0	      0	   4655	   122f	bin/lv_draw_line.o
+  12006	      0	      0	  12006	   2ee6	bin/lv_draw_mask.o
+  13492	      0	      0	  13492	   34b4	bin/lv_draw_rect.o
+   1490	      0	      0	   1490	    5d2	bin/lv_draw_triangle.o
+   7584	      0	      0	   7584	   1da0	bin/lv_img_buf.o
+    148	      0	      0	    148	     94	bin/lv_img_cache.o
+   4792	      0	      0	   4792	   12b8	bin/lv_img_decoder.o
+    464	      0	      0	    464	    1d0	bin/lv_font.o
+   1550	      0	      0	   1550	    60e	bin/lv_font_fmt_txt.o
+   3789	      0	      0	   3789	    ecd	bin/lv_font_loader.o
+      0	      0	      0	      0	      0	bin/lv_font_dejavu_16_persian_hebrew.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_8.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_10.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_12.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_12_subpx.o
+   3485	  10144	      8	  13637	   3545	bin/lv_font_montserrat_14.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_16.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_18.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_20.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_22.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_24.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_26.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_28.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_28_compressed.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_30.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_32.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_34.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_36.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_38.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_40.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_42.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_44.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_46.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_48.o
+      0	      0	      0	      0	      0	bin/lv_font_simsun_16_cjk.o
+      0	      0	      0	      0	      0	bin/lv_font_unscii_8.o
+      0	      0	      0	      0	      0	bin/lv_font_unscii_16.o
+      0	      0	      0	      0	      0	bin/lv_gpu_nxp_pxp.o
+      0	      0	      0	      0	      0	bin/lv_gpu_nxp_pxp_osa.o
+      0	      0	      0	      0	      0	bin/lv_gpu_nxp_vglite.o
+      0	      0	      0	      0	      0	bin/lv_gpu_stm32_dma2d.o
+      0	      0	      0	      0	      0	bin/lv_gpu_sdl.o
+  10543	      0	     20	  10563	   2943	bin/lv_gpu_ambiq_nema.o
+    424	      0	      0	    424	    1a8	bin/lv_ambiq_decoder.o
+      0	      0	      0	      0	      0	bin/lv_gpu_sdl_draw_arc.o
+      0	      0	      0	      0	      0	bin/lv_gpu_sdl_draw_blend.o
+      0	      0	      0	      0	      0	bin/lv_gpu_sdl_draw_img.o
+      0	      0	      0	      0	      0	bin/lv_gpu_sdl_draw_label.o
+      0	      0	      0	      0	      0	bin/lv_gpu_sdl_draw_line.o
+      0	      0	      0	      0	      0	bin/lv_gpu_sdl_draw_rect.o
+      0	      0	      0	      0	      0	bin/lv_gpu_sdl_lru.o
+      0	      0	      0	      0	      0	bin/lv_gpu_sdl_mask.o
+   2203	      0	      0	   2203	    89b	bin/lv_gpu_sdl_stack_blur.o
+      0	      0	      0	      0	      0	bin/lv_gpu_sdl_texture_cache.o
+      0	      0	      0	      0	      0	bin/lv_gpu_sdl_utils.o
+   4232	      0	     19	   4251	   109b	bin/lv_hal_disp.o
+    540	      0	      0	    540	    21c	bin/lv_hal_indev.o
+     90	      0	      0	     90	     5a	bin/lv_hal_tick.o
+   2638	      0	     10	   2648	    a58	bin/lv_anim.o
+   1818	      0	      0	   1818	    71a	bin/lv_anim_timeline.o
+   3678	      0	      0	   3678	    e5e	bin/lv_area.o
+    126	      0	      0	    126	     7e	bin/lv_async.o
+      0	      0	      0	      0	      0	bin/lv_bidi.o
+   2778	      0	      0	   2778	    ada	bin/lv_color.o
+   1804	      0	      0	   1804	    70c	bin/lv_fs.o
+    188	      0	    520	    708	    2c4	bin/lv_gc.o
+   1252	      0	      0	   1252	    4e4	bin/lv_ll.o
+    473	     20	      8	    501	    1f5	bin/lv_log.o
+   1366	      4	      0	   1370	    55a	bin/lv_math.o
+   5075	      4	     12	   5091	   13e3	bin/lv_mem.o
+   3332	      0	      0	   3332	    d04	bin/lv_printf.o
+   2274	      2	      0	   2276	    8e4	bin/lv_style.o
+   3148	      0	      0	   3148	    c4c	bin/lv_style_gen.o
+   1198	      0	     17	   1215	    4bf	bin/lv_timer.o
+   8838	      0	      0	   8838	   2286	bin/lv_tlsf.o
+   3722	     32	      0	   3754	    eaa	bin/lv_txt.o
+      0	      0	      0	      0	      0	bin/lv_txt_ap.o
+    126	      0	      0	    126	     7e	bin/lv_utils.o
+   6468	      0	      0	   6468	   1944	bin/lv_arc.o
+   4402	      0	      0	   4402	   1132	bin/lv_bar.o
+     98	      0	      0	     98	     62	bin/lv_btn.o
+   9430	     28	      0	   9458	   24f2	bin/lv_btnmatrix.o
+   8126	      0	      0	   8126	   1fbe	bin/lv_canvas.o
+   2214	      0	      0	   2214	    8a6	bin/lv_checkbox.o
+   7621	      0	      0	   7621	   1dc5	bin/lv_dropdown.o
+   6481	      0	      0	   6481	   1951	bin/lv_img.o
+   8961	      0	      0	   8961	   2301	bin/lv_label.o
+   1072	      0	      0	   1072	    430	bin/lv_line.o
+   5191	      0	      0	   5191	   1447	bin/lv_roller.o
+   4060	      0	      0	   4060	    fdc	bin/lv_slider.o
+   1830	      0	      0	   1830	    726	bin/lv_switch.o
+   8777	      0	      0	   8777	   2249	bin/lv_table.o
+   9207	      0	      4	   9211	   23fb	bin/lv_textarea.o
+   9068	     74	   2053	  11195	   2bbb	bin/am_bsp.o
+     24	    748	    104	    876	    36c	bin/am_bsp_pins.o
+   4276	     72	     38	   4386	   1122	bin/am_devices_display_generic.o
+   3708	     40	   4394	   8142	   1fce	bin/am_devices_tma525.o
+   3918	      0	     29	   3947	    f6b	bin/nema_dc_hal.o
+   1084	      4	     36	   1124	    464	bin/nema_hal.o
+     94	      0	      0	     94	     5e	bin/am_util_delay.o
+   3971	      0	   1029	   5000	   1388	bin/am_util_stdio.o
+      0	      0	      0	      0	      0	bin/display_task_fake.o
+      0	      0	      0	      0	      0	bin/display_task_one_and_partial_fb.o
+      0	      0	      0	      0	      0	bin/display_task_one_fb.o
+   1525	     64	    132	   1721	    6b9	bin/display_task_two_fb.o
+    800	      0	      0	    800	    320	bin/lv_ambiq_font_align.o
+    902	      0	      0	    902	    386	bin/lv_ambiq_misc.o
+    643	      0	      1	    644	    284	bin/lv_ambiq_nema_hal.o
+   1366	      0	      0	   1366	    556	bin/event_groups.o
+   1008	      4	      5	   1017	    3f9	bin/port.o
+   4310	      0	      0	   4310	   10d6	bin/queue.o
+  10175	      0	    488	  10663	   29a7	bin/tasks.o
+   2114	      0	     60	   2174	    87e	bin/timers.o
+    628	  11008	      0	  11636	   2d74	bin/startup_gcc.o
+   1138	      0	  65564	  66702	  1048e	bin/heap_4.o
+    310	      0	      0	    310	    136	bin/list.o
+    532	      0	     12	    544	    220	bin/rtos.o
+    132	     64	      0	    196	     c4	bin/am_resources.o
+ 603241	     68	     28	 603337	  934c9	bin/gui_task.o
+   6900	    232	  10308	  17440	   4420	bin/lvgl_test.o
+     46	      0	      0	     46	     2e	arm_abs_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_abs_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     64	      0	      0	     64	     40	arm_abs_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     40	      0	      0	     40	     28	arm_abs_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     38	      0	      0	     38	     26	arm_abs_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     40	      0	      0	     40	     28	arm_abs_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     58	      0	      0	     58	     3a	arm_add_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_add_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     68	      0	      0	     68	     44	arm_add_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_add_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_add_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     36	      0	      0	     36	     24	arm_add_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_and_u16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_and_u32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_and_u8.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    116	      0	      0	    116	     74	arm_clip_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     62	      0	      0	     62	     3e	arm_clip_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     60	      0	      0	     60	     3c	arm_clip_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     60	      0	      0	     60	     3c	arm_clip_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     60	      0	      0	     60	     3c	arm_clip_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     76	      0	      0	     76	     4c	arm_dot_prod_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     48	      0	      0	     48	     30	arm_dot_prod_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    104	      0	      0	    104	     68	arm_dot_prod_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     42	      0	      0	     42	     2a	arm_dot_prod_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     58	      0	      0	     58	     3a	arm_dot_prod_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     38	      0	      0	     38	     26	arm_dot_prod_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     58	      0	      0	     58	     3a	arm_mult_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_mult_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     68	      0	      0	     68	     44	arm_mult_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     38	      0	      0	     38	     26	arm_mult_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     42	      0	      0	     42	     2a	arm_mult_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     38	      0	      0	     38	     26	arm_mult_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     46	      0	      0	     46	     2e	arm_negate_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_negate_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     48	      0	      0	     48	     30	arm_negate_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     40	      0	      0	     40	     28	arm_negate_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_negate_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_negate_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_not_u16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_not_u32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_not_u8.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     58	      0	      0	     58	     3a	arm_offset_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_offset_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     62	      0	      0	     62	     3e	arm_offset_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_offset_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_offset_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     32	      0	      0	     32	     20	arm_offset_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_or_u16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_or_u32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_or_u8.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     58	      0	      0	     58	     3a	arm_scale_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_scale_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     62	      0	      0	     62	     3e	arm_scale_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     60	      0	      0	     60	     3c	arm_scale_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    104	      0	      0	    104	     68	arm_scale_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     60	      0	      0	     60	     3c	arm_scale_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     62	      0	      0	     62	     3e	arm_shift_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    168	      0	      0	    168	     a8	arm_shift_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     62	      0	      0	     62	     3e	arm_shift_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     58	      0	      0	     58	     3a	arm_sub_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_sub_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     68	      0	      0	     68	     44	arm_sub_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_sub_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_sub_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     38	      0	      0	     38	     26	arm_sub_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_xor_u16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_xor_u32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_xor_u8.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    180	      0	      0	    180	     b4	arm_barycenter_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    132	      0	      0	    132	     84	arm_barycenter_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    252	      0	      0	    252	     fc	arm_bitonic_sort_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    118	      0	      0	    118	     76	arm_bubble_sort_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     26	      0	      0	     26	     1a	arm_copy_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     26	      0	      0	     26	     1a	arm_copy_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     26	      0	      0	     26	     1a	arm_copy_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     26	      0	      0	     26	     1a	arm_copy_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     26	      0	      0	     26	     1a	arm_copy_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     26	      0	      0	     26	     1a	arm_copy_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     54	      0	      0	     54	     36	arm_f16_to_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_f16_to_float.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     80	      0	      0	     80	     50	arm_f16_to_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     44	      0	      0	     44	     2c	arm_f64_to_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     44	      0	      0	     44	     2c	arm_f64_to_float.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     80	      0	      0	     80	     50	arm_f64_to_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    136	      0	      0	    136	     88	arm_f64_to_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     80	      0	      0	     80	     50	arm_f64_to_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_fill_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     22	      0	      0	     22	     16	arm_fill_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     22	      0	      0	     22	     16	arm_fill_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     22	      0	      0	     22	     16	arm_fill_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     22	      0	      0	     22	     16	arm_fill_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     28	      0	      0	     28	     1c	arm_fill_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_float_to_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     42	      0	      0	     42	     2a	arm_float_to_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     52	      0	      0	     52	     34	arm_float_to_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     48	      0	      0	     48	     30	arm_float_to_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     52	      0	      0	     52	     34	arm_float_to_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    232	      0	      0	    232	     e8	arm_heap_sort_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    114	      0	      0	    114	     72	arm_insertion_sort_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    236	      0	      0	    236	     ec	arm_merge_sort_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     14	      0	      0	     14	      e	arm_merge_sort_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     64	      0	      0	     64	     40	arm_q15_to_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     72	      0	      0	     72	     48	arm_q15_to_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     48	      0	      0	     48	     30	arm_q15_to_float.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_q15_to_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     26	      0	      0	     26	     1a	arm_q15_to_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     72	      0	      0	     72	     48	arm_q31_to_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     48	      0	      0	     48	     30	arm_q31_to_float.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     26	      0	      0	     26	     1a	arm_q31_to_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     26	      0	      0	     26	     1a	arm_q31_to_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     72	      0	      0	     72	     48	arm_q7_to_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     48	      0	      0	     48	     30	arm_q7_to_float.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_q7_to_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_q7_to_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    258	      0	      0	    258	    102	arm_quick_sort_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    138	      0	      0	    138	     8a	arm_selection_sort_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     80	      0	      0	     80	     50	arm_sort_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     14	      0	      0	     14	      e	arm_sort_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    128	      0	      0	    128	     80	arm_weighted_sum_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     64	      0	      0	     64	     40	arm_weighted_sum_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+ 919138	      0	      0	 919138	  e0662	arm_common_tables.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+  49024	      0	      0	  49024	   bf80	arm_common_tables_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   1392	      0	      0	   1392	    570	arm_const_structs.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    144	      0	      0	    144	     90	arm_const_structs_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+      0	      0	      0	      0	      0	arm_mve_tables.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+      0	      0	      0	      0	      0	arm_mve_tables_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    240	      0	      0	    240	     f0	arm_bilinear_interp_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    164	      0	      0	    164	     a4	arm_bilinear_interp_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    216	      0	      0	    216	     d8	arm_bilinear_interp_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    152	      0	      0	    152	     98	arm_bilinear_interp_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    144	      0	      0	    144	     90	arm_bilinear_interp_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    224	      0	      0	    224	     e0	arm_linear_interp_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    140	      0	      0	    140	     8c	arm_linear_interp_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     78	      0	      0	     78	     4e	arm_linear_interp_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     74	      0	      0	     74	     4a	arm_linear_interp_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     66	      0	      0	     66	     42	arm_linear_interp_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    340	      0	      0	    340	    154	arm_spline_interp_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    488	      0	      0	    488	    1e8	arm_spline_interp_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    682	      0	      0	    682	    2aa	arm_boolean_distance.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    140	      0	      0	    140	     8c	arm_braycurtis_distance_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     76	      0	      0	     76	     4c	arm_braycurtis_distance_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    160	      0	      0	    160	     a0	arm_canberra_distance_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    116	      0	      0	    116	     74	arm_canberra_distance_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    118	      0	      0	    118	     76	arm_chebyshev_distance_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     72	      0	      0	     72	     48	arm_chebyshev_distance_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    152	      0	      0	    152	     98	arm_chebyshev_distance_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     84	      0	      0	     84	     54	arm_cityblock_distance_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     52	      0	      0	     52	     34	arm_cityblock_distance_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    120	      0	      0	    120	     78	arm_cityblock_distance_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    308	      0	      0	    308	    134	arm_correlation_distance_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    196	      0	      0	    196	     c4	arm_correlation_distance_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    152	      0	      0	    152	     98	arm_cosine_distance_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    104	      0	      0	    104	     68	arm_cosine_distance_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    128	      0	      0	    128	     80	arm_cosine_distance_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    140	      0	      0	    140	     8c	arm_dice_distance.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    476	      0	      0	    476	    1dc	arm_dtw_distance_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    226	      0	      0	    226	     e2	arm_dtw_init_window_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    368	      0	      0	    368	    170	arm_dtw_path_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    120	      0	      0	    120	     78	arm_euclidean_distance_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     68	      0	      0	     68	     44	arm_euclidean_distance_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    120	      0	      0	    120	     78	arm_euclidean_distance_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     76	      0	      0	     76	     4c	arm_hamming_distance.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     82	      0	      0	     82	     52	arm_jaccard_distance.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    232	      0	      0	    232	     e8	arm_jensenshannon_distance_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    140	      0	      0	    140	     8c	arm_jensenshannon_distance_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     88	      0	      0	     88	     58	arm_kulsinski_distance.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    148	      0	      0	    148	     94	arm_minkowski_distance_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    104	      0	      0	    104	     68	arm_minkowski_distance_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     94	      0	      0	     94	     5e	arm_rogerstanimoto_distance.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     54	      0	      0	     54	     36	arm_russellrao_distance.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     98	      0	      0	     98	     62	arm_sokalmichener_distance.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     84	      0	      0	     84	     54	arm_sokalsneath_distance.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    128	      0	      0	    128	     80	arm_yule_distance.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    488	      0	      0	    488	    1e8	arm_bitreversal.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    294	      0	      0	    294	    126	arm_bitreversal2.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    188	      0	      0	    188	     bc	arm_bitreversal_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    274	      0	      0	    274	    112	arm_cfft_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   1938	      0	      0	   1938	    792	arm_cfft_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   1582	      0	      0	   1582	    62e	arm_cfft_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    540	      0	      0	    540	    21c	arm_cfft_init_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    540	      0	      0	    540	    21c	arm_cfft_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    540	      0	      0	    540	    21c	arm_cfft_init_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    540	      0	      0	    540	    21c	arm_cfft_init_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    540	      0	      0	    540	    21c	arm_cfft_init_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    630	      0	      0	    630	    276	arm_cfft_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    784	      0	      0	    784	    310	arm_cfft_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   1326	      0	      0	   1326	    52e	arm_cfft_radix2_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    852	      0	      0	    852	    354	arm_cfft_radix2_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    244	      0	      0	    244	     f4	arm_cfft_radix2_init_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    236	      0	      0	    236	     ec	arm_cfft_radix2_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    160	      0	      0	    160	     a0	arm_cfft_radix2_init_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    160	      0	      0	    160	     a0	arm_cfft_radix2_init_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    992	      0	      0	    992	    3e0	arm_cfft_radix2_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   1072	      0	      0	   1072	    430	arm_cfft_radix2_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   3156	      0	      0	   3156	    c54	arm_cfft_radix4_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   1122	      0	      0	   1122	    462	arm_cfft_radix4_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    160	      0	      0	    160	     a0	arm_cfft_radix4_init_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    156	      0	      0	    156	     9c	arm_cfft_radix4_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    110	      0	      0	    110	     6e	arm_cfft_radix4_init_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    110	      0	      0	    110	     6e	arm_cfft_radix4_init_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   1228	      0	      0	   1228	    4cc	arm_cfft_radix4_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   1982	      0	      0	   1982	    7be	arm_cfft_radix4_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   2088	      0	      0	   2088	    828	arm_cfft_radix8_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   1412	      0	      0	   1412	    584	arm_cfft_radix8_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    210	      0	      0	    210	     d2	arm_dct4_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    160	      0	      0	    160	     a0	arm_dct4_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    150	      0	      0	    150	     96	arm_dct4_init_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    150	      0	      0	    150	     96	arm_dct4_init_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    204	      0	      0	    204	     cc	arm_dct4_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    220	      0	      0	    220	     dc	arm_dct4_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    252	      0	      0	    252	     fc	arm_mfcc_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    240	      0	      0	    240	     f0	arm_mfcc_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    500	      0	      0	    500	    1f4	arm_mfcc_init_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    500	      0	      0	    500	    1f4	arm_mfcc_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    550	      0	      0	    550	    226	arm_mfcc_init_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    550	      0	      0	    550	    226	arm_mfcc_init_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    332	      0	      0	    332	    14c	arm_mfcc_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    308	      0	      0	    308	    134	arm_mfcc_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    540	      0	      0	    540	    21c	arm_rfft_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    638	      0	      0	    638	    27e	arm_rfft_fast_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    442	      0	      0	    442	    1ba	arm_rfft_fast_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   1004	      0	      0	   1004	    3ec	arm_rfft_fast_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    618	      0	      0	    618	    26a	arm_rfft_fast_init_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    618	      0	      0	    618	    26a	arm_rfft_fast_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    898	      0	      0	    898	    382	arm_rfft_fast_init_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    124	      0	      0	    124	     7c	arm_rfft_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    774	      0	      0	    774	    306	arm_rfft_init_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    774	      0	      0	    774	    306	arm_rfft_init_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    378	      0	      0	    378	    17a	arm_rfft_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    538	      0	      0	    538	    21a	arm_rfft_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_svm_linear_init_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     32	      0	      0	     32	     20	arm_svm_linear_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    200	      0	      0	    200	     c8	arm_svm_linear_predict_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    140	      0	      0	    140	     8c	arm_svm_linear_predict_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     52	      0	      0	     52	     34	arm_svm_polynomial_init_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     48	      0	      0	     48	     30	arm_svm_polynomial_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    324	      0	      0	    324	    144	arm_svm_polynomial_predict_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    192	      0	      0	    192	     c0	arm_svm_polynomial_predict_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     42	      0	      0	     42	     2a	arm_svm_rbf_init_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     36	      0	      0	     36	     24	arm_svm_rbf_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    240	      0	      0	    240	     f0	arm_svm_rbf_predict_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    164	      0	      0	    164	     a4	arm_svm_rbf_predict_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     48	      0	      0	     48	     30	arm_svm_sigmoid_init_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     40	      0	      0	     40	     28	arm_svm_sigmoid_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    252	      0	      0	    252	     fc	arm_svm_sigmoid_predict_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    168	      0	      0	    168	     a8	arm_svm_sigmoid_predict_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_biquad_cascade_df1_32x64_init_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    276	      0	      0	    276	    114	arm_biquad_cascade_df1_32x64_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    352	      0	      0	    352	    160	arm_biquad_cascade_df1_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    168	      0	      0	    168	     a8	arm_biquad_cascade_df1_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    138	      0	      0	    138	     8a	arm_biquad_cascade_df1_fast_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    160	      0	      0	    160	     a0	arm_biquad_cascade_df1_fast_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_biquad_cascade_df1_init_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_biquad_cascade_df1_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_biquad_cascade_df1_init_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_biquad_cascade_df1_init_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    298	      0	      0	    298	    12a	arm_biquad_cascade_df1_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    194	      0	      0	    194	     c2	arm_biquad_cascade_df1_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    268	      0	      0	    268	    10c	arm_biquad_cascade_df2t_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    126	      0	      0	    126	     7e	arm_biquad_cascade_df2t_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    240	      0	      0	    240	     f0	arm_biquad_cascade_df2t_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_biquad_cascade_df2t_init_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_biquad_cascade_df2t_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_biquad_cascade_df2t_init_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    404	      0	      0	    404	    194	arm_biquad_cascade_stereo_df2t_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    194	      0	      0	    194	     c2	arm_biquad_cascade_stereo_df2t_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_biquad_cascade_stereo_df2t_init_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_biquad_cascade_stereo_df2t_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    348	      0	      0	    348	    15c	arm_conv_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    232	      0	      0	    232	     e8	arm_conv_fast_opt_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   1056	      0	      0	   1056	    420	arm_conv_fast_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    862	      0	      0	    862	    35e	arm_conv_fast_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    244	      0	      0	    244	     f4	arm_conv_opt_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    634	      0	      0	    634	    27a	arm_conv_opt_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    492	      0	      0	    492	    1ec	arm_conv_partial_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    254	      0	      0	    254	     fe	arm_conv_partial_fast_opt_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   1204	      0	      0	   1204	    4b4	arm_conv_partial_fast_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    434	      0	      0	    434	    1b2	arm_conv_partial_fast_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    266	      0	      0	    266	    10a	arm_conv_partial_opt_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    634	      0	      0	    634	    27a	arm_conv_partial_opt_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   1414	      0	      0	   1414	    586	arm_conv_partial_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    476	      0	      0	    476	    1dc	arm_conv_partial_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    432	      0	      0	    432	    1b0	arm_conv_partial_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   1300	      0	      0	   1300	    514	arm_conv_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    348	      0	      0	    348	    15c	arm_conv_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    304	      0	      0	    304	    130	arm_conv_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    460	      0	      0	    460	    1cc	arm_correlate_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    364	      0	      0	    364	    16c	arm_correlate_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    512	      0	      0	    512	    200	arm_correlate_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    236	      0	      0	    236	     ec	arm_correlate_fast_opt_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    978	      0	      0	    978	    3d2	arm_correlate_fast_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    944	      0	      0	    944	    3b0	arm_correlate_fast_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    276	      0	      0	    276	    114	arm_correlate_opt_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    678	      0	      0	    678	    2a6	arm_correlate_opt_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   1078	      0	      0	   1078	    436	arm_correlate_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    338	      0	      0	    338	    152	arm_correlate_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    272	      0	      0	    272	    110	arm_correlate_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    164	      0	      0	    164	     a4	arm_fir_decimate_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    306	      0	      0	    306	    132	arm_fir_decimate_fast_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    142	      0	      0	    142	     8e	arm_fir_decimate_fast_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     66	      0	      0	     66	     42	arm_fir_decimate_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     66	      0	      0	     66	     42	arm_fir_decimate_init_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     66	      0	      0	     66	     42	arm_fir_decimate_init_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    334	      0	      0	    334	    14e	arm_fir_decimate_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    152	      0	      0	    152	     98	arm_fir_decimate_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    164	      0	      0	    164	     a4	arm_fir_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    144	      0	      0	    144	     90	arm_fir_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    200	      0	      0	    200	     c8	arm_fir_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    138	      0	      0	    138	     8a	arm_fir_fast_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    118	      0	      0	    118	     76	arm_fir_fast_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     40	      0	      0	     40	     28	arm_fir_init_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     40	      0	      0	     40	     28	arm_fir_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     40	      0	      0	     40	     28	arm_fir_init_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     46	      0	      0	     46	     2e	arm_fir_init_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     40	      0	      0	     40	     28	arm_fir_init_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_fir_init_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    192	      0	      0	    192	     c0	arm_fir_interpolate_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     62	      0	      0	     62	     3e	arm_fir_interpolate_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     62	      0	      0	     62	     3e	arm_fir_interpolate_init_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     62	      0	      0	     62	     3e	arm_fir_interpolate_init_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    174	      0	      0	    174	     ae	arm_fir_interpolate_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    170	      0	      0	    170	     aa	arm_fir_interpolate_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    134	      0	      0	    134	     86	arm_fir_lattice_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_fir_lattice_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_fir_lattice_init_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     30	      0	      0	     30	     1e	arm_fir_lattice_init_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    160	      0	      0	    160	     a0	arm_fir_lattice_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    140	      0	      0	    140	     8c	arm_fir_lattice_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    164	      0	      0	    164	     a4	arm_fir_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    122	      0	      0	    122	     7a	arm_fir_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    130	      0	      0	    130	     82	arm_fir_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    386	      0	      0	    386	    182	arm_fir_sparse_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     50	      0	      0	     50	     32	arm_fir_sparse_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     50	      0	      0	     50	     32	arm_fir_sparse_init_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     50	      0	      0	     50	     32	arm_fir_sparse_init_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     48	      0	      0	     48	     30	arm_fir_sparse_init_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    406	      0	      0	    406	    196	arm_fir_sparse_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    398	      0	      0	    398	    18e	arm_fir_sparse_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    406	      0	      0	    406	    196	arm_fir_sparse_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    204	      0	      0	    204	     cc	arm_iir_lattice_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     36	      0	      0	     36	     24	arm_iir_lattice_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     36	      0	      0	     36	     24	arm_iir_lattice_init_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     36	      0	      0	     36	     24	arm_iir_lattice_init_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    266	      0	      0	    266	    10a	arm_iir_lattice_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    304	      0	      0	    304	    130	arm_iir_lattice_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    524	      0	      0	    524	    20c	arm_levinson_durbin_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    340	      0	      0	    340	    154	arm_levinson_durbin_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    522	      0	      0	    522	    20a	arm_levinson_durbin_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    228	      0	      0	    228	     e4	arm_lms_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     56	      0	      0	     56	     38	arm_lms_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     52	      0	      0	     52	     34	arm_lms_init_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     52	      0	      0	     52	     34	arm_lms_init_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    296	      0	      0	    296	    128	arm_lms_norm_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     62	      0	      0	     62	     3e	arm_lms_norm_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     66	      0	      0	     66	     42	arm_lms_norm_init_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     68	      0	      0	     68	     44	arm_lms_norm_init_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    418	      0	      0	    418	    1a2	arm_lms_norm_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    618	      0	      0	    618	    26a	arm_lms_norm_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    262	      0	      0	    262	    106	arm_lms_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    294	      0	      0	    294	    126	arm_lms_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    202	      0	      0	    202	     ca	arm_quaternion2rotation_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     74	      0	      0	     74	     4a	arm_quaternion_conjugate_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    130	      0	      0	    130	     82	arm_quaternion_inverse_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    156	      0	      0	    156	     9c	arm_quaternion_normalize_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    104	      0	      0	    104	     68	arm_quaternion_norm_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     50	      0	      0	     50	     32	arm_quaternion_product_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    266	      0	      0	    266	    10a	arm_quaternion_product_single_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    546	      0	      0	    546	    222	arm_rotation2quaternion_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    320	      0	      0	    320	    140	arm_gaussian_naive_bayes_predict_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    224	      0	      0	    224	     e0	arm_gaussian_naive_bayes_predict_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     64	      0	      0	     64	     40	arm_pid_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     58	      0	      0	     58	     3a	arm_pid_init_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     48	      0	      0	     48	     30	arm_pid_init_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     18	      0	      0	     18	     12	arm_pid_reset_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     16	      0	      0	     16	     10	arm_pid_reset_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     18	      0	      0	     18	     12	arm_pid_reset_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    312	      0	      0	    312	    138	arm_sin_cos_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    618	      0	      0	    618	    26a	arm_sin_cos_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    108	      0	      0	    108	     6c	arm_absmax_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     78	      0	      0	     78	     4e	arm_absmax_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    184	      0	      0	    184	     b8	arm_absmax_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     82	      0	      0	     82	     52	arm_absmax_no_idx_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     56	      0	      0	     56	     38	arm_absmax_no_idx_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    120	      0	      0	    120	     78	arm_absmax_no_idx_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    186	      0	      0	    186	     ba	arm_absmax_no_idx_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    154	      0	      0	    154	     9a	arm_absmax_no_idx_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    190	      0	      0	    190	     be	arm_absmax_no_idx_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    258	      0	      0	    258	    102	arm_absmax_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    206	      0	      0	    206	     ce	arm_absmax_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    258	      0	      0	    258	    102	arm_absmax_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    108	      0	      0	    108	     6c	arm_absmin_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     78	      0	      0	     78	     4e	arm_absmin_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    184	      0	      0	    184	     b8	arm_absmin_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     82	      0	      0	     82	     52	arm_absmin_no_idx_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     56	      0	      0	     56	     38	arm_absmin_no_idx_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    120	      0	      0	    120	     78	arm_absmin_no_idx_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    186	      0	      0	    186	     ba	arm_absmin_no_idx_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    154	      0	      0	    154	     9a	arm_absmin_no_idx_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    190	      0	      0	    190	     be	arm_absmin_no_idx_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    258	      0	      0	    258	    102	arm_absmin_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    206	      0	      0	    206	     ce	arm_absmin_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    258	      0	      0	    258	    102	arm_absmin_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     60	      0	      0	     60	     3c	arm_accumulate_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     40	      0	      0	     40	     28	arm_accumulate_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     72	      0	      0	     72	     48	arm_accumulate_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    112	      0	      0	    112	     70	arm_entropy_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     72	      0	      0	     72	     48	arm_entropy_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    120	      0	      0	    120	     78	arm_entropy_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    128	      0	      0	    128	     80	arm_kullback_leibler_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     80	      0	      0	     80	     50	arm_kullback_leibler_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    144	      0	      0	    144	     90	arm_kullback_leibler_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_logsumexp_dot_prod_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_logsumexp_dot_prod_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    184	      0	      0	    184	     b8	arm_logsumexp_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    112	      0	      0	    112	     70	arm_logsumexp_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    100	      0	      0	    100	     64	arm_max_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     70	      0	      0	     70	     46	arm_max_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    144	      0	      0	    144	     90	arm_max_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     72	      0	      0	     72	     48	arm_max_no_idx_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     48	      0	      0	     48	     30	arm_max_no_idx_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     96	      0	      0	     96	     60	arm_max_no_idx_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     48	      0	      0	     48	     30	arm_max_no_idx_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_max_no_idx_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     48	      0	      0	     48	     30	arm_max_no_idx_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     62	      0	      0	     62	     3e	arm_max_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     54	      0	      0	     54	     36	arm_max_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     62	      0	      0	     62	     3e	arm_max_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     92	      0	      0	     92	     5c	arm_mean_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     52	      0	      0	     52	     34	arm_mean_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    104	      0	      0	    104	     68	arm_mean_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     38	      0	      0	     38	     26	arm_mean_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     56	      0	      0	     56	     38	arm_mean_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     38	      0	      0	     38	     26	arm_mean_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    100	      0	      0	    100	     64	arm_min_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     70	      0	      0	     70	     46	arm_min_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    144	      0	      0	    144	     90	arm_min_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     72	      0	      0	     72	     48	arm_min_no_idx_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     48	      0	      0	     48	     30	arm_min_no_idx_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     96	      0	      0	     96	     60	arm_min_no_idx_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     48	      0	      0	     48	     30	arm_min_no_idx_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_min_no_idx_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     48	      0	      0	     48	     30	arm_min_no_idx_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     62	      0	      0	     62	     3e	arm_min_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     54	      0	      0	     54	     36	arm_min_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     62	      0	      0	     62	     3e	arm_min_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    116	      0	      0	    116	     74	arm_mse_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     64	      0	      0	     64	     40	arm_mse_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    128	      0	      0	    128	     80	arm_mse_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     82	      0	      0	     82	     52	arm_mse_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     88	      0	      0	     88	     58	arm_mse_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     64	      0	      0	     64	     40	arm_mse_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     64	      0	      0	     64	     40	arm_power_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     44	      0	      0	     44	     2c	arm_power_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     88	      0	      0	     88	     58	arm_power_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     44	      0	      0	     44	     2c	arm_power_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     54	      0	      0	     54	     36	arm_power_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     28	      0	      0	     28	     1c	arm_power_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    124	      0	      0	    124	     7c	arm_rms_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     80	      0	      0	     80	     50	arm_rms_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     76	      0	      0	     76	     4c	arm_rms_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     76	      0	      0	     76	     4c	arm_rms_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     80	      0	      0	     80	     50	arm_std_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     56	      0	      0	     56	     38	arm_std_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     36	      0	      0	     36	     24	arm_std_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    106	      0	      0	    106	     6a	arm_std_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    136	      0	      0	    136	     88	arm_std_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    180	      0	      0	    180	     b4	arm_var_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    100	      0	      0	    100	     64	arm_var_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    168	      0	      0	    168	     a8	arm_var_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     88	      0	      0	     88	     58	arm_var_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    126	      0	      0	    126	     7e	arm_var_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     54	      0	      0	     54	     36	arm_cmplx_conj_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     42	      0	      0	     42	     2a	arm_cmplx_conj_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     42	      0	      0	     42	     2a	arm_cmplx_conj_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     42	      0	      0	     42	     2a	arm_cmplx_conj_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    164	      0	      0	    164	     a4	arm_cmplx_dot_prod_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    108	      0	      0	    108	     6c	arm_cmplx_dot_prod_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    102	      0	      0	    102	     66	arm_cmplx_dot_prod_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    162	      0	      0	    162	     a2	arm_cmplx_dot_prod_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     70	      0	      0	     70	     46	arm_cmplx_mag_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     50	      0	      0	     50	     32	arm_cmplx_mag_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     96	      0	      0	     96	     60	arm_cmplx_mag_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     40	      0	      0	     40	     28	arm_cmplx_mag_fast_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     56	      0	      0	     56	     38	arm_cmplx_mag_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     48	      0	      0	     48	     30	arm_cmplx_mag_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     66	      0	      0	     66	     42	arm_cmplx_mag_squared_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     46	      0	      0	     46	     2e	arm_cmplx_mag_squared_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     92	      0	      0	     92	     5c	arm_cmplx_mag_squared_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     34	      0	      0	     34	     22	arm_cmplx_mag_squared_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     42	      0	      0	     42	     2a	arm_cmplx_mag_squared_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    114	      0	      0	    114	     72	arm_cmplx_mult_cmplx_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     78	      0	      0	     78	     4e	arm_cmplx_mult_cmplx_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    184	      0	      0	    184	     b8	arm_cmplx_mult_cmplx_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     70	      0	      0	     70	     46	arm_cmplx_mult_cmplx_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     62	      0	      0	     62	     3e	arm_cmplx_mult_cmplx_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     86	      0	      0	     86	     56	arm_cmplx_mult_real_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     54	      0	      0	     54	     36	arm_cmplx_mult_real_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     54	      0	      0	     54	     36	arm_cmplx_mult_real_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     70	      0	      0	     70	     46	arm_cmplx_mult_real_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    280	      0	      0	    280	    118	arm_householder_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    192	      0	      0	    192	     c0	arm_householder_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    328	      0	      0	    328	    148	arm_householder_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     82	      0	      0	     82	     52	arm_mat_add_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     52	      0	      0	     52	     34	arm_mat_add_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     58	      0	      0	     58	     3a	arm_mat_add_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     58	      0	      0	     58	     3a	arm_mat_add_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    334	      0	      0	    334	    14e	arm_mat_cholesky_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    254	      0	      0	    254	     fe	arm_mat_cholesky_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    336	      0	      0	    336	    150	arm_mat_cholesky_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    268	      0	      0	    268	    10c	arm_mat_cmplx_mult_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    196	      0	      0	    196	     c4	arm_mat_cmplx_mult_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    374	      0	      0	    374	    176	arm_mat_cmplx_mult_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    352	      0	      0	    352	    160	arm_mat_cmplx_mult_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     76	      0	      0	     76	     4c	arm_mat_cmplx_trans_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     84	      0	      0	     84	     54	arm_mat_cmplx_trans_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     80	      0	      0	     80	     50	arm_mat_cmplx_trans_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     84	      0	      0	     84	     54	arm_mat_cmplx_trans_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     16	      0	      0	     16	     10	arm_mat_init_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     16	      0	      0	     16	     10	arm_mat_init_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     16	      0	      0	     16	     10	arm_mat_init_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     16	      0	      0	     16	     10	arm_mat_init_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     16	      0	      0	     16	     10	arm_mat_init_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   1060	      0	      0	   1060	    424	arm_mat_inverse_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    824	      0	      0	    824	    338	arm_mat_inverse_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   1208	      0	      0	   1208	    4b8	arm_mat_inverse_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    564	      0	      0	    564	    234	arm_mat_ldlt_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    760	      0	      0	    760	    2f8	arm_mat_ldlt_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    160	      0	      0	    160	     a0	arm_mat_mult_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    136	      0	      0	    136	     88	arm_mat_mult_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    240	      0	      0	    240	     f0	arm_mat_mult_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    892	      0	      0	    892	    37c	arm_mat_mult_fast_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    472	      0	      0	    472	    1d8	arm_mat_mult_fast_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    120	      0	      0	    120	     78	arm_mat_mult_opt_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    258	      0	      0	    258	    102	arm_mat_mult_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    120	      0	      0	    120	     78	arm_mat_mult_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    134	      0	      0	    134	     86	arm_mat_mult_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   1790	      0	      0	   1790	    6fe	arm_mat_qr_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   1508	      0	      0	   1508	    5e4	arm_mat_qr_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   1996	      0	      0	   1996	    7cc	arm_mat_qr_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     68	      0	      0	     68	     44	arm_mat_scale_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     40	      0	      0	     40	     28	arm_mat_scale_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     66	      0	      0	     66	     42	arm_mat_scale_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     78	      0	      0	     78	     4e	arm_mat_scale_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    250	      0	      0	    250	     fa	arm_mat_solve_lower_triangular_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    186	      0	      0	    186	     ba	arm_mat_solve_lower_triangular_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    288	      0	      0	    288	    120	arm_mat_solve_lower_triangular_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    280	      0	      0	    280	    118	arm_mat_solve_upper_triangular_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    222	      0	      0	    222	     de	arm_mat_solve_upper_triangular_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    312	      0	      0	    312	    138	arm_mat_solve_upper_triangular_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     82	      0	      0	     82	     52	arm_mat_sub_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     52	      0	      0	     52	     34	arm_mat_sub_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     90	      0	      0	     90	     5a	arm_mat_sub_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     58	      0	      0	     58	     3a	arm_mat_sub_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     58	      0	      0	     58	     3a	arm_mat_sub_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     66	      0	      0	     66	     42	arm_mat_trans_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     66	      0	      0	     66	     42	arm_mat_trans_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    114	      0	      0	    114	     72	arm_mat_trans_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     66	      0	      0	     66	     42	arm_mat_trans_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     66	      0	      0	     66	     42	arm_mat_trans_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     68	      0	      0	     68	     44	arm_mat_trans_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    500	      0	      0	    500	    1f4	arm_mat_vec_mult_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    364	      0	      0	    364	    16c	arm_mat_vec_mult_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    566	      0	      0	    566	    236	arm_mat_vec_mult_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    380	      0	      0	    380	    17c	arm_mat_vec_mult_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    546	      0	      0	    546	    222	arm_mat_vec_mult_q7.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    914	      0	      0	    914	    392	arm_atan2_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    612	      0	      0	    612	    264	arm_atan2_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    666	      0	      0	    666	    29a	arm_atan2_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   1398	      0	      0	   1398	    576	arm_atan2_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    156	      0	      0	    156	     9c	arm_cos_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     84	      0	      0	     84	     54	arm_cos_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     74	      0	      0	     74	     4a	arm_cos_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    116	      0	      0	    116	     74	arm_divide_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    148	      0	      0	    148	     94	arm_divide_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    148	      0	      0	    148	     94	arm_sin_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     70	      0	      0	     70	     46	arm_sin_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     66	      0	      0	     66	     42	arm_sin_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    180	      0	      0	    180	     b4	arm_sqrt_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    198	      0	      0	    198	     c6	arm_sqrt_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     54	      0	      0	     54	     36	arm_vexp_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     38	      0	      0	     38	     26	arm_vexp_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     40	      0	      0	     40	     28	arm_vexp_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     50	      0	      0	     50	     32	arm_vinverse_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    310	      0	      0	    310	    136	arm_vlog_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     38	      0	      0	     38	     26	arm_vlog_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     40	      0	      0	     40	     28	arm_vlog_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    114	      0	      0	    114	     72	arm_vlog_q15.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    114	      0	      0	    114	     72	arm_vlog_q31.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     76	      0	      0	     76	     4c	arm_bartlett_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    200	      0	      0	    200	     c8	arm_bartlett_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    164	      0	      0	    164	     a4	arm_blackman_harris_92db_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    416	      0	      0	    416	    1a0	arm_blackman_harris_92db_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    108	      0	      0	    108	     6c	arm_hamming_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    232	      0	      0	    232	     e8	arm_hamming_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    100	      0	      0	    100	     64	arm_hanning_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    216	      0	      0	    216	     d8	arm_hanning_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    216	      0	      0	    216	     d8	arm_hft116d_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    520	      0	      0	    520	    208	arm_hft116d_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    244	      0	      0	    244	     f4	arm_hft144d_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    584	      0	      0	    584	    248	arm_hft144d_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    272	      0	      0	    272	    110	arm_hft169d_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    656	      0	      0	    656	    290	arm_hft169d_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    300	      0	      0	    300	    12c	arm_hft196d_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    720	      0	      0	    720	    2d0	arm_hft196d_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    332	      0	      0	    332	    14c	arm_hft223d_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    792	      0	      0	    792	    318	arm_hft223d_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    360	      0	      0	    360	    168	arm_hft248d_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    856	      0	      0	    856	    358	arm_hft248d_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    188	      0	      0	    188	     bc	arm_hft90d_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    448	      0	      0	    448	    1c0	arm_hft90d_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    188	      0	      0	    188	     bc	arm_hft95_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    448	      0	      0	    448	    1c0	arm_hft95_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    132	      0	      0	    132	     84	arm_nuttall3a_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    312	      0	      0	    312	    138	arm_nuttall3a_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    136	      0	      0	    136	     88	arm_nuttall3b_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    312	      0	      0	    312	    138	arm_nuttall3b_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    124	      0	      0	    124	     7c	arm_nuttall3_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    312	      0	      0	    312	    138	arm_nuttall3_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    164	      0	      0	    164	     a4	arm_nuttall4a_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    416	      0	      0	    416	    1a0	arm_nuttall4a_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    164	      0	      0	    164	     a4	arm_nuttall4b_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    416	      0	      0	    416	    1a0	arm_nuttall4b_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    164	      0	      0	    164	     a4	arm_nuttall4c_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    416	      0	      0	    416	    1a0	arm_nuttall4c_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    152	      0	      0	    152	     98	arm_nuttall4_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    416	      0	      0	    416	    1a0	arm_nuttall4_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+     72	      0	      0	     72	     48	arm_welch_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+    184	      0	      0	    184	     b8	arm_welch_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
+   2616	      4	      2	   2622	    a3e	nema_blender.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+   3024	      0	      4	   3028	    bd4	nema_cmdlist.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+   7176	      0	     40	   7216	   1c30	nema_dc.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+    140	      0	      0	    140	     8c	nema_dc_dsi.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+   1752	      0	     76	   1828	    724	nema_dc_jdi.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+   4784	      0	     12	   4796	   12bc	nema_dc_mipi.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+   2536	      0	      0	   2536	    9e8	nema_easing.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+   4188	      0	      4	   4192	   1060	nema_font.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+   7342	      0	      0	   7342	   1cae	nema_graphics.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+   1788	      0	      0	   1788	    6fc	nema_interpolators.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+   2008	      0	      0	   2008	    7d8	nema_math.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+   2912	      0	      0	   2912	    b60	nema_matrix3x3.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+   3396	      0	      0	   3396	    d44	nema_matrix4x4.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+    496	      0	      0	    496	    1f0	nema_ocd.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+   7024	    216	      4	   7244	   1c4c	nema_programHW.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+   5660	      0	      0	   5660	   161c	nema_provisional.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+      0	      0	      0	      0	      0	nema_rasterizer.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+    880	      0	     20	    900	    384	nema_ringbuffer.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+   4792	      0	      0	   4792	   12b8	nema_shaderSpecific.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+   3684	      0	      0	   3684	    e64	nema_transitions.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+  32780	      0	      0	  32780	   800c	nema_vg.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+   7424	      0	      0	   7424	   1d00	nema_vg_aabb.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+  11784	      0	     92	  11876	   2e64	nema_vg_clipped_path.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+   1336	      0	    668	   2004	    7d4	nema_vg_context.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+   4076	      4	      4	   4084	    ff4	nema_vg_font.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+   3376	      0	      0	   3376	    d30	nema_vg_paint.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+    768	      0	      0	    768	    300	nema_vg_path.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+  12321	      0	      0	  12321	   3021	nema_vg_shapes.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+   4300	      0	     20	   4320	   10e0	nema_vg_tsvg.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+   1324	      0	    192	   1516	    5ec	tsi_malloc.o (ex ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemagfx.a)
+    192	      0	      0	    192	     c0	am_hal_access.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+   2736	      0	    105	   2841	    b19	am_hal_adc.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+   4312	      0	    104	   4416	   1140	am_hal_audadc.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+     40	      0	      0	     40	     28	am_hal_bootrom_helper.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+    852	      5	      0	    857	    359	am_hal_cachectrl.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+  16384	      0	      0	  16384	   4000	am_hal_card.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+    260	    160	      0	    420	    1a4	am_hal_card_host.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+   1400	      0	      5	   1405	    57d	am_hal_clkgen.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+   2048	      0	    484	   2532	    9e4	am_hal_cmdq.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+    588	     32	      4	    624	    270	am_hal_dcu.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+   1056	      0	      4	   1060	    424	am_hal_dsi.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+    112	      0	      0	    112	     70	am_hal_fault.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+     52	      0	      0	     52	     34	am_hal_global.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+   1904	      0	   2048	   3952	    f70	am_hal_gpio.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+   2532	      0	    152	   2684	    a7c	am_hal_i2s.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+     24	      0	      0	     24	     18	am_hal_interrupt.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+  10004	      0	  17728	  27732	   6c54	am_hal_iom.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+   2196	      0	     72	   2268	    8dc	am_hal_ios.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+    500	      0	      0	    500	    1f4	am_hal_itm.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+   1236	      8	     12	   1256	    4e8	am_hal_mcuctrl.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+    256	      0	      0	    256	    100	am_hal_mpu.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+    376	      0	      0	    376	    178	am_hal_mram.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+   8372	      0	   6732	  15104	   3b00	am_hal_mspi.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+    156	      0	      0	    156	     9c	am_hal_otp.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+   1672	      0	     96	   1768	    6e8	am_hal_pdm.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+   4096	      0	      0	   4096	   1000	am_hal_pin.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+   6273	      9	     47	   6329	   18b9	am_hal_pwrctrl.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+    276	      0	      0	    276	    114	am_hal_queue.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+    391	      0	      4	    395	    18b	am_hal_reset.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+   1252	      0	      0	   1252	    4e4	am_hal_rtc.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+   5680	      0	    212	   5892	   1704	am_hal_sdhc.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+    288	      0	     12	    300	    12c	am_hal_secure_ota.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+    404	      0	      0	    404	    194	am_hal_security.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+    992	     32	      1	   1025	    401	am_hal_stimer.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+    408	      0	      0	    408	    198	am_hal_sysctrl.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+    144	      0	      0	    144	     90	am_hal_systick.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+   2716	      0	      0	   2716	    a9c	am_hal_timer.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+    144	      0	      0	    144	     90	am_hal_tpiu.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+   3756	      0	    736	   4492	   118c	am_hal_uart.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+   6288	      4	    268	   6560	   19a0	am_hal_usb.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+    284	      0	      0	    284	    11c	am_hal_utils.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+    796	      0	      0	    796	    31c	am_hal_wdt.o (ex ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a)
+    672	      0	      0	    672	    2a0	NemaSDK_patch.o (ex ../../../lvgl_ambiq_porting/gpu_lib_apollo4/gcc/bin/lvgl_ambiq_porting.a)
+   5352	      0	      0	   5352	   14e8	_lv_gpu_ambiq_nema.o (ex ../../../lvgl_ambiq_porting/gpu_lib_apollo4/gcc/bin/lvgl_ambiq_porting.a)
+ 975940	  11352	 100028	1087320	 109758	bin/lvgl_test.axf
