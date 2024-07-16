@@ -43,7 +43,7 @@ PROJECT := lvgl_test_gcc
 CONFIG := bin
 TOP_DIR := ../../..
 LVGL_DIR := ../../..
-LVGL_DIR_NAME := LVGL
+LVGL_DIR_NAME := LVGL_V8
 
 SHELL:=/bin/bash
 
@@ -150,8 +150,57 @@ LIBS += ../../../bsp/gpu/config/apollo4p_nemagfx/gcc/bin/lib_nema_apollo4p_nemag
 # bsp/mcu
 INCLUDES+= -I../../../bsp/mcu/apollo4p
 INCLUDES+= -I../../../bsp/mcu/apollo4p/hal
+VPATH +=:../../../bsp/mcu/apollo4p/hal
 
-LIBS += ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a
+SRC += am_hal_mram.c
+SRC += am_hal_cmdq.c
+SRC += am_hal_cachectrl.c
+SRC += am_hal_dsi.c
+SRC += am_hal_fault.c
+SRC += am_hal_itm.c
+SRC += am_hal_sysctrl.c
+SRC += am_hal_iom.c
+SRC += am_hal_ios.c
+SRC += am_hal_mcuctrl.c
+SRC += am_hal_mspi.c
+SRC += am_hal_reset.c
+SRC += am_hal_systick.c
+SRC += am_hal_tpiu.c
+SRC += am_hal_uart.c
+SRC += am_hal_clkgen.c
+SRC += am_hal_rtc.c
+SRC += am_hal_secure_ota.c
+SRC += am_hal_card_host.c
+SRC += am_hal_card.c
+SRC += am_hal_sdhc.c
+SRC += am_hal_mpu.c
+
+INCLUDES+= -I../../../bsp/mcu/apollo4p/hal/mcu
+VPATH +=:../../../bsp/mcu/apollo4p/hal/mcu
+
+SRC += am_hal_access.c
+SRC += am_hal_adc.c
+SRC += am_hal_i2s.c
+SRC += am_hal_pin.c
+SRC += am_hal_gpio.c
+SRC += am_hal_audadc.c
+SRC += am_hal_pdm.c
+SRC += am_hal_pwrctrl.c
+SRC += am_hal_queue.c
+SRC += am_hal_stimer.c
+SRC += am_hal_timer.c
+SRC += am_hal_utils.c
+SRC += am_hal_security.c
+SRC += am_hal_wdt.c
+SRC += am_hal_otp.c
+SRC += am_hal_dcu.c
+SRC += am_hal_bootrom_helper.c
+
+INCLUDES+= -I../../../bsp/mcu/apollo4p/hal/dsp
+VPATH +=:../../../bsp/mcu/apollo4p/hal/dsp
+SRC += am_hal_interrupt.c
+
+# LIBS += ../../../bsp/mcu/apollo4p/hal/mcu/gcc/bin/libam_hal.a
 
 # bsp/utils
 INCLUDES+= -I../../../bsp/utils
@@ -162,10 +211,10 @@ SRC += am_util_delay.c
 SRC += am_util_stdio.c
 
 # lvgl
-INCLUDES+= -I../../../LVGL
-INCLUDES+= -I../../../LVGL/src/gpu
+INCLUDES+= -I../../../LVGL_V8
+INCLUDES+= -I../../../LVGL_V8/src/gpu
 
-include ../../../LVGL/lvgl.mk
+include ../../../LVGL_V8/lvgl.mk
 
 # lvgl_ambiq_porting
 INCLUDES+= -I../../../lvgl_ambiq_porting
