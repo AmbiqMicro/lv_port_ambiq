@@ -359,9 +359,23 @@ static void style_init(void)
     /*Create a simple button style*/
     lv_style_init(&style_btn);
 
-    lv_style_set_radius(&style_btn, 50);
+    lv_style_set_radius(&style_btn, 0);
     lv_style_set_bg_opa(&style_btn, LV_OPA_COVER);
-    lv_style_set_bg_color(&style_btn, lv_palette_main(LV_PALETTE_BLUE));
+
+    /*Make a gradient*/
+    static lv_grad_dsc_t grad;
+    grad.dir = LV_GRAD_DIR_VER;
+    grad.stops_count = 2;
+    grad.stops[0].color = lv_palette_lighten(LV_PALETTE_GREY, 1);
+    grad.stops[0].opa = LV_OPA_COVER;
+    grad.stops[1].color = lv_palette_main(LV_PALETTE_BLUE);
+    grad.stops[1].opa = LV_OPA_COVER;
+
+    /*Shift the gradient to the bottom*/
+    grad.stops[0].frac  = 64;
+    grad.stops[1].frac  = 192;
+
+    lv_style_set_bg_grad(&style_btn, &grad);
 
     /*Add a shadow*/
     lv_style_set_shadow_width(&style_btn, 25);

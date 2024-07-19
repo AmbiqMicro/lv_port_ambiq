@@ -141,9 +141,11 @@
 AM_SHARED_RW __attribute__((aligned(32))) uint8_t draw_buffer[LV_AMBIQ_DRAW_BUFFER_SIZE];
 // Display buffer. Draw buffer will be copied to this buffer in display->flush_cb, and DC will always read from this buffer when TE is recived.
 AM_SHARED_RW __attribute__((aligned(32))) uint8_t display_buffer[LV_AMBIQ_DISPLAY_BUFFER_SIZE];
+
+#if LV_USE_DRAW_AMBIQ_VG
 // Stencil buffer, Used by NemaVG.
 AM_SHARED_RW __attribute__((aligned(32))) uint8_t stencil_buffer[LV_AMBIQ_STENCIL_BUFFER_SIZE];
-
+#endif
 
 //*****************************************************************************
 //
@@ -408,10 +410,7 @@ DisplayTask(void *pvParameters)
     am_hal_gpio_pinconfig(DEBUG_PIN_6, am_hal_gpio_pincfg_output);
 #endif
 
-    //
-    // Init LVGL.
-    //
-    lv_init();
+
 
     //
     // If NEMA_GFX_POWERSAVE is defined, we keep GPU power off until an GPU CL is ready to submit.
@@ -434,12 +433,15 @@ DisplayTask(void *pvParameters)
     //
     // Initialize NemaVG.
     //
-    nema_buffer_t bo_stencil = {.base_phys=stencil_buffer, .base_virt=(uint32_t)stencil_buffer, .size=LV_AMBIQ_STENCIL_BUFFER_SIZE, .fd=0};
+#if LV_USE_DRAW_AMBIQ_VG
+    nema_buffer_t bo_stencil = {.base_phys=(uintptr_t)stencil_buffer, .base_virt=(void*)stencil_buffer, .size=LV_AMBIQ_STENCIL_BUFFER_SIZE, .fd=0};
     nema_vg_init_stencil_prealloc(LV_AMBIQ_DISPLAY_BUFFER_RESX, LV_AMBIQ_DISPLAY_BUFFER_RESY, bo_stencil);
     if (NEMA_ERR_NO_ERROR != nema_get_error())
     {
         am_util_stdio_printf("NemaVG init failed!\n");
     }
+#endif
+
 #endif
 
     //
@@ -489,6 +491,11 @@ DisplayTask(void *pvParameters)
             vTaskDelete(NULL);
         }
     }
+
+    //
+    // Init LVGL.
+    //
+    lv_init();
 
     //
     // Set up LVGL display driver.

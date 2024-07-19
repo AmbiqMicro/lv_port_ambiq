@@ -135,6 +135,11 @@
     #endif
 #endif
 
+/* Use ambiq's GPU on Apollo4x or Apollo5x chips. */
+#define LV_USE_DRAW_AMBIQ 1
+#if LV_USE_DRAW_AMBIQ
+#endif
+
 /* Use NXP's VG-Lite GPU on iMX RTxxx platforms. */
 #define LV_USE_DRAW_VGLITE 0
 
@@ -196,7 +201,7 @@
     *LV_LOG_LEVEL_ERROR       Only critical issue, when the system may fail
     *LV_LOG_LEVEL_USER        Only logs added by the user
     *LV_LOG_LEVEL_NONE        Do not log anything*/
-    #define LV_LOG_LEVEL LV_LOG_LEVEL_INFO
+    #define LV_LOG_LEVEL LV_LOG_LEVEL_TRACE
 
     /*1: Print the log with 'printf';
     *0: User need to register a callback with `lv_log_register_print_cb()`*/

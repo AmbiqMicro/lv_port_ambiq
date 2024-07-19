@@ -199,7 +199,7 @@ setup_task(void *pvParameters)
     //
     // Create the display tasks, put at the highest priority to save power.
     //
-    xTaskCreate(DisplayTask, "DisplayTask", 1024, 0, 2, &DisplayTaskHandle);
+    xTaskCreate(DisplayTask, "DisplayTask", 4096, 0, 2, &DisplayTaskHandle);
 
     //
     // Resume task switch

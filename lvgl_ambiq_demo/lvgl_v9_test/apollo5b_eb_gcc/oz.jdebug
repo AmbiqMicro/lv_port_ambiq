@@ -16,10 +16,11 @@ void OnProjectLoad (void) {
   Project.SetTargetIF ("SWD");
   Project.SetTIFSpeed ("1 MHz");
   Project.AddSvdFile ("$(InstallDir)/Config/CPU/Cortex-M55F.svd");
-  Project.AddSvdFile ("../../../../../../pack/SVD/apollo5b.svd");
+  Project.AddSvdFile ("$(InstallDir)/Config/Peripherals/apollo5b.svd");
   //
   // User settings
   //
+  Project.SetOSPlugin ("FreeRTOSPlugin_CM4");
   File.Open ("bin/lvgl_v9_test.axf");
 }
 

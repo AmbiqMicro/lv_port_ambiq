@@ -84,7 +84,8 @@ main(void)
     //  Enable the I-Cache and D-Cache.
     //
     am_hal_cachectrl_icache_enable();
-    am_hal_cachectrl_dcache_enable(true);
+    //am_hal_cachectrl_dcache_enable(true);
+    am_hal_cachectrl_dcache_disable();
 
     //
     // Initialize the printf interface for ITM/SWO output.
