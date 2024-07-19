@@ -66,8 +66,10 @@ AmbiqSuite
 *.md5
 .vscode
 *.map
+bin/
 
 # Python Virtual Environment
 .venv/
 .venv*/
+
 
