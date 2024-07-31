@@ -528,7 +528,7 @@ DisplayTask(void *pvParameters)
     lv_log_register_print_cb(lv_ambiq_log_printf);
 #endif
 
-    SetupGui();
+    lv_example_style_3();
      
 
     while(1)
