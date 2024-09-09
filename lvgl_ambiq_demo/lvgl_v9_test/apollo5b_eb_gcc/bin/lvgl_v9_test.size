@@ -61,6 +61,14 @@
    2410	      0	      0	   2410	    96a	bin/lv_draw_rect.o
    5111	      0	      0	   5111	   13f7	bin/lv_draw_buf.o
    1551	      0	      0	   1551	    60f	bin/lv_image_decoder.o
+   1661	      0	      0	   1661	    67d	bin/lv_draw_ambiq_triangle.o
+   1568	      0	      0	   1568	    620	bin/lv_draw_ambiq.o
+    902	      0	      0	    902	    386	bin/lv_draw_ambiq_arc.o
+   2856	      0	      0	   2856	    b28	bin/lv_draw_ambiq_border.o
+   1976	      0	      0	   1976	    7b8	bin/lv_draw_ambiq_line.o
+   1988	      0	      0	   1988	    7c4	bin/lv_draw_ambiq_gradient.o
+   1117	      0	      0	   1117	    45d	bin/lv_draw_ambiq_fill.o
+    306	      0	      0	    306	    132	bin/lv_draw_ambiq_color.o
       0	      0	      0	      0	      0	bin/lv_draw_sdl.o
       0	      0	      0	      0	      0	bin/lv_draw_vg_lite_img.o
       0	      0	      0	      0	      0	bin/lv_draw_vg_lite_line.o
@@ -225,7 +233,13 @@
    1200	      0	      0	   1200	    4b0	bin/lv_tileview.o
    3235	     80	      0	   3315	    cf3	bin/lv_keyboard.o
    5377	      0	      0	   5377	   1501	bin/lv_bin_decoder.o
-   1246	      0	    520	   1766	    6e6	bin/lv_init.o
+   1278	      0	    520	   1798	    706	bin/lv_init.o
+   9469	    680	  14265	  24414	   5f5e	bin/lv_demo_render.o
+   2724	      0	      0	   2724	    aa4	bin/img_render_lvgl_logo_rgb888.o
+   3624	      0	      0	   3624	    e28	bin/img_render_lvgl_logo_argb8888.o
+   1824	      0	      0	   1824	    720	bin/img_render_lvgl_logo_rgb565.o
+  40024	      0	      0	  40024	   9c58	bin/img_render_arc_bg.o
+   3624	      0	      0	   3624	    e28	bin/img_render_lvgl_logo_xrgb8888.o
   14038	     18	      5	  14061	   36ed	bin/am_bsp.o
      24	   1232	     40	   1296	    510	bin/am_bsp_pins.o
     120	      4	      0	    124	     7c	bin/system_apollo5b.o
@@ -249,9 +263,9 @@
     334	      0	      0	    334	    14e	bin/portasm.o
     328	      0	      4	    332	    14c	bin/rtos.o
     132	     64	      0	    196	     c4	bin/am_resources.o
-   1239	     88	     64	   1391	    56f	bin/gui_task.o
-    151	     20	      8	    179	     b3	bin/lvgl_test.o
-   1805	 576256	     12	 578073	  8d219	bin/display_task.o
+   1479	     88	     88	   1655	    677	bin/gui_task.o
+    147	     20	      8	    175	     af	bin/lvgl_test.o
+   1753	 576256	     12	 578021	  8d1e5	bin/display_task.o
      46	      0	      0	     46	     2e	arm_abs_f16.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
      30	      0	      0	     30	     1e	arm_abs_f32.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
      64	      0	      0	     64	     40	arm_abs_f64.o (ex ../../../bsp/CMSIS/ARM/Lib/ARM/libarm_cortexM4lf_math.a)
@@ -953,4 +967,4 @@
   11876	      0	    597	  12473	   30b9	am_hal_usb.o (ex ../../../bsp/mcu/apollo5b/hal/mcu/gcc/bin/libam_hal.a)
     324	      0	      0	    324	    144	am_hal_utils.o (ex ../../../bsp/mcu/apollo5b/hal/mcu/gcc/bin/libam_hal.a)
     344	      0	      0	    344	    158	am_hal_wdt.o (ex ../../../bsp/mcu/apollo5b/hal/mcu/gcc/bin/libam_hal.a)
- 398532	    920	1194460	1593912	 185238	bin/lvgl_v9_test.axf
+ 481212	   1896	1208372	1691480	 19cf58	bin/lvgl_v9_test.axf

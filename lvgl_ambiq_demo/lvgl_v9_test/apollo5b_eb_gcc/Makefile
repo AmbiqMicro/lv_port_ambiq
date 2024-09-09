@@ -175,6 +175,7 @@ LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/tick -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/widgets -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/libs/bin_decoder -type f -name '*.c')
 LVGL_CSRCS += $(LVGL_PATH)/src/lv_init.c
+LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/render -type f -name '*.c')
 
 CSRC += $(notdir $(LVGL_CSRCS))
 

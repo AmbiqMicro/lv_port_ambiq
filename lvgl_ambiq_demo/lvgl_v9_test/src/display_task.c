@@ -48,6 +48,9 @@
 #include "nema_vg_font.h"
 
 #include "display_task.h"
+
+#include "demos/lv_demos.h"
+
 //*****************************************************************************
 //
 // Display setting
@@ -528,7 +531,7 @@ DisplayTask(void *pvParameters)
     lv_log_register_print_cb(lv_ambiq_log_printf);
 #endif
 
-    lv_example_style_3();
+    lv_demo_render(LV_DEMO_RENDER_SCENE_ARC_NORMAL, LV_OPA_COVER);
      
 
     while(1)

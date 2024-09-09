@@ -201,7 +201,7 @@
     *LV_LOG_LEVEL_ERROR       Only critical issue, when the system may fail
     *LV_LOG_LEVEL_USER        Only logs added by the user
     *LV_LOG_LEVEL_NONE        Do not log anything*/
-    #define LV_LOG_LEVEL LV_LOG_LEVEL_TRACE
+    #define LV_LOG_LEVEL LV_LOG_LEVEL_INFO
 
     /*1: Print the log with 'printf';
     *0: User need to register a callback with `lv_log_register_print_cb()`*/
@@ -922,7 +922,7 @@
 #define LV_USE_DEMO_BENCHMARK 0
 
 /*Render test for each primitives. Requires at least 480x272 display*/
-#define LV_USE_DEMO_RENDER 0
+#define LV_USE_DEMO_RENDER 1
 
 /*Stress test for LVGL*/
 #define LV_USE_DEMO_STRESS 0
