@@ -56,3 +56,6 @@ dkms.conf
 *.jdebug.user
 
 .vscode/
+
+lvgl_ambiq_porting/gpu_patch/*
+lvgl_ambiq_demo/lvgl_test/apollo5b_eb_gcc/bin/*

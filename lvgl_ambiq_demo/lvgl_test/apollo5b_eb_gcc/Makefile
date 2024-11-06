@@ -37,9 +37,9 @@
 # This is part of revision release_sdk_4_5_0-a1ef3b89f9 of the AmbiqSuite Development Package.
 #
 #******************************************************************************TARGET := lvgl_test
-TARGET := lvgl_v9_test
+TARGET := lvgl_test
 COMPILERNAME := gcc
-PROJECT := lvgl_v9_test_gcc
+PROJECT := lvgl_test_gcc
 CONFIG := bin
 SHELL:=/bin/bash
 TOP_DIR := ../../..
@@ -158,9 +158,9 @@ SRC += am_util_stdio.c
 
 # lvgl
 
-LVGL_PATH = ../../../LVGL_V9
+LVGL_PATH = ../../../LVGL
 
-INCLUDES+= -I../../../LVGL_V9
+INCLUDES+= -I../../../LVGL
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/core -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/display -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/draw -type f -name '*.c')
@@ -203,6 +203,9 @@ SRC += port.c
 SRC += port_stimer.c
 SRC += port_systick_stimer.c
 SRC += portasm.c
+
+# lvgl_ambiq_porting
+LIBS += ../../../lvgl_ambiq_porting/gpu_patch/bin/lvgl_ambiq_porting.a
 
 # lvgl_test
 INCLUDES+= -I../src
