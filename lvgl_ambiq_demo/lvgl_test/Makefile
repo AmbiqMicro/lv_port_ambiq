@@ -38,8 +38,5 @@
 #
 #******************************************************************************
 
-apollo4p_evb:
-	$(MAKE) -C ./apollo4p_evb_gcc
-
-apollo4l_evb:
-	$(MAKE) -C ./apollo4l_evb_gcc
+apollo5b_eb:
+	$(MAKE) -C ./apollo5b_eb_gcc

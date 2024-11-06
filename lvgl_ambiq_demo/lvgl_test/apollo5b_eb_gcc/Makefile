@@ -90,7 +90,8 @@ else
 
 DEFINES+= -DAM_PART_APOLLO5B
 
-DEFINES+= -DLV_AMBIQ_USE_PARTIAL_MODE=1
+DEFINES+= -DLV_AMBIQ_USE_DIRECT_MODE=1
+DEFINES+= -DLV_AMBIQ_DRAW_BUFFER_RATIO=1
 DEFINES+= -DLV_CONF_INCLUDE_SIMPLE
 DEFINES+= -DLV_LVGL_H_INCLUDE_SIMPLE
 
@@ -175,7 +176,7 @@ LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/tick -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/widgets -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/libs/bin_decoder -type f -name '*.c')
 LVGL_CSRCS += $(LVGL_PATH)/src/lv_init.c
-LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/render -type f -name '*.c')
+LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/scroll -type f -name '*.c')
 
 CSRC += $(notdir $(LVGL_CSRCS))
 

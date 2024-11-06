@@ -59,22 +59,24 @@ extern "C"
 // Memory block locations.
 //
 //*****************************************************************************
-#define AM_MEM_MCU_MRAM                0x00018000
-#define AM_MEM_MCU_TCM                 0x10000000
-#define AM_MEM_SHARED_SRAM             0x10060000
-#define AM_MEM_EXTENDED_SRAM           0x10160000
-#define AM_MEM_SHARED_SRAM2            0x101C0000
+#define AM_MEM_MCU_ITCM                0x00000000
+#define AM_MEM_MCU_MRAM                0x00410000
+#define AM_MEM_MCU_TCM                 0x20000000
+#define AM_MEM_SHARED_SRAM             0x20080000
+#define AM_MEM_STACK                   0x2007D000
+#define AM_MEM_HEAP                    0x2007C000
 
 //*****************************************************************************
 //
 // Memory block sizes (in bytes)
 //
 //*****************************************************************************
-#define AM_MEM_MCU_MRAM_SIZE           0x001E8000
-#define AM_MEM_MCU_TCM_SIZE            0x00060000
-#define AM_MEM_SHARED_SRAM_SIZE        0x00100000
-#define AM_MEM_EXTENDED_SRAM_SIZE      0x00060000
-#define AM_MEM_SHARED_SRAM2_SIZE       0x00100000
+#define AM_MEM_MCU_ITCM_SIZE           0x00040000
+#define AM_MEM_MCU_MRAM_SIZE           0x003F0000
+#define AM_MEM_MCU_TCM_SIZE            0x0006C000
+#define AM_MEM_SHARED_SRAM_SIZE        0x00200000
+#define AM_MEM_STACK_SIZE              0x00003000
+#define AM_MEM_HEAP_SIZE               0x00001000
 
 #ifdef __cplusplus
 }

@@ -11,39 +11,9 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2024, Ambiq Micro, Inc.
-// All rights reserved.
+// ${copyright}
 //
-// Redistribution and use in source and binary forms, with or without
-// modification, are permitted provided that the following conditions are met:
-//
-// 1. Redistributions of source code must retain the above copyright notice,
-// this list of conditions and the following disclaimer.
-//
-// 2. Redistributions in binary form must reproduce the above copyright
-// notice, this list of conditions and the following disclaimer in the
-// documentation and/or other materials provided with the distribution.
-//
-// 3. Neither the name of the copyright holder nor the names of its
-// contributors may be used to endorse or promote products derived from this
-// software without specific prior written permission.
-//
-// Third party software included in this distribution is subject to the
-// additional license terms as defined in the /docs/licenses directory.
-//
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-// POSSIBILITY OF SUCH DAMAGE.
-//
-// This is part of revision release_sdk_4_5_0-a1ef3b89f9 of the AmbiqSuite Development Package.
+// This is part of revision ${version} of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #include "lvgl_test.h"
@@ -67,19 +37,14 @@ TaskHandle_t xSetupTask;
 //*****************************************************************************
 uint32_t am_freertos_sleep(uint32_t idleTime)
 {
-#if defined(NEMA_GFX_POWERSAVE) && defined(NORMAL_SLEEP_WHILE_GPU_BUSY)
-    bool gpu_power_status;
-    am_hal_pwrctrl_periph_enabled(AM_HAL_PWRCTRL_PERIPH_GFX, &gpu_power_status);
-    if(gpu_power_status)
-    {
-        am_hal_sysctrl_sleep(AM_HAL_SYSCTRL_SLEEP_NORMAL);
-    }
-    else
-#endif
-    {
-        am_hal_sysctrl_sleep(AM_HAL_SYSCTRL_SLEEP_DEEP);
-    }
+// #### INTERNAL BEGIN ####
+#ifndef APOLLO5_FPGA
+// #### INTERNAL END ####
 
+    am_hal_sysctrl_sleep(AM_HAL_SYSCTRL_SLEEP_DEEP);
+// #### INTERNAL BEGIN ####
+#endif
+// #### INTERNAL END ####
     return 0;
 }
 
@@ -167,7 +132,7 @@ uint32_t getCpuOccupationRate(void)
     uint32_t totalTimeElaps;
 
     //If counter overflow
-    if(totalRunTime < lastTotalRunTime)
+    if ( totalRunTime < lastTotalRunTime )
     {
         totalTimeElaps = (uint64_t)totalRunTime + 0xffffffff - lastTotalRunTime;
     }
@@ -177,7 +142,7 @@ uint32_t getCpuOccupationRate(void)
     }
 
     //If counter overflow
-    if(idleRunTime < lastIdleRunTime)
+    if ( idleRunTime < lastIdleRunTime )
     {
         runTimeElaps = (uint64_t)idleRunTime + 0xffffffff - lastIdleRunTime;
     }
@@ -192,10 +157,14 @@ uint32_t getCpuOccupationRate(void)
 
 
     //if not overflow
-    if(runTimeElaps < totalTimeElaps)
+    if ( runTimeElaps < totalTimeElaps )
+    {
         return 100 - runTimeElaps * 100 / totalTimeElaps ;
+    }
     else
+    {
         return 0;
+    }
 }
 #endif
 
@@ -222,15 +191,15 @@ setup_task(void *pvParameters)
     //
     vTaskSuspendAll();
 
-    //
-    // Create the Gui tasks, this task will control render task and display task
-    //
-    xTaskCreate(GuiTask, "GuiTask", 1024, 0, TASK_PRIORITY_MIDDLE, &GuiTaskHandle);
+    // //
+    // // Create the Gui tasks, this task will control render task and display task
+    // //
+    // xTaskCreate(GuiTask, "GuiTask", 1024, 0, 1, &GuiTaskHandle);
 
     //
     // Create the display tasks, put at the highest priority to save power.
     //
-    xTaskCreate(DisplayTask, "DisplayTask", 1024, 0, TASK_PRIORITY_HIGHEST, &DisplayTaskHandle);
+    xTaskCreate(DisplayTask, "DisplayTask", 4096, 0, 2, &DisplayTaskHandle);
 
     //
     // Resume task switch
@@ -256,7 +225,7 @@ run_tasks(void)
     //
     // Create essential tasks.
     //
-    xTaskCreate(setup_task, "Setup", 512, 0, TASK_PRIORITY_HIGH, &xSetupTask);
+    xTaskCreate(setup_task, "Setup", 512, 0, 1, &xSetupTask);
 
 
     //

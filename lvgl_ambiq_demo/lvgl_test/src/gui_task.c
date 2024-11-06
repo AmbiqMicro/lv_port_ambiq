@@ -9,39 +9,9 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2024, Ambiq Micro, Inc.
-// All rights reserved.
+// ${copyright}
 //
-// Redistribution and use in source and binary forms, with or without
-// modification, are permitted provided that the following conditions are met:
-//
-// 1. Redistributions of source code must retain the above copyright notice,
-// this list of conditions and the following disclaimer.
-//
-// 2. Redistributions in binary form must reproduce the above copyright
-// notice, this list of conditions and the following disclaimer in the
-// documentation and/or other materials provided with the distribution.
-//
-// 3. Neither the name of the copyright holder nor the names of its
-// contributors may be used to endorse or promote products derived from this
-// software without specific prior written permission.
-//
-// Third party software included in this distribution is subject to the
-// additional license terms as defined in the /docs/licenses directory.
-//
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-// POSSIBILITY OF SUCH DAMAGE.
-//
-// This is part of revision release_sdk_4_5_0-a1ef3b89f9 of the AmbiqSuite Development Package.
+// This is part of revision ${version} of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -51,33 +21,34 @@
 //
 //*****************************************************************************
 #include "lvgl_test.h"
-#include "lv_ambiq_font_align.h"
 
 //*****************************************************************************
 //
 // Macro definitions
 //
 //*****************************************************************************
-#define DRAW_BUTTON 0
+#define DRAW_BUTTON 1
 #define DRAW_STYLE_BUTTON 0
 #define DRAW_BUTTON_IMAGE_BG 0
 #define DRAW_BUTTON_IMAGE_BG_TILE 0
 #define DRAW_SLIDER 0
 #define DRAW_IMAGE  0
 #define DRAW_LINE   0
-#define DRAW_WATCHFACE  1
+#define DRAW_WATCHFACE  0
 #define DRAW_LABEL  0
-
+#define DRAW_TSVG   0
 
 
 //Address of the textures in PSRAM
-#if DRAW_IMAGE==1
+#if DRAW_IMAGE == 1
 #include "texture/phone_true_color.h"
-#elif DRAW_WATCHFACE==1
+#elif DRAW_TSVG == 1
+#include "texture/tiger_tsvg.h"
+#elif DRAW_WATCHFACE == 1
 
-//#define HEART_BEAT_COLOR_FORMAT_TRUE_COLOR_ALPHA
+#define HEART_BEAT_COLOR_FORMAT_TRUE_COLOR_ALPHA
 //#define HEART_BEAT_COLOR_FORMAT_AMBIQ_ARGB8888
-#define HEART_BEAT_COLOR_FORMAT_AMBIQ_BGRA8888
+//#define HEART_BEAT_COLOR_FORMAT_AMBIQ_BGRA8888
 //#define HEART_BEAT_COLOR_FORMAT_AMBIQ_RGB565
 //#define HEART_BEAT_COLOR_FORMAT_AMBIQ_TSC6
 //#define HEART_BEAT_COLOR_FORMAT_AMBIQ_RGB24
@@ -165,9 +136,10 @@ TaskHandle_t GuiTaskHandle;
 // Texture.
 //
 //*****************************************************************************
-#if DRAW_IMAGE==1
+#if DRAW_IMAGE == 1
 LV_IMG_DECLARE(phone);
-lv_img_dsc_t img_phone_argb_psram = {
+lv_img_dsc_t img_phone_argb_psram =
+{
   .header.cf = LV_IMG_CF_TRUE_COLOR_ALPHA,
   .header.always_zero = 0,
   .header.reserved = 0,
@@ -176,15 +148,23 @@ lv_img_dsc_t img_phone_argb_psram = {
   .data_size = 10000 * LV_IMG_PX_SIZE_ALPHA_BYTE,
   .data = phone_map,
 };
+#elif DRAW_TSVG == 1
+lv_img_dsc_t img_world_map_psram =
+{
+  .header.cf = LV_IMG_CF_AMBIQ_TSVG,
+  .header.always_zero = 0,
+  .header.reserved = 0,
+};
 
-#elif DRAW_WATCHFACE==1
+#elif DRAW_WATCHFACE == 1
 
 #ifdef HEART_BEAT_COLOR_FORMAT_TRUE_COLOR_ALPHA
 LV_IMG_DECLARE(heartbeat);
 lv_img_dsc_t img_watchface_psram = heartbeat;
 lv_img_dsc_t img_heartbeat_psram = heartbeat;
 #else
-lv_img_dsc_t img_watchface_psram = {
+lv_img_dsc_t img_watchface_psram =
+{
   .header.cf = HEART_BEAT_COLOR_FORMAT,
   .header.always_zero = 0,
   .header.reserved = 0,
@@ -192,7 +172,8 @@ lv_img_dsc_t img_watchface_psram = {
   .header.h = 388,
 };
 
-lv_img_dsc_t img_heartbeat_psram = {
+lv_img_dsc_t img_heartbeat_psram =
+{
   .header.cf = HEART_BEAT_COLOR_FORMAT,
   .header.always_zero = 0,
   .header.reserved = 0,
@@ -202,7 +183,8 @@ lv_img_dsc_t img_heartbeat_psram = {
 #endif
 
 #elif (DRAW_BUTTON_IMAGE_BG == 1)
-lv_img_dsc_t img_color_wheel_argb_psram = {
+lv_img_dsc_t img_color_wheel_argb_psram =
+{
   .header.cf = LV_IMG_CF_AMBIQ_ARGB8888,
   .header.always_zero = 0,
   .header.reserved = 0,
@@ -213,7 +195,8 @@ lv_img_dsc_t img_color_wheel_argb_psram = {
 };
 
 #elif (DRAW_BUTTON_IMAGE_BG_TILE == 1)
-lv_img_dsc_t img_wood_argb_psram = {
+lv_img_dsc_t img_wood_argb_psram =
+{
   .header.cf = LV_IMG_CF_AMBIQ_ARGB8888,
   .header.always_zero = 0,
   .header.reserved = 0,
@@ -223,7 +206,8 @@ lv_img_dsc_t img_wood_argb_psram = {
   .data = wood_50_50_argb8888,
 };
 
-lv_img_dsc_t img_brick_rgb565_psram = {
+lv_img_dsc_t img_brick_rgb565_psram =
+{
   .header.cf = LV_IMG_CF_AMBIQ_RGB565,
   .header.always_zero = 0,
   .header.reserved = 0,
@@ -235,17 +219,10 @@ lv_img_dsc_t img_brick_rgb565_psram = {
 
 #endif
 
-#if DRAW_WATCHFACE==1
+#if DRAW_WATCHFACE == 1
 static lv_obj_t * img_watchface;
 static lv_obj_t * img_heartbeat;
 #endif
-
-//*****************************************************************************
-//
-// External variable definitions
-//
-//*****************************************************************************
-extern am_util_stdio_print_char_t g_pfnCharPrint;
 
 //*****************************************************************************
 //
@@ -255,44 +232,50 @@ extern am_util_stdio_print_char_t g_pfnCharPrint;
 void
 texture_load(void)
 {
-#if DRAW_IMAGE==1
-    img_phone_argb_psram.data = (const uint8_t *)lv_mem_external_alloc(img_phone_argb_psram.data_size);
-    memcpy((void*)img_phone_argb_psram.data, phone.data, img_phone_argb_psram.data_size);
-#elif DRAW_WATCHFACE==1
+#if DRAW_IMAGE == 1
+    img_phone_argb_psram.data = (const uint8_t *)lv_mem_ssram_alloc(img_phone_argb_psram.data_size);
+    nema_memcpy((void*)img_phone_argb_psram.data, phone.data, img_phone_argb_psram.data_size);
+#elif DRAW_TSVG == 1
+    img_world_map_psram.header.w = 200;
+    img_world_map_psram.header.h = 200;
+    img_world_map_psram.data_size = tiger_tsvg_length;
+    img_world_map_psram.data = (const uint8_t *)lv_mem_external_alloc(tiger_tsvg_length);
+    nema_memcpy((void*)img_world_map_psram.data, tiger_tsvg, tiger_tsvg_length);
+#elif DRAW_WATCHFACE == 1
 #ifdef HEART_BEAT_COLOR_FORMAT_TRUE_COLOR_ALPHA
     img_watchface_psram.data = (const uint8_t *)lv_mem_external_alloc(heartbeat.data_size);
     img_heartbeat_psram.data = (const uint8_t *)lv_mem_external_alloc(heartbeat.data_size);
-    memcpy((void*)img_watchface_psram.data, heartbeat.data, heartbeat.data_size);
-    memcpy((void*)img_heartbeat_psram.data, heartbeat.data, heartbeat.data_size);
+    nema_memcpy((void*)img_watchface_psram.data, heartbeat.data, heartbeat.data_size);
+    nema_memcpy((void*)img_heartbeat_psram.data, heartbeat.data, heartbeat.data_size);
 #else
     img_watchface_psram.data = (const uint8_t *)lv_mem_external_alloc(heartbeat_length);
     img_heartbeat_psram.data = (const uint8_t *)lv_mem_external_alloc(heartbeat_length);
     img_heartbeat_psram.data_size = heartbeat_length;
     img_watchface_psram.data_size = heartbeat_length;
-    memcpy((void*)img_watchface_psram.data, heartbeat, heartbeat_length);
-    memcpy((void*)img_heartbeat_psram.data, heartbeat, heartbeat_length);
+    nema_memcpy((void*)img_watchface_psram.data, heartbeat, heartbeat_length);
+    nema_memcpy((void*)img_heartbeat_psram.data, heartbeat, heartbeat_length);
 #endif
 
 #elif (DRAW_BUTTON_IMAGE_BG == 1)
     img_color_wheel_argb_psram.data = (const uint8_t *)lv_mem_external_alloc(img_color_wheel_argb_psram.data_size);
 
-    memcpy((void*)img_color_wheel_argb_psram.data, color_wheel_300_300_argb8888, img_color_wheel_argb_psram.data_size);
+    nema_memcpy((void*)img_color_wheel_argb_psram.data, color_wheel_300_300_argb8888, img_color_wheel_argb_psram.data_size);
 
 #elif (DRAW_BUTTON_IMAGE_BG_TILE == 1)
     img_wood_argb_psram.data = (const uint8_t *)lv_mem_external_alloc(img_wood_argb_psram.data_size);
-    memcpy((void*)img_wood_argb_psram.data, wood_50_50_argb8888, img_wood_argb_psram.data_size);
+    nema_memcpy((void*)img_wood_argb_psram.data, wood_50_50_argb8888, img_wood_argb_psram.data_size);
 
     img_brick_rgb565_psram.data = (const uint8_t *)lv_mem_external_alloc(img_brick_rgb565_psram.data_size);
-    memcpy((void*)img_brick_rgb565_psram.data, brick_64_64_rgba565, img_brick_rgb565_psram.data_size);
+    nema_memcpy((void*)img_brick_rgb565_psram.data, brick_64_64_rgba565, img_brick_rgb565_psram.data_size);
 #endif
 
-    // Alloc buffer in PSRAM to hold the font data.
-    uint32_t font_length = lv_ambiq_bitmap_length_get(lv_font_montserrat_14.dsc);
-    void* font_buffer = lv_mem_external_alloc(font_length);
+    // // Alloc buffer in PSRAM to hold the font data.
+    // uint32_t font_length = lv_ambiq_bitmap_length_get(lv_font_montserrat_14.dsc);
+    // void* font_buffer = lv_mem_ssram_alloc(font_length);
 
-    // Copy and align the font bitmap
-    lv_font_fmt_txt_dsc_t* font = (lv_font_fmt_txt_dsc_t*)lv_font_montserrat_14.dsc;
-    lv_ambiq_A4_font_align(font, font_buffer);
+    // // Copy and align the font bitmap
+    // lv_font_fmt_txt_dsc_t* font = (lv_font_fmt_txt_dsc_t*)lv_font_montserrat_14.dsc;
+    // lv_ambiq_A4_font_align(font, font_buffer);
 }
 
 //*****************************************************************************
@@ -301,7 +284,7 @@ texture_load(void)
 //
 //*****************************************************************************
 
-#if DRAW_IMAGE == 1
+#if (DRAW_IMAGE == 1) || (DRAW_TSVG == 1)
 static void set_angle(void * img, int32_t v)
 {
     lv_img_set_angle(img, v);
@@ -313,11 +296,18 @@ static void set_zoom(void * img, int32_t v)
 }
 #endif
 
-#if DRAW_WATCHFACE==1
+#if DRAW_WATCHFACE == 1
 static void ofs_x_anim(void * img, int32_t v)
 {
     lv_obj_set_pos(img_watchface, v, 0);
     lv_obj_set_pos(img_heartbeat, v + 390, 0);
+}
+#endif
+
+#if DRAW_BUTTON == 1
+static void ofs_y_anim(void * obj, int32_t v)
+{
+    lv_obj_set_pos(obj, 0, v);
 }
 #endif
 
@@ -369,9 +359,23 @@ static void style_init(void)
     /*Create a simple button style*/
     lv_style_init(&style_btn);
 
-    lv_style_set_radius(&style_btn, 50);
+    lv_style_set_radius(&style_btn, 0);
     lv_style_set_bg_opa(&style_btn, LV_OPA_COVER);
-    lv_style_set_bg_color(&style_btn, lv_palette_main(LV_PALETTE_BLUE));
+
+    /*Make a gradient*/
+    static lv_grad_dsc_t grad;
+    grad.dir = LV_GRAD_DIR_VER;
+    grad.stops_count = 2;
+    grad.stops[0].color = lv_palette_lighten(LV_PALETTE_GREY, 1);
+    grad.stops[0].opa = LV_OPA_COVER;
+    grad.stops[1].color = lv_palette_main(LV_PALETTE_BLUE);
+    grad.stops[1].opa = LV_OPA_COVER;
+
+    /*Shift the gradient to the bottom*/
+    grad.stops[0].frac  = 64;
+    grad.stops[1].frac  = 192;
+
+    lv_style_set_bg_grad(&style_btn, &grad);
 
     /*Add a shadow*/
     lv_style_set_shadow_width(&style_btn, 25);
@@ -390,7 +394,7 @@ void lv_ex_line_1(void)
 
     static lv_point_t line_points_2[] = { {5, 10}, {70, 10}, {70, 40} };
 
-    static lv_point_t line_points_3[] = { {5, 10}, {5, 40}, {70, 40} };   
+    static lv_point_t line_points_3[] = { {5, 10}, {5, 40}, {70, 40} };
 
     /*Create style*/
     static lv_style_t style_line_1;
@@ -405,7 +409,7 @@ void lv_ex_line_1(void)
     lv_style_init(&style_line_2);
     lv_style_set_line_width(&style_line_2, 8);
     lv_style_set_line_color(&style_line_2, lv_palette_main(LV_PALETTE_BLUE));
-    lv_style_set_line_rounded(&style_line_2, true);   
+    lv_style_set_line_rounded(&style_line_2, true);
 
     /*Create a line and apply the new style*/
     lv_obj_t * line1;
@@ -424,7 +428,7 @@ void lv_ex_line_1(void)
     line3 = lv_line_create(lv_scr_act());
     lv_line_set_points(line3, line_points_3, 3);     /*Set the points*/
     lv_obj_add_style(line3, &style_line_1, 0);
-    lv_obj_align(line3, LV_ALIGN_CENTER, 0, 80);   
+    lv_obj_align(line3, LV_ALIGN_CENTER, 0, 80);
 
     lv_obj_t * line4;
     line4 = lv_line_create(lv_scr_act());
@@ -436,9 +440,8 @@ void lv_ex_line_1(void)
     line5 = lv_line_create(lv_scr_act());
     lv_line_set_points(line5, line_points_3, 3);     /*Set the points*/
     lv_obj_add_style(line5, &style_line_2, 0);
-    lv_obj_align(line5, LV_ALIGN_CENTER, 100, 80);  
+    lv_obj_align(line5, LV_ALIGN_CENTER, 100, 80);
 }
-
 
 
 //*****************************************************************************
@@ -447,20 +450,24 @@ void lv_ex_line_1(void)
 //
 //*****************************************************************************
 void
-GuiTask(void *pvParameters)
+SetupGui(void)
 {
-    am_util_stdio_printf("GUI task start!\n");
-
-#if LV_USE_LOG == 1
-    lv_log_register_print_cb((lv_log_print_g_cb_t)g_pfnCharPrint);
-#endif
 
     // Load texture.
     texture_load();
 
+    xSemaphoreTake(lvgl_mutex, portMAX_DELAY);
+
 #if DRAW_BUTTON == 1
     /*Initialize the style*/
     style_init();
+
+    // lv_obj_t *screen = lv_scr_act();
+    // lv_color_t bg_color;
+    // bg_color.blue = 0x00;
+    // bg_color.green = 0x00;
+    // bg_color.red = 0xff;
+    // lv_obj_set_style_bg_color(screen, bg_color, 0);
 
     lv_obj_t * btn = lv_btn_create(lv_scr_act());     /*Add a button the current screen*/
     lv_obj_remove_style_all(btn);
@@ -472,6 +479,17 @@ GuiTask(void *pvParameters)
     lv_obj_t * label = lv_label_create(btn);          /*Add a label to the button*/
     lv_label_set_text(label, "Button");                     /*Set the labels text*/
     lv_obj_center(label);
+
+    lv_anim_t a;
+    lv_anim_init(&a);
+    lv_anim_set_var(&a, btn);
+    lv_anim_set_exec_cb(&a, ofs_y_anim);
+    lv_anim_set_values(&a, 0, 300);
+    lv_anim_set_time(&a, 80);
+    //lv_anim_set_path_cb(&a, lv_anim_path_overshoot);
+    lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINITE);
+    lv_anim_set_playback_time(&a, 80);
+    lv_anim_start(&a);
 
 #elif DRAW_BUTTON_IMAGE_BG == 1
     lv_obj_t * btn = lv_btn_create(lv_scr_act());     /*Add a button the current screen*/
@@ -487,7 +505,7 @@ GuiTask(void *pvParameters)
     lv_obj_t * btn = lv_btn_create(lv_scr_act());     /*Add a button the current screen*/
     lv_obj_remove_style_all(btn);
     lv_obj_set_size(btn, 200, 100);                          /*Set its size*/
-    lv_obj_set_pos(btn, 80, 80); 
+    lv_obj_set_pos(btn, 80, 80);
 
     lv_obj_set_style_bg_img_opa(btn, LV_OPA_50, 0);
     lv_obj_set_style_bg_img_src(btn, &img_brick_rgb565_psram, LV_PART_MAIN);
@@ -497,7 +515,7 @@ GuiTask(void *pvParameters)
     lv_obj_t * btn_rect = lv_btn_create(lv_scr_act());     /*Add a button the current screen*/
     lv_obj_remove_style_all(btn_rect);
     lv_obj_set_size(btn_rect, 200, 100);                          /*Set its size*/
-    lv_obj_set_pos(btn_rect, 80, 200); 
+    lv_obj_set_pos(btn_rect, 80, 200);
 
     lv_obj_set_style_bg_img_opa(btn_rect, LV_OPA_50, 0);
     lv_obj_set_style_bg_img_src(btn_rect, &img_wood_argb_psram, LV_PART_MAIN);
@@ -576,6 +594,24 @@ GuiTask(void *pvParameters)
     lv_anim_set_playback_time(&a, 500);
     lv_anim_start(&a);
 
+#elif DRAW_TSVG == 1
+
+    /*Now create the actual image*/
+    lv_obj_t * img = lv_img_create(lv_scr_act());
+    lv_img_set_src(img, &img_world_map_psram);
+    lv_obj_align(img, LV_ALIGN_CENTER, 0, 0);
+    lv_img_set_pivot(img, img_world_map_psram.header.w / 2, img_world_map_psram.header.h / 2);    /*Rotate around the top left corner*/
+
+    lv_anim_t a;
+    lv_anim_init(&a);
+    lv_anim_set_var(&a, img);
+    lv_anim_set_exec_cb(&a, set_zoom);
+    lv_anim_set_values(&a, 256, 400);
+    lv_anim_set_time(&a, 2000);
+    lv_anim_set_playback_time(&a, 2000);
+    lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINITE);
+    lv_anim_start(&a);
+
 #elif DRAW_LINE == 1
 
     lv_ex_line_1();
@@ -605,11 +641,28 @@ GuiTask(void *pvParameters)
 
 #endif
 
-    while (1)
-    {
-        lv_timer_handler();
+    xSemaphoreGive(lvgl_mutex);
+}
 
-        vTaskDelay(5);
-    }
+void lv_example_style_3(void)
+{
+    static lv_style_t style;
+    lv_style_init(&style);
+
+    /*Set a background color and a radius*/
+    lv_style_set_radius(&style, 20);
+    lv_style_set_bg_opa(&style, LV_OPA_COVER);
+    lv_style_set_bg_color(&style, lv_palette_lighten(LV_PALETTE_GREY, 1));
+
+    /*Add border to the bottom+right*/
+    lv_style_set_border_color(&style, lv_palette_main(LV_PALETTE_BLUE));
+    lv_style_set_border_width(&style, 40);
+    lv_style_set_border_opa(&style, LV_OPA_50);
+    lv_style_set_border_side(&style, LV_BORDER_SIDE_RIGHT|LV_BORDER_SIDE_LEFT|LV_BORDER_SIDE_TOP|LV_BORDER_SIDE_BOTTOM);
+
+    /*Create an object with the new style*/
+    lv_obj_t * obj = lv_obj_create(lv_screen_active());
+    lv_obj_add_style(obj, &style, 0);
+    lv_obj_center(obj);
 }
 
