@@ -146,7 +146,54 @@ LIBS += ../../../bsp/gpu/config/apollo5b_nemagfx/gcc/bin/lib_nema_apollo5b_nemag
 INCLUDES+= -I../../../bsp/mcu/apollo5b
 INCLUDES+= -I../../../bsp/mcu/apollo5b/hal
 
-LIBS += ../../../bsp/mcu/apollo5b/hal/mcu/gcc/bin/libam_hal.a
+## LIBS += ../../../bsp/mcu/apollo5b/hal/mcu/gcc/bin/libam_hal.a
+VPATH+=:../../../bsp/mcu/apollo5b/hal/
+VPATH+=:../../../bsp/mcu/apollo5b/hal/mcu
+
+SRC += am_hal_access.c
+SRC += am_hal_adc.c
+SRC += am_hal_audadc.c
+SRC += am_hal_dcu.c
+SRC += am_hal_global.c
+SRC += am_hal_gpio.c
+SRC += am_hal_i2s.c
+SRC += am_hal_info.c
+SRC += am_hal_infoc.c
+SRC += am_hal_pdm.c
+SRC += am_hal_pin.c
+SRC += am_hal_pwrctrl.c
+SRC += am_hal_queue.c
+SRC += am_hal_security.c
+SRC += am_hal_stimer.c
+SRC += am_hal_timer.c
+SRC += am_hal_usb.c
+SRC += am_hal_wdt.c
+SRC += am_hal_bootrom_helper.c
+SRC += am_hal_cachectrl.c
+SRC += am_hal_card.c
+SRC += am_hal_card_host.c
+SRC += am_hal_clkgen.c
+SRC += am_hal_cmdq.c
+SRC += am_hal_dsi.c
+SRC += am_hal_interrupt.c
+SRC += am_hal_iom.c
+SRC += am_hal_ios.c
+SRC += am_hal_itm.c
+SRC += am_hal_mcuctrl.c
+SRC += am_hal_mpu.c
+SRC += am_hal_mram.c
+SRC += am_hal_mspi.c
+SRC += am_hal_reset.c
+SRC += am_hal_rtc.c
+SRC += am_hal_sdhc.c
+SRC += am_hal_secure_ota.c
+SRC += am_hal_sysctrl.c
+SRC += am_hal_syspll.c
+SRC += am_hal_systick.c
+SRC += am_hal_tpiu.c
+SRC += am_hal_uart.c
+SRC += am_hal_utils.c
+
 
 # bsp/utils
 INCLUDES+= -I../../../bsp/utils
