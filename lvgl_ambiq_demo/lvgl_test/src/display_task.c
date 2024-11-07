@@ -555,7 +555,7 @@ DisplayTask(void *pvParameters)
     lv_log_register_print_cb(lv_ambiq_log_printf);
 #endif
 
-    lv_demo_scroll();
+    lv_demo_render(LV_DEMO_RENDER_SCENE_ARC_IMAGE, LV_OPA_COVER);
      
 
     while(1)
