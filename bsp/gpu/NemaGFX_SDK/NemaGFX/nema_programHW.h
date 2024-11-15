@@ -42,9 +42,10 @@ typedef struct {
     int32_t       h;        /**< Height. */
     uint32_t      fstride;  /**< Format and Stride. */
     int32_t       valid;    /**< 1 if valid. */
+    uint32_t      format;   /**< Texture format. */
 } tex_t;
 
-typedef struct nema_context_t_{
+typedef struct {
     unsigned char en_tscFB ;
     unsigned char en_ZCompr;
     unsigned char en_sw_depth;
@@ -60,6 +61,7 @@ typedef struct nema_context_t_{
     tex_t texs[8];
     uint8_t implicit_submission_lock;
     uint8_t explicit_submission;
+    uint8_t scaling;
     uint32_t src_ckey;
 } nema_context_t;
 
@@ -284,7 +286,28 @@ void nema_set_clip_temp(int32_t x,
 /** \private */
 void nema_set_clip_pop(void);
 
+/** \private */
+void nema_raster_triangle_fan_f(float* vertices, int num_vertices, int stride);
+/** \private */
+void nema_raster_triangle_strip_f(float* vertices, int num_vertices, int stride);
+
+/** \private */
+void enable_scaling(uint8_t scaling);
+
+/** \brief Enable 4x4 Tiling
+*
+* \param enable 1: enabled, 0: disabled
+* \attention Destination textures/Framebuffers need their dimensions to be multiples of 4
+*
+*/
 void nema_enable_tiling(uint32_t enable);
+
+/** \brief Enable 2x2 Tiling
+*
+* \param enable 1: enabled, 0: disabled
+* \attention Destination textures/Framebuffers need their dimensions to be multiples of 2
+*
+*/
 void nema_enable_tiling_2x2(uint32_t enable);
 
 /** \brief Set maximum and minimum values for depth buffer. Available ony for Nema|T

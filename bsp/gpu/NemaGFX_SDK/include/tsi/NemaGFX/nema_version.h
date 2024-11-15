@@ -25,18 +25,31 @@
  *  in the software.
  ******************************************************************************/
 
+/**
+ * @file
+ * @brief Contains version numbers for NemaGFX API and the currently supported font version.
+ *
+ */
 
-#ifndef NEMA_CORE_H__
-#define NEMA_CORE_H__
+#ifndef NEMA_VERSION_H__
+#define NEMA_VERSION_H__
 
-#include "nema_hal.h"
-#include "nema_cmdlist.h"
-#include "nema_graphics.h"
-#include "nema_interpolators.h"
-#include "nema_blender.h"
-#include "nema_math.h"
-#include "nema_matrix3x3.h"
-#include "nema_matrix4x4.h"
-#include "nema_version.h"
-
+#ifdef __cplusplus
+extern "C" {
 #endif
+
+#define NEMA_MAJOR_VERSION    0x01U       /**< NemaGFX API version, major number */
+#define NEMA_MINOR_VERSION    0x04U       /**< NemaGFX API version, minor number */
+#define NEMA_REVISION_VERSION 0x0BU      /**< NemaGFX API version, revision number */
+#define NEMA_IMP_VERSION      0x00240600U /**< NemaGFX API version, implementation in format 0x00YYMM00 (Y: year, M: month) */
+
+#define NEMA_API_VERSION ((NEMA_MAJOR_VERSION << 16) + (NEMA_MINOR_VERSION << 8) + (NEMA_REVISION_VERSION)) /**< NemaGFX API version in format 0x00MMmmrr (M:major, m:minor, r:revision if any) */
+
+#define NEMA_FONT_VERSION     0x01U       /**< Current font version */
+
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif //NEMA_VERSION_H__

@@ -128,7 +128,7 @@ extern "C" {
 #define NEMADC_TSC4      (0x12U)  /**< TSC4 */
 #define NEMADC_TSC6      (0x13U)  /**< TSC6 */
 #define NEMADC_TSC6A     (0x14U)  /**< TSC6A */
-
+#define NEMADC_TSC6AP    (0x22U)  /**< TSC6A+ */
 // Hardware Colour Formats Display Modes
 //--------------------------------------------------------------------------
 

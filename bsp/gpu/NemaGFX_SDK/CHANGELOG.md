@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.4.11] - 2024-06
+
+### Changed
+ - nema_font: blending mode when rendering opaque characters
+
 ## [1.4.10] - 2024-02
 
 ### Added

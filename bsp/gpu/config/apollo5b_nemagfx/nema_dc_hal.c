@@ -46,6 +46,8 @@
 #    warning semaphore will not work under baremetal
 #    undef WAIT_IRQ_BINARY_SEMAPHORE
 #    define WAIT_IRQ_BINARY_SEMAPHORE  0
+#  else
+#   define WAIT_IRQ_BINARY_SEMAPHORE  0
 #  endif
 
 #else  // BAREMETAL
@@ -74,11 +76,8 @@
 #endif // BAREMETAL
 
 #ifndef NEMADC_BASEADDR
-#if defined(AM_PART_BRONCO)
-#include "bronco.h"
-#elif defined(AM_PART_APOLLO5B)
+
 #include "apollo5b.h"
-#endif
 #define NEMADC_BASEADDR       DC_BASE
 #endif
 
@@ -88,8 +87,6 @@
 #endif
 
 static uintptr_t nemadc_regs = 0;
-
-volatile int irq_count = 0;
 
 //
 // declaration of display controller interrupt callback function.
@@ -104,14 +101,102 @@ static bool bNeedLaunchInTe = false;
 //
 static MiP_display_config_t sMiPConfig = {0};
 static float fFormatPeriod = 0;
+
+//
+// The arrays for restoring configuration
+//
+static uint32_t ui32DCRegBlock0[12];    // offset from 0x00 to 0x2C
+static uint32_t ui32DCRegBlock1[4];     // offset from 0x1A0 to 0x1AC
+static bool bDCRegBackup = false;
 //*****************************************************************************
 //
-//! @brief DC's TE interrupt callback initialize function
+//! @brief Backup the key registers
+//!
+//! @return None.
+//
+//*****************************************************************************
+void
+nemadc_backup_registers(void)
+{
+    ui32DCRegBlock0[NEMADC_REG_MODE/4]          = nemadc_reg_read(NEMADC_REG_MODE);
+    ui32DCRegBlock0[NEMADC_REG_CLKCTRL/4]       = nemadc_reg_read(NEMADC_REG_CLKCTRL);
+    ui32DCRegBlock0[NEMADC_REG_BGCOLOR/4]       = nemadc_reg_read(NEMADC_REG_BGCOLOR);
+
+    ui32DCRegBlock0[NEMADC_REG_RESXY/4]         = nemadc_reg_read(NEMADC_REG_RESXY);
+    ui32DCRegBlock0[NEMADC_REG_FRONTPORCHXY/4]  = nemadc_reg_read(NEMADC_REG_FRONTPORCHXY);
+    ui32DCRegBlock0[NEMADC_REG_BLANKINGXY/4]    = nemadc_reg_read(NEMADC_REG_BLANKINGXY);
+    ui32DCRegBlock0[NEMADC_REG_BACKPORCHXY/4]   = nemadc_reg_read(NEMADC_REG_BACKPORCHXY);
+    ui32DCRegBlock0[NEMADC_REG_STARTXY/4]       = nemadc_reg_read(NEMADC_REG_STARTXY);
+
+    ui32DCRegBlock0[NEMADC_REG_INTERFACE_CFG/4] = nemadc_reg_read(NEMADC_REG_INTERFACE_CFG);
+    ui32DCRegBlock0[NEMADC_REG_GPIO/4]          = nemadc_reg_read(NEMADC_REG_GPIO);
+
+    ui32DCRegBlock1[0] = nemadc_reg_read(NEMADC_REG_FORMAT_CTRL);
+    ui32DCRegBlock1[1] = nemadc_reg_read(NEMADC_REG_FORMAT_CTRL2);
+    ui32DCRegBlock1[2] = nemadc_reg_read(NEMADC_REG_CLKCTRL_CG);
+    ui32DCRegBlock1[3] = nemadc_reg_read(NEMADC_REG_FORMAT_CTRL3);
+    bDCRegBackup = true;
+}
+//*****************************************************************************
+//
+//! @brief Restore the registers after power up
+//!
+//! this function should be called after nemadc_init() to restore the original
+//! configuration.
+//!
+//! @return true if the registers have been backup,otherwise return false.
+//
+//*****************************************************************************
+bool
+nemadc_restore_registers(void)
+{
+    int resx, fpx, blx, bpx, resy, fpy, bly, bpy;
+
+    if (!bDCRegBackup)
+    {
+        return false;
+    }
+    
+    resx = ui32DCRegBlock0[NEMADC_REG_RESXY/4] >> 16;
+    resy = ui32DCRegBlock0[NEMADC_REG_RESXY/4] & 0xFFFF;
+    fpx = ui32DCRegBlock0[NEMADC_REG_FRONTPORCHXY/4] >> 16;
+    fpy = ui32DCRegBlock0[NEMADC_REG_FRONTPORCHXY/4] & 0xFFFF;
+    blx = ui32DCRegBlock0[NEMADC_REG_BLANKINGXY/4] >> 16;
+    bly = ui32DCRegBlock0[NEMADC_REG_BLANKINGXY/4] & 0xFFFF;
+    bpx = ui32DCRegBlock0[NEMADC_REG_BACKPORCHXY/4] >> 16;
+    bpy = ui32DCRegBlock0[NEMADC_REG_BACKPORCHXY/4] & 0xFFFF;
+    bpx -= blx;
+    bpy -= bly;
+    blx -= fpx;
+    bly -= fpy;
+    fpx -= resx;
+    fpy -= resy;
+
+    //
+    // An internal used struct will be initialized in function nemadc_timing(), so we have to call this function instead of resoring related registers directly.
+    //
+    nemadc_timing(resx, fpx, blx, bpx, resy, fpy, bly, bpy);
+
+    nemadc_reg_write(NEMADC_REG_MODE, ui32DCRegBlock0[NEMADC_REG_MODE/4]);
+    nemadc_reg_write(NEMADC_REG_CLKCTRL, ui32DCRegBlock0[NEMADC_REG_CLKCTRL/4]);
+    nemadc_reg_write(NEMADC_REG_BGCOLOR, ui32DCRegBlock0[NEMADC_REG_BGCOLOR/4]);
+    nemadc_reg_write(NEMADC_REG_INTERFACE_CFG, ui32DCRegBlock0[NEMADC_REG_INTERFACE_CFG/4]);
+    nemadc_reg_write(NEMADC_REG_GPIO, ui32DCRegBlock0[NEMADC_REG_GPIO/4]);
+
+    nemadc_reg_write(NEMADC_REG_FORMAT_CTRL, ui32DCRegBlock1[0]);
+    nemadc_reg_write(NEMADC_REG_FORMAT_CTRL2, ui32DCRegBlock1[1]);
+    nemadc_reg_write(NEMADC_REG_FORMAT_CTRL3, ui32DCRegBlock1[3]);
+    nemadc_reg_write(NEMADC_REG_CLKCTRL_CG, ui32DCRegBlock1[2]);
+
+    return true;
+}
+//*****************************************************************************
+//
+//! @brief Register a dedicated TE callback function
 //!
 //! @param  fnTECallback                - DC TE interrupt callback function
 //!
-//! this function used to initialize display controller te interrupt
-//! callback function.
+//! This function registers an extra custom callback function for TE interrupt.
 //!
 //! @return None.
 //
@@ -124,13 +209,12 @@ nemadc_set_te_interrupt_callback(nema_dc_interrupt_callback fnTECallback)
 
 //*****************************************************************************
 //
-//! @brief DC's vsync interrupt callback initialize function
+//! @brief Register a dedicated Vsync callback function
 //!
 //! @param  fnVsyncCallback - DC Vsync interrupt callback function
 //! @param  arg             - DC Vsync interrupt callback argument
 //!
-//! this function used to initialize display controller vsync interrupt
-//! callback function.
+//! This function registers an extra custom callback function for Vsync interrupt.
 //!
 //! @return None.
 //
@@ -160,7 +244,6 @@ static uint32_t
 wait_dbi_idle(uint32_t ui32Mask, uint32_t ui32Value)
 {
     uint32_t ui32usMaxDelay = 100000;
-    uint32_t ui32Status;
     //
     // wait NemaDC to become idle
     //
@@ -170,13 +253,22 @@ wait_dbi_idle(uint32_t ui32Mask, uint32_t ui32Value)
 //
 //! @brief wait jdi idle
 //!
+//! Please wait a time before executing functions nemadc_set_mode() and 
+//! nemadc_set_mip_panel_parameters() after the frame ends when enabling RTOS.
+//!
 //! @return AM_HAL_STATUS_SUCCESS.
 //
 //*****************************************************************************
 static uint32_t
 wait_mip_idle(void)
 {
-    am_hal_delay_us(fFormatPeriod * sMiPConfig.VCK_GCK_closing_pulses * sMiPConfig.VCK_GCK_width);
+    //
+    // Wait the real frame end of MiP(JDI) interface.
+    //
+    am_hal_delay_us((uint32_t)(fFormatPeriod * sMiPConfig.VCK_GCK_closing_pulses * sMiPConfig.VCK_GCK_width));
+    //
+    // Recover parameters before the next transmission.
+    //
     nemadc_set_mode(0);
     nemadc_set_mip_panel_parameters(&sMiPConfig);
     return AM_HAL_STATUS_SUCCESS;
@@ -244,6 +336,10 @@ nemadc_configure(nemadc_initial_config_t *psDCConfig)
                 return;
             }
             nemadc_clkdiv( 1, i32PreDivider, 4, 0);
+            //
+            // Adjust the timing between signals D/CX and WRX.
+            //
+            nemadc_reg_write(NEMADC_REG_GPIO, nemadc_reg_read(NEMADC_REG_GPIO) | (0x01 << 4));
 
             cfg = MIPICFG_DBI_EN | MIPICFG_RESX | psDCConfig->ui32PixelFormat;
         }
@@ -256,7 +352,7 @@ nemadc_configure(nemadc_initial_config_t *psDCConfig)
         // Program NemaDC to transfer a resx*resy region
         //
         psDCConfig->ui32FrontPorchX = 1;
-        psDCConfig->ui32BlankingX = 10;
+        psDCConfig->ui32BlankingX = 1;
         psDCConfig->ui32BackPorchX = 1;
         psDCConfig->ui32FrontPorchY = 1;
         psDCConfig->ui32BlankingY = 1;
@@ -375,9 +471,9 @@ nemadc_configure(nemadc_initial_config_t *psDCConfig)
         i32PreDivider = nema_ceil(fPLLCLKFreq / psDCConfig->fCLKMaxFreq);
 
         //
-        // The value of the predivider should be less than 32 on Apollo5A.
+        // The value of the predivider should be less than 128 on Apollo5B.
         //
-        if(i32PreDivider > 31)
+        if(i32PreDivider > 127)
         {
             return;
         }
@@ -445,7 +541,10 @@ nemadc_transfer_frame_prepare(bool bAutoLaunch)
         //
         if (ui32Cfg & (MIPICFG_EXT_CTRL | MIPICFG_BLANKING_EN))
         {
-            am_hal_dsi_pre_rw_cmd(true);
+            if (APOLLO5_B0)
+            {
+                am_hal_dsi_pre_rw_cmd(true);
+            }
             
             nemadc_reg_write(NEMADC_REG_GPIO, nemadc_reg_read(NEMADC_REG_GPIO) & (~0x1));//HS
             //
@@ -515,10 +614,10 @@ nemadc_transfer_frame_prepare(bool bAutoLaunch)
     //
     if (ui32Cfg & MIPICFG_DIS_TE)
     {
+        bNeedLaunchInTe = bAutoLaunch;
         nemadc_reg_write(NEMADC_REG_INTERRUPT, 1 << 3);
     }
 
-    bNeedLaunchInTe = bAutoLaunch;
 }
 
 //*****************************************************************************
@@ -531,7 +630,7 @@ nemadc_transfer_frame_prepare(bool bAutoLaunch)
 //
 //*****************************************************************************
 void
-nemadc_transfer_frame_launch()
+nemadc_transfer_frame_launch(void)
 {
     uint32_t ui32Cfg = nemadc_reg_read(NEMADC_REG_DBIB_CFG);
     //
@@ -587,7 +686,7 @@ nemadc_transfer_frame_launch()
 //
 //****************************************************************************
 static void
-nemadc_transfer_frame_end()
+nemadc_transfer_frame_end(void)
 {
     uint32_t ui32Cfg = nemadc_reg_read(NEMADC_REG_DBIB_CFG);
     //
@@ -697,7 +796,7 @@ dbi_write(uint8_t ui8Cmd, uint8_t *pui8Para, uint8_t ui8ParaLen)
 static uint32_t
 dbi_read(uint8_t ui8Cmd, uint8_t ui8ParaLen, uint32_t *ui32Received)
 {
-    uint32_t ui32ReadValue,ui32Mask = 0;
+    uint32_t ui32Mask = 0;
 
     uint32_t ui32Cfg = nemadc_reg_read(NEMADC_REG_DBIB_CFG);
     //
@@ -1004,7 +1103,10 @@ nemadc_mipi_cmd_write(uint8_t ui8Command,
         //
         if (ui32Cfg & (MIPICFG_EXT_CTRL | MIPICFG_BLANKING_EN))
         {
-            am_hal_dsi_pre_rw_cmd(bHS);
+            if (APOLLO5_B0)
+            {
+                am_hal_dsi_pre_rw_cmd(bHS);
+            }
 
             if (bDCS)
             {
@@ -1405,7 +1507,10 @@ nemadc_mipi_cmd_read(uint8_t ui8Command,
             //
             nemadc_reg_write(NEMADC_REG_GPIO, nemadc_reg_read(NEMADC_REG_GPIO) & (~0x20));
 
-            am_hal_dsi_pre_rw_cmd(bHS);
+            if (APOLLO5_B0)
+            {
+                am_hal_dsi_pre_rw_cmd(bHS);
+            }
 
             if (bDCS)
             {
@@ -1525,7 +1630,6 @@ nemadc_mipi_cmd_read(uint8_t ui8Command,
 static void
 prvVsyncInterruptHandler(void *pvUnused)
 {
-    ++irq_count;
 
     /* Clear the interrupt */
     nemadc_reg_write(NEMADC_REG_INTERRUPT, nemadc_reg_read(NEMADC_REG_INTERRUPT) & (~(3UL << 4)));
@@ -1563,15 +1667,14 @@ prvVsyncInterruptHandler(void *pvUnused)
 static void
 prvTEInterruptHandler(void *pvUnused)
 {
+    /* Clear the interrupt */
+    nemadc_reg_write(NEMADC_REG_INTERRUPT, nemadc_reg_read(NEMADC_REG_INTERRUPT) & (~(1U << 3)));
+
     if (bNeedLaunchInTe)
     {
         nemadc_transfer_frame_launch();
         bNeedLaunchInTe = false;
     }
-    ++irq_count;
-
-    /* Clear the interrupt */
-    nemadc_reg_write(NEMADC_REG_INTERRUPT, nemadc_reg_read(NEMADC_REG_INTERRUPT) & (~(1U << 3)));
 
     //
     // TE interrupt callback function
@@ -1598,7 +1701,7 @@ prvTEInterruptHandler(void *pvUnused)
 //
 //*****************************************************************************
 void
-am_disp_isr()
+am_disp_isr(void)
 {
 #ifdef SYSTEM_VIEW
         traceISR_ENTER();
@@ -1630,10 +1733,6 @@ am_disp_isr()
 int32_t
 nemadc_sys_init(void)
 {
-    //
-    // Enable the display controller clock
-    //
-    CLKGEN->CLKCTRL_b.DISPCTRLCLKEN = CLKGEN_CLKCTRL_DISPCTRLCLKEN_ENABLE;
     // xil_printf( "nemadc_sys_init()\r\n" );
     nemadc_regs = (uintptr_t)NEMADC_BASEADDR;
 
@@ -1715,6 +1814,9 @@ nemadc_wait_vsync(void)
     }
     else if (0x3FF & nemadc_reg_read(NEMADC_REG_FORMAT_CTRL3))
     {
+        //
+        // Called after the frame end for MiP(JDI) interface 
+        //
         wait_mip_idle();
     }
 #endif // WAIT_IRQ_POLL

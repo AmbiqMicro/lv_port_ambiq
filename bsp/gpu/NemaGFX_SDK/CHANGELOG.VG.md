@@ -5,7 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 
+## [1.1.7] - 2024-06
+
+### Added
+ - nema_vg_stroke_set_cap_style()     - Support for end/start stroke caps (BUTT/SQUARE/ROUND)
+ - nema_vg_stroke_set_join_style()    - Support for stroke joins (BEVEL/ROUND/MITER)
+ - nema_vg_stroke_set_miter_limit     - Support for mitter join limit
+ - nema_vg_generate_raster_font()     - Generate a raster font from a vector font
+ - nema_vg_tsvg_disable_feature()     - Disables a tsvg feature from drawing
+
+### Changed
+ - nema_vg_paint_set_stroke_width() to nema_vg_stroke_set_width()
+   nema_vg_paint_set_stroke_width() kept as DEPRECATED
+
 ## [1.1.6] - 2024-02
+
  ### Fixed
  - nema_vg_font: line width calculation
  - nema_vg: fixed NEMA_BLOP_SRC_CKEY mode with vg operations

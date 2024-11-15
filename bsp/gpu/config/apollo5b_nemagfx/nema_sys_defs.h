@@ -153,6 +153,29 @@ typedef struct
 
 //*****************************************************************************
 //
+//! @brief Backup the registers before power down
+//!
+//! this function can be called to backup the present configuration of DC
+//!
+//! @return None.
+//
+//*****************************************************************************
+void nemadc_backup_registers(void);
+
+//*****************************************************************************
+//
+//! @brief Restore the registers after power up
+//!
+//! this function should be called after nemadc_init() to restore the original
+//! configuration.
+//!
+//! @return true if the registers have been backup,otherwise return false.
+//
+//*****************************************************************************
+bool nemadc_restore_registers(void);
+
+//*****************************************************************************
+//
 //! @brief Declaration of the GFX interrupt callback initialize function
 //!
 //! @param  fnGFXCallback                - GFX interrupt callback function
