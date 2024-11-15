@@ -253,6 +253,7 @@ SRC += port_systick_stimer.c
 SRC += portasm.c
 
 # lvgl_ambiq_porting
+INCLUDES+= -I../../../lvgl_ambiq_porting/gpu_patch/
 LIBS += ../../../lvgl_ambiq_porting/gpu_patch/bin/lvgl_ambiq_porting.a
 
 # lvgl_test

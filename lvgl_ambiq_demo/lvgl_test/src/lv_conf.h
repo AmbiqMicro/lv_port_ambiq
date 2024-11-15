@@ -137,7 +137,9 @@
 
 /* Use ambiq's GPU on Apollo4x or Apollo5x chips. */
 #define LV_USE_DRAW_AMBIQ 1
+
 #if LV_USE_DRAW_AMBIQ
+#define LV_USE_DRAW_AMBIQ_VG 1
 #endif
 
 /* Use NXP's VG-Lite GPU on iMX RTxxx platforms. */
@@ -695,7 +697,7 @@
 #define LV_USE_RLOTTIE 0
 
 /*Enable Vector Graphic APIs*/
-#define LV_USE_VECTOR_GRAPHIC  0
+#define LV_USE_VECTOR_GRAPHIC  1
 
 /* Enable ThorVG (vector graphics library) from the src/libs folder */
 #define LV_USE_THORVG_INTERNAL 0
