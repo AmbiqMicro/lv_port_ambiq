@@ -96,7 +96,7 @@ DEFINES+= -DLV_CONF_INCLUDE_SIMPLE
 DEFINES+= -DLV_LVGL_H_INCLUDE_SIMPLE
 
 DEFINES+= -DNEMA_PLATFORM=apollo5b_nemagfx
-DEFINES+= -DVMEM_SIZE=0x7FFFF
+DEFINES+= -DVMEM_SIZE=0x3FFFF
 DEFINES+= -DWAIT_IRQ_BINARY_SEMAPHORE=1
 
 DEFINES+= -Dgcc
@@ -225,6 +225,7 @@ LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/libs/bin_decoder -type f -name '*.c'
 LVGL_CSRCS += $(LVGL_PATH)/src/lv_init.c
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/scroll -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/render -type f -name '*.c')
+LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/vector_graphic -type f -name '*.c')
 
 CSRC += $(notdir $(LVGL_CSRCS))
 

@@ -91,8 +91,27 @@ extern void lv_ambiq_gradient_create(int stops_count,float *stops, color_var_t* 
 //! @return no return.
 //
 //*****************************************************************************
-extern void lv_ambiq_get_vg_paint_tex(NEMA_VG_PAINT_HANDLE vg_paint, nema_img_obj_t ** img_obj, 
+extern void lv_ambiq_get_vg_paint_tex(NEMA_VG_PAINT_HANDLE vg_paint, 
+                                      nema_img_obj_t ** img_obj, 
                                       nema_img_obj_t ** palette_obj);
+
+//*****************************************************************************
+//
+//! @brief Helper function to got the aabb(Axis-Aligned Bounding Box) of a path.
+//!
+//! @param vg_path path to read.
+//! @param x_min minimum x value of the path.
+//! @param y_min minimum y value of the path.
+//! @param x_max maximum x value of the path.
+//! @param y_max maximum y value of the path.
+//!
+//!
+//! @return no return.
+//
+//*****************************************************************************
+extern void lv_ambiq_get_path_aabb(NEMA_VG_PATH_HANDLE vg_path, float* x_min, 
+                                   float* y_min, float* x_max, float* y_max);
+
 
 
 #ifdef __cplusplus
