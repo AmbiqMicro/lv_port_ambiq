@@ -201,48 +201,28 @@ lv_res_t lv_ambiq_nema_gpu_power_on(void)
 lv_res_t  lv_ambiq_nema_gpu_check_busy_and_suspend(void)
 {
     bool enabled;
-#if defined(AM_PART_APOLLO5A) || defined(AM_PART_APOLLO5B)
-    am_hal_pwrctrl_periph_enabled(AM_HAL_PWRCTRL_PERIPH_GFX, &enabled);
-    if(!enabled)
-    {
-        return LV_RES_OK;
-    }
 
-    // If we are building CL, no need to power it down as we will soon submit it.
-    if(building_cl == false)
-    {
-        /* last_cl_id == last_submission_id means all the submitted cl is complete, 
-         * we can power off GPU safely.
-         */
-        if(nema_get_last_cl_id() == nema_get_last_submission_id())
-        {
-            am_hal_pwrctrl_periph_disable(AM_HAL_PWRCTRL_PERIPH_GFX);
-        }
-    }
-#else
     AM_CRITICAL_BEGIN
     am_hal_pwrctrl_periph_enabled(AM_HAL_PWRCTRL_PERIPH_GFX, &enabled);
-    if(!enabled)
+    if(enabled)
     {
-        return LV_RES_OK;
-    }
-
-    // If we are building CL, no need to power it down as we will soon submit it.
-    if(building_cl == false)
-    {
-        //If we are idle, we can power off GPU safely.
-        if(nema_reg_read(NEMA_STATUS) == 0)
+        // If we are building CL, no need to power it down as we will soon submit it.
+        if(building_cl == false)
         {
-#ifdef AM_PART_APOLLO4L
-            //A workaround has been added to nema_hal.c for Apollo4l.
-            am_gpu_power_disable(AM_GPU_PWRCTRL_USER);
-#else
-            am_hal_pwrctrl_periph_disable(AM_HAL_PWRCTRL_PERIPH_GFX);
-#endif
+            //If we are idle, we can power off GPU safely.
+            if(nema_reg_read(NEMA_STATUS) == 0)
+            {
+    #ifdef AM_PART_APOLLO4L
+                //A workaround has been added to nema_hal.c for Apollo4l.
+                am_gpu_power_disable(AM_GPU_PWRCTRL_USER);
+    #else
+                am_hal_pwrctrl_periph_disable(AM_HAL_PWRCTRL_PERIPH_GFX);
+    #endif
+            }
         }
+
     }
     AM_CRITICAL_END
-#endif
 
     return LV_RES_OK;
 }
