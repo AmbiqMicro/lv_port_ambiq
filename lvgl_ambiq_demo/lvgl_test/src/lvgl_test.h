@@ -70,6 +70,7 @@
 #include "gui_task.h"
 #include "display_task.h"
 #include "rtos.h"
+#include "am_mem.h"
 
 #include "nema_hal.h"
 #include "nema_math.h"

@@ -253,10 +253,22 @@ SRC += port_stimer.c
 SRC += port_systick_stimer.c
 SRC += portasm.c
 
+# tlsf
+INCLUDES+= -I../../../modules/tlsf
+
+VPATH+=:../../../modules/tlsf
+
+SRC += tlsf.c
+
+
 # lvgl_ambiq_porting
 INCLUDES+= -I../../../lvgl_ambiq_porting/gpu_patch/
 LIBS += ../../../lvgl_ambiq_porting/gpu_patch/bin/lvgl_ambiq_porting.a
 
+INCLUDES+= -I../../../lvgl_ambiq_porting
+VPATH+=:../../../lvgl_ambiq_porting
+
+SRC += am_mem.c
 # lvgl_test
 INCLUDES+= -I../src
 

@@ -152,6 +152,24 @@ uintptr_t nema_buffer_phys(nema_buffer_t *bo);
  */
 void nema_buffer_flush(nema_buffer_t * bo);
 
+/** \brief Invalidate buffer in cache
+ *
+ * \param bo Pointer to buffer struct
+ * \return void
+ *
+ */
+void nema_buffer_invalidate(nema_buffer_t * bo);
+
+/** \brief Check if a buffer is within a specified memory pool
+ *
+ * \param pool The identifier of the memory pool to check against
+ * \param buf_start The start address of the buffer
+ * \param buf_length The length of the buffer
+ * \return Returns true if the buffer is within the specified pool, false otherwise
+ *
+ */
+bool nema_buffer_is_within_pool(int pool, uint32_t buf_start, uint32_t buf_length);
+
 /** \brief Allocate memory for CPU to use (typically, standard malloc() is called)
  *
  * \param size Size in bytes

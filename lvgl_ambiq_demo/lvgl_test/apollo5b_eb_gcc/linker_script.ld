@@ -9,10 +9,11 @@ MEMORY
 {
     MCU_ITCM     (rwx) : ORIGIN = 0x00000000, LENGTH = 262144
     MCU_MRAM     (rx)  : ORIGIN = 0x00410000, LENGTH = 4128768
-    MCU_TCM      (rwx) : ORIGIN = 0x20000000, LENGTH = 442368
-    SHARED_SRAM  (rwx) : ORIGIN = 0x20080000, LENGTH = 2097152
-    STACK        (rw)  : ORIGIN = 0x2007D000, LENGTH = 12288
-    HEAP         (rw)  : ORIGIN = 0x2007C000, LENGTH = 4096
+    MCU_TCM      (rwx) : ORIGIN = 0x20000000, LENGTH = 450560
+    SHARED_SRAM  (rwx) : ORIGIN = 0x20080000, LENGTH = 0x00300000
+    STACK        (rw)  : ORIGIN = 0x2007F000, LENGTH = 4096
+    HEAP         (rw)  : ORIGIN = 0x2007E000, LENGTH = 4096
+    PSRAM        (rw)  : ORIGIN = 0x60000000, LENGTH = 0x00A00000
 }
 
 SECTIONS
@@ -114,5 +115,14 @@ SECTIONS
         KEEP(*(.shared))
         . = ALIGN(4);
     } > SHARED_SRAM AT>MCU_MRAM
+
+    .external (NOLOAD):
+    {
+        . = ALIGN(4);
+        KEEP(*(.resource_table))
+        KEEP(*(.external))
+        . = ALIGN(4);
+    } > PSRAM AT>MCU_MRAM
+
     .ARM.attributes 0 : { *(.ARM.attributes) }
 }

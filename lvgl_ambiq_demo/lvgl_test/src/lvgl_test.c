@@ -30,7 +30,7 @@ void            *g_pMSPIPsramHandle;
 am_devices_mspi_psram_config_t g_sMspiPsramConfig =
 {
     .eDeviceConfig            = AM_HAL_MSPI_FLASH_HEX_DDR_CE0,
-    .eClockFreq               = AM_HAL_MSPI_CLK_192MHZ,
+    .eClockFreq               = AM_HAL_MSPI_CLK_250MHZ,
     .ui32NBTxnBufLength       = 0,
     .pNBTxnBuf                = NULL,
     .ui32ScramblingStartAddr  = 0,
@@ -84,8 +84,7 @@ main(void)
     //  Enable the I-Cache and D-Cache.
     //
     am_hal_cachectrl_icache_enable();
-    //am_hal_cachectrl_dcache_enable(true);
-    am_hal_cachectrl_dcache_disable();
+    am_hal_cachectrl_dcache_enable(true);
 
     //
     // Initialize the printf interface for ITM/SWO output.
@@ -112,51 +111,50 @@ main(void)
     }
 #endif
 
-// #ifndef APOLLO5_FPGA
-//     //
-//     // Run MSPI DDR timing scan
-//     //
-//     am_devices_mspi_psram_ddr_timing_config_t MSPIDdrTimingConfig;
-//     am_util_stdio_printf("Starting MSPI DDR Timing Scan: \n");
-//     if ( AM_DEVICES_MSPI_PSRAM_STATUS_SUCCESS == am_devices_mspi_psram_aps25616n_ddr_init_timing_check(MSPI_PSRAM_MODULE, &g_sMspiPsramConfig, &MSPIDdrTimingConfig) )
-//     {
-//         am_util_stdio_printf("==== Scan Result: RXDQSDELAY0 = %d \n", MSPIDdrTimingConfig.ui32Rxdqsdelay);
-//     }
-//     else
-//     {
-//         am_util_stdio_printf("==== Scan Result: Failed, no valid setting.  \n");
-//     }
-// #endif
+    //
+    // Run MSPI DDR timing scan
+    //
+    am_devices_mspi_psram_ddr_timing_config_t MSPIDdrTimingConfig;
+    am_util_stdio_printf("Starting MSPI DDR Timing Scan: \n");
+    if ( AM_DEVICES_MSPI_PSRAM_STATUS_SUCCESS == am_devices_mspi_psram_aps25616n_ddr_init_timing_check(MSPI_PSRAM_MODULE, &g_sMspiPsramConfig, &MSPIDdrTimingConfig) )
+    {
+        am_util_stdio_printf("==== Scan Result: RXDQSDELAY0 = %d \n", MSPIDdrTimingConfig.ui32Rxdqsdelay);
+    }
+    else
+    {
+        am_util_stdio_printf("==== Scan Result: Failed, no valid setting.  \n");
+    }
 
 
-//     //
-//     // Configure the MSPI and PSRAM Device.
-//     //
-//     ui32Status = am_devices_mspi_psram_aps25616n_ddr_init(MSPI_PSRAM_MODULE, &g_sMspiPsramConfig, &g_pPsramHandle, &g_pMSPIPsramHandle);
-//     if (AM_DEVICES_MSPI_PSRAM_STATUS_SUCCESS != ui32Status)
-//     {
-//         am_util_stdio_printf("Failed to configure the MSPI and PSRAM Device correctly!\n");
-//     }
+    //
+    // Configure the MSPI and PSRAM Device.
+    //
+    ui32Status = am_devices_mspi_psram_aps25616n_ddr_init(MSPI_PSRAM_MODULE, &g_sMspiPsramConfig, &g_pPsramHandle, &g_pMSPIPsramHandle);
+    if (AM_DEVICES_MSPI_PSRAM_STATUS_SUCCESS != ui32Status)
+    {
+        am_util_stdio_printf("Failed to configure the MSPI and PSRAM Device correctly!\n");
+    }
 
-// #ifndef APOLLO5_FPGA
-//     //
-//     // Apply DDR timing setting
-//     //
-//     ui32Status = am_devices_mspi_psram_aps25616n_apply_ddr_timing(g_pPsramHandle, &MSPIDdrTimingConfig);
-//     if (AM_HAL_STATUS_SUCCESS != ui32Status)
-//     {
-//         am_util_stdio_printf("Failed to apply the timming scan parameter!\n");
-//     }
-// #endif
 
-//     //
-//     // Enable XIP mode.
-//     //
-//     ui32Status = am_devices_mspi_psram_aps25616n_ddr_enable_xip(g_pPsramHandle);
-//     if (AM_DEVICES_MSPI_PSRAM_STATUS_SUCCESS != ui32Status)
-//     {
-//         am_util_stdio_printf("Failed to enable XIP mode in the MSPI!\n");
-//     }
+    //
+    // Apply DDR timing setting
+    //
+    ui32Status = am_devices_mspi_psram_aps25616n_apply_ddr_timing(g_pPsramHandle, &MSPIDdrTimingConfig);
+    if (AM_HAL_STATUS_SUCCESS != ui32Status)
+    {
+        am_util_stdio_printf("Failed to apply the timming scan parameter!\n");
+    }
+
+    //
+    // Enable XIP mode.
+    //
+    ui32Status = am_devices_mspi_psram_aps25616n_ddr_enable_xip(g_pPsramHandle);
+    if (AM_DEVICES_MSPI_PSRAM_STATUS_SUCCESS != ui32Status)
+    {
+        am_util_stdio_printf("Failed to enable XIP mode in the MSPI!\n");
+    }
+
+    am_mem_init();
 
     //
     // Initialize plotting interface.
