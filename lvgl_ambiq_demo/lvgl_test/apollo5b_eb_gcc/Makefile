@@ -262,10 +262,8 @@ SRC += tlsf.c
 
 
 # lvgl_ambiq_porting
-INCLUDES+= -I../../../lvgl_ambiq_porting/gpu_patch/
-LIBS += ../../../lvgl_ambiq_porting/gpu_patch/bin/lvgl_ambiq_porting.a
-
 INCLUDES+= -I../../../lvgl_ambiq_porting
+LIBS += ../../../lvgl_ambiq_porting/gpu_patch/bin/lvgl_ambiq_porting.a
 VPATH+=:../../../lvgl_ambiq_porting
 
 SRC += am_mem.c

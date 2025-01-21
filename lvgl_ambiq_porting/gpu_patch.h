@@ -54,7 +54,6 @@
 #include "nema_graphics.h"
 #include "nema_blender.h"
 #include "nema_programHW.h"
-#include "nema_vg_p.h"
 #include "nema_vg_path.h"
 #include "nema_vg_paint.h"
 
