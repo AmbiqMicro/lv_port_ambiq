@@ -406,23 +406,40 @@ void lv_mem_deinit(void)
 
 void * lv_malloc_core(size_t size)
 {
+#if LV_USE_DRAW_AMBIQ
     return am_mem_heap_malloc(&dtcm_heap, size);
+#else
+    return am_mem_heap_malloc(&ssram_heap, size);
+#endif
 }
 
 void * lv_realloc_core(void * p, size_t new_size)
 {
+#if LV_USE_DRAW_AMBIQ
     return am_mem_heap_realloc(&dtcm_heap ,p, new_size);
+#else
+    return am_mem_heap_realloc(&ssram_heap ,p, new_size);
+#endif
 }
 
 void lv_free_core(void * p)
 {
+#if LV_USE_DRAW_AMBIQ
     am_mem_heap_free(&dtcm_heap, p);
+#else
+    am_mem_heap_free(&ssram_heap, p);
+#endif
 }
 
 void lv_mem_monitor_core(lv_mem_monitor_t * mon_p)
 {
     am_mem_monitor_t* mon_p_new = (am_mem_monitor_t*)mon_p;
+
+#if LV_USE_DRAW_AMBIQ
     am_mem_heap_monitor(&dtcm_heap, mon_p_new);
+#else
+    am_mem_heap_monitor(&ssram_heap, mon_p_new);
+#endif
 }
 
 lv_result_t lv_mem_test_core(void)

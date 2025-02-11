@@ -125,7 +125,7 @@
     #define LV_AMBIQ_DISPLAY_PANEL_FORMAT           COLOR_FORMAT_8BIT
 #elif LV_COLOR_DEPTH==16
     #define LV_AMBIQ_DRAW_BUFFER_FORMAT             LV_COLOR_FORMAT_RGB565
-    #define LV_AMBIQ_DRAW_BUFFER_FORMAT_NEMA        NEMA_BGR565
+    #define LV_AMBIQ_DRAW_BUFFER_FORMAT_NEMA        NEMA_RGB565
     #define LV_AMBIQ_DISPLAY_BUFFER_FORMAT_NEMA     NEMA_RGB565
     #define LV_AMBIQ_DISPLAY_PANEL_FORMAT           COLOR_FORMAT_RGB565
 #elif LV_COLOR_DEPTH==24
@@ -218,7 +218,9 @@ void buffer_sync(const lv_area_t * area, lv_display_render_mode_t render_mode, v
         return;
     }
 
+#if LV_USE_DRAW_AMBIQ
     lv_draw_ambiq_nema_context_lock();
+#endif
 
     //Rewind and bind the CL
     nema_cl_bind(&cl_memcpy);
@@ -270,7 +272,9 @@ void buffer_sync(const lv_area_t * area, lv_display_render_mode_t render_mode, v
     //start GPU, submit CL
     nema_cl_submit(&cl_memcpy);
 
+#if LV_USE_DRAW_AMBIQ
     lv_draw_ambiq_nema_context_unlock();
+#endif
 
     nema_cl_wait(&cl_memcpy);
 
@@ -398,20 +402,23 @@ void lv_example_style_5(void)
     static lv_style_t style;
     lv_style_init(&style);
 
-    /*Set a background color and a radius*/
-    lv_style_set_radius(&style, 40);
-    lv_style_set_bg_opa(&style, LV_OPA_COVER);
-    lv_style_set_bg_color(&style, lv_palette_lighten(LV_PALETTE_GREY, 1));
+    lv_color_t color_new = lv_color_make(0xff, 0x20, 0x30);
 
-    /*Add a shadow*/
-    lv_style_set_shadow_width(&style, 55);
-    lv_style_set_shadow_color(&style, lv_palette_main(LV_PALETTE_BLUE));
-    lv_style_set_shadow_opa(&style, 25);
-    lv_style_set_shadow_offset_x(&style, 10);
-    lv_style_set_shadow_offset_y(&style, -20);
+    /*Set a background color and a radius*/
+    //lv_style_set_radius(&style, 40);
+    lv_style_set_bg_opa(&style, LV_OPA_COVER);
+    lv_style_set_bg_color(&style, color_new);
+
+    // /*Add a shadow*/
+    // lv_style_set_shadow_width(&style, 55);
+    // lv_style_set_shadow_color(&style, lv_palette_main(LV_PALETTE_BLUE));
+    // lv_style_set_shadow_opa(&style, 25);
+    // lv_style_set_shadow_offset_x(&style, 10);
+    // lv_style_set_shadow_offset_y(&style, -20);
 
     /*Create an object with the new style*/
     lv_obj_t * obj = lv_obj_create(lv_screen_active());
+    lv_obj_set_size(obj, 500, 500);
     lv_obj_add_style(obj, &style, 0);
     lv_obj_center(obj);
 }
@@ -559,8 +566,8 @@ DisplayTask(void *pvParameters)
 
     //lv_demo_render(LV_DEMO_RENDER_SCENE_ARC_IMAGE, LV_OPA_COVER);
     //lv_demo_scroll();
-    lv_demo_vector_graphic_not_buffered();    
-     
+    //lv_demo_vector_graphic_not_buffered();    
+    lv_example_style_5();
 
     while(1)
     {
