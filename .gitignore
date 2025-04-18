@@ -58,4 +58,4 @@ dkms.conf
 .vscode/
 
 lvgl_ambiq_porting/gpu_patch/*
-lvgl_ambiq_demo/lvgl_test/apollo5b_eb_gcc/bin/*
+lvgl_ambiq_demo/lvgl_test/apollo510_eb_gcc/bin/*
