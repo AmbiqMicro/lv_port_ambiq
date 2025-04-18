@@ -58,11 +58,11 @@
 //*****************************************************************************
 //Frame buffer size
 #ifndef LV_AMBIQ_DISPLAY_BUFFER_RESX
-    #define LV_AMBIQ_DISPLAY_BUFFER_RESX (452U)
+    #define LV_AMBIQ_DISPLAY_BUFFER_RESX (480U)
 #endif
 
 #ifndef LV_AMBIQ_DISPLAY_BUFFER_RESY
-    #define LV_AMBIQ_DISPLAY_BUFFER_RESY (452U)
+    #define LV_AMBIQ_DISPLAY_BUFFER_RESY (272U)
 #endif
 
 // Select render mode
@@ -237,7 +237,7 @@ void buffer_sync(const lv_area_t * area, lv_display_render_mode_t render_mode, v
     nema_set_clip(area->x1, area->y1, w, h);
 
     //Set blend mode
-    nema_set_blend_blit(NEMA_BL_SRC);
+    lv_ambiq_set_blend_blit(NULL, NEMA_BL_SRC);
 
     //Bind source buffer
     uint32_t source_width;
@@ -564,10 +564,10 @@ DisplayTask(void *pvParameters)
     lv_log_register_print_cb(lv_ambiq_log_printf);
 #endif
 
-    //lv_demo_render(LV_DEMO_RENDER_SCENE_ARC_IMAGE, LV_OPA_COVER);
+    lv_demo_render(LV_DEMO_RENDER_SCENE_TRIANGLE, LV_OPA_COVER);
     //lv_demo_scroll();
     //lv_demo_vector_graphic_not_buffered();    
-    lv_example_style_5();
+    //lv_example_style_5();
 
     while(1)
     {
