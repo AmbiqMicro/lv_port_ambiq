@@ -34,6 +34,10 @@
 //#define NEMA_MULTI_THREAD
 #define NEMA_ENABLE_BREAKPOINTS
 
+#ifdef NEMA_MULTI_THREAD
+#error "The NemaSDK has been compiled into a library without multi-threading support."
+#endif
+
 //use multiple memory pools (implemented in nema_hal.c)
 //#define NEMA_MULTI_MEM_POOLS
 
@@ -55,7 +59,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include "am_hal_status.h"
+#include "am_mcu_apollo.h"
 
 #if defined(NEMA_MULTI_PROCESS) || defined(NEMA_MULTI_THREAD)
 
@@ -328,14 +332,14 @@ extern void nemadc_configure(nemadc_initial_config_t *psDCConfig);
 
 //*****************************************************************************
 //
-//! @brief Prepared operations before sending frame
+//! @brief Prepare operations before writing memory start
 //!
 //! @param  bAutoLaunch    - true:launch transfer in DC TE interrupt implicitly.
 //!
 //! This function configures clock gating, sends MIPI_write_memory_start
 //! command before sending frame. If DBIDSI interface is selected, this function
 //! also configures HS/LP mode and data/command type of DSI.
-//! Note: bLaunchInTE taks effect in the DC TE interrupt handler, which means
+//! Note: bAutoLaunch takes effect in the DC TE interrupt handler, which means
 //! if GPIO TE is used or TE signal is ignored, setting this parameter to true or false
 //! makes no difference, user still need to call nemadc_transfer_frame_launch manually.
 //!
@@ -343,6 +347,20 @@ extern void nemadc_configure(nemadc_initial_config_t *psDCConfig);
 //
 //*****************************************************************************
 extern void nemadc_transfer_frame_prepare(bool bAutoLaunch);
+
+//*****************************************************************************
+//
+//! @brief Prepare operations before writing memory continue
+//!
+//! @param  bAutoLaunch    - true:launch transfer in interrupt implicitly.(Not recommended)
+//!                        - false: please launch the transfer explicitly.(recommended)
+//!
+//! Setting the parameter(bAutoLaunch) to true is not recommended because this 
+//! could spot a severe tear effect on the display.
+//! @return None.
+//
+//*****************************************************************************
+extern void nemadc_transfer_frame_continue(bool bAutoLaunch);
 
 //*****************************************************************************
 //
@@ -423,6 +441,65 @@ nemadc_mipi_cmd_read(uint8_t ui8Command,
 //*****************************************************************************
 extern void
 dbi_frame_read(uint8_t *ui8ReceiveBuffer, uint32_t ui32ParaLen);
+
+//*****************************************************************************
+//
+//! @brief Controls the power state of the GPU peripheral.
+//!
+//! @param ePowerState - The desired power state (e.g., wake, normal sleep, 
+//!                      deep sleep).
+//! @param bRetainState - Indicates whether to reinitialize the NemaSDK and 
+//!                       NemaVG when waking up the GPU peripheral.
+//!
+//! This function manages the power state of the GPU peripheral based on
+//! the requested power state. It checks the current power status and either
+//! powers up or powers down the peripheral as needed.
+//!
+//! When waking up the GPU (`AM_HAL_SYSCTRL_WAKE`), if \e bRetainState is true,
+//! the function reinitializes the NemaSDK and NemaVG. If powering down, the
+//! function ensures the peripheral is inactive before disabling power.
+//!
+//! \e ePowerState The desired power state. Valid values are:
+//! - AM_HAL_SYSCTRL_WAKE: Power up.
+//! - AM_HAL_SYSCTRL_NORMALSLEEP or AM_HAL_SYSCTRL_DEEPSLEEP: Power down.
+//!
+//! \e bRetainState Determines whether to reinitialize the NemaSDK and NemaVG
+//! when powering up. This is used for scenarios where the GPU context needs
+//! to be retained.
+//!
+//! @note Ensure that the GPU peripheral is not in use before attempting to
+//! power it down to avoid conflicts.This API is not thread-safe. If it is
+//! called from multiple threads or from an interrupt, appropriate critical
+//! section protection must be added.
+//!
+//! @return Returns the status of the operation. Possible return values are:
+//! - AM_HAL_STATUS_SUCCESS: Operation was successful.
+//! - AM_HAL_STATUS_IN_USE: Peripheral is currently in use and cannot be powered 
+//!                         down.
+//! - AM_HAL_STATUS_INVALID_OPERATION: Invalid power state requested.
+//! - AM_HAL_STATUS_FAIL: Reinitialization of NemaSDK or NemaVG failed.
+//
+//*****************************************************************************
+uint32_t
+nemagfx_power_control(am_hal_sysctrl_power_state_e ePowerState,
+                   bool bRetainState);
+
+//*****************************************************************************
+//
+//! @brief DC power control function
+//!
+//! @param ePowerState  - the desired power state to move the peripheral to.
+//! @param retainState  - flag (if true) to save/restore perhipheral state upon
+//!                       power state change.
+//!
+//! This function updates the peripheral to a given power state.
+//!
+//! @return status      - generic or interface specific status.
+//
+//*****************************************************************************
+extern uint32_t
+nemadc_power_control(am_hal_sysctrl_power_state_e ePowerState,
+                     bool bRetainState);
 
 //*****************************************************************************
 //

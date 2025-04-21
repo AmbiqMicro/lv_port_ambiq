@@ -100,60 +100,61 @@ DEFINES+= -DVMEM_SIZE=0x3FFFF
 DEFINES+= -DWAIT_IRQ_BINARY_SEMAPHORE=1
 
 DEFINES+= -Dgcc
+DEFINES+= -Dapollo510_evb
 
-# ambiqsuite/boards
-INCLUDES+= -I../../../ambiqsuite/boards/apollo5b_eb_revb
+# AmbiqSuite/boards
+INCLUDES+= -I../../../AmbiqSuite/boards/apollo510_evb/bsp
 
-VPATH+=:../../../ambiqsuite/boards/apollo5b_eb_revb
+VPATH+=:../../../AmbiqSuite/boards/apollo510_evb/bsp
 
 SRC += am_bsp.c
 SRC += am_bsp_pins.c
 
-# ambiqsuite/cmsis
-INCLUDES+= -I../../../ambiqsuite/CMSIS/ARM/Include
-INCLUDES+= -I../../../ambiqsuite/CMSIS/AmbiqMicro/Include
+# AmbiqSuite/cmsis
+INCLUDES+= -I../../../AmbiqSuite/CMSIS/ARM/Include
+INCLUDES+= -I../../../AmbiqSuite/CMSIS/AmbiqMicro/Include
 
-LIBS += ../../../ambiqsuite/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a
+LIBS += ../../../AmbiqSuite/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a
 
-VPATH += ../../../ambiqsuite/CMSIS/AmbiqMicro/Source
+VPATH += ../../../AmbiqSuite/CMSIS/AmbiqMicro/Source
 SRC += system_apollo510.c
 
-# ambiqsuite/devices
-INCLUDES+= -I../../../ambiqsuite/devices
-VPATH += ../../../ambiqsuite/devices
-SRC += am_devices_mspi_psram_aps25616n.c
+# AmbiqSuite/devices
+INCLUDES+= -I../../../AmbiqSuite/devices
+VPATH += ../../../AmbiqSuite/devices
+SRC += am_devices_mspi_psram_aps25616ba_1p2v.c
 SRC += am_devices_display_generic.c
 SRC += am_devices_tma525.c
 
-# ambiqsuite/gpu
-INCLUDES+= -I../../ambiqsuite/third_party/ThinkSi/NemaGFX_SDK/NemaDC
-INCLUDES+= -I../../ambiqsuite/third_party/ThinkSi/NemaGFX_SDK/NemaGFX
-INCLUDES+= -I../../ambiqsuite/third_party/ThinkSi/NemaGFX_SDK/NemaGFX/Nema
-INCLUDES+= -I../../ambiqsuite/third_party/ThinkSi/NemaGFX_SDK/common/mem
-INCLUDES+= -I../../ambiqsuite/third_party/ThinkSi/NemaGFX_SDK/include/tsi/NemaDC
-INCLUDES+= -I../../ambiqsuite/third_party/ThinkSi/NemaGFX_SDK/include/tsi/NemaGFX
-INCLUDES+= -I../../ambiqsuite/third_party/ThinkSi/NemaGFX_SDK/include/tsi/NemaVG
-INCLUDES+= -I../../ambiqsuite/third_party/ThinkSi/NemaGFX_SDK/include/tsi/common
+# AmbiqSuite/gpu
+INCLUDES+= -I../../../AmbiqSuite/third_party/ThinkSi/NemaGFX_SDK/NemaDC
+INCLUDES+= -I../../../AmbiqSuite/third_party/ThinkSi/NemaGFX_SDK/NemaGFX
+INCLUDES+= -I../../../AmbiqSuite/third_party/ThinkSi/NemaGFX_SDK/NemaGFX/Nema
+INCLUDES+= -I../../../AmbiqSuite/third_party/ThinkSi/NemaGFX_SDK/common/mem
+INCLUDES+= -I../../../AmbiqSuite/third_party/ThinkSi/NemaGFX_SDK/include/tsi/NemaDC
+INCLUDES+= -I../../../AmbiqSuite/third_party/ThinkSi/NemaGFX_SDK/include/tsi/NemaGFX
+INCLUDES+= -I../../../AmbiqSuite/third_party/ThinkSi/NemaGFX_SDK/include/tsi/NemaVG
+INCLUDES+= -I../../../AmbiqSuite/third_party/ThinkSi/NemaGFX_SDK/include/tsi/common
 
 
 # NemaGFX_hal
-INCLUDES+= -I../../lvgl_ambiq_porting/NemaGFX_hal/apollo510_nemagfx
+INCLUDES+= -I../../../lvgl_ambiq_porting/NemaGFX_hal/apollo510_nemagfx
 
 
-VPATH+=:../../lvgl_ambiq_porting/NemaGFX_hal/apollo510_nemagfx
+VPATH+=:../../../lvgl_ambiq_porting/NemaGFX_hal/apollo510_nemagfx
 
 SRC += nema_dc_hal.c
 SRC += nema_hal.c
 
-LIBS += ../../../ambiqsuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a
+LIBS += ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a
 
-# ambiqsuite/mcu
-INCLUDES+= -I../../../ambiqsuite/mcu/apollo510
-INCLUDES+= -I../../../ambiqsuite/mcu/apollo510/hal
+# AmbiqSuite/mcu
+INCLUDES+= -I../../../AmbiqSuite/mcu/apollo510
+INCLUDES+= -I../../../AmbiqSuite/mcu/apollo510/hal
 
-LIBS += ../../../ambiqsuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a
-# VPATH+=:../../../ambiqsuite/mcu/apollo510/hal/
-# VPATH+=:../../../ambiqsuite/mcu/apollo510/hal/mcu
+LIBS += ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a
+# VPATH+=:../../../AmbiqSuite/mcu/apollo510/hal/
+# VPATH+=:../../../AmbiqSuite/mcu/apollo510/hal/mcu
 
 # SRC += am_hal_access.c
 # SRC += am_hal_adc.c
@@ -200,10 +201,10 @@ LIBS += ../../../ambiqsuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a
 # SRC += am_hal_utils.c
 
 
-# ambiqsuite/utils
-INCLUDES+= -I../../../ambiqsuite/utils
+# AmbiqSuite/utils
+INCLUDES+= -I../../../AmbiqSuite/utils
 
-VPATH+=:../../../ambiqsuite/utils
+VPATH+=:../../../AmbiqSuite/utils
 
 SRC += am_util_delay.c
 SRC += am_util_stdio.c
@@ -238,12 +239,12 @@ VPATH += $(sort $(dir $(LVGL_CSRCS)))
 
 # freertos
 
-INCLUDES+= -I../../../ambiqsuite/third_party/FreeRTOSv10.5.1/Source/include
-INCLUDES+= -I../../../ambiqsuite/third_party/FreeRTOSv10.5.1/Source/portable/GCC/AMapollo5
+INCLUDES+= -I../../../AmbiqSuite/third_party/FreeRTOSv10.5.1/Source/include
+INCLUDES+= -I../../../AmbiqSuite/third_party/FreeRTOSv10.5.1/Source/portable/GCC/AMapollo5
 
-VPATH+=:../../../ambiqsuite/third_party/FreeRTOSv10.5.1/Source
-VPATH+=:../../../ambiqsuite/third_party/FreeRTOSv10.5.1/Source/portable/GCC/AMapollo5
-VPATH+=:../../../ambiqsuite/third_party/FreeRTOSv10.5.1/Source/portable/MemMang
+VPATH+=:../../../AmbiqSuite/third_party/FreeRTOSv10.5.1/Source
+VPATH+=:../../../AmbiqSuite/third_party/FreeRTOSv10.5.1/Source/portable/GCC/AMapollo5
+VPATH+=:../../../AmbiqSuite/third_party/FreeRTOSv10.5.1/Source/portable/MemMang
 
 SRC += event_groups.c
 SRC += queue.c

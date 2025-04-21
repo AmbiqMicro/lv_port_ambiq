@@ -156,7 +156,7 @@ nemadc_restore_registers(void)
     {
         return false;
     }
-    
+
     resx = ui32DCRegBlock0[NEMADC_REG_RESXY/4] >> 16;
     resy = ui32DCRegBlock0[NEMADC_REG_RESXY/4] & 0xFFFF;
     fpx = ui32DCRegBlock0[NEMADC_REG_FRONTPORCHXY/4] >> 16;
@@ -253,7 +253,7 @@ wait_dbi_idle(uint32_t ui32Mask, uint32_t ui32Value)
 //
 //! @brief wait jdi idle
 //!
-//! Please wait a time before executing functions nemadc_set_mode() and 
+//! Please wait a time before executing functions nemadc_set_mode() and
 //! nemadc_set_mip_panel_parameters() after the frame ends when enabling RTOS.
 //!
 //! @return AM_HAL_STATUS_SUCCESS.
@@ -273,6 +273,129 @@ wait_mip_idle(void)
     nemadc_set_mip_panel_parameters(&sMiPConfig);
     return AM_HAL_STATUS_SUCCESS;
 }
+
+//*****************************************************************************
+//
+// DC power control function
+//
+//*****************************************************************************
+uint32_t
+nemadc_power_control(am_hal_sysctrl_power_state_e ePowerState, bool bRetainState)
+{
+    uint32_t ui32Status = AM_HAL_STATUS_SUCCESS;
+    bool bStatus;
+    am_hal_pwrctrl_periph_enabled(AM_HAL_PWRCTRL_PERIPH_DISP, &bStatus);
+    //
+    // Decode the requested power state and update DC operation accordingly.
+    //
+    switch (ePowerState)
+    {
+        case AM_HAL_SYSCTRL_WAKE:
+
+            if (bStatus)
+            {
+                return AM_HAL_STATUS_IN_USE;
+            }
+
+            //
+            // Enable power.
+            //
+            ui32Status = am_hal_pwrctrl_periph_enable(AM_HAL_PWRCTRL_PERIPH_DISP);
+            if (ui32Status != AM_HAL_STATUS_SUCCESS)
+            {
+                return ui32Status;
+            }
+
+            //
+            // Enable DC clock
+            //
+            ui32Status = am_hal_clkgen_control(AM_HAL_CLKGEN_CONTROL_DCCLK_ENABLE, NULL);
+            if (ui32Status != AM_HAL_STATUS_SUCCESS)
+            {
+                return ui32Status;
+            }
+
+            //
+            // Initialize NemaDC, it includes enable interrupt
+            //
+            if ( nemadc_init() != AM_HAL_STATUS_SUCCESS )
+            {
+                return AM_HAL_STATUS_FAIL;
+            }
+
+            if (bRetainState && bDCRegBackup)
+            {
+                //
+                // Restore DC registers
+                //
+                nemadc_restore_registers();
+
+                //
+                // Enable clock
+                //
+                nemadc_reg_write(NEMADC_REG_CLKCTRL_CG, nemadc_reg_read(NEMADC_REG_CLKCTRL_CG) | NemaDC_clkctrl_cg_clk_en);
+            }
+            else
+            {
+                //
+                // Please invoke function nemadc_configure() to initialize DC registers.
+                //
+            }
+            break;
+
+        case AM_HAL_SYSCTRL_NORMALSLEEP:
+        case AM_HAL_SYSCTRL_DEEPSLEEP:
+
+            if (bStatus)
+            {
+                //
+                // Check pending transaction
+                //
+                if (AM_HAL_STATUS_TIMEOUT == wait_dbi_idle(DC_STATUS_dbi_pending_cmd | DC_STATUS_dbi_busy, 0x0U))
+                {
+                    return AM_HAL_STATUS_IN_USE;
+                }
+                //
+                // Disable clock
+                //
+                nemadc_reg_write(NEMADC_REG_CLKCTRL_CG, nemadc_reg_read(NEMADC_REG_CLKCTRL_CG) & ~NemaDC_clkctrl_cg_clk_en);
+
+                if (bRetainState)
+                {
+                    //
+                    // Backup DC registers
+                    //
+                    nemadc_backup_registers();
+                }
+
+                //
+                // Disable interrupt
+                //
+                NVIC_DisableIRQ(NEMADC_IRQ);
+
+                //
+                // Disable DC clock
+                //
+                am_hal_clkgen_control(AM_HAL_CLKGEN_CONTROL_DCCLK_DISABLE, NULL);
+
+                //
+                // Disable power
+                //
+                am_hal_pwrctrl_periph_disable(AM_HAL_PWRCTRL_PERIPH_DISP);
+            }
+            break;
+
+        default:
+            return AM_HAL_STATUS_INVALID_ARG;
+    }
+
+    //
+    // Return the status.
+    //
+    return ui32Status;
+
+} // nemadc_power_ctrl()
+
 //*****************************************************************************
 //
 //! @brief Configure NemaDC.
@@ -369,13 +492,17 @@ nemadc_configure(nemadc_initial_config_t *psDCConfig)
         cfg = MIPICFG_SPI_CSX_V | MIPICFG_DBI_EN | MIPICFG_RESX | MIPICFG_SPI4 | psDCConfig->ui32PixelFormat;
         if (psDCConfig->eInterface == DISP_INTERFACE_QSPI)
         {
+#ifndef AM_DISP_CPOL_CPHA_SETTING_OUTSIDE
+            cfg |= MIPICFG_QSPI | MIPICFG_SPI_CPOL | MIPICFG_SPI_CPHA;
+#else
             cfg |= MIPICFG_QSPI;
+#endif
         }
         else if (psDCConfig->eInterface == DISP_INTERFACE_DSPI)
         {
             cfg |= MIPICFG_DSPI;
         }
-        
+
         if(psDCConfig->bTEEnable)
         {
             cfg |= MIPICFG_DIS_TE;
@@ -393,11 +520,7 @@ nemadc_configure(nemadc_initial_config_t *psDCConfig)
     {
         int i32PreDivider,i32PrimaryDivider;
         float fPLLCLKFreq;
-#ifdef APOLLO5_FPGA
-        fPLLCLKFreq = APOLLO5_FPGA;
-#else
         fPLLCLKFreq = 3 * (2 << CLKGEN->DISPCLKCTRL_b.DISPCLKSEL);
-#endif
         //
         // Calculate the Optimal solution primary divider and predivider for the JDI interface.
         //
@@ -408,7 +531,7 @@ nemadc_configure(nemadc_initial_config_t *psDCConfig)
         if (fPLLCLKFreq / (4 * psDCConfig->fHCKBCKMaxFreq) > psDCConfig->fHCKBCKMaxFreq / psDCConfig->fVCKGCKFFMaxFreq)
         {
             //
-            // Calculate the primary divider,to make BCK frequency less than panel limitation. 
+            // Calculate the primary divider,to make BCK frequency less than panel limitation.
             //
             i32PrimaryDivider = nema_ceil(fPLLCLKFreq / (4 * psDCConfig->fHCKBCKMaxFreq));
             //
@@ -443,7 +566,7 @@ nemadc_configure(nemadc_initial_config_t *psDCConfig)
         }
 
         nemadc_clkdiv(i32PrimaryDivider, i32PreDivider, 4, 0);
-        
+
         sMiPConfig.resx                    = psDCConfig->ui16ResX;
         sMiPConfig.resy                    = psDCConfig->ui16ResY;
         sMiPConfig.XRST_INTB_delay         = psDCConfig->ui32XRSTINTBDelay;
@@ -485,13 +608,13 @@ nemadc_configure(nemadc_initial_config_t *psDCConfig)
         nemadc_reg_write(NEMADC_REG_MODE, NEMADC_NEG_V | NEMADC_NEG_H | psDCConfig->ui32PixelFormat);
     }
 
-    nemadc_timing(psDCConfig->ui16ResX, 
-                  psDCConfig->ui32FrontPorchX, 
-                  psDCConfig->ui32BlankingX, 
+    nemadc_timing(psDCConfig->ui16ResX,
+                  psDCConfig->ui32FrontPorchX,
+                  psDCConfig->ui32BlankingX,
                   psDCConfig->ui32BackPorchX,
-                  psDCConfig->ui16ResY, 
-                  psDCConfig->ui32FrontPorchY, 
-                  psDCConfig->ui32BlankingY, 
+                  psDCConfig->ui16ResY,
+                  psDCConfig->ui32FrontPorchY,
+                  psDCConfig->ui32BlankingY,
                   psDCConfig->ui32BackPorchY);
     //
     // Enable clock divider.
@@ -511,25 +634,28 @@ nemadc_configure(nemadc_initial_config_t *psDCConfig)
 
 //*****************************************************************************
 //
-//! @brief Prepared operations before sending frame
+//! @brief Prepare operations before sending frame
 //!
-//! @param  bAutoLaunch    - true:launch transfer in DC TE interrupt implicitly.
+//! @param  bAutoLaunch    - true:  launch transfer in DC TE interrupt implicitly.
+//!                        - false: please launch the transfer explicitly.
+//! @param  bContinue      - true:  write memory continue(0x3C)
+//!                        - false: write memory start(0x2C)
 //!
-//! This function configures clock gating, sends MIPI_write_memory_start
-//! command before sending frame. If DBIDSI interface is selected, this function
-//! also configures HS/LP mode and data/command type of DSI.
-//! Note: bLaunchInTE taks effect in the DC TE interrupt handler, which means
-//! if GPIO TE is used or TE signal is ignored, setting this parameter to true or false
-//! makes no difference, user still need to call nemadc_transfer_frame_launch manually.
+//! Note 1: Setting the first parameter(bAutoLaunch) to true when writing memory
+//! continues(0x3C) is not recommended because this could spot a severe tear effect
+//! on the display.
+//! Note 2: Setting the first parameter(bAutoLaunch) to true is invalid when the TE
+//! bitfield(MIPICFG_DIS_TE) isn't configured in register NEMADC_REG_DBIB_CFG.The user
+//! should launch the transfer explicitly.
 //!
 //! @return None.
 //
 //*****************************************************************************
-void
-nemadc_transfer_frame_prepare(bool bAutoLaunch)
+static void
+dc_transfer_frame(bool bAutoLaunch, bool bContinue)
 {
     uint32_t ui32Cfg = nemadc_reg_read(NEMADC_REG_DBIB_CFG);
-    uint32_t ui32MemWrCmd = MIPI_write_memory_start;
+    uint32_t ui32MemWrCmd = bContinue ? MIPI_write_memory_continue : MIPI_write_memory_start;
     //
     // Check present interface is DBI/DSI or not.
     //
@@ -545,13 +671,13 @@ nemadc_transfer_frame_prepare(bool bAutoLaunch)
             {
                 am_hal_dsi_pre_rw_cmd(true);
             }
-            
+
             nemadc_reg_write(NEMADC_REG_GPIO, nemadc_reg_read(NEMADC_REG_GPIO) & (~0x1));//HS
             //
             // disable clock gating
             //
             nemadc_reg_write(NEMADC_REG_CLKCTRL_CG, 0xFFFFFFF0U | NemaDC_clkctrl_cg_clk_en);
-    
+
             wait_dbi_idle(DC_STATUS_dbi_busy, 0x0U);
             //
             // Set data/commands command type
@@ -617,7 +743,45 @@ nemadc_transfer_frame_prepare(bool bAutoLaunch)
         bNeedLaunchInTe = bAutoLaunch;
         nemadc_reg_write(NEMADC_REG_INTERRUPT, 1 << 3);
     }
+}
 
+//*****************************************************************************
+//
+//! @brief Prepare operations before writing memory start
+//!
+//! @param  bAutoLaunch    - true:launch transfer in DC TE interrupt implicitly.
+//!                        - false: please launch the transfer explicitly.
+//!
+//! Setting the parameter(bAutoLaunch) to true is invalid when the TE enabling
+//! bitfield(MIPICFG_DIS_TE) isn't configured in register NEMADC_REG_DBIB_CFG.
+//! Please launch the transfer explicitly.
+//!
+//! @return None.
+//
+//*****************************************************************************
+void
+nemadc_transfer_frame_prepare(bool bAutoLaunch)
+{
+    dc_transfer_frame(bAutoLaunch, false);
+}
+
+//*****************************************************************************
+//
+//! @brief Prepare operations before writing memory continue
+//!
+//! @param  bAutoLaunch    - true:launch the transfer implicitly.(Not recommended)
+//!                        - false: please launch the transfer explicitly.(recommended)
+//!
+//! Setting the parameter(bAutoLaunch) to true is not recommended because this
+//! could spot a severe tear effect on the display.
+//!
+//! @return None.
+//
+//*****************************************************************************
+void
+nemadc_transfer_frame_continue(bool bAutoLaunch)
+{
+    dc_transfer_frame(bAutoLaunch, true);
 }
 
 //*****************************************************************************
@@ -852,12 +1016,12 @@ dbi_read(uint8_t ui8Cmd, uint8_t ui8ParaLen, uint32_t *ui32Received)
 //! @param ui8ReceiveBuffer     - pointer of receive buffer
 //! @param ui32ParaLen          - the read count
 //!
-//! @note During a read cycle the host processor reads data from the display module  
-//! via the interface. The Type B interface utilizes D/CX, RDX and WRX signals as  
-//! well as all eight (D[7:0]) information signals.RDX is driven from high to low 
-//! then allowed to be pulled back to high during the read cycle. The display module 
-//! provides information to the host processor during the read cycle while the host 
-//! processor reads the display module information on the rising edge of RDX. D/CX 
+//! @note During a read cycle the host processor reads data from the display module
+//! via the interface. The Type B interface utilizes D/CX, RDX and WRX signals as
+//! well as all eight (D[7:0]) information signals.RDX is driven from high to low
+//! then allowed to be pulled back to high during the read cycle. The display module
+//! provides information to the host processor during the read cycle while the host
+//! processor reads the display module information on the rising edge of RDX. D/CX
 //! is driven high during the read cycle.
 //!
 //! @return pointer.
@@ -1116,6 +1280,14 @@ nemadc_mipi_cmd_write(uint8_t ui8Command,
             {
                 ui32Status = dsi_generic_write(p_ui8Para, ui8ParaLen, bHS);
             }
+
+            if (ui32Status == AM_HAL_STATUS_SUCCESS)
+            {
+                //
+                // Wait for the DSI stop state
+                //
+                ui32Status = am_hal_dsi_wait_stop_state(0);
+            }
         }
         else
         {
@@ -1170,7 +1342,7 @@ nemadc_mipi_cmd_write(uint8_t ui8Command,
             {
                 //
                 // SPI4 interface
-                // 
+                //
                 nemadc_MIPI_CFG_out(ui32Cfg | MIPICFG_SPI_HOLD);
             }
             nemadc_MIPI_out(MIPI_DBIB_CMD | ui8Command);
@@ -1205,6 +1377,7 @@ nemadc_mipi_cmd_write(uint8_t ui8Command,
         }
         nemadc_MIPI_CFG_out(ui32Cfg);
     }
+
     return ui32Status;
 }
 
@@ -1307,6 +1480,10 @@ dsi_dcs_read(uint8_t ui8Cmd, uint8_t ui8DataLen, uint32_t* ui32Received, bool bH
         //
         if (AM_HAL_STATUS_TIMEOUT == wait_dbi_idle(DC_STATUS_dbi_rd_wr_on, 0x0U))
         {
+            //
+            // Release chip select
+            //
+            nemadc_reg_write(NEMADC_REG_DBIB_CFG, ui32Cfg);
             return AM_HAL_STATUS_TIMEOUT;
         }
         // Force Chip select Low.
@@ -1322,6 +1499,10 @@ dsi_dcs_read(uint8_t ui8Cmd, uint8_t ui8DataLen, uint32_t* ui32Received, bool bH
             //
             if (AM_HAL_STATUS_TIMEOUT == wait_dbi_idle(DC_STATUS_dbi_rd_wr_on, 0x0U))
             {
+                //
+                // Release chip select
+                //
+                nemadc_reg_write(NEMADC_REG_DBIB_CFG, ui32Cfg);
                 return AM_HAL_STATUS_TIMEOUT;
             }
             nemadc_reg_write(NEMADC_REG_INTERFACE_RDAT, 0);
@@ -1332,6 +1513,10 @@ dsi_dcs_read(uint8_t ui8Cmd, uint8_t ui8DataLen, uint32_t* ui32Received, bool bH
     //
     if (AM_HAL_STATUS_TIMEOUT == wait_dbi_idle(DC_STATUS_dbi_rd_wr_on, 0x0U))
     {
+        //
+        // Release chip select
+        //
+        nemadc_reg_write(NEMADC_REG_DBIB_CFG, ui32Cfg);
         return AM_HAL_STATUS_TIMEOUT;
     }
     //
@@ -1414,13 +1599,17 @@ dsi_generic_read(uint8_t *p_ui8Para, uint8_t ui8ParaLen, uint8_t ui8DataLen, uin
         }
     }
 
-    if (ui8DataLen == 1) 
+    if (ui8DataLen == 1)
     {
         //
         // Return directly if timeout
         //
         if (AM_HAL_STATUS_TIMEOUT == wait_dbi_idle(DC_STATUS_dbi_rd_wr_on, 0x0U))
         {
+            //
+            // Release chip select
+            //
+            nemadc_reg_write(NEMADC_REG_DBIB_CFG, ui32Cfg);
             return AM_HAL_STATUS_TIMEOUT;
         }
         nemadc_reg_write(NEMADC_REG_DBIB_RDAT, 0);
@@ -1434,6 +1623,10 @@ dsi_generic_read(uint8_t *p_ui8Para, uint8_t ui8ParaLen, uint8_t ui8DataLen, uin
             //
             if (AM_HAL_STATUS_TIMEOUT == wait_dbi_idle(DC_STATUS_dbi_rd_wr_on, 0x0U))
             {
+                //
+                // Release chip select
+                //
+                nemadc_reg_write(NEMADC_REG_DBIB_CFG, ui32Cfg);
                 return AM_HAL_STATUS_TIMEOUT;
             }
             nemadc_reg_write(NEMADC_REG_DBIB_RDAT, 0);
@@ -1445,6 +1638,10 @@ dsi_generic_read(uint8_t *p_ui8Para, uint8_t ui8ParaLen, uint8_t ui8DataLen, uin
     //
     if (AM_HAL_STATUS_TIMEOUT == wait_dbi_idle(DC_STATUS_dbi_rd_wr_on, 0x0U))
     {
+        //
+        // Release chip select
+        //
+        nemadc_reg_write(NEMADC_REG_DBIB_CFG, ui32Cfg);
         return AM_HAL_STATUS_TIMEOUT;
     }
     nemadc_MIPI_CFG_out(ui32Cfg);
@@ -1532,7 +1729,7 @@ nemadc_mipi_cmd_read(uint8_t ui8Command,
         }
     }
     else if ((ui32Cfg & (MIPICFG_SPI3 | MIPICFG_SPI4 | MIPICFG_DSPI | MIPICFG_QSPI)) != 0)
-    {   
+    {
         //
         // QSPI/DSPI/SPI4 interface.
         //
@@ -1564,7 +1761,7 @@ nemadc_mipi_cmd_read(uint8_t ui8Command,
             {
                 //
                 // SPI4 interface
-                // 
+                //
                 nemadc_MIPI_CFG_out(ui32Cfg);
             }
             ui32Cmd = MIPI_DBIB_CMD | ui8Command;

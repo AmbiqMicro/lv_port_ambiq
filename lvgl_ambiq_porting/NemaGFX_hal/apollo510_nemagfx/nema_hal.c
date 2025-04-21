@@ -28,6 +28,8 @@
 #include "nema_hal.h"
 #include "nema_regs.h"
 #include "nema_ringbuffer.h"
+#include "nema_error.h"
+#include "nema_vg_context.h"
 #include "am_mcu_apollo.h"
 #include "am_hal_global.h"
 #include "am_util_delay.h"
@@ -381,8 +383,8 @@ am_hal_status_e nema_get_cl_status (int32_t cl_id)
         return AM_HAL_STATUS_SUCCESS;
     }
 
-    int last_cl_id = (int)nema_reg_read(NEMA_CLID);
-    if ( last_cl_id >= cl_id) {
+    int _last_cl_id = (int)nema_reg_read(NEMA_CLID);
+    if ( _last_cl_id >= cl_id) {
         return AM_HAL_STATUS_SUCCESS;
     }
     return AM_HAL_STATUS_IN_USE;
@@ -422,7 +424,6 @@ void nema_reset_last_cl_id (void)
 {
     last_cl_id = -1;
 }
-
 int nema_get_last_cl_id(void)
 {
     return last_cl_id;
@@ -431,4 +432,160 @@ int nema_get_last_cl_id(void)
 int nema_get_last_submission_id(void)
 {
     return ring_buffer_str.last_submission_id;
+}
+
+//*****************************************************************************
+//
+//! @brief Controls the power state of the GPU peripheral.
+//!
+//! @param ePowerState - The desired power state (e.g., wake, normal sleep, deep sleep).
+//! @param bRetainState - Indicates whether to reinitialize the NemaSDK and NemaVG
+//!                       when waking up the GPU peripheral.
+//!
+//! This function manages the power state of the GPU peripheral based on
+//! the requested power state. It checks the current power status and either
+//! powers up or powers down the peripheral as needed.
+//!
+//! When waking up the GPU (`AM_HAL_SYSCTRL_WAKE`), if \e bRetainState is true,
+//! the function reinitializes the NemaSDK and NemaVG. If powering down, the
+//! function ensures the peripheral is inactive before disabling power.
+//!
+//! \e ePowerState The desired power state. Valid values are:
+//! - AM_HAL_SYSCTRL_WAKE: Wake up the peripheral.
+//! - AM_HAL_SYSCTRL_NORMALSLEEP: Put the peripheral in normal sleep mode.
+//! - AM_HAL_SYSCTRL_DEEPSLEEP: Put the peripheral in deep sleep mode.
+//!
+//! \e bRetainState Determines whether to reinitialize the NemaSDK and NemaVG
+//! when powering up. This is used for scenarios where the GPU context needs
+//! to be retained.
+//!
+//! @note Ensure that the GPU peripheral is not in use before attempting to
+//! power it down to avoid conflicts. This API is not thread-safe. If it is
+//! called from multiple threads or from an interrupt, appropriate critical
+//! section protection must be added.
+//!
+//! @return Returns the status of the operation. Possible return values are:
+//! - AM_HAL_STATUS_SUCCESS: Operation was successful.
+//! - AM_HAL_STATUS_IN_USE: Peripheral is currently in use and cannot be powered down.
+//! - AM_HAL_STATUS_INVALID_OPERATION: Invalid power state requested.
+//! - AM_HAL_STATUS_FAIL: Reinitialization of NemaSDK or NemaVG failed.
+//
+//*****************************************************************************
+uint32_t
+nemagfx_power_control(am_hal_sysctrl_power_state_e ePowerState,
+                   bool bRetainState)
+{
+    uint32_t ui32Status;
+    bool bEnabled;
+    uint32_t ui32ErrorCode;
+
+    //
+    // Check the current GPU power state
+    //
+    ui32Status = am_hal_pwrctrl_periph_enabled(AM_HAL_PWRCTRL_PERIPH_GFX, &bEnabled);
+    if (ui32Status == AM_HAL_STATUS_SUCCESS)
+    {
+        //
+        // Decode the requested power state and take action
+        //
+        switch (ePowerState)
+        {
+            case AM_HAL_SYSCTRL_WAKE:
+            {
+                if (bEnabled)
+                {
+                    //
+                    // GPU is already powered up
+                    //
+                    ui32Status = AM_HAL_STATUS_SUCCESS;
+                }
+                else
+                {
+                    //
+                    // Enable power control
+                    //
+                    ui32Status = am_hal_pwrctrl_periph_enable(AM_HAL_PWRCTRL_PERIPH_GFX);
+
+                    //
+                    // Reinitialize NemaSDK and NemaVG
+                    //
+                    if (ui32Status == AM_HAL_STATUS_SUCCESS && bRetainState)
+                    {
+
+                        nema_get_error(); // clear raster graphics error
+
+                        nema_reset_last_cl_id();
+                        nema_reinit();
+                        ui32ErrorCode = nema_get_error();
+                        if (ui32ErrorCode != NEMA_ERR_NO_ERROR)
+                        {
+                            ui32Status = AM_HAL_STATUS_FAIL;
+                            break;
+                        }
+
+
+#ifndef NEMA_MULTI_THREAD
+                        // If NEMA_MULTI_THREAD is not defined, the nemavg_context is defined as global variable,
+                        // and if nema_vg_init is not called, nemavg_context will be initialized as NULL, so we should prevent to write to the NULL pointer.
+                        struct nema_vg_context_t_;
+                        extern struct nema_vg_context_t_* nemavg_context;
+
+                        if(nemavg_context != NULL)
+                        {
+#endif
+                            nema_vg_get_error(); // clear vector graphics error
+
+                            nema_vg_reinit();
+                            ui32ErrorCode = nema_vg_get_error();
+                            if (ui32ErrorCode != NEMA_VG_ERR_NO_ERROR)
+                            {
+                                ui32Status = AM_HAL_STATUS_FAIL;
+                                break;
+                            }
+#ifndef NEMA_MULTI_THREAD
+                        }
+#endif
+                    }
+                }
+                break;
+            }
+            case AM_HAL_SYSCTRL_NORMALSLEEP:
+            case AM_HAL_SYSCTRL_DEEPSLEEP:
+            {
+                if (!bEnabled)
+                {
+                    //
+                    // GPU is already powered down
+                    //
+                    ui32Status = AM_HAL_STATUS_SUCCESS;
+                }
+                else
+                {
+                    //
+                    // Ensure GPU is currently inactive
+                    //
+                    if (nema_reg_read(NEMA_STATUS) != 0)
+                    {
+                        ui32Status = AM_HAL_STATUS_IN_USE;
+                    }
+                    else
+                    {
+                        //
+                        // Power down the GPU
+                        //
+                        ui32Status = am_hal_pwrctrl_periph_disable(AM_HAL_PWRCTRL_PERIPH_GFX);
+                    }
+                }
+                break;
+            }
+            default:
+            {
+                ui32Status = AM_HAL_STATUS_INVALID_OPERATION;
+                break;
+            }
+        }
+
+    }
+
+    return ui32Status;
 }

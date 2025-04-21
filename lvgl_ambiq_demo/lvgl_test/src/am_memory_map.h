@@ -10,7 +10,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2024, Ambiq Micro, Inc.
+// Copyright (c) 2025, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -73,8 +73,8 @@ extern "C"
 //*****************************************************************************
 #define AM_MEM_MCU_ITCM_SIZE           0x00040000
 #define AM_MEM_MCU_MRAM_SIZE           0x003F0000
-#define AM_MEM_MCU_TCM_SIZE            0x0006C000
-#define AM_MEM_SHARED_SRAM_SIZE        0x00200000
+#define AM_MEM_MCU_TCM_SIZE            0x0007C000
+#define AM_MEM_SHARED_SRAM_SIZE        0x00300000
 #define AM_MEM_STACK_SIZE              0x00003000
 #define AM_MEM_HEAP_SIZE               0x00001000
 

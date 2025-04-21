@@ -48,10 +48,11 @@
 #define configENABLE_TRUSTZONE                          0
 #define configENABLE_MVE                                0
 
-/* This part has 16 MPU regions. */
 #ifdef __IAR_SYSTEMS_ICC__
+    /* IAR port only has 8 MPU regions. */
     #define configTOTAL_MPU_REGIONS                         8
 #else
+    /* GCC and keil port has 16 MPU regions. */
     #define configTOTAL_MPU_REGIONS                         16
 #endif
 
@@ -67,11 +68,7 @@
 #define configUSE_16_BIT_TICKS                          0 /* Only for 8 and 16-bit hardware. */
 
 /* Constants that describe the hardware and memory usage. */
-#if defined(APOLLO5_FPGA)
-    #define configCPU_CLOCK_HZ                          (APOLLO5_FPGA*1000000UL)
-#else
-    #define configCPU_CLOCK_HZ                          (96000000UL)
-#endif
+#define configCPU_CLOCK_HZ                          (96000000UL)
 #define configMINIMAL_STACK_SIZE                        ( ( uint16_t ) 256 )
 #define configMINIMAL_SECURE_STACK_SIZE                 ( 1024 )
 #define configMAX_TASK_NAME_LEN                         ( 12 )

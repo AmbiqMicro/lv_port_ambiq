@@ -58,7 +58,7 @@
 //*****************************************************************************
 //Frame buffer size
 #ifndef LV_AMBIQ_DISPLAY_BUFFER_RESX
-    #define LV_AMBIQ_DISPLAY_BUFFER_RESX (480U)
+    #define LV_AMBIQ_DISPLAY_BUFFER_RESX (472U)
 #endif
 
 #ifndef LV_AMBIQ_DISPLAY_BUFFER_RESY
