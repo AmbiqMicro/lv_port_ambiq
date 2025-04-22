@@ -48,6 +48,7 @@
 #include "nema_vg_font.h"
 
 #include "display_task.h"
+#include "lv_ambiq_touch.h"
 
 #include "demos/lv_demos.h"
 
@@ -537,6 +538,12 @@ DisplayTask(void *pvParameters)
     // Set up LVGL display driver.
     //
     lv_disp_drv_setup();
+
+    //
+    // Set up LVGL touch driver
+    //
+    lv_ambiq_touch_init();
+    lv_ambiq_touch_create();
 
     /* Create a mutex to avoid the concurrent calling of LVGL functions. */
     lvgl_mutex = xSemaphoreCreateMutex();

@@ -124,7 +124,8 @@ INCLUDES+= -I../../../AmbiqSuite/devices
 VPATH += ../../../AmbiqSuite/devices
 SRC += am_devices_mspi_psram_aps25616ba_1p2v.c
 SRC += am_devices_display_generic.c
-SRC += am_devices_tma525.c
+# SRC += am_devices_tma525.c
+SRC += am_devices_chsc5816_ap5.c
 
 # AmbiqSuite/gpu
 INCLUDES+= -I../../../AmbiqSuite/third_party/ThinkSi/NemaGFX_SDK/NemaDC
@@ -283,6 +284,7 @@ SRC += am_resources.c
 SRC += gui_task.c
 SRC += lvgl_test.c
 SRC += display_task.c
+SRC += lv_ambiq_touch.c
 
 
 
