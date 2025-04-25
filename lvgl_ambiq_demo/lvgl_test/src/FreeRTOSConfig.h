@@ -161,4 +161,7 @@
 /*  Create RTOS objects using dynamically allocated RAM */
 #define configSUPPORT_DYNAMIC_ALLOCATION        1
 
+#define traceTASK_SWITCHED_OUT() lv_freertos_task_switch_out()
+#define traceTASK_SWITCHED_IN()  lv_freertos_task_switch_in(pxCurrentTCB->pcTaskName)
+
 #endif /* FREERTOS_CONFIG_H */
