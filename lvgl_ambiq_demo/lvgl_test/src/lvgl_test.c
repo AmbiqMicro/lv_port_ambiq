@@ -102,6 +102,10 @@ am_devices_mspi_psram_config_t g_sMspiPsramConfig =
     .ui32ScramblingEndAddr    = 0,
 };
 
+/* defined on linker script file */
+extern uint32_t __external_start;
+extern uint32_t __external_end;
+extern uint32_t __external_load_start;
 
 //
 // Take over the interrupt handler for whichever MSPI we're using.
@@ -240,6 +244,14 @@ main(void)
     {
         am_util_stdio_printf("Failed to enable XIP mode in the MSPI!\n");
     }
+
+    uint32_t ui32ExternalStart = 0;
+    uint32_t ui32CodeSectionLength = 0;
+    uint32_t ui32CodeSectionLoadAddr = 0;
+    ui32ExternalStart = &__external_start;
+    ui32CodeSectionLength = (uint32_t)&__external_end - (uint32_t)&__external_start;
+    ui32CodeSectionLoadAddr = (uint32_t)&__external_load_start;
+    memcpy(ui32ExternalStart, ui32CodeSectionLoadAddr, ui32CodeSectionLength);
 
     am_mem_init();
 

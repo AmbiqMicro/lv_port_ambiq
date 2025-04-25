@@ -14,6 +14,7 @@ MEMORY
     STACK        (rw)  : ORIGIN = 0x2007F000, LENGTH = 4096
     HEAP         (rw)  : ORIGIN = 0x2007E000, LENGTH = 4096
     PSRAM        (rw)  : ORIGIN = 0x60000000, LENGTH = 0x00A00000
+    PSRAM_TEX    (rw)  : ORIGIN = 0x60A00000, LENGTH = 0x01000000
 }
 
 SECTIONS
@@ -50,6 +51,16 @@ SECTIONS
         *(.ARM.exidx* .gnu.linkonce.armexidx.*)
         __exidx_end = .;
     } > MCU_MRAM
+
+    .external_tex :
+    {
+        . = ALIGN(4);
+        __external_load_start = LOADADDR(.external_tex);
+        __external_start = .;
+        *(.external_tex)
+        . = ALIGN(4);
+        __external_end = .;
+    } > PSRAM_TEX AT>MCU_MRAM
 
     .itcm_text :
     {
