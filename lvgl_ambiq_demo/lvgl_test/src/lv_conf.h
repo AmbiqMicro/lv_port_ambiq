@@ -540,7 +540,7 @@
 #define LV_ATTRIBUTE_MEM_ALIGN __attribute__((aligned(8)))
 
 /** Attribute to mark large constant arrays, for example for font bitmaps */
-#define LV_ATTRIBUTE_LARGE_CONST
+#define LV_ATTRIBUTE_LARGE_CONST __attribute__((section(".external_tex")))
 
 /** Compiler prefix for a large array declaration in RAM */
 #define LV_ATTRIBUTE_LARGE_RAM_ARRAY
