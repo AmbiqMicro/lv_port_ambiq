@@ -253,6 +253,7 @@ nema_buffer_t nema_buffer_create_pool (int pool, int size)
 
     if (heap->cacheable)
     {
+        size = (size + 31) & ~31; // Align size to the next multiple of 32
         ptr = am_mem_heap_malloc_align(heap, size, 32);
     }
     else
