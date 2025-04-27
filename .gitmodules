@@ -1,0 +1,5 @@
+
+[submodule "LVGL"]
+	path = LVGL
+	url = git@github.com:AmbiqMicro/LVGL_alpha.git
+	branch = master 
