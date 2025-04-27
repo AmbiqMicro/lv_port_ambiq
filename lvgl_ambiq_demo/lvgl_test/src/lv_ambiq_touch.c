@@ -143,7 +143,7 @@ void lv_ambiq_touch_read(lv_indev_t * indev_drv, lv_indev_data_t * data)
         data->state = LV_INDEV_STATE_PR;
     }
 
-    am_util_stdio_printf("x: %d,  y: %d; state: %d\n",data->point.x,data->point.y,data->state);
+    LV_LOG_TRACE("x: %d,  y: %d; state: %d\n",data->point.x,data->point.y,data->state);
 }
 
 //*****************************************************************************
