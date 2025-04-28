@@ -61,3 +61,4 @@ lvgl_ambiq_porting/gpu_patch/*
 lvgl_ambiq_demo/*/*/bin/
 lvgl_ambiq_demo/*/*/bin/*
 AmbiqSuite/
+*.zip
