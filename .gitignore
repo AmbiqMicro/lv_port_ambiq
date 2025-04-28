@@ -60,3 +60,4 @@ dkms.conf
 lvgl_ambiq_porting/gpu_patch/*
 lvgl_ambiq_demo/lvgl_test/apollo510_evb/bin/*
 AmbiqSuite/
+*.zip
