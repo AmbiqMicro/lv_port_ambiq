@@ -28,6 +28,7 @@
 #include "am_util.h"
 
 #include "lvgl.h"
+#include "lv_draw_ambiq_private.h"
 
 #include "FreeRTOS.h"
 #include "task.h"
@@ -59,11 +60,11 @@
 //*****************************************************************************
 //Frame buffer size
 #ifndef LV_AMBIQ_DISPLAY_BUFFER_RESX
-    #define LV_AMBIQ_DISPLAY_BUFFER_RESX (472U)
+    #define LV_AMBIQ_DISPLAY_BUFFER_RESX (464U)
 #endif
 
 #ifndef LV_AMBIQ_DISPLAY_BUFFER_RESY
-    #define LV_AMBIQ_DISPLAY_BUFFER_RESY (272U)
+    #define LV_AMBIQ_DISPLAY_BUFFER_RESY (464U)
 #endif
 
 // Select render mode
@@ -122,41 +123,36 @@
 #if LV_COLOR_DEPTH==8
     #define LV_AMBIQ_DRAW_BUFFER_FORMAT             LV_COLOR_FORMAT_L8
     #define LV_AMBIQ_DRAW_BUFFER_FORMAT_NEMA        NEMA_L8
+    #define LV_AMBIQ_DISPLAY_BUFFER_FORMAT          LV_COLOR_FORMAT_L8    
     #define LV_AMBIQ_DISPLAY_BUFFER_FORMAT_NEMA     NEMA_L8
     #define LV_AMBIQ_DISPLAY_PANEL_FORMAT           COLOR_FORMAT_8BIT
 #elif LV_COLOR_DEPTH==16
     #define LV_AMBIQ_DRAW_BUFFER_FORMAT             LV_COLOR_FORMAT_RGB565
     #define LV_AMBIQ_DRAW_BUFFER_FORMAT_NEMA        NEMA_RGB565
+    #define LV_AMBIQ_DISPLAY_BUFFER_FORMAT          LV_COLOR_FORMAT_RGB565    
     #define LV_AMBIQ_DISPLAY_BUFFER_FORMAT_NEMA     NEMA_RGB565
     #define LV_AMBIQ_DISPLAY_PANEL_FORMAT           COLOR_FORMAT_RGB565
 #elif LV_COLOR_DEPTH==24
     #define LV_AMBIQ_DRAW_BUFFER_FORMAT             LV_COLOR_FORMAT_RGB888
     #define LV_AMBIQ_DRAW_BUFFER_FORMAT_NEMA        NEMA_BGR24
+    #define LV_AMBIQ_DISPLAY_BUFFER_FORMAT          LV_COLOR_FORMAT_RGB888
     #define LV_AMBIQ_DISPLAY_BUFFER_FORMAT_NEMA     NEMA_RGB24  
     #define LV_AMBIQ_DISPLAY_PANEL_FORMAT           COLOR_FORMAT_RGB888
 #elif LV_COLOR_DEPTH==32
     #define LV_AMBIQ_DRAW_BUFFER_FORMAT             LV_COLOR_FORMAT_XRGB8888
     #define LV_AMBIQ_DRAW_BUFFER_FORMAT_NEMA        NEMA_BGRX8888
+    #define LV_AMBIQ_DISPLAY_BUFFER_FORMAT          LV_COLOR_FORMAT_RGB888
     #define LV_AMBIQ_DISPLAY_BUFFER_FORMAT_NEMA     NEMA_RGB24     
     #define LV_AMBIQ_DISPLAY_PANEL_FORMAT           COLOR_FORMAT_RGB888
 #endif
 
 #define LV_AMBIQ_DISPLAY_BUFFER_SIZE (LV_AMBIQ_DISPLAY_BUFFER_RESX * LV_AMBIQ_DISPLAY_BUFFER_RESY * (LV_COLOR_DEPTH / 8))
 #define LV_AMBIQ_DRAW_BUFFER_SIZE (LV_AMBIQ_DISPLAY_BUFFER_SIZE / LV_AMBIQ_DRAW_BUFFER_RATIO)
-#define LV_AMBIQ_STENCIL_BUFFER_SIZE (LV_AMBIQ_DISPLAY_BUFFER_RESX * LV_AMBIQ_DISPLAY_BUFFER_RESY)
 
 // Draw buffer, GPU or CPU will always render to this buffer.
-//AM_SHARED_RW __attribute__((aligned(32))) uint8_t draw_buffer[LV_AMBIQ_DRAW_BUFFER_SIZE];
 lv_draw_buf_t* draw_buffer = NULL;
 // Display buffer. Draw buffer will be copied to this buffer in display->flush_cb, and DC will always read from this buffer when TE is recived.
-//AM_SHARED_RW __attribute__((aligned(32))) uint8_t display_buffer[LV_AMBIQ_DISPLAY_BUFFER_SIZE];
-nema_buffer_t display_buffer = {.base_phys= 0, .base_virt= 0, .size= 0};
-
-#if LV_USE_DRAW_AMBIQ_VG
-// Stencil buffer, Used by NemaVG.
-//AM_SHARED_RW __attribute__((aligned(32))) uint8_t stencil_buffer[LV_AMBIQ_STENCIL_BUFFER_SIZE];
-nema_buffer_t stencil_buffer = {.base_phys= 0, .base_virt= 0, .size= 0};;
-#endif
+lv_draw_buf_t* display_buffer = NULL;
 
 //*****************************************************************************
 //
@@ -204,38 +200,19 @@ SemaphoreHandle_t display_buffer_lock = NULL;
 //*****************************************************************************
 void buffer_sync(const lv_area_t * area, lv_display_render_mode_t render_mode, void* src)
 {
-    nema_cmdlist_t cl_memcpy;
+
     int32_t w = lv_area_get_width(area);
     int32_t h = lv_area_get_height(area);
 
     if((w <= 0) || (h <= 0))
         return;
 
-    // Create the command list for GPU memcpy.
-    cl_memcpy = nema_cl_create_sized(0x100);
-    LV_ASSERT_NULL(cl_memcpy.bo.base_virt);
-    if(cl_memcpy.bo.base_virt == NULL)
+    lv_result_t ret = lv_draw_ambiq_common_start(display_buffer, area, false);
+    if(ret != LV_RESULT_OK)
     {
         return;
     }
 
-#if LV_USE_DRAW_AMBIQ
-    lv_draw_ambiq_nema_context_lock();
-#endif
-
-    //Rewind and bind the CL
-    nema_cl_bind(&cl_memcpy);
-    nema_cl_rewind(&cl_memcpy);
-
-    // Bind destination buffer
-    nema_bind_dst_tex(display_buffer.base_phys,
-                      LV_AMBIQ_DISPLAY_BUFFER_RESX,
-                      LV_AMBIQ_DISPLAY_BUFFER_RESY,
-                      LV_AMBIQ_DISPLAY_BUFFER_FORMAT_NEMA,
-                      -1);
-
-    //Set clip
-    nema_set_clip(area->x1, area->y1, w, h);
 
     //Set blend mode
     lv_ambiq_set_blend_blit(NULL, NEMA_BL_SRC);
@@ -270,19 +247,7 @@ void buffer_sync(const lv_area_t * area, lv_display_render_mode_t render_mode, v
         nema_blit_rect(area->x1, area->y1, w, h);
     }
 
-    //start GPU, submit CL
-    nema_cl_submit(&cl_memcpy);
-
-#if LV_USE_DRAW_AMBIQ
-    lv_draw_ambiq_nema_context_unlock();
-#endif
-
-    nema_cl_wait(&cl_memcpy);
-
-    nema_cl_destroy(&cl_memcpy);
-
-    if(nema_get_error() != NEMA_ERR_NO_ERROR)
-        LV_LOG_ERROR("gpu memory copy error!");
+    lv_draw_ambiq_common_end(true);
 
     return;
 }
@@ -346,7 +311,7 @@ display_flush_cb(lv_display_t * display, const lv_area_t * area, uint8_t * px_ma
 
         am_devices_display_transfer_frame(LV_AMBIQ_DISPLAY_BUFFER_RESX,
                                           LV_AMBIQ_DISPLAY_BUFFER_RESY,
-                                          display_buffer.base_phys,
+                                          display_buffer->data,
                                           transfer_complete_cb, 
                                           (void*)display_buffer_lock);
 
@@ -362,11 +327,7 @@ display_flush_cb(lv_display_t * display, const lv_area_t * area, uint8_t * px_ma
 void lv_disp_drv_setup(void)
 {
     // Create the display buffer.
-    display_buffer = nema_buffer_create_pool(NEMA_MEM_POOL_FB, LV_AMBIQ_DISPLAY_BUFFER_SIZE);
-    if(display_buffer.base_virt == NULL)
-    {
-        LV_LOG_ERROR("display buffer create failed!");
-    }
+    display_buffer = lv_draw_buf_create(LV_AMBIQ_DISPLAY_BUFFER_RESX, LV_AMBIQ_DISPLAY_BUFFER_RESY, LV_AMBIQ_DISPLAY_BUFFER_FORMAT, 0);
 
     // Create the display.
     lv_display_t * display = lv_display_create(LV_AMBIQ_DISPLAY_BUFFER_RESX, LV_AMBIQ_DISPLAY_BUFFER_RESY);
@@ -471,7 +432,7 @@ DisplayTask(void *pvParameters)
     // Initialize NemaVG.
     //
 #if LV_USE_DRAW_AMBIQ_VG
-    stencil_buffer = nema_buffer_create_pool(NEMA_MEM_POOL_FB, LV_AMBIQ_STENCIL_BUFFER_SIZE);
+    nema_buffer_t stencil_buffer = {.base_phys = 0, .base_virt = 0, .size = 0, .fd = 0};
     nema_vg_init_stencil_prealloc(LV_AMBIQ_DISPLAY_BUFFER_RESX, LV_AMBIQ_DISPLAY_BUFFER_RESY, stencil_buffer);
     if (NEMA_ERR_NO_ERROR != nema_get_error())
     {
@@ -571,7 +532,7 @@ DisplayTask(void *pvParameters)
     lv_log_register_print_cb(lv_ambiq_log_printf);
 #endif
 
-    lv_demo_render(LV_DEMO_RENDER_SCENE_TRIANGLE, LV_OPA_COVER);
+    lv_demo_benchmark();
     //lv_demo_scroll();
     //lv_demo_vector_graphic_not_buffered();    
     //lv_example_style_5();

@@ -241,6 +241,14 @@
 
 #if LV_USE_DRAW_AMBIQ
 #define LV_USE_DRAW_AMBIQ_VG 1
+#define LV_AMBIQ_CPU_GPU_ASYNC 0
+
+
+/* The command list is divided into `LV_AMBIQ_COMMAND_LIST_SECTOR` sectors,
+ * where each sector has a fixed length of `LV_AMBIQ_COMMAND_LIST_SECTOR_SIZE`.
+ */
+#define LV_AMBIQ_COMMAND_LIST_SECTOR 100
+#define LV_AMBIQ_COMMAND_LIST_SECTOR_SIZE 1024 
 #endif
 
 /** Use NXP's VG-Lite GPU on iMX RTxxx platforms. */
@@ -577,10 +585,10 @@
 #define LV_FONT_MONTSERRAT_14 1
 #define LV_FONT_MONTSERRAT_16 0
 #define LV_FONT_MONTSERRAT_18 0
-#define LV_FONT_MONTSERRAT_20 0
+#define LV_FONT_MONTSERRAT_20 1
 #define LV_FONT_MONTSERRAT_22 0
-#define LV_FONT_MONTSERRAT_24 0
-#define LV_FONT_MONTSERRAT_26 0
+#define LV_FONT_MONTSERRAT_24 1
+#define LV_FONT_MONTSERRAT_26 1
 #define LV_FONT_MONTSERRAT_28 0
 #define LV_FONT_MONTSERRAT_30 0
 #define LV_FONT_MONTSERRAT_32 0
@@ -1297,17 +1305,17 @@
  ====================*/
 
 /** Show some widgets. This might be required to increase `LV_MEM_SIZE`. */
-#define LV_USE_DEMO_WIDGETS 0
+#define LV_USE_DEMO_WIDGETS 1
 
 /** Demonstrate usage of encoder and keyboard. */
 #define LV_USE_DEMO_KEYPAD_AND_ENCODER 0
 
 /** Benchmark your system */
-#define LV_USE_DEMO_BENCHMARK 0
+#define LV_USE_DEMO_BENCHMARK 1
 
 /** Render test for each primitive.
  *  - Requires at least 480x272 display. */
-#define LV_USE_DEMO_RENDER 1
+#define LV_USE_DEMO_RENDER 0
 
 /** Stress test for LVGL */
 #define LV_USE_DEMO_STRESS 0

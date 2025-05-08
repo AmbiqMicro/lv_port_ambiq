@@ -215,6 +215,7 @@ SRC += am_util_stdio.c
 LVGL_PATH = ../../../LVGL
 
 INCLUDES+= -I../../../LVGL
+INCLUDES+= -I../../../LVGL/src/draw/ambiq
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/core -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/display -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/draw -type f -name '*.c')
@@ -233,6 +234,8 @@ LVGL_CSRCS += $(LVGL_PATH)/src/lv_init.c
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/scroll -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/render -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/vector_graphic -type f -name '*.c')
+LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/widgets -type f -name '*.c')
+LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/benchmark -type f -name '*.c')
 
 CSRC += $(notdir $(LVGL_CSRCS))
 
