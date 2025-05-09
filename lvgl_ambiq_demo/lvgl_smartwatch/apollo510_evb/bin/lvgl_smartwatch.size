@@ -1,0 +1,518 @@
+   text	   data	    bss	    dec	    hex	filename
+   1159	      0	      0	   1159	    487	bin/lv_obj_class.o
+   9111	      0	      0	   9111	   2397	bin/lv_refr.o
+      0	      0	      0	      0	      0	bin/lv_obj_id_builtin.o
+   5987	      0	      0	   5987	   1763	bin/lv_obj_draw.o
+   7375	      0	      0	   7375	   1ccf	bin/lv_obj.o
+   4444	      0	      0	   4444	   115c	bin/lv_obj_style_gen.o
+      0	      0	      0	      0	      0	bin/lv_obj_property.o
+   3227	      0	      0	   3227	    c9b	bin/lv_obj_event.o
+  10403	      0	      0	  10403	   28a3	bin/lv_obj_style.o
+   3911	      0	      0	   3911	    f47	bin/lv_group.o
+  12099	      0	      0	  12099	   2f43	bin/lv_obj_pos.o
+   5426	      0	      0	   5426	   1532	bin/lv_obj_tree.o
+   7776	      0	      0	   7776	   1e60	bin/lv_obj_scroll.o
+  10540	      0	      0	  10540	   292c	bin/lv_display.o
+    623	      0	      0	    623	    26f	bin/lv_draw_line.o
+   1748	      0	      0	   1748	    6d4	bin/lv_draw_sw_fill.o
+      0	      0	      0	      0	      0	bin/lv_draw_sw_vector.o
+   6898	      0	      0	   6898	   1af2	bin/lv_draw_sw_box_shadow.o
+   9719	      0	      0	   9719	   25f7	bin/lv_draw_sw_mask.o
+   2066	      0	      0	   2066	    812	bin/lv_draw_sw_border.o
+   4286	      0	      0	   4286	   10be	bin/lv_draw_sw_img.o
+   3427	      0	      0	   3427	    d63	bin/lv_draw_sw_utils.o
+   3437	      0	      0	   3437	    d6d	bin/lv_draw_sw_arc.o
+   1524	      0	      0	   1524	    5f4	bin/lv_draw_sw.o
+  11874	      0	      0	  11874	   2e62	bin/lv_draw_sw_blend_to_rgb565.o
+   1325	      0	      0	   1325	    52d	bin/lv_draw_sw_blend.o
+   8308	      0	      0	   8308	   2074	bin/lv_draw_sw_blend_to_argb8888.o
+   6337	      0	      0	   6337	   18c1	bin/lv_draw_sw_blend_to_l8.o
+   7108	      0	      0	   7108	   1bc4	bin/lv_draw_sw_blend_to_al88.o
+   8533	      0	      0	   8533	   2155	bin/lv_draw_sw_blend_to_i1.o
+   7603	      0	      0	   7603	   1db3	bin/lv_draw_sw_blend_to_rgb888.o
+   5648	      0	      0	   5648	   1610	bin/lv_draw_sw_transform.o
+    588	      0	      0	    588	    24c	bin/lv_draw_sw_mask_rect.o
+    718	      0	      0	    718	    2ce	bin/lv_draw_sw_letter.o
+   4105	      0	      0	   4105	   1009	bin/lv_draw_sw_line.o
+   2788	      0	      0	   2788	    ae4	bin/lv_draw_sw_triangle.o
+   1337	      0	      0	   1337	    539	bin/lv_draw_sw_grad.o
+   7684	      0	      0	   7684	   1e04	bin/lv_draw_vector.o
+    909	      0	      0	    909	    38d	bin/lv_draw_triangle.o
+      0	      0	      0	      0	      0	bin/lv_g2d_utils.o
+      0	      0	      0	      0	      0	bin/lv_g2d_buf_map.o
+      0	      0	      0	      0	      0	bin/lv_draw_g2d.o
+      0	      0	      0	      0	      0	bin/lv_draw_g2d_fill.o
+      0	      0	      0	      0	      0	bin/lv_draw_g2d_img.o
+      0	      0	      0	      0	      0	bin/lv_draw_buf_g2d.o
+      0	      0	      0	      0	      0	bin/lv_pxp_osa.o
+      0	      0	      0	      0	      0	bin/lv_draw_pxp_layer.o
+      0	      0	      0	      0	      0	bin/lv_draw_pxp_fill.o
+      0	      0	      0	      0	      0	bin/lv_draw_pxp_img.o
+      0	      0	      0	      0	      0	bin/lv_draw_buf_pxp.o
+      0	      0	      0	      0	      0	bin/lv_pxp_utils.o
+      0	      0	      0	      0	      0	bin/lv_draw_pxp.o
+      0	      0	      0	      0	      0	bin/lv_pxp_cfg.o
+      0	      0	      0	      0	      0	bin/lv_draw_vglite_img.o
+      0	      0	      0	      0	      0	bin/lv_draw_vglite_triangle.o
+      0	      0	      0	      0	      0	bin/lv_draw_vglite_arc.o
+      0	      0	      0	      0	      0	bin/lv_draw_vglite_border.o
+      0	      0	      0	      0	      0	bin/lv_draw_vglite.o
+      0	      0	      0	      0	      0	bin/lv_vglite_buf.o
+      0	      0	      0	      0	      0	bin/lv_draw_vglite_line.o
+      0	      0	      0	      0	      0	bin/lv_vglite_path.o
+      0	      0	      0	      0	      0	bin/lv_draw_buf_vglite.o
+      0	      0	      0	      0	      0	bin/lv_draw_vglite_label.o
+      0	      0	      0	      0	      0	bin/lv_draw_vglite_fill.o
+      0	      0	      0	      0	      0	bin/lv_vglite_matrix.o
+      0	      0	      0	      0	      0	bin/lv_draw_vglite_layer.o
+      0	      0	      0	      0	      0	bin/lv_vglite_utils.o
+   2899	      0	      0	   2899	    b53	bin/lv_draw_image.o
+   2160	      0	      0	   2160	    870	bin/lv_draw_arc.o
+   3204	      0	      0	   3204	    c84	bin/lv_draw_rect.o
+   6083	      0	      0	   6083	   17c3	bin/lv_draw_buf.o
+   2331	      0	      0	   2331	    91b	bin/lv_image_decoder.o
+   4140	      0	     20	   4160	   1040	bin/lv_draw_ambiq_vector.o
+   1629	      0	      0	   1629	    65d	bin/lv_draw_ambiq_triangle.o
+   3669	      0	      0	   3669	    e55	bin/lv_draw_ambiq_img.o
+   1991	      0	      4	   1995	    7cb	bin/lv_draw_ambiq.o
+   1808	      0	      0	   1808	    710	bin/lv_draw_ambiq_arc.o
+   2816	      0	      0	   2816	    b00	bin/lv_draw_ambiq_border.o
+   4661	      0	      0	   4661	   1235	bin/lv_draw_ambiq_box_shadow.o
+   1814	      0	      0	   1814	    716	bin/lv_draw_ambiq_line.o
+   2964	      0	      0	   2964	    b94	bin/lv_draw_ambiq_buffer.o
+   1773	      0	      0	   1773	    6ed	bin/lv_draw_ambiq_mask_rect.o
+   1097	      0	      0	   1097	    449	bin/lv_draw_ambiq_fill.o
+   2044	      0	      0	   2044	    7fc	bin/lv_draw_ambiq_letter.o
+   4441	      0	      0	   4441	   1159	bin/lv_draw_ambiq_private.o
+      0	      0	      0	      0	      0	bin/lv_draw_sdl.o
+      0	      0	      0	      0	      0	bin/lv_draw_vg_lite_img.o
+      0	      0	      0	      0	      0	bin/lv_draw_vg_lite_line.o
+      0	      0	      0	      0	      0	bin/lv_draw_vg_lite_arc.o
+      0	      0	      0	      0	      0	bin/lv_draw_buf_vg_lite.o
+      0	      0	      0	      0	      0	bin/lv_vg_lite_stroke.o
+      0	      0	      0	      0	      0	bin/lv_vg_lite_math.o
+      0	      0	      0	      0	      0	bin/lv_draw_vg_lite_mask_rect.o
+      0	      0	      0	      0	      0	bin/lv_vg_lite_grad.o
+      0	      0	      0	      0	      0	bin/lv_vg_lite_pending.o
+      0	      0	      0	      0	      0	bin/lv_vg_lite_decoder.o
+      0	      0	      0	      0	      0	bin/lv_draw_vg_lite_layer.o
+      0	      0	      0	      0	      0	bin/lv_draw_vg_lite.o
+      0	      0	      0	      0	      0	bin/lv_draw_vg_lite_triangle.o
+      0	      0	      0	      0	      0	bin/lv_draw_vg_lite_border.o
+      0	      0	      0	      0	      0	bin/lv_vg_lite_path.o
+      0	      0	      0	      0	      0	bin/lv_draw_vg_lite_vector.o
+      0	      0	      0	      0	      0	bin/lv_draw_vg_lite_fill.o
+      0	      0	      0	      0	      0	bin/lv_vg_lite_utils.o
+      0	      0	      0	      0	      0	bin/lv_draw_vg_lite_label.o
+      0	      0	      0	      0	      0	bin/lv_draw_vg_lite_box_shadow.o
+      0	      0	      0	      0	      0	bin/lv_draw_nema_gfx_stm32_hal.o
+      0	      0	      0	      0	      0	bin/lv_nema_gfx_path.o
+      0	      0	      0	      0	      0	bin/lv_draw_nema_gfx_utils.o
+      0	      0	      0	      0	      0	bin/lv_draw_nema_gfx_triangle.o
+      0	      0	      0	      0	      0	bin/lv_draw_nema_gfx_fill.o
+      0	      0	      0	      0	      0	bin/lv_draw_nema_gfx_label.o
+      0	      0	      0	      0	      0	bin/lv_draw_nema_gfx.o
+      0	      0	      0	      0	      0	bin/lv_draw_nema_gfx_img.o
+      0	      0	      0	      0	      0	bin/lv_draw_nema_gfx_arc.o
+      0	      0	      0	      0	      0	bin/lv_draw_nema_gfx_layer.o
+      0	      0	      0	      0	      0	bin/lv_draw_nema_gfx_border.o
+      0	      0	      0	      0	      0	bin/lv_draw_nema_gfx_line.o
+    500	      0	      0	    500	    1f4	bin/lv_draw_mask.o
+      0	      0	      0	      0	      0	bin/lv_draw_dma2d.o
+      0	      0	      0	      0	      0	bin/lv_draw_dma2d_img.o
+      0	      0	      0	      0	      0	bin/lv_draw_dma2d_fill.o
+      0	      0	      0	      0	      0	bin/lv_draw_opengles.o
+   5027	      0	      0	   5027	   13a3	bin/lv_draw_label.o
+      0	      0	      0	      0	      0	bin/lv_draw_dave2d_line.o
+      0	      0	      0	      0	      0	bin/lv_draw_dave2d_utils.o
+      0	      0	      0	      0	      0	bin/lv_draw_dave2d_label.o
+      0	      0	      0	      0	      0	bin/lv_draw_dave2d_border.o
+      0	      0	      0	      0	      0	bin/lv_draw_dave2d.o
+      0	      0	      0	      0	      0	bin/lv_draw_dave2d_image.o
+      0	      0	      0	      0	      0	bin/lv_draw_dave2d_mask_rectangle.o
+      0	      0	      0	      0	      0	bin/lv_draw_dave2d_fill.o
+      0	      0	      0	      0	      0	bin/lv_draw_dave2d_triangle.o
+      0	      0	      0	      0	      0	bin/lv_draw_dave2d_arc.o
+   3229	      0	      0	   3229	    c9d	bin/lv_draw.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_28_compressed.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_10.o
+  13637	      0	      0	  13637	   3545	bin/lv_font_montserrat_14.o
+      0	      0	      0	      0	      0	bin/lv_font_unscii_8.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_40.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_44.o
+      0	      0	      0	      0	      0	bin/lv_font_dejavu_16_persian_hebrew.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_36.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_38.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_32.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_28.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_22.o
+  32893	      0	      0	  32893	   807d	bin/lv_font_montserrat_26.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_18.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_12.o
+   2767	      0	      0	   2767	    acf	bin/lv_font_fmt_txt.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_16.o
+   4253	      0	      0	   4253	   109d	bin/lv_binfont_loader.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_48.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_42.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_46.o
+   1250	      0	      0	   1250	    4e2	bin/lv_font.o
+      0	      0	      0	      0	      0	bin/lv_font_unscii_16.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_34.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_8.o
+      0	      0	      0	      0	      0	bin/lv_font_montserrat_30.o
+  21791	      0	      0	  21791	   551f	bin/lv_font_montserrat_20.o
+      0	      0	      0	      0	      0	bin/lv_font_simsun_14_cjk.o
+      0	      0	      0	      0	      0	bin/lv_font_simsun_16_cjk.o
+  28689	      0	      0	  28689	   7011	bin/lv_font_montserrat_24.o
+  12323	      0	      0	  12323	   3023	bin/lv_indev.o
+   5362	      0	      0	   5362	   14f2	bin/lv_indev_scroll.o
+      0	      0	      0	      0	      0	bin/lv_indev_gesture.o
+    465	      0	      0	    465	    1d1	bin/lv_layout.o
+   5703	      0	      0	   5703	   1647	bin/lv_flex.o
+   5601	      0	      0	   5601	   15e1	bin/lv_grid.o
+    503	      0	      0	    503	    1f7	bin/lv_utils.o
+      0	      0	      0	      0	      0	bin/lv_text_ap.o
+   4071	      0	      0	   4071	    fe7	bin/lv_text.o
+   2955	      0	      0	   2955	    b8b	bin/lv_circle_buf.o
+   2793	      0	      0	   2793	    ae9	bin/lv_cache.o
+   2088	      0	      0	   2088	    828	bin/lv_cache_entry.o
+   3561	      0	      0	   3561	    de9	bin/lv_cache_lru_rb.o
+   1214	      0	      0	   1214	    4be	bin/lv_image_cache.o
+   1207	      0	      0	   1207	    4b7	bin/lv_image_header_cache.o
+   1813	      0	      0	   1813	    715	bin/lv_iter.o
+   3120	      0	      0	   3120	    c30	bin/lv_anim_timeline.o
+   2935	      0	      0	   2935	    b77	bin/lv_style.o
+   4270	      0	      0	   4270	   10ae	bin/lv_event.o
+   3972	      0	      0	   3972	    f84	bin/lv_style_gen.o
+    688	      0	      0	    688	    2b0	bin/lv_color_op.o
+   4022	      0	      0	   4022	    fb6	bin/lv_fs.o
+   1101	      0	      0	   1101	    44d	bin/lv_tree.o
+   3594	      0	      0	   3594	    e0a	bin/lv_color.o
+   1290	      0	      0	   1290	    50a	bin/lv_ll.o
+   2682	      0	      0	   2682	    a7a	bin/lv_matrix.o
+    725	     20	      0	    745	    2e9	bin/lv_log.o
+   4488	      0	      0	   4488	   1188	bin/lv_area.o
+   1928	      0	      0	   1928	    788	bin/lv_lru.o
+   2374	      0	      4	   2378	    94a	bin/lv_timer.o
+    252	      0	      0	    252	     fc	bin/lv_async.o
+      0	      0	      0	      0	      0	bin/lv_templ.o
+      0	      0	      0	      0	      0	bin/lv_profiler_builtin.o
+   1725	      0	      0	   1725	    6bd	bin/lv_array.o
+   2524	      0	      0	   2524	    9dc	bin/lv_math.o
+   3395	      0	      0	   3395	    d43	bin/lv_rb.o
+   4879	      0	      0	   4879	   130f	bin/lv_anim.o
+      0	      0	      0	      0	      0	bin/lv_bidi.o
+    752	      0	      0	    752	    2f0	bin/lv_grad.o
+   1383	      0	      0	   1383	    567	bin/lv_palette.o
+      0	      0	      0	      0	      0	bin/lv_rtthread.o
+      0	      0	      0	      0	      0	bin/lv_windows.o
+      0	      0	      0	      0	      0	bin/lv_linux.o
+   1593	      0	      0	   1593	    639	bin/lv_freertos.o
+      0	      0	      0	      0	      0	bin/lv_os_none.o
+      0	      0	      0	      0	      0	bin/lv_sdl2.o
+      0	      0	      0	      0	      0	bin/lv_mqx.o
+      0	      0	      0	      0	      0	bin/lv_pthread.o
+      0	      0	      0	      0	      0	bin/lv_cmsis_rtos2.o
+     68	      0	      0	     68	     44	bin/lv_os.o
+      0	      0	      0	      0	      0	bin/lv_snapshot.o
+      0	      0	      0	      0	      0	bin/lv_ime_pinyin.o
+      0	      0	      0	      0	      0	bin/vg_lite_matrix.o
+      0	      0	      0	      0	      0	bin/lv_test_screenshot_compare.o
+      0	      0	      0	      0	      0	bin/lv_test_display.o
+      0	      0	      0	      0	      0	bin/lv_test_indev.o
+      0	      0	      0	      0	      0	bin/lv_test_indev_gesture.o
+      0	      0	      0	      0	      0	bin/lv_test_helpers.o
+      0	      0	      0	      0	      0	bin/lv_file_explorer.o
+   7396	      0	      0	   7396	   1ce4	bin/lv_observer.o
+      0	      0	      0	      0	      0	bin/lv_xml_event_parser.o
+      0	      0	      0	      0	      0	bin/lv_xml_image_parser.o
+      0	      0	      0	      0	      0	bin/lv_xml_label_parser.o
+      0	      0	      0	      0	      0	bin/lv_xml_table_parser.o
+      0	      0	      0	      0	      0	bin/lv_xml_scale_parser.o
+      0	      0	      0	      0	      0	bin/lv_xml_button_parser.o
+      0	      0	      0	      0	      0	bin/lv_xml_buttonmatrix_parser.o
+      0	      0	      0	      0	      0	bin/lv_xml_bar_parser.o
+      0	      0	      0	      0	      0	bin/lv_xml_dropdown_parser.o
+      0	      0	      0	      0	      0	bin/lv_xml_chart_parser.o
+      0	      0	      0	      0	      0	bin/lv_xml_keyboard_parser.o
+      0	      0	      0	      0	      0	bin/lv_xml_textarea_parser.o
+      0	      0	      0	      0	      0	bin/lv_xml_slider_parser.o
+      0	      0	      0	      0	      0	bin/lv_xml_spangroup_parser.o
+      0	      0	      0	      0	      0	bin/lv_xml_roller_parser.o
+      0	      0	      0	      0	      0	bin/lv_xml_tabview_parser.o
+      0	      0	      0	      0	      0	bin/lv_xml_obj_parser.o
+      0	      0	      0	      0	      0	bin/lv_xml_utils.o
+      0	      0	      0	      0	      0	bin/lv_xml.o
+      0	      0	      0	      0	      0	bin/lv_xml_style.o
+      0	      0	      0	      0	      0	bin/lv_xml_widget.o
+      0	      0	      0	      0	      0	bin/lv_xml_component.o
+      0	      0	      0	      0	      0	bin/lv_xml_base_types.o
+      0	      0	      0	      0	      0	bin/lv_xml_parser.o
+      0	      0	      0	      0	      0	bin/lv_fragment.o
+      0	      0	      0	      0	      0	bin/lv_fragment_manager.o
+      0	      0	      0	      0	      0	bin/lv_gridnav.o
+      0	      0	      0	      0	      0	bin/lv_monkey.o
+   2274	      0	     28	   2302	    8fe	bin/lv_sysmon.o
+      0	      0	      0	      0	      0	bin/lv_imgfont.o
+      0	      0	      0	      0	      0	bin/lv_font_manager_recycle.o
+      0	      0	      0	      0	      0	bin/lv_font_manager.o
+      0	      0	      0	      0	      0	bin/lv_font_manager_utils.o
+    575	      0	      0	    575	    23f	bin/lv_mem.o
+      0	      0	      0	      0	      0	bin/lv_mem_core_uefi.o
+      0	      0	      0	      0	      0	bin/lv_sprintf_clib.o
+    566	      0	      0	    566	    236	bin/lv_string_clib.o
+      0	      0	      0	      0	      0	bin/lv_mem_core_clib.o
+      0	      0	      0	      0	      0	bin/lv_mem_core_micropython.o
+      0	      0	      0	      0	      0	bin/lv_sprintf_rtthread.o
+      0	      0	      0	      0	      0	bin/lv_string_rtthread.o
+      0	      0	      0	      0	      0	bin/lv_mem_core_rtthread.o
+   6122	      0	      0	   6122	   17ea	bin/lv_sprintf_builtin.o
+      0	      0	      0	      0	      0	bin/lv_string_builtin.o
+      0	      0	      0	      0	      0	bin/lv_tlsf.o
+      0	      0	      0	      0	      0	bin/lv_mem_core_builtin.o
+    586	      0	      0	    586	    24a	bin/lv_theme.o
+  16886	      0	      0	  16886	   41f6	bin/lv_theme_default.o
+   3196	      0	      0	   3196	    c7c	bin/lv_theme_simple.o
+   5238	      0	      0	   5238	   1476	bin/lv_theme_mono.o
+    298	      0	      0	    298	    12a	bin/lv_tick.o
+   9563	      0	      0	   9563	   255b	bin/lv_dropdown.o
+   1427	      8	      0	   1435	    59b	bin/lv_calendar_header_dropdown.o
+      0	      0	      0	      0	      0	bin/lv_calendar_chinese.o
+   1183	     48	      0	   1231	    4cf	bin/lv_calendar_header_arrow.o
+   3618	     28	      0	   3646	    e3e	bin/lv_calendar.o
+      0	      0	      0	      0	      0	bin/lv_objx_templ.o
+  12720	      0	      0	  12720	   31b0	bin/lv_scale.o
+   1959	      0	      0	   1959	    7a7	bin/lv_led.o
+      0	      0	      0	      0	      0	bin/lv_label_properties.o
+      0	      0	      0	      0	      0	bin/lv_style_properties.o
+      0	      0	      0	      0	      0	bin/lv_obj_properties.o
+      0	      0	      0	      0	      0	bin/lv_animimage_properties.o
+      0	      0	      0	      0	      0	bin/lv_dropdown_properties.o
+      0	      0	      0	      0	      0	bin/lv_keyboard_properties.o
+      0	      0	      0	      0	      0	bin/lv_textarea_properties.o
+      0	      0	      0	      0	      0	bin/lv_roller_properties.o
+      0	      0	      0	      0	      0	bin/lv_slider_properties.o
+      0	      0	      0	      0	      0	bin/lv_image_properties.o
+    413	      0	      0	    413	    19d	bin/lv_win.o
+  17011	      0	      0	  17011	   4273	bin/lv_chart.o
+   2483	      0	      0	   2483	    9b3	bin/lv_checkbox.o
+   9588	      0	      0	   9588	   2574	bin/lv_label.o
+   3741	      0	      0	   3741	    e9d	bin/lv_spinbox.o
+   1429	      0	      0	   1429	    595	bin/lv_animimage.o
+   4619	      0	      0	   4619	   120b	bin/lv_slider.o
+  10435	      0	      0	  10435	   28c3	bin/lv_buttonmatrix.o
+    403	      0	      0	    403	    193	bin/lv_spinner.o
+   7234	      0	      0	   7234	   1c42	bin/lv_image.o
+   3899	      0	      0	   3899	    f3b	bin/lv_canvas.o
+   2654	      0	      0	   2654	    a5e	bin/lv_tabview.o
+   2446	      0	      0	   2446	    98e	bin/lv_msgbox.o
+  11824	      0	      4	  11828	   2e34	bin/lv_textarea.o
+    116	      0	      0	    116	     74	bin/lv_button.o
+  10603	      0	      0	  10603	   296b	bin/lv_span.o
+   2578	      0	      0	   2578	    a12	bin/lv_imagebutton.o
+   2367	      0	      0	   2367	    93f	bin/lv_line.o
+  11626	      0	      0	  11626	   2d6a	bin/lv_table.o
+    521	      0	      0	    521	    209	bin/lv_list.o
+   6090	      0	      0	   6090	   17ca	bin/lv_menu.o
+   2491	      0	      0	   2491	    9bb	bin/lv_switch.o
+      0	      0	      0	      0	      0	bin/lv_lottie.o
+   6667	      0	      0	   6667	   1a0b	bin/lv_bar.o
+  10728	      0	      0	  10728	   29e8	bin/lv_arc.o
+   6341	      0	      0	   6341	   18c5	bin/lv_roller.o
+   1056	      0	      0	   1056	    420	bin/lv_tileview.o
+   3577	     80	      0	   3657	    e49	bin/lv_keyboard.o
+   8450	      0	      0	   8450	   2102	bin/lv_bin_decoder.o
+   1193	      0	    580	   1773	    6ed	bin/lv_init.o
+    220	      0	      0	    220	     dc	bin/ui_img_sec_dot_png.o
+ 150580	      0	      0	 150580	  24c34	bin/ui_img_sun_png.o
+ 315246	      0	      0	 315246	  4cf6e	bin/ui_img_s9_png.o
+    535	      0	      0	    535	    217	bin/ui_img_x_png.o
+   5320	      0	      0	   5320	   14c8	bin/ui_img_clockwise_hour_png.o
+   3358	      0	      0	   3358	    d1e	bin/ui_img_weather_sun_cloud_png.o
+   1612	      0	      0	   1612	    64c	bin/ui_img_house_png.o
+  11980	      0	      0	  11980	   2ecc	bin/ui_img_wave2_png.o
+   1270	      0	      0	   1270	    4f6	bin/ui_img_call2_png.o
+   2380	      0	      0	   2380	    94c	bin/ui_img_weather_sun_png.o
+  96796	      0	      0	  96796	  17a1c	bin/ui_img_clouds_png.o
+   8506	      0	      0	   8506	   213a	bin/ui_img_clockwise_min_png.o
+   1468	      0	      0	   1468	    5bc	bin/ui_img_heart_png.o
+   3718	      0	      0	   3718	    e86	bin/ui_img_btn_bg_3_png.o
+ 315246	      0	      0	 315246	  4cf6e	bin/ui_img_s8_png.o
+   3358	      0	      0	   3358	    d1e	bin/ui_img_weather_cloud_png.o
+   3628	      0	      0	   3628	    e2c	bin/ui_img_btn_bg_1_png.o
+   1228	      0	      0	   1228	    4cc	bin/ui_img_wind_png.o
+   3247	      0	      0	   3247	    caf	bin/ui_img_weather_cloud_fog_png.o
+   1168	      0	      0	   1168	    490	bin/ui_img_call1_png.o
+  11980	      0	      0	  11980	   2ecc	bin/ui_img_wave1_png.o
+  28756	      0	      0	  28756	   7054	bin/ui_img_daily_mission_png.o
+ 315246	      0	      0	 315246	  4cf6e	bin/ui_img_bg1_png.o
+ 315246	      0	      0	 315246	  4cf6e	bin/ui_img_bg3_png.o
+  16768	      0	      0	  16768	   4180	bin/ui_img_clockwise_sec_png.o
+    826	      0	      0	    826	    33a	bin/ui_img_rain_png.o
+   1960	      0	      0	   1960	    7a8	bin/ui_img_weather_png.o
+   2353	      0	      0	   2353	    931	bin/ui_img_mute_png.o
+   6598	      0	      0	   6598	   19c6	bin/ui_img_volume_png.o
+    730	      0	      0	    730	    2da	bin/ui_img_flash_png.o
+    883	      0	      0	    883	    373	bin/ui_img_step_png.o
+   3916	      0	      0	   3916	    f4c	bin/ui_img_measure_png.o
+   2353	      0	      0	   2353	    931	bin/ui_img_unmute_png.o
+ 253711	      0	      0	 253711	  3df0f	bin/ui_img_samatha_png.o
+   1976	      0	      0	   1976	    7b8	bin/ui_watch_digital.o
+   3183	      0	      0	   3183	    c6f	bin/ui_blood_pressure.o
+   2708	      0	      0	   2708	    a94	bin/ui_weather_1.o
+   1853	      0	      0	   1853	    73d	bin/ui_measuing.o
+   2993	      0	      0	   2993	    bb1	bin/ui_blood_oxy.o
+   1956	      0	      0	   1956	    7a4	bin/ui_call.o
+   4073	      0	      0	   4073	    fe9	bin/ui_weather_2.o
+   2748	    588	      0	   3336	    d08	bin/ui_ecg.o
+   3189	      0	      0	   3189	    c75	bin/ui_watch_analog.o
+   1869	      0	      0	   1869	    74d	bin/ui_helpers.o
+    792	      0	      0	    792	    318	bin/ui_comp_dailymissiongroup.o
+    585	      0	      0	    585	    249	bin/ui_comp_dategroup.o
+    360	      0	      0	    360	    168	bin/ui_comp_buttonround.o
+    424	      0	      0	    424	    1a8	bin/ui_comp_batterygroup.o
+    572	      0	      0	    572	    23c	bin/ui_comp_todayweathergroup.o
+    120	      0	      0	    120	     78	bin/ui_comp_hook.o
+    769	      0	      0	    769	    301	bin/ui_comp_forecastgroup.o
+    445	      0	      0	    445	    1bd	bin/ui_comp_titlegroup.o
+    480	      0	      0	    480	    1e0	bin/ui_comp_buttontop.o
+    405	      0	      0	    405	    195	bin/ui_comp_weathergroup1.o
+    480	      0	      0	    480	    1e0	bin/ui_comp_buttondown.o
+    548	      0	      0	    548	    224	bin/ui_comp_pulsegroup.o
+    118	      0	      4	    122	     7a	bin/ui_comp.o
+    445	      0	      0	    445	    1bd	bin/ui_comp_stepgroup.o
+   6045	      0	    668	   6713	   1a39	bin/ui.o
+  22954	     20	      0	  22974	   59be	bin/ui_font_Number_big.o
+  22428	     20	      0	  22448	   57b0	bin/ui_font_Subtitle.o
+  21259	     20	      0	  21279	   531f	bin/ui_font_Title.o
+  49052	     20	      0	  49072	   bfb0	bin/ui_font_H1.o
+  60555	     20	      0	  60575	   ec9f	bin/ui_font_Number_extra.o
+  11390	     74	      5	  11469	   2ccd	bin/am_bsp.o
+     24	    936	     40	   1000	    3e8	bin/am_bsp_pins.o
+    120	      4	      0	    124	     7c	bin/system_apollo510.o
+   6944	    726	    304	   7974	   1f26	bin/am_devices_mspi_psram_aps25616ba_1p2v.o
+   4740	     72	     38	   4850	   12f2	bin/am_devices_display_generic.o
+   2502	      0	     80	   2582	    a16	bin/am_devices_chsc5816_ap5.o
+   6978	      0	    150	   7128	   1bd8	bin/nema_dc_hal.o
+   1702	      4	     32	   1738	    6ca	bin/nema_hal.o
+     94	      0	      0	     94	     5e	bin/am_util_delay.o
+   3903	      0	   1029	   4932	   1344	bin/am_util_stdio.o
+   1232	      0	      0	   1232	    4d0	bin/event_groups.o
+   4210	      0	      0	   4210	   1072	bin/queue.o
+   9165	      0	    260	   9425	   24d1	bin/tasks.o
+   2142	      0	     60	   2202	    89a	bin/timers.o
+   1204	   8192	      0	   9396	   24b4	bin/startup_gcc.o
+   1154	      0	  65564	  66718	  1049e	bin/heap_4.o
+    310	      0	      0	    310	    136	bin/list.o
+    760	      4	      0	    764	    2fc	bin/port.o
+     24	      0	      0	     24	     18	bin/port_stimer.o
+     68	      0	      0	     68	     44	bin/port_systick_stimer.o
+    334	      0	      0	    334	    14e	bin/portasm.o
+   4746	      0	      0	   4746	   128a	bin/tlsf.o
+   1519	13107284	 262144	13370947	 cc0643	bin/am_mem.o
+    340	      0	      4	    344	    158	bin/rtos.o
+    132	     64	      0	    196	     c4	bin/am_resources.o
+   1617	      0	     32	   1649	    671	bin/gui_task.o
+    393	    116	      8	    517	    205	bin/lvgl_smartwatch.o
+    316	   4143	     52	   4511	   119f	bin/lv_ambiq_touch.o
+   6548	      0	      0	   6548	   1994	BasicMathFunctions.o (ex ../../../AmbiqSuite/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a)
+ 920530	      0	      0	 920530	  e0bd2	CommonTables.o (ex ../../../AmbiqSuite/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a)
+   2228	      0	      0	   2228	    8b4	InterpolationFunctions.o (ex ../../../AmbiqSuite/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a)
+    240	      0	      0	    240	     f0	BayesFunctions.o (ex ../../../AmbiqSuite/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a)
+  25860	      0	      0	  25860	   6504	MatrixFunctions.o (ex ../../../AmbiqSuite/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a)
+   2376	      0	      0	   2376	    948	ComplexMathFunctions.o (ex ../../../AmbiqSuite/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a)
+   2924	      0	      0	   2924	    b6c	QuaternionMathFunctions.o (ex ../../../AmbiqSuite/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a)
+    876	      0	      0	    876	    36c	ControllerFunctions.o (ex ../../../AmbiqSuite/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a)
+   1552	      0	      0	   1552	    610	SVMFunctions.o (ex ../../../AmbiqSuite/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a)
+   5044	      0	      0	   5044	   13b4	DistanceFunctions.o (ex ../../../AmbiqSuite/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a)
+  11088	      0	      0	  11088	   2b50	StatisticsFunctions.o (ex ../../../AmbiqSuite/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a)
+   7112	      0	      0	   7112	   1bc8	FastMathFunctions.o (ex ../../../AmbiqSuite/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a)
+   4788	      0	      0	   4788	   12b4	SupportFunctions.o (ex ../../../AmbiqSuite/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a)
+  39376	      0	      0	  39376	   99d0	FilteringFunctions.o (ex ../../../AmbiqSuite/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a)
+  42840	      0	      0	  42840	   a758	TransformFunctions.o (ex ../../../AmbiqSuite/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a)
+   8152	      0	      0	   8152	   1fd8	WindowFunctions.o (ex ../../../AmbiqSuite/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a)
+   2792	      4	      2	   2798	    aee	nema_blender.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   4160	      0	      0	   4160	   1040	nema_cmdlist.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   6700	      0	     40	   6740	   1a54	nema_dc.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+    140	      0	      0	    140	     8c	nema_dc_dsi.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   2244	      0	     92	   2336	    920	nema_dc_jdi.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   4756	      0	     12	   4768	   12a0	nema_dc_mipi.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   2360	      0	      0	   2360	    938	nema_easing.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   4168	      0	      0	   4168	   1048	nema_font.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   7457	      0	      0	   7457	   1d21	nema_graphics.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   1864	      0	      0	   1864	    748	nema_interpolators.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   2016	      0	      0	   2016	    7e0	nema_math.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   3080	      0	      0	   3080	    c08	nema_matrix3x3.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   2988	      0	      0	   2988	    bac	nema_matrix4x4.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+    496	      0	      0	    496	    1f0	nema_ocd.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   9428	      0	    264	   9692	   25dc	nema_programHW.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   4552	      0	      0	   4552	   11c8	nema_provisional.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+      0	      0	      0	      0	      0	nema_rasterizer.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+    872	      0	     20	    892	    37c	nema_ringbuffer.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   5412	      0	      0	   5412	   1524	nema_shaderSpecific.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   4004	      0	      0	   4004	    fa4	nema_transitions.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+  40668	      0	      0	  40668	   9edc	nema_vg.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   7164	      0	      0	   7164	   1bfc	nema_vg_aabb.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+  12008	      0	      0	  12008	   2ee8	nema_vg_clipped_path.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   1680	      0	    992	   2672	    a70	nema_vg_context.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   1712	      0	      0	   1712	    6b0	nema_vg_dashing.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   5944	      0	      0	   5944	   1738	nema_vg_font.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   3368	      0	      0	   3368	    d28	nema_vg_paint.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   1016	      0	      0	   1016	    3f8	nema_vg_path.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+  10904	      0	      0	  10904	   2a98	nema_vg_shapes.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   4788	      0	      0	   4788	   12b4	nema_vg_tsvg.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+   1328	      0	    192	   1520	    5f0	tsi_malloc.o (ex ../../../AmbiqSuite/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a)
+    208	      0	      0	    208	     d0	am_hal_access.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   2652	      0	    109	   2761	    ac9	am_hal_adc.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   6055	      0	    112	   6167	   1817	am_hal_audadc.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+     96	      0	      0	     96	     60	am_hal_bootrom_helper.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   1148	      3	      0	   1151	    47f	am_hal_cachectrl.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+  16916	      0	      0	  16916	   4214	am_hal_card.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+    276	    296	      0	    572	    23c	am_hal_card_host.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   1368	      0	      4	   1372	    55c	am_hal_clkgen.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   7588	     22	    127	   7737	   1e39	am_hal_clkmgr.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   2044	      0	    528	   2572	    a0c	am_hal_cmdq.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+    576	     32	      4	    612	    264	am_hal_dcu.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+    728	      0	      4	    732	    2dc	am_hal_debug.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   3540	      4	     21	   3565	    ded	am_hal_dsi.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+     96	      0	      0	     96	     60	am_hal_global.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   2352	      0	   3584	   5936	   1730	am_hal_gpio.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   4228	      0	    200	   4428	   114c	am_hal_i2s.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+    684	      1	      0	    685	    2ad	am_hal_info.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+    220	      0	      0	    220	     dc	am_hal_infoc.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+     24	      0	      0	     24	     18	am_hal_interrupt.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   8720	      0	  17728	  26448	   6750	am_hal_iom.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   3908	      0	    368	   4276	   10b4	am_hal_ios.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+    540	      0	      4	    544	    220	am_hal_itm.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   1348	      8	      0	   1356	    54c	am_hal_mcuctrl.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   1004	      0	      0	   1004	    3ec	am_hal_mpu.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+    324	      0	      0	    324	    144	am_hal_mram.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+     80	      0	      0	     80	     50	am_hal_mram_recovery.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+  10504	      0	   9024	  19528	   4c48	am_hal_mspi.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   2636	      0	    128	   2764	    acc	am_hal_pdm.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   7168	      0	      0	   7168	   1c00	am_hal_pin.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   5097	     14	    164	   5275	   149b	am_hal_pwrctrl.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+    272	      0	      0	    272	    110	am_hal_queue.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+    427	      0	      4	    431	    1af	am_hal_reset.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   1508	      0	      0	   1508	    5e4	am_hal_rtc.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   6584	    256	    176	   7016	   1b68	am_hal_sdhc.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+    400	      0	     12	    412	    19c	am_hal_secure_ota.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+    600	      0	      0	    600	    258	am_hal_security.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   1540	      1	    181	   1722	    6ba	am_hal_spotmgr.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   1148	      6	      8	   1162	    48a	am_hal_spotmgr_pcm0_7.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   2348	      0	     18	   2366	    93e	am_hal_spotmgr_pcm2_0.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   4948	     12	     14	   4974	   136e	am_hal_spotmgr_pcm2_1.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+  11045	    121	     27	  11193	   2bb9	am_hal_spotmgr_pcm2_2.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   1300	     32	      1	   1333	    535	am_hal_stimer.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   2084	      0	      8	   2092	    82c	am_hal_sysctrl.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   3305	      0	      8	   3313	    cf1	am_hal_syspll.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+    316	      0	      1	    317	    13d	am_hal_systick.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   3204	      0	      0	   3204	    c84	am_hal_timer.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+    284	      0	      2	    286	    11e	am_hal_tpiu.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   4724	      0	   1136	   5860	   16e4	am_hal_uart.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   5332	      0	   1248	   6580	   19b4	am_hal_uart_stream.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+  12800	      4	    605	  13409	   3461	am_hal_usb.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+    324	      0	      0	    324	    144	am_hal_utils.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+    428	      0	      0	    428	    1ac	am_hal_wdt.o (ex ../../../AmbiqSuite/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a)
+   1616	      0	      0	   1616	    650	ambiq_nema_extension.o (ex ../../../lvgl_ambiq_porting/gpu_patch/bin/lvgl_ambiq_porting.a)
+2782992	   2348	13485316	16270656	 f84540	bin/lvgl_smartwatch.axf
