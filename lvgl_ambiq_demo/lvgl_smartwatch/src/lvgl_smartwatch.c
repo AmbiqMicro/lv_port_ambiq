@@ -254,6 +254,11 @@ main(void)
     memcpy(ui32ExternalStart, ui32CodeSectionLoadAddr, ui32CodeSectionLength);
 
     am_mem_init();
+    // am_hal_gpio_pinconfig(79, am_hal_gpio_pincfg_output);
+    // am_hal_gpio_output_clear(79);
+
+    // am_hal_gpio_pinconfig(80, am_hal_gpio_pincfg_output);
+    // am_hal_gpio_output_clear(80);
 
     //
     // Initialize plotting interface.
