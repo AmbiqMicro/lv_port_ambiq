@@ -52,6 +52,9 @@
 #error "max pending CL must be bigger than 10"
 #endif
 
+#include "semphr.h"
+static SemaphoreHandle_t xSemaphore = NULL;
+
 static nema_gfx_interrupt_callback nemagfx_cb = NULL;
 static const uintptr_t nema_regs = (uintptr_t) NEMA_BASEADDR;
 static TaskHandle_t xHandlingTask = 0;
@@ -85,13 +88,7 @@ static void prvNemaInterruptHandler( void *pvUnused )
 
     BaseType_t xHigherPriorityTaskWoken;
 
-    if ( xHandlingTask )
-    {
-        xTaskNotifyFromISR( xHandlingTask,
-                            0,
-                            eNoAction,
-                            &xHigherPriorityTaskWoken );
-    }
+    xSemaphoreGiveFromISR(xSemaphore, &xHigherPriorityTaskWoken);
 
     /* If xHigherPriorityTaskWoken is now set to pdTRUE then a context switch
     should be performed to ensure the interrupt returns directly to the highest
@@ -140,6 +137,11 @@ int32_t nema_sys_init (void)
     NVIC_SetPriority(NEMA_IRQ, AM_IRQ_PRIORITY_DEFAULT);
     NVIC_EnableIRQ(NEMA_IRQ);
 
+        if (xSemaphore == NULL)
+        {
+            xSemaphore = xSemaphoreCreateBinary();
+        }
+
 
     //ring_buffer_str.bo may be already allocated
     if ( ring_buffer_str.bo.base_phys == 0U )
@@ -166,22 +168,14 @@ int nema_wait_irq (void)
     /* Wait for the interrupt */
     BaseType_t xResult;
 
-    xHandlingTask = xTaskGetCurrentTaskHandle();
-
-    /* If a task is in the Blocked state to wait for a notification when the
-       notification arrives then the task immediately exits the Blocked state
-       and the notification does not remain pending. If a task was not waiting
-       for a notification when a notification arrives then the notification
-       will remain pending until the receiving task reads its notification
-       value. */
-
     TickType_t block_ms = pdMS_TO_TICKS(1000);
+    xResult = xSemaphoreTake( xSemaphore, block_ms );
 
-    /* Wait to be notified of an interrupt. */
-    xResult = xTaskNotifyWait( pdFALSE,    /* Don't clear bits on entry. */
-                       0,                  /* Don't clear bits on exit. */
-                       NULL,               /* No nitification value */
-                       block_ms );
+    if(xResult != pdTRUE)
+    {
+        while(1);
+    }
+
 
     return (int)xResult;
 }
