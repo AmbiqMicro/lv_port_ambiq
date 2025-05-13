@@ -66,6 +66,7 @@ lv_obj_set_style_bg_image_src( ui_call_mute, &ui_img_unmute_png, LV_PART_MAIN | 
 ui_call_button_down2 = ui_buttondown_create(ui_call);
 lv_obj_set_x( ui_call_button_down2, 146 );
 lv_obj_set_y( ui_call_button_down2, 102 );
+lv_obj_set_ext_click_area(ui_call_button_down2, 32);
 
 lv_image_set_src(ui_comp_get_child(ui_call_button_down2, UI_COMP_BUTTONDOWN_BUTTON_DOWN_ICON), &ui_img_house_png);
 
@@ -122,6 +123,7 @@ ui_call_button_top2 = ui_buttontop_create(ui_call);
 lv_obj_set_x( ui_call_button_top2, 145 );
 lv_obj_set_y( ui_call_button_top2, -105 );
 lv_obj_add_state( ui_call_button_top2, LV_STATE_CHECKED );     /// States
+lv_obj_set_ext_click_area(ui_call_button_top2, 32);
 
 lv_image_set_src(ui_comp_get_child(ui_call_button_top2, UI_COMP_BUTTONTOP_BUTTON_TOP_ICON), &ui_img_call2_png);
 

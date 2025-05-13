@@ -112,6 +112,7 @@ lv_obj_remove_flag( ui_measuing_x_button, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_obj_set_style_radius(ui_measuing_x_button, 50, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_bg_color(ui_measuing_x_button, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_bg_opa(ui_measuing_x_button, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_ext_click_area(ui_measuing_x_button, 32);
 
 ui_measuing_x = lv_image_create(ui_measuing_x_button);
 lv_image_set_src(ui_measuing_x, &ui_img_x_png);

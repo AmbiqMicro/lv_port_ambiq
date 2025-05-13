@@ -279,6 +279,7 @@ lv_obj_set_style_bg_opa(ui_weather_2_space, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
 ui_weather_2_button_down4 = ui_buttondown_create(ui_weather_2);
 lv_obj_set_x( ui_weather_2_button_down4, 146 );
 lv_obj_set_y( ui_weather_2_button_down4, 102 );
+lv_obj_set_ext_click_area(ui_weather_2_button_down4, 32);
 
 lv_image_set_src(ui_comp_get_child(ui_weather_2_button_down4, UI_COMP_BUTTONDOWN_BUTTON_DOWN_ICON), &ui_img_house_png);
 

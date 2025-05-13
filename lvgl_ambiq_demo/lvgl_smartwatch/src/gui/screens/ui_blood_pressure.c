@@ -32,6 +32,7 @@ ui_blood_pressure_title_group_3 = ui_titlegroup_create(ui_blood_pressure);
 lv_obj_set_x( ui_blood_pressure_title_group_3, 0 );
 lv_obj_set_y( ui_blood_pressure_title_group_3, -303 );
 lv_obj_set_align( ui_blood_pressure_title_group_3, LV_ALIGN_BOTTOM_MID );
+lv_obj_set_ext_click_area(ui_blood_pressure_title_group_3, 32);
 
 lv_obj_set_x( ui_comp_get_child(ui_blood_pressure_title_group_3, UI_COMP_TITLEGROUP_TITLE), 0 );
 lv_obj_set_y( ui_comp_get_child(ui_blood_pressure_title_group_3, UI_COMP_TITLEGROUP_TITLE), 0 );
@@ -45,6 +46,7 @@ lv_obj_add_flag( ui_comp_get_child(ui_blood_pressure_title_group_3, UI_COMP_TITL
 ui_blood_pressure_button_down7 = ui_buttondown_create(ui_blood_pressure);
 lv_obj_set_x( ui_blood_pressure_button_down7, 146 );
 lv_obj_set_y( ui_blood_pressure_button_down7, 102 );
+lv_obj_set_ext_click_area(ui_blood_pressure_button_down7, 32);
 
 lv_image_set_src(ui_comp_get_child(ui_blood_pressure_button_down7, UI_COMP_BUTTONDOWN_BUTTON_DOWN_ICON), &ui_img_house_png);
 

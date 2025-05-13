@@ -36,12 +36,14 @@ lv_label_set_text(ui_comp_get_child(ui_blood_oxy_title_group_1, UI_COMP_TITLEGRO
 ui_blood_oxy_button_down5 = ui_buttondown_create(ui_blood_oxy);
 lv_obj_set_x( ui_blood_oxy_button_down5, 146 );
 lv_obj_set_y( ui_blood_oxy_button_down5, 102 );
+lv_obj_set_ext_click_area(ui_blood_oxy_button_down5, 32);
 
 lv_image_set_src(ui_comp_get_child(ui_blood_oxy_button_down5, UI_COMP_BUTTONDOWN_BUTTON_DOWN_ICON), &ui_img_house_png);
 
 ui_blood_oxy_button_round = ui_buttonround_create(ui_blood_oxy);
 lv_obj_set_x( ui_blood_oxy_button_round, 0 );
 lv_obj_set_y( ui_blood_oxy_button_round, -45 );
+lv_obj_set_ext_click_area(ui_blood_oxy_button_round, 32);
 
 ui_blood_oxy_blood_presure_group = lv_obj_create(ui_blood_oxy);
 lv_obj_set_height( ui_blood_oxy_blood_presure_group, 106);

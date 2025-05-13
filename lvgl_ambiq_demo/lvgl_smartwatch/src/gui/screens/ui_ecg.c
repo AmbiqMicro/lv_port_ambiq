@@ -44,13 +44,13 @@ lv_label_set_text(ui_comp_get_child(ui_ecg_title_group_2, UI_COMP_TITLEGROUP_SUB
 ui_ecg_button_down6 = ui_buttondown_create(ui_ecg);
 lv_obj_set_x( ui_ecg_button_down6, 146 );
 lv_obj_set_y( ui_ecg_button_down6, 102 );
-
+lv_obj_set_ext_click_area(ui_ecg_button_down6, 32);
 lv_image_set_src(ui_comp_get_child(ui_ecg_button_down6, UI_COMP_BUTTONDOWN_BUTTON_DOWN_ICON), &ui_img_house_png);
 
 ui_ecg_button_round1 = ui_buttonround_create(ui_ecg);
 lv_obj_set_x( ui_ecg_button_round1, 0 );
 lv_obj_set_y( ui_ecg_button_round1, -45 );
-
+lv_obj_set_ext_click_area(ui_ecg_button_round1, 32);
 ui_ecg_pulse_group1 = ui_pulsegroup_create(ui_ecg);
 lv_obj_set_x( ui_ecg_pulse_group1, 0 );
 lv_obj_set_y( ui_ecg_pulse_group1, 53 );

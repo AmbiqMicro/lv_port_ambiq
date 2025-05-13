@@ -178,6 +178,7 @@ lv_obj_remove_flag( ui_weather_1_clouds, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 ui_weather_1_button_down3 = ui_buttondown_create(ui_weather_1);
 lv_obj_set_x( ui_weather_1_button_down3, 146 );
 lv_obj_set_y( ui_weather_1_button_down3, 102 );
+lv_obj_set_ext_click_area(ui_weather_1_button_down3, 32);
 
 lv_image_set_src(ui_comp_get_child(ui_weather_1_button_down3, UI_COMP_BUTTONDOWN_BUTTON_DOWN_ICON), &ui_img_house_png);
 

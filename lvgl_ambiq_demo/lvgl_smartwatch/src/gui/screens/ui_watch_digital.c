@@ -91,10 +91,12 @@ lv_obj_set_y( ui_watch_digital_daily_mission_group, 0 );
 ui_watch_digital_button_top = ui_buttontop_create(ui_watch_digital);
 lv_obj_set_x( ui_watch_digital_button_top, 145 );
 lv_obj_set_y( ui_watch_digital_button_top, -105 );
+lv_obj_set_ext_click_area(ui_watch_digital_button_top, 32);
 
 ui_watch_digital_button_down = ui_buttondown_create(ui_watch_digital);
 lv_obj_set_x( ui_watch_digital_button_down, 146 );
 lv_obj_set_y( ui_watch_digital_button_down, 102 );
+lv_obj_set_ext_click_area(ui_watch_digital_button_down, 32);
 
 ui_watch_digital_sec_dot = lv_image_create(ui_watch_digital);
 lv_image_set_src(ui_watch_digital_sec_dot, &ui_img_sec_dot_png);
