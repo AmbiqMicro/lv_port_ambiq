@@ -174,7 +174,7 @@ main(void)
     //
     // Initialize the printf interface for ITM/SWO output.
     //
-    am_bsp_uart_printf_enable();
+    am_bsp_itm_printf_enable();
 
     //
     // Clear the terminal and print the banner.
@@ -186,7 +186,6 @@ main(void)
     //
     am_hal_interrupt_master_enable();
 
-#ifdef CPU_RUN_IN_HP_MODE
     //
     // CPU switch to HP mode.
     //
@@ -194,7 +193,19 @@ main(void)
     {
         am_util_stdio_printf("CPU enter HP mode failed!\n");
     }
-#endif
+
+    am_hal_pwrctrl_periph_disable(AM_HAL_PWRCTRL_PERIPH_GFX);
+
+    //
+    //Switch to HP mode.
+    //
+    am_hal_pwrctrl_gpu_mode_e current_mode;
+    am_hal_pwrctrl_gpu_mode_select(AM_HAL_PWRCTRL_GPU_MODE_HIGH_PERFORMANCE);
+    am_hal_pwrctrl_gpu_mode_status(&current_mode);
+    if ( AM_HAL_PWRCTRL_GPU_MODE_HIGH_PERFORMANCE != current_mode )
+    {
+        am_util_stdio_printf("gpu switch to HP mode failed!\n");
+    }
 
 #ifdef MSPI_PSRAM_TIMING_CHECK
     //
