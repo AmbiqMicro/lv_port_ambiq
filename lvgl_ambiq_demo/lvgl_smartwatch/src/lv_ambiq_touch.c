@@ -47,7 +47,7 @@
 // Macro definitions
 //
 //*****************************************************************************
-#define TP_IOM_MODULE              AM_BSP_TP_IOM_MODULE
+#define TP_IOM_MODULE              2
 #define TP_IOM_MODE                AM_HAL_IOM_I2C_MODE
 
 //*****************************************************************************
@@ -93,7 +93,7 @@ am_hal_mpu_region_config_t sMPUCfg =
 // Take over the interrupt handler for whichever IOM we're using.
 //
 #define fram_iom_isr                                                          \
-    am_iom_isr1(AM_BSP_TP_IOM_MODULE)
+    am_iom_isr1(TP_IOM_MODULE)
 #define am_iom_isr1(n)                                                        \
     am_iom_isr(n)
 #define am_iom_isr(n)                                                         \
@@ -153,7 +153,7 @@ void lv_ambiq_touch_read(lv_indev_t * indev_drv, lv_indev_data_t * data)
 //*****************************************************************************
 void lv_ambiq_touch_init(void)
 {
-    am_devices_chsc5816_init(AM_BSP_TP_IOM_MODULE, &g_sI2cNBConfig, &g_pCHSC5816Handle, &g_pIOMCHSC5816Handle, AM_BSP_GPIO_TOUCH_INT, AM_BSP_GPIO_TOUCH_RST, lv_ambiq_touch_handler, NULL);
+    am_devices_chsc5816_init(TP_IOM_MODULE, &g_sI2cNBConfig, &g_pCHSC5816Handle, &g_pIOMCHSC5816Handle, AM_BSP_GPIO_TOUCH_INT, AM_BSP_GPIO_TOUCH_RST, lv_ambiq_touch_handler, NULL);
 }
 
 //*****************************************************************************
