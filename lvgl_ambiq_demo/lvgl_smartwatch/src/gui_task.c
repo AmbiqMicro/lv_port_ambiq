@@ -507,6 +507,9 @@ DisplayTask(void *pvParameters)
     lv_ambiq_touch_init();
     lv_ambiq_touch_create();
 
+    // Init file system
+    lv_ambiq_fs_init();
+
     /* Create a mutex to avoid the concurrent calling of LVGL functions. */
     lvgl_mutex = xSemaphoreCreateMutex();
     if( lvgl_mutex == NULL )
