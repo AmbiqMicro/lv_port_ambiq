@@ -10,15 +10,9 @@ void ui_watch_digital_screen_init(void)
 ui_watch_digital = lv_obj_create(NULL);
 lv_obj_remove_flag( ui_watch_digital, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_obj_set_style_bg_color(ui_watch_digital, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_bg_opa(ui_watch_digital, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_opa(ui_watch_digital, LV_OPA_COVER, LV_PART_MAIN| LV_STATE_DEFAULT);
 
-ui_watch_digital_bg_1 = lv_image_create(ui_watch_digital);
-lv_image_set_src(ui_watch_digital_bg_1, &ui_img_bg1_png);
-lv_obj_set_width( ui_watch_digital_bg_1, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_watch_digital_bg_1, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_align( ui_watch_digital_bg_1, LV_ALIGN_CENTER );
-lv_obj_add_flag( ui_watch_digital_bg_1, LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
-lv_obj_remove_flag( ui_watch_digital_bg_1, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+ui_watch_digital_bg_1 = ui_dynamic_wallpaper_create(ui_watch_digital);
 
 ui_watch_digital_hour_group = lv_obj_create(ui_watch_digital);
 lv_obj_set_width( ui_watch_digital_hour_group, 289);

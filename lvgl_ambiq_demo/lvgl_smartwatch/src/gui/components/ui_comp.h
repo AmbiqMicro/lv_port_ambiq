@@ -29,6 +29,7 @@ extern uint32_t LV_EVENT_GET_COMP_CHILD;
 #include "ui_comp_titlegroup.h"
 #include "ui_comp_todayweathergroup.h"
 #include "ui_comp_weathergroup1.h"
+#include "ui_comp_wallpaper.h"
 
 #ifdef __cplusplus
 } /*extern "C"*/

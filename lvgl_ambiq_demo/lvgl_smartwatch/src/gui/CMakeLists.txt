@@ -1,4 +1,5 @@
 SET(SOURCES components/ui_comp_batterygroup.c
+    components/ui_comp_wallpaper.c
     components/ui_comp_buttondown.c
     components/ui_comp_buttonround.c
     components/ui_comp_buttontop.c

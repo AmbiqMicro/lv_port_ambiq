@@ -17,7 +17,7 @@
 //*****************************************************************************
 
 #include "lvgl_smartwatch.h"
-
+#include "lv_ambiq_fs.h"
 #if defined(apollo510_evb)
 #include "am_devices_mspi_psram_aps25616ba_1p2v.h"
 #else

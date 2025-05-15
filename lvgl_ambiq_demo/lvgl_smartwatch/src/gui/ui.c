@@ -903,6 +903,7 @@ void ui_init( void )
 
 lv_disp_t *dispp = lv_display_get_default();
 lv_theme_t *theme = lv_theme_simple_init(dispp);
+wallpaper_texture_init();
 lv_disp_set_theme(dispp, theme);
 ui_watch_digital_screen_init();
 ui_watch_analog_screen_init();

@@ -10,15 +10,9 @@ void ui_watch_analog_screen_init(void)
 ui_watch_analog = lv_obj_create(NULL);
 lv_obj_remove_flag( ui_watch_analog, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_obj_set_style_bg_color(ui_watch_analog, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_bg_opa(ui_watch_analog, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_opa(ui_watch_analog, LV_OPA_COVER, LV_PART_MAIN| LV_STATE_DEFAULT);
 
-ui_watch_analog_bg_2 = lv_image_create(ui_watch_analog);
-lv_image_set_src(ui_watch_analog_bg_2, &ui_img_bg1_png);
-lv_obj_set_width( ui_watch_analog_bg_2, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_watch_analog_bg_2, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_align( ui_watch_analog_bg_2, LV_ALIGN_CENTER );
-lv_obj_add_flag( ui_watch_analog_bg_2, LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
-lv_obj_remove_flag( ui_watch_analog_bg_2, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+ui_watch_analog_bg_2 = ui_dynamic_wallpaper_create(ui_watch_analog);
 
 ui_watch_analog_clock = lv_label_create(ui_watch_analog);
 lv_obj_set_width( ui_watch_analog_clock, LV_SIZE_CONTENT);  /// 1
