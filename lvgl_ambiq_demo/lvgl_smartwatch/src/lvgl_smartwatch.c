@@ -256,13 +256,21 @@ main(void)
         am_util_stdio_printf("Failed to enable XIP mode in the MSPI!\n");
     }
 
+    // Relocate image assets and font bitmaps from MRAM to PSRAM for direct GPU access.
     uint32_t ui32ExternalStart = 0;
-    uint32_t ui32CodeSectionLength = 0;
+    uint32_t ui32TextureSectionLength = 0;
     uint32_t ui32CodeSectionLoadAddr = 0;
     ui32ExternalStart = &__external_start;
-    ui32CodeSectionLength = (uint32_t)&__external_end - (uint32_t)&__external_start;
+    ui32TextureSectionLength = (uint32_t)&__external_end - (uint32_t)&__external_start;
     ui32CodeSectionLoadAddr = (uint32_t)&__external_load_start;
-    memcpy(ui32ExternalStart, ui32CodeSectionLoadAddr, ui32CodeSectionLength);
+    memcpy(ui32ExternalStart, ui32CodeSectionLoadAddr, ui32TextureSectionLength);
+
+    // Clean the cache for the texture section.
+    am_hal_cachectrl_range_t Range;
+    Range.ui32Size = ui32TextureSectionLength;
+    Range.ui32StartAddr = ui32ExternalStart;
+    am_hal_cachectrl_dcache_clean(&Range);
+
 
     am_mem_init();
     // am_hal_gpio_pinconfig(79, am_hal_gpio_pincfg_output);

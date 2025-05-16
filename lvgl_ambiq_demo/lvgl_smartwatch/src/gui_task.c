@@ -360,32 +360,6 @@ void lv_ambiq_log_printf(lv_log_level_t level, const char * buf)
     g_pfnCharPrint(buf);
 }
 
-void lv_example_style_5(void)
-{
-    static lv_style_t style;
-    lv_style_init(&style);
-
-    lv_color_t color_new = lv_color_make(0xff, 0x20, 0x30);
-
-    /*Set a background color and a radius*/
-    //lv_style_set_radius(&style, 40);
-    lv_style_set_bg_opa(&style, LV_OPA_COVER);
-    lv_style_set_bg_color(&style, color_new);
-
-    // /*Add a shadow*/
-    // lv_style_set_shadow_width(&style, 55);
-    // lv_style_set_shadow_color(&style, lv_palette_main(LV_PALETTE_BLUE));
-    // lv_style_set_shadow_opa(&style, 25);
-    // lv_style_set_shadow_offset_x(&style, 10);
-    // lv_style_set_shadow_offset_y(&style, -20);
-
-    /*Create an object with the new style*/
-    lv_obj_t * obj = lv_obj_create(lv_screen_active());
-    lv_obj_set_size(obj, 500, 500);
-    lv_obj_add_style(obj, &style, 0);
-    lv_obj_center(obj);
-}
-
 
 
 //*****************************************************************************

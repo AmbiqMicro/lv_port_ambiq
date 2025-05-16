@@ -1,5 +1,6 @@
 #include "../ui.h"
 
+#include "lvgl_private.h"
 #define BIN_PATH_PREFIX "E:wallpaper"
 #define BIN_PATH_SUFFIX ".bin"
 #define WALLPAPER_NUMBER  63
@@ -7,7 +8,6 @@
 #define WALLPAPER_HEIGHT  370
 #define WALLPAPER_SIZE    440670
 #define WALLPAPER_FORMAT  LV_COLOR_FORMAT_NATIVE_WITH_ALPHA
-#define WALLPAPER_TEXTURE_ADDR 0x60700000
 
 // component dynamic wallpaper
 lv_img_dsc_t* img_wallpaper[WALLPAPER_NUMBER];
@@ -54,13 +54,10 @@ void wallpaper_texture_init(void)
     uint32_t i;
     for(i = 0; i < WALLPAPER_NUMBER; i++)
     {
-        img_wallpaper_arry_default[i].header.w = WALLPAPER_WIDTH;
-        img_wallpaper_arry_default[i].header.h = WALLPAPER_HEIGHT;
-        img_wallpaper_arry_default[i].data_size = WALLPAPER_SIZE;
-        img_wallpaper_arry_default[i].header.cf = WALLPAPER_FORMAT;
-        img_wallpaper_arry_default[i].header.magic = LV_IMAGE_HEADER_MAGIC;
-        img_wallpaper_arry_default[i].data = (void*)(WALLPAPER_TEXTURE_ADDR + i * ((WALLPAPER_SIZE + 31) & ~31));
-        snprintf(path, sizeof(path), "%s%d%s", BIN_PATH_PREFIX, i*2, BIN_PATH_SUFFIX);
+        lv_draw_buf_t* buf = lv_draw_buf_create_ex(&LV_GLOBAL_DEFAULT()->image_cache_draw_buf_handlers, WALLPAPER_WIDTH, WALLPAPER_HEIGHT, WALLPAPER_FORMAT, 0);
+
+        lv_draw_buf_to_image(buf, &img_wallpaper_arry_default[i]);
+        lv_snprintf(path, sizeof(path), "%s%d%s", BIN_PATH_PREFIX, i*2, BIN_PATH_SUFFIX);
         load_emmc_file(path, (void*)img_wallpaper_arry_default[i].data, img_wallpaper_arry_default[i].data_size);
         img_wallpaper[i] = &img_wallpaper_arry_default[i];
     }
