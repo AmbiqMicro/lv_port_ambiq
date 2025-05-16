@@ -6,8 +6,7 @@
 #define WALLPAPER_NUMBER  63
 #define WALLPAPER_WIDTH   397
 #define WALLPAPER_HEIGHT  370
-#define WALLPAPER_SIZE    440670
-#define WALLPAPER_FORMAT  LV_COLOR_FORMAT_NATIVE_WITH_ALPHA
+#define WALLPAPER_FORMAT  LV_COLOR_FORMAT_NATIVE
 
 // component dynamic wallpaper
 lv_img_dsc_t* img_wallpaper[WALLPAPER_NUMBER];
