@@ -36,6 +36,7 @@
 #include "semphr.h"
 #include "event_groups.h"
 
+#include "gui_task.h"
 #include "lv_ambiq_touch.h"
 
 #include "demos/lv_demos.h"
@@ -142,6 +143,8 @@ void lv_ambiq_touch_read(lv_indev_t * indev_drv, lv_indev_data_t * data)
         data->point.y = g_sTouchInfo.y0;
         data->state = LV_INDEV_STATE_PR;
     }
+    data->point.x = data->point.x-((DISPLAY_TOUCH_RESX-LV_AMBIQ_DISPLAY_BUFFER_RESX)/2);
+    data->point.y = data->point.y-((DISPLAY_TOUCH_RESY-LV_AMBIQ_DISPLAY_BUFFER_RESY)/2);
 
     LV_LOG_TRACE("x: %d,  y: %d; state: %d\n",data->point.x,data->point.y,data->state);
 }

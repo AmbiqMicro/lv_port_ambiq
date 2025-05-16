@@ -59,14 +59,6 @@
 // Display setting
 //
 //*****************************************************************************
-//Frame buffer size
-#ifndef LV_AMBIQ_DISPLAY_BUFFER_RESX
-    #define LV_AMBIQ_DISPLAY_BUFFER_RESX (392U)
-#endif
-
-#ifndef LV_AMBIQ_DISPLAY_BUFFER_RESY
-    #define LV_AMBIQ_DISPLAY_BUFFER_RESY (392U)
-#endif
 
 // Select render mode
 #if LV_AMBIQ_USE_PARTIAL_MODE==1
@@ -423,7 +415,7 @@ DisplayTask(void *pvParameters)
     ret = am_devices_display_init(LV_AMBIQ_DISPLAY_BUFFER_RESX,
                                   LV_AMBIQ_DISPLAY_BUFFER_RESY,
                                   LV_AMBIQ_DISPLAY_PANEL_FORMAT,
-                                  false);
+                                  true);
     if (ret != 0)
     {
 #if (DISP_CTRL_IP == DISP_CTRL_IP_DC)
