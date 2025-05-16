@@ -137,6 +137,18 @@ INCLUDES+= -I../../../AmbiqSuite/third_party/ThinkSi/NemaGFX_SDK/include/tsi/Nem
 INCLUDES+= -I../../../AmbiqSuite/third_party/ThinkSi/NemaGFX_SDK/include/tsi/NemaVG
 INCLUDES+= -I../../../AmbiqSuite/third_party/ThinkSi/NemaGFX_SDK/include/tsi/common
 
+# AmbiqSuite/gpu
+INCLUDES+= -I../../../AmbiqSuite/third_party/FatFs/apollo_driver/mmc_apollo5
+INCLUDES+= -I../../../AmbiqSuite/third_party/FatFs/source
+
+VPATH+=:../../../AmbiqSuite/third_party/FatFs/apollo_driver/mmc_apollo5
+VPATH+=:../../../AmbiqSuite/third_party/FatFs/source
+
+SRC += mmc_apollo5.c
+SRC += ff.c
+SRC += ffsystem.c
+SRC += ffunicode.c
+SRC += diskio.c
 
 # NemaGFX_hal
 INCLUDES+= -I../../../lvgl_ambiq_porting/NemaGFX_hal/apollo510_nemagfx
@@ -290,6 +302,7 @@ SRC += am_resources.c
 SRC += gui_task.c
 SRC += lvgl_smartwatch.c
 SRC += lv_ambiq_touch.c
+SRC += lv_ambiq_fs.c
 
 
 
