@@ -415,7 +415,7 @@ DisplayTask(void *pvParameters)
     ret = am_devices_display_init(LV_AMBIQ_DISPLAY_BUFFER_RESX,
                                   LV_AMBIQ_DISPLAY_BUFFER_RESY,
                                   LV_AMBIQ_DISPLAY_PANEL_FORMAT,
-                                  true);
+                                  false);
     if (ret != 0)
     {
 #if (DISP_CTRL_IP == DISP_CTRL_IP_DC)
@@ -440,7 +440,7 @@ DisplayTask(void *pvParameters)
             ret = am_devices_display_init(LV_AMBIQ_DISPLAY_BUFFER_RESX,
                                   LV_AMBIQ_DISPLAY_BUFFER_RESY,
                                   LV_AMBIQ_DISPLAY_PANEL_FORMAT,
-                                  true);
+                                  false);
             if (ret != 0)
             {
                 LV_LOG_ERROR("display init failed!\n");
