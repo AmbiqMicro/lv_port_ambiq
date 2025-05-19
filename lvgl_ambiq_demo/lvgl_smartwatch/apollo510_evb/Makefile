@@ -331,7 +331,7 @@ CFLAGS+= -MMD -MP -std=c99 -Wall -g
 CFLAGS+= -Wimplicit-fallthrough -Wundef -Wpointer-arith
 CFLAGS+= -Wshadow -Wredundant-decls -Wstrict-prototypes
 CFLAGS+= -Wno-sign-compare -Wno-unknown-pragmas -Wno-psabi
-CFLAGS+= -O0
+CFLAGS+= -O3
 CFLAGS+= $(DEFINES)
 CFLAGS+= $(INCLUDES)
 CFLAGS+= 
@@ -344,7 +344,7 @@ CXXFLAGS+= -MMD -MP -std=c++11 -Wall -g
 CXXFLAGS+= -Wimplicit-fallthrough -Wundef -Wpointer-arith
 CXXFLAGS+= -Wshadow -Wredundant-decls
 CXXFLAGS+= -Wno-sign-compare -Wno-unknown-pragmas -Wno-psabi
-CXXFLAGS+= -O0
+CXXFLAGS+= -O3
 CXXFLAGS+= $(DEFINES)
 CXXFLAGS+= $(INCLUDES)
 CXXFLAGS+= 
