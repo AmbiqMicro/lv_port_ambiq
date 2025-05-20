@@ -13,8 +13,9 @@ MEMORY
     SHARED_SRAM  (rwx) : ORIGIN = 0x20080000, LENGTH = 0x00300000
     STACK        (rw)  : ORIGIN = 0x2007F000, LENGTH = 4096
     HEAP         (rw)  : ORIGIN = 0x2007E000, LENGTH = 4096
-    PSRAM        (rw)  : ORIGIN = 0x60000000, LENGTH = 0x00A00000
-    PSRAM_TEX    (rw)  : ORIGIN = 0x60A00000, LENGTH = 0x01000000
+    PSRAM_TEX    (rw)  : ORIGIN = 0x60000000, LENGTH = 0x00040000
+    PSRAM_HEAP   (rw)  : ORIGIN = 0x60040000, LENGTH = 0x01FC0000
+
 }
 
 SECTIONS
@@ -133,7 +134,7 @@ SECTIONS
         KEEP(*(.resource_table))
         KEEP(*(.external))
         . = ALIGN(4);
-    } > PSRAM AT>MCU_MRAM
+    } > PSRAM_HEAP AT>MCU_MRAM
 
     .ARM.attributes 0 : { *(.ARM.attributes) }
 }
