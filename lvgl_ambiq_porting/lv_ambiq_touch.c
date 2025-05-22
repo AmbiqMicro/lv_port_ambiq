@@ -36,9 +36,8 @@
 #include "semphr.h"
 #include "event_groups.h"
 
+#include "lv_ambiq_display.h"
 #include "lv_ambiq_touch.h"
-
-#include "demos/lv_demos.h"
 
 #include "am_devices_chsc5816_ap5.h"
 
@@ -47,7 +46,7 @@
 // Macro definitions
 //
 //*****************************************************************************
-#define TP_IOM_MODULE              AM_BSP_TP_IOM_MODULE
+#define TP_IOM_MODULE              2
 #define TP_IOM_MODE                AM_HAL_IOM_I2C_MODE
 
 //*****************************************************************************
@@ -93,7 +92,7 @@ am_hal_mpu_region_config_t sMPUCfg =
 // Take over the interrupt handler for whichever IOM we're using.
 //
 #define fram_iom_isr                                                          \
-    am_iom_isr1(AM_BSP_TP_IOM_MODULE)
+    am_iom_isr1(TP_IOM_MODULE)
 #define am_iom_isr1(n)                                                        \
     am_iom_isr(n)
 #define am_iom_isr(n)                                                         \
@@ -129,7 +128,9 @@ static void lv_ambiq_touch_handler(void *x)
 
 void lv_ambiq_touch_read(lv_indev_t * indev_drv, lv_indev_data_t * data)
 {
-    /*Save the pressed coordinates and the state*/
+    //
+    // Save the pressed coordinates and the state
+    //
     if(g_sTouchInfo.touch_released == true)
     {
         data->point.x = g_sTouchInfo.x0;
@@ -142,6 +143,12 @@ void lv_ambiq_touch_read(lv_indev_t * indev_drv, lv_indev_data_t * data)
         data->point.y = g_sTouchInfo.y0;
         data->state = LV_INDEV_STATE_PR;
     }
+    //
+    // Convert the raw touch coordinates to match the LVGL display area by applying an offset.
+    // This centers the touch input within the LVGL rendering buffer, accounting for the resolution difference.
+    //
+    data->point.x = data->point.x - ((DISPLAY_TOUCH_RESX - LV_AMBIQ_DISPLAY_BUFFER_RESX)/2);
+    data->point.y = data->point.y - ((DISPLAY_TOUCH_RESY - LV_AMBIQ_DISPLAY_BUFFER_RESY)/2);
 
     LV_LOG_TRACE("x: %d,  y: %d; state: %d\n",data->point.x,data->point.y,data->state);
 }
@@ -153,16 +160,14 @@ void lv_ambiq_touch_read(lv_indev_t * indev_drv, lv_indev_data_t * data)
 //*****************************************************************************
 void lv_ambiq_touch_init(void)
 {
-    am_devices_chsc5816_init(AM_BSP_TP_IOM_MODULE, &g_sI2cNBConfig, &g_pCHSC5816Handle, &g_pIOMCHSC5816Handle, AM_BSP_GPIO_TOUCH_INT, AM_BSP_GPIO_TOUCH_RST, lv_ambiq_touch_handler, NULL);
-}
+    //
+    // Init touch device.
+    //
+    am_devices_chsc5816_init(TP_IOM_MODULE, &g_sI2cNBConfig, &g_pCHSC5816Handle, &g_pIOMCHSC5816Handle, AM_BSP_GPIO_TOUCH_INT, AM_BSP_GPIO_TOUCH_RST, lv_ambiq_touch_handler, NULL);
 
-//*****************************************************************************
-//
-// Create LVGL input device.
-//
-//*****************************************************************************
-void lv_ambiq_touch_create(void)
-{
+    //
+    // Create LVGL input device.
+    //
     lv_indev_t * indev = lv_indev_create();
     lv_indev_set_type(indev, LV_INDEV_TYPE_POINTER);
     lv_indev_set_read_cb(indev, lv_ambiq_touch_read);

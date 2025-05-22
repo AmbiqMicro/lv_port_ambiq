@@ -221,6 +221,17 @@ setup_task(void *pvParameters)
     am_util_stdio_printf("Running setup tasks...\r\n");
 
     //
+    // Iint display
+    //
+    am_util_stdio_printf("setup display...\r\n");
+    lv_ambiq_display_init();
+
+    //
+    // Set up LVGL touch driver: init touch device and set it as the input device for lvgl.
+    //
+    am_util_stdio_printf("setup touch...\r\n");
+    lv_ambiq_touch_init();
+    //
     // Stop task switch
     //
     vTaskSuspendAll();

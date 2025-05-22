@@ -18,137 +18,23 @@
 
 #include "lvgl_test.h"
 
-#if defined(apollo510_evb)
-#include "am_devices_mspi_psram_aps25616ba_1p2v.h"
-#else
-#include "am_devices_mspi_psram_aps25616n.h"
-#endif
-
 //*****************************************************************************
 //
 // Global Variables
 //
 //*****************************************************************************
-typedef struct
-{
-    uint8_t  devName[30];
-
-    uint32_t (*mspi_init)(uint32_t ui32Module,
-                          am_devices_mspi_psram_config_t *psMSPISettings,
-                          void **ppHandle,
-                          void **ppMspiHandle);
-
-    uint32_t (*mspi_term)(void *pHandle);
-
-    uint32_t (*mspi_read_id)(void *pHandle);
-
-    uint32_t (*mspi_read)(void *pHandle, uint8_t *pui8RxBuffer,
-                          uint32_t ui32ReadAddress,
-                          uint32_t ui32NumBytes,
-                          bool bWaitForCompletion);
-
-    uint32_t (*mspi_read_adv)(void *pHandle, uint8_t *pui8RxBuffer,
-                           uint32_t ui32ReadAddress,
-                           uint32_t ui32NumBytes,
-                           uint32_t ui32PauseCondition,
-                           uint32_t ui32StatusSetClr,
-                           am_hal_mspi_callback_t pfnCallback,
-                           void *pCallbackCtxt);
-
-    uint32_t (*mspi_read_callback)(void *pHandle, uint8_t *pui8RxBuffer,
-                                   uint32_t ui32ReadAddress,
-                                   uint32_t ui32NumBytes);
-
-    uint32_t (*mspi_write)(void *pHandle, uint8_t *ui8TxBuffer,
-                           uint32_t ui32WriteAddress,
-                           uint32_t ui32NumBytes,
-                           bool bWaitForCompletion);
-
-    uint32_t (*mspi_write_adv)(void *pHandle,
-                               uint8_t *puiTxBuffer,
-                               uint32_t ui32WriteAddress,
-                               uint32_t ui32NumBytes,
-                               uint32_t ui32PauseCondition,
-                               uint32_t ui32StatusSetClr,
-                               am_hal_mspi_callback_t pfnCallback,
-                               void *pCallbackCtxt);
-
-    uint32_t (*mspi_mass_erase)(void *pHandle);
-    uint32_t (*mspi_sector_erase)(void *pHandle, uint32_t ui32SectorAddress);
-    uint32_t (*mspi_xip_enable)(void *pHandle);
-    uint32_t (*mspi_xip_disable)(void *pHandle);
-    uint32_t (*mspi_scrambling_enable)(void *pHandle);
-    uint32_t (*mspi_scrambling_disable)(void *pHandle);
-
-    uint32_t (*mspi_init_timing_check)(uint32_t ui32Module,
-                                       am_devices_mspi_psram_config_t *pDevCfg,
-                                       am_devices_mspi_psram_ddr_timing_config_t *pDevSdrCfg);
-
-    uint32_t (*mspi_init_timing_apply)(void *pHandle,
-                                       am_devices_mspi_psram_ddr_timing_config_t *pDevSdrCfg);
-} mspi_device_func_t;
-
-//static uint32_t        ui32DMATCBBuffer[2560];
-void            *g_pPsramHandle;
-void            *g_pMSPIPsramHandle;
-
-am_devices_mspi_psram_config_t g_sMspiPsramConfig =
-{
-    .eDeviceConfig            = AM_HAL_MSPI_FLASH_HEX_DDR_CE0,
-    .eClockFreq               = AM_HAL_MSPI_CLK_192MHZ,
-    .ui32NBTxnBufLength       = 0,
-    .pNBTxnBuf                = NULL,
-    .ui32ScramblingStartAddr  = 0,
-    .ui32ScramblingEndAddr    = 0,
-};
-
-/* defined on linker script file */
-extern uint32_t __external_start;
-extern uint32_t __external_end;
-extern uint32_t __external_load_start;
-
-//
-// Take over the interrupt handler for whichever MSPI we're using.
-//
-#define psram_mspi_isr                                                          \
-    am_mspi_isr1(MSPI_PSRAM_MODULE)
-#define am_mspi_isr1(n)                                                        \
-    am_mspi_isr(n)
-#define am_mspi_isr(n)                                                         \
-    am_mspi ## n ## _isr
 
 //*****************************************************************************
 //
-// MSPI ISRs.
+// External variable definitions
 //
 //*****************************************************************************
-void psram_mspi_isr(void)
+extern am_util_stdio_print_char_t g_pfnCharPrint;
+
+void lv_ambiq_log_printf(lv_log_level_t level, const char * buf)
 {
-   uint32_t      ui32Status;
-
-   am_hal_mspi_interrupt_status_get(g_pMSPIPsramHandle, &ui32Status, false);
-
-   am_hal_mspi_interrupt_clear(g_pMSPIPsramHandle, ui32Status);
-
-   am_hal_mspi_interrupt_service(g_pMSPIPsramHandle, ui32Status);
+    g_pfnCharPrint(buf);
 }
-
-mspi_device_func_t mspi_device_func =
-{
-#if defined(apollo510_evb)
-    .devName = "MSPI PSRAM APS25616BA",
-    .mspi_init = am_devices_mspi_psram_aps25616ba_ddr_init,
-    .mspi_init_timing_check = am_devices_mspi_psram_aps25616ba_ddr_init_timing_check,
-    .mspi_init_timing_apply = am_devices_mspi_psram_aps25616ba_apply_ddr_timing,
-    .mspi_xip_enable = am_devices_mspi_psram_aps25616ba_ddr_enable_xip,
-#else
-    .devName = "MSPI PSRAM APS25616N",
-    .mspi_init = am_devices_mspi_psram_aps25616n_ddr_init,
-    .mspi_init_timing_check = am_devices_mspi_psram_aps25616n_ddr_init_timing_check,
-    .mspi_init_timing_apply = am_devices_mspi_psram_aps25616n_apply_ddr_timing,
-    .mspi_xip_enable = am_devices_mspi_psram_aps25616n_ddr_enable_xip,
-#endif
-};
 
 //*****************************************************************************
 //
@@ -174,7 +60,7 @@ main(void)
     //
     // Initialize the printf interface for ITM/SWO output.
     //
-    am_bsp_uart_printf_enable();
+    am_bsp_itm_printf_enable();
 
     //
     // Clear the terminal and print the banner.
@@ -196,69 +82,41 @@ main(void)
     }
 #endif
 
-#ifdef MSPI_PSRAM_TIMING_CHECK
     //
-    // Run MSPI DDR timing scan
+    // Init mspi.
     //
-    am_devices_mspi_psram_ddr_timing_config_t MSPIDdrTimingConfig;
-    am_util_stdio_printf("Starting MSPI DDR Timing Scan: \n");
-    if ( AM_DEVICES_MSPI_PSRAM_STATUS_SUCCESS == mspi_device_func.mspi_init_timing_check(MSPI_PSRAM_MODULE, &g_sMspiPsramConfig, &MSPIDdrTimingConfig) )
-    {
-#if defined(apollo510_evb)
-        am_util_stdio_printf("==== Scan Result: RXDQSDELAY0 = %d \n", MSPIDdrTimingConfig.sTimingCfg.ui8RxDQSDelay);
-#else
-        am_util_stdio_printf("==== Scan Result: RXDQSDELAY0 = %d \n", MSPIDdrTimingConfig.ui32Rxdqsdelay);
-#endif
-    }
-    else
-    {
-        am_util_stdio_printf("==== Scan Result: Failed, no valid setting.  \n");
-    }
-#endif
+    am_mspi_init();
 
     //
-    // Configure the MSPI and PSRAM Device.
+    // Init memory heap.
     //
-    ui32Status = mspi_device_func.mspi_init(MSPI_PSRAM_MODULE, &g_sMspiPsramConfig, &g_pPsramHandle, &g_pMSPIPsramHandle);
-    if (AM_DEVICES_MSPI_PSRAM_STATUS_SUCCESS != ui32Status)
-    {
-        am_util_stdio_printf("Failed to configure the MSPI and PSRAM Device correctly!\n");
-    }
-
-#ifdef MSPI_PSRAM_TIMING_CHECK
-    //
-    // Apply DDR timing setting
-    //
-    ui32Status = mspi_device_func.mspi_init_timing_apply(g_pPsramHandle, &MSPIDdrTimingConfig);
-    if (AM_HAL_STATUS_SUCCESS != ui32Status)
-    {
-        am_util_stdio_printf("Failed to apply the timming scan parameter!\n");
-    }
-#endif
-
-    //
-    // Enable XIP mode.
-    //
-    ui32Status = mspi_device_func.mspi_xip_enable(g_pPsramHandle);
-    if (AM_DEVICES_MSPI_PSRAM_STATUS_SUCCESS != ui32Status)
-    {
-        am_util_stdio_printf("Failed to enable XIP mode in the MSPI!\n");
-    }
-
-    uint32_t ui32ExternalStart = 0;
-    uint32_t ui32CodeSectionLength = 0;
-    uint32_t ui32CodeSectionLoadAddr = 0;
-    ui32ExternalStart = &__external_start;
-    ui32CodeSectionLength = (uint32_t)&__external_end - (uint32_t)&__external_start;
-    ui32CodeSectionLoadAddr = (uint32_t)&__external_load_start;
-    memcpy(ui32ExternalStart, ui32CodeSectionLoadAddr, ui32CodeSectionLength);
-
     am_mem_init();
+
+    //
+    // Relocate image assets and font bitmaps from MRAM to PSRAM
+    //
+    am_external_data_load();
+
+    //
+    // Init GPU.
+    //
+    am_gpu_init();
+
+    //
+    // Init LVGL.
+    //
+    lv_init();
+
+    lv_tick_set_cb(xTaskGetTickCount);
+
+#if LV_USE_LOG == 1
+    lv_log_register_print_cb(lv_ambiq_log_printf);
+#endif
 
     //
     // Initialize plotting interface.
     //
-    am_util_stdio_printf("lvgl_test Example\n");
+    am_util_stdio_printf("lvgl_smartwatch Example\n");
 
     //
     // Run the application.

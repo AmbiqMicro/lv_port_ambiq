@@ -101,39 +101,10 @@
 #include "display_task.h"
 #include "rtos.h"
 #include "am_mem.h"
-
-#include "nema_hal.h"
-#include "nema_math.h"
-#include "nema_core.h"
-#include "nema_regs.h"
-#include "nema_utils.h"
-#include "nema_event.h"
-#include "nema_graphics.h"
-#include "nema_programHW.h"
-#include "nema_error.h"
-#include "nema_vg.h"
-#include "nema_vg_tsvg.h"
-#include "nema_vg_font.h"
+#include "am_common.h"
 
 #if defined(BAREMETAL) && defined(SYSTEM_VIEW)
 #error SYSTEM_VIEW cannot be used in baremetal!
 #endif
-
-//*****************************************************************************
-//
-// PSRAM address.
-//
-//*****************************************************************************
-#define MSPI_PSRAM_MODULE               0
-
-#if (MSPI_PSRAM_MODULE == 0)
-#define MSPI_XIP_BASE_ADDRESS           (MSPI0_APERTURE_START_ADDR)
-#elif (MSPI_PSRAM_MODULE == 1)
-#define MSPI_XIP_BASE_ADDRESS           (MSPI1_APERTURE_START_ADDR)
-#elif (MSPI_PSRAM_MODULE == 2)
-#define MSPI_XIP_BASE_ADDRESS           (MSPI2_APERTURE_START_ADDR)
-#endif // #if (MSPI_PSRAM_MODULE == 0)
-
-#define MSPI_PSRAM_SIZE                 (0x800000)
 
 #endif // LVGL_TEST_H

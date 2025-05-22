@@ -1,8 +1,8 @@
 //*****************************************************************************
 //
-//! @file lv_ambiq_touch.h
+//! @file am_common.h
 //!
-//! @brief Functions and variables related to the touch task.
+//! @brief Common initialization.
 //!
 //*****************************************************************************
 
@@ -14,22 +14,34 @@
 //
 //*****************************************************************************
 
-#ifndef LV_AMBIQ_TOUCH_H
-#define LV_AMBIQ_TOUCH_H
+#ifndef AM_COMMON_H
+#define AM_COMMON_H
 
 //*****************************************************************************
 //
-// Macro definitions
+// PSRAM address.
 //
 //*****************************************************************************
+#define MSPI_PSRAM_MODULE               0
 
+#if (MSPI_PSRAM_MODULE == 0)
+#define MSPI_XIP_BASE_ADDRESS           (MSPI0_APERTURE_START_ADDR)
+#elif (MSPI_PSRAM_MODULE == 1)
+#define MSPI_XIP_BASE_ADDRESS           (MSPI1_APERTURE_START_ADDR)
+#elif (MSPI_PSRAM_MODULE == 2)
+#define MSPI_XIP_BASE_ADDRESS           (MSPI2_APERTURE_START_ADDR)
+#endif // #if (MSPI_PSRAM_MODULE == 0)
+
+#define MSPI_PSRAM_SIZE                 (0x800000)
 
 //*****************************************************************************
 //
 // External function definitions.
 //
 //*****************************************************************************
-extern void lv_ambiq_touch_init(void);
-extern void lv_ambiq_touch_create(void);
+extern void am_init();
+extern void am_gpu_init();
+extern void am_mspi_init();
+extern void am_external_data_load();
 
-#endif // LV_AMBIQ_TOUCH_H
+#endif //AM_COMMON_H

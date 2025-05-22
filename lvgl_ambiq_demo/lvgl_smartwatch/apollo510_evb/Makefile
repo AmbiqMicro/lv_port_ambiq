@@ -89,6 +89,10 @@ all clean:
 else
 
 DEFINES+= -DAM_PART_APOLLO510
+DEFINES+= -DLV_AMBIQ_DISPLAY_BUFFER_RESX=392
+DEFINES+= -DLV_AMBIQ_DISPLAY_BUFFER_RESY=392
+DEFINES+= -DCPU_RUN_IN_HP_MODE
+DEFINES+= -DGPU_RUN_IN_HP_MODE
 
 DEFINES+= -DLV_AMBIQ_USE_DIRECT_MODE=1
 DEFINES+= -DLV_AMBIQ_DRAW_BUFFER_RATIO=1
@@ -290,7 +294,12 @@ INCLUDES+= -I../../../lvgl_ambiq_porting
 LIBS += ../../../lvgl_ambiq_porting/gpu_patch/bin/lvgl_ambiq_porting.a
 VPATH+=:../../../lvgl_ambiq_porting
 
+SRC += am_common.c
 SRC += am_mem.c
+SRC += lv_ambiq_touch.c
+SRC += lv_ambiq_fs.c
+SRC += lv_ambiq_display.c
+
 # lvgl_test
 INCLUDES+= -I../src
 INCLUDES+= -I../src/gui
@@ -301,8 +310,6 @@ SRC += rtos.c
 SRC += am_resources.c
 SRC += gui_task.c
 SRC += lvgl_smartwatch.c
-SRC += lv_ambiq_touch.c
-SRC += lv_ambiq_fs.c
 
 
 
