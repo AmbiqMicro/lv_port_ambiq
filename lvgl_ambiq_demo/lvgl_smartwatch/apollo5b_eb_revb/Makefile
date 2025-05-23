@@ -89,6 +89,10 @@ all clean:
 else
 
 DEFINES+= -DAM_PART_APOLLO510
+DEFINES+= -DLV_AMBIQ_DISPLAY_BUFFER_RESX=392
+DEFINES+= -DLV_AMBIQ_DISPLAY_BUFFER_RESY=392
+DEFINES+= -DCPU_RUN_IN_HP_MODE
+DEFINES+= -DGPU_RUN_IN_HP_MODE
 
 DEFINES+= -DLV_AMBIQ_USE_DIRECT_MODE=1
 DEFINES+= -DLV_AMBIQ_DRAW_BUFFER_RATIO=1
@@ -138,6 +142,18 @@ INCLUDES+= -I../../../AmbiqSuite/third_party/ThinkSi/NemaGFX_SDK/include/tsi/Nem
 INCLUDES+= -I../../../AmbiqSuite/third_party/ThinkSi/NemaGFX_SDK/include/tsi/NemaVG
 INCLUDES+= -I../../../AmbiqSuite/third_party/ThinkSi/NemaGFX_SDK/include/tsi/common
 
+# AmbiqSuite/gpu
+INCLUDES+= -I../../../AmbiqSuite/third_party/FatFs/apollo_driver/mmc_apollo5
+INCLUDES+= -I../../../AmbiqSuite/third_party/FatFs/source
+
+VPATH+=:../../../AmbiqSuite/third_party/FatFs/apollo_driver/mmc_apollo5
+VPATH+=:../../../AmbiqSuite/third_party/FatFs/source
+
+SRC += mmc_apollo5.c
+SRC += ff.c
+SRC += ffsystem.c
+SRC += ffunicode.c
+SRC += diskio.c
 
 # NemaGFX_hal
 INCLUDES+= -I../../../lvgl_ambiq_porting/NemaGFX_hal/apollo510_nemagfx
@@ -279,7 +295,12 @@ INCLUDES+= -I../../../lvgl_ambiq_porting
 LIBS += ../../../lvgl_ambiq_porting/gpu_patch/bin/lvgl_ambiq_porting.a
 VPATH+=:../../../lvgl_ambiq_porting
 
+SRC += am_common.c
 SRC += am_mem.c
+SRC += lv_ambiq_touch.c
+SRC += lv_ambiq_fs.c
+SRC += lv_ambiq_display.c
+
 # lvgl_test
 INCLUDES+= -I../src
 INCLUDES+= -I../src/gui
@@ -290,7 +311,6 @@ SRC += rtos.c
 SRC += am_resources.c
 SRC += gui_task.c
 SRC += lvgl_smartwatch.c
-SRC += lv_ambiq_touch.c
 
 
 
@@ -319,7 +339,7 @@ CFLAGS+= -MMD -MP -std=c99 -Wall -g
 CFLAGS+= -Wimplicit-fallthrough -Wundef -Wpointer-arith
 CFLAGS+= -Wshadow -Wredundant-decls -Wstrict-prototypes
 CFLAGS+= -Wno-sign-compare -Wno-unknown-pragmas -Wno-psabi
-CFLAGS+= -O0
+CFLAGS+= -O3
 CFLAGS+= $(DEFINES)
 CFLAGS+= $(INCLUDES)
 CFLAGS+= 
@@ -332,7 +352,7 @@ CXXFLAGS+= -MMD -MP -std=c++11 -Wall -g
 CXXFLAGS+= -Wimplicit-fallthrough -Wundef -Wpointer-arith
 CXXFLAGS+= -Wshadow -Wredundant-decls
 CXXFLAGS+= -Wno-sign-compare -Wno-unknown-pragmas -Wno-psabi
-CXXFLAGS+= -O0
+CXXFLAGS+= -O3
 CXXFLAGS+= $(DEFINES)
 CXXFLAGS+= $(INCLUDES)
 CXXFLAGS+= 

@@ -89,7 +89,8 @@ all clean:
 else
 
 DEFINES+= -DAM_PART_APOLLO510
-
+DEFINES+= -DLV_AMBIQ_DISPLAY_BUFFER_RESX=464
+DEFINES+= -DLV_AMBIQ_DISPLAY_BUFFER_RESY=464
 DEFINES+= -DLV_AMBIQ_USE_DIRECT_MODE=1
 DEFINES+= -DLV_AMBIQ_DRAW_BUFFER_RATIO=1
 DEFINES+= -DLV_CONF_INCLUDE_SIMPLE
@@ -216,6 +217,7 @@ SRC += am_util_stdio.c
 LVGL_PATH = ../../../LVGL
 
 INCLUDES+= -I../../../LVGL
+INCLUDES+= -I../../../LVGL/src/draw/ambiq
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/core -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/display -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/draw -type f -name '*.c')
@@ -234,6 +236,8 @@ LVGL_CSRCS += $(LVGL_PATH)/src/lv_init.c
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/scroll -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/render -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/vector_graphic -type f -name '*.c')
+LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/widgets -type f -name '*.c')
+LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/benchmark -type f -name '*.c')
 
 CSRC += $(notdir $(LVGL_CSRCS))
 
@@ -274,7 +278,12 @@ INCLUDES+= -I../../../lvgl_ambiq_porting
 LIBS += ../../../lvgl_ambiq_porting/gpu_patch/bin/lvgl_ambiq_porting.a
 VPATH+=:../../../lvgl_ambiq_porting
 
+SRC += am_common.c
 SRC += am_mem.c
+SRC += lv_ambiq_touch.c
+# SRC += lv_ambiq_fs.c
+SRC += lv_ambiq_display.c
+
 # lvgl_test
 INCLUDES+= -I../src
 
@@ -285,7 +294,6 @@ SRC += am_resources.c
 SRC += gui_task.c
 SRC += lvgl_test.c
 SRC += display_task.c
-SRC += lv_ambiq_touch.c
 
 
 
