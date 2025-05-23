@@ -39,9 +39,8 @@
 // External function definitions.
 //
 //*****************************************************************************
-extern void am_init();
-extern void am_gpu_init();
-extern void am_mspi_init();
-extern void am_relocate_init_data_to_psram();
+extern void am_gpu_init(void);
+extern void am_mspi_init(void);
+extern void am_relocate_init_data_to_psram(void);
 
 #endif //AM_COMMON_H

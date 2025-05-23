@@ -17,12 +17,6 @@
 //
 //*****************************************************************************
 
-
-#include <stdint.h>
-#include <stdbool.h>
-#include <string.h>
-#include <stdlib.h>
-
 #include "am_mcu_apollo.h"
 #include "am_bsp.h"
 #include "am_util.h"
@@ -30,12 +24,10 @@
 
 #include "lvgl.h"
 #include "lv_draw_ambiq_private.h"
-
 #include "FreeRTOS.h"
 #include "task.h"
 #include "semphr.h"
 #include "event_groups.h"
-
 #include "nema_hal.h"
 #include "nema_math.h"
 #include "nema_core.h"
@@ -45,10 +37,6 @@
 #include "nema_graphics.h"
 #include "nema_programHW.h"
 #include "nema_error.h"
-#include "nema_vg.h"
-#include "nema_vg_tsvg.h"
-#include "nema_vg_font.h"
-
 #include "lv_ambiq_display.h"
 
 //*****************************************************************************
@@ -143,13 +131,6 @@
 lv_draw_buf_t* draw_buffer = NULL;
 // Display buffer. Draw buffer will be copied to this buffer in display->flush_cb, and DC will always read from this buffer when TE is recived.
 lv_draw_buf_t* display_buffer = NULL;
-
-//*****************************************************************************
-//
-// External variable definitions
-//
-//*****************************************************************************
-extern am_util_stdio_print_char_t g_pfnCharPrint;
 
 //*****************************************************************************
 //
@@ -265,7 +246,6 @@ display_flush_cb(lv_display_t * display, const lv_area_t * area, uint8_t * px_ma
         LV_LOG_ERROR("display buffer transfer timer out!");
     }
 
-
     // Copy draw buffer to display buffer.
     buffer_sync(&area_display, LV_AMBIQ_RENDER_MODE, (void*)px_map);
 
@@ -289,8 +269,6 @@ display_flush_cb(lv_display_t * display, const lv_area_t * area, uint8_t * px_ma
                                           display_buffer->data,
                                           transfer_complete_cb, 
                                           (void*)display_buffer_lock);
-
-
     }
 }
 

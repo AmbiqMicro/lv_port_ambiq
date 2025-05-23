@@ -20,25 +20,12 @@
 // Global includes for this project.
 //
 //*****************************************************************************
-#include <stdint.h>
-#include <stdbool.h>
-#include <string.h>
-#include <stdlib.h>
-
 #include "am_mcu_apollo.h"
 #include "am_bsp.h"
 #include "am_util.h"
-
 #include "lvgl.h"
-
-#include "FreeRTOS.h"
-#include "task.h"
-#include "semphr.h"
-#include "event_groups.h"
-
 #include "lv_ambiq_display.h"
 #include "lv_ambiq_touch.h"
-
 #include "am_devices_chsc5816_ap5.h"
 
 //*****************************************************************************
