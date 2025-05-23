@@ -214,7 +214,7 @@ static void set_ssram_psram_heap_noncacheable(void)
 #endif
 }
 
-static void am_mem_heap_init(am_mem_control_t *heap, void *pool, size_t pool_size)
+static void _am_mem_heap_init(am_mem_control_t *heap, void *pool, size_t pool_size)
 {
     heap->tlsf = tlsf_create_with_pool(pool, pool_size);
     if (heap->tlsf == NULL)
@@ -329,11 +329,11 @@ void am_mem_heap_free(am_mem_control_t *heap, void *p)
     }
 }
 
-void am_mem_init(void)
+void am_mem_heap_init(void)
 {
-    am_mem_heap_init(&dtcm_heap, dtcm_pool, DTCM_POOL_SIZE);
-    am_mem_heap_init(&ssram_heap, ssram_pool, SSRAM_POOL_SIZE);
-    am_mem_heap_init(&psram_heap, psram_pool, PSRAM_POOL_SIZE);
+    _am_mem_heap_init(&dtcm_heap, dtcm_pool, DTCM_POOL_SIZE);
+    _am_mem_heap_init(&ssram_heap, ssram_pool, SSRAM_POOL_SIZE);
+    _am_mem_heap_init(&psram_heap, psram_pool, PSRAM_POOL_SIZE);
 
     /* Config MPU for non-cacheable memory*/
     set_ssram_psram_heap_noncacheable();

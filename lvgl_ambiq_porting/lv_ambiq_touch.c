@@ -172,4 +172,11 @@ void lv_ambiq_touch_init(void)
     lv_indev_set_type(indev, LV_INDEV_TYPE_POINTER);
     lv_indev_set_read_cb(indev, lv_ambiq_touch_read);
     lv_indev_set_long_press_time(indev, 2000);
+
+    //
+    // Initialize touch coordinate offset so that (0,0) corresponds to the top-left corner of the LVGL display area.
+    // This compensates for any difference between the physical touch resolution and the LVGL buffer resolution.
+    //
+    g_sTouchInfo.x0 = (DISPLAY_TOUCH_RESX - LV_AMBIQ_DISPLAY_BUFFER_RESX)/2;
+    g_sTouchInfo.y0 = (DISPLAY_TOUCH_RESY - LV_AMBIQ_DISPLAY_BUFFER_RESY)/2;
 }

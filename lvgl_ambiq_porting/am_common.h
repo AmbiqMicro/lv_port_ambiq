@@ -42,6 +42,6 @@
 extern void am_init();
 extern void am_gpu_init();
 extern void am_mspi_init();
-extern void am_external_data_load();
+extern void am_relocate_init_data_to_psram();
 
 #endif //AM_COMMON_H

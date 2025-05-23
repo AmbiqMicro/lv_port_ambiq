@@ -98,7 +98,6 @@
 //
 //*****************************************************************************
 #include "gui_task.h"
-#include "display_task.h"
 #include "rtos.h"
 #include "am_mem.h"
 #include "am_common.h"

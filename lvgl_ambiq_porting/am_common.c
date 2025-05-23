@@ -202,7 +202,7 @@ mspi_device_func_t mspi_device_func =
 
 //*****************************************************************************
 //
-// Main Function
+// Init GPU
 //
 //*****************************************************************************
 void
@@ -255,6 +255,11 @@ am_gpu_init(void)
 #endif
 }
 
+//*****************************************************************************
+//
+// Init MSPI
+//
+//*****************************************************************************
 void am_mspi_init(void)
 {
     uint32_t ui32Status;
@@ -308,7 +313,16 @@ void am_mspi_init(void)
     }
 }
 
-void am_external_data_load(void)
+
+//*****************************************************************************
+//
+// Relocate initialized data to PSRAM from its load location in MRAM
+//
+// This function should be called during system startup. It copies sections
+// whose load address is in MRAM but whose execution (link) address is in PSRAM.
+//
+//*****************************************************************************
+void am_relocate_init_data_to_psram(void)
 {
     // Relocate image assets and font bitmaps from MRAM to PSRAM for direct GPU access.
     uint32_t ui32ExternalStart = 0;

@@ -26,18 +26,6 @@
 
 //*****************************************************************************
 //
-// External variable definitions
-//
-//*****************************************************************************
-extern am_util_stdio_print_char_t g_pfnCharPrint;
-
-void lv_ambiq_log_printf(lv_log_level_t level, const char * buf)
-{
-    g_pfnCharPrint(buf);
-}
-
-//*****************************************************************************
-//
 // Main Function
 //
 //*****************************************************************************
@@ -90,33 +78,17 @@ main(void)
     //
     // Init memory heap.
     //
-    am_mem_init();
+    am_mem_heap_init();
 
     //
     // Relocate image assets and font bitmaps from MRAM to PSRAM
     //
-    am_external_data_load();
+    am_relocate_init_data_to_psram();
 
     //
     // Init GPU.
     //
     am_gpu_init();
-
-    //
-    // Init LVGL.
-    //
-    lv_init();
-
-    lv_tick_set_cb(xTaskGetTickCount);
-
-#if LV_USE_LOG == 1
-    lv_log_register_print_cb(lv_ambiq_log_printf);
-#endif
-
-    //
-    // Initialize plotting interface.
-    //
-    am_util_stdio_printf("lvgl_smartwatch Example\n");
 
     //
     // Run the application.
