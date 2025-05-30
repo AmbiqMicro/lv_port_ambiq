@@ -2,4 +2,4 @@
 [submodule "LVGL"]
 	path = LVGL
 	url = git@github.com:AmbiqMicro/LVGL.git
-	branch = v9.2_ambiq_porting
+	branch = ambiq-stable
