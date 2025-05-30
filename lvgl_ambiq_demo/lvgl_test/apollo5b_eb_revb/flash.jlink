@@ -1,4 +1,4 @@
-device AMAP54KK-KBR
+device AP510NFA-CBR
 if swd
 speed 1000
 connect
