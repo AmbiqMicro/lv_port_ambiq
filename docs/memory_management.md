@@ -24,7 +24,7 @@ The Ambiq Apollo series SoCs provide three main RAM regions, each with distinct 
 | ---------- | -------------------------- | ------------------------------ | ------------------ |
 | **TCM**    | 378 KB – 496 KB            | On-chip tightly-coupled memory | Yes                |
 | **SSRAM**  | 1 MB – 3 MB                | On-chip SRAM                   | Yes                |
-| **PSRAM**  | Configurable (8 MB–128 MB) | External (MSPI interface, XIP) | Yes                |
+| **PSRAM**  | Configurable (64 KB–256 MB) | External (MSPI interface, XIP) | Yes                |
 
 ### 1.1 Memory Characteristics & Recommended Usage
 

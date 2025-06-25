@@ -29,8 +29,6 @@ Figure 1 illustrates the partial refresh process:
 
 The following steps illustrate how partial refresh is implemented in our driver:
 
-The following steps illustrate how partial refresh is implemented in our driver:
-
 1. **Rendering Phase**
 
    * The GPU renders graphics into the **draw buffer**.
@@ -83,6 +81,11 @@ Our implementation in `lv_ambiq_display.c` fully addresses display refresh chall
 - **Full Refresh** is generally **not recommended** for most applications, as it forces the GPU to redraw the entire frame every cycle. This additional workload can negatively impact power consumption and achievable frame rate.
 
 By understanding the trade-offs, developers can choose the mode that best balances memory usage, power efficiency, and rendering performance for their specific application.
+
+> **Important Note:**  
+> Due to hardware constraints of the DC (Display Controller) on the Ambiq Apollo platform, the width of the screen update region must be a multiple of 4 pixels.  
+> As a result, ensure that both your **display buffer** and **draw buffer** widths are configured accordingly to satisfy this requirement.
+
 
 ---
 
