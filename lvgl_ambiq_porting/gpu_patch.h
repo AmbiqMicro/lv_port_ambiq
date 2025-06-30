@@ -131,7 +131,21 @@ void lv_ambiq_get_vg_paint_tex(NEMA_VG_PAINT_HANDLE vg_paint, nema_img_obj_t ** 
  */
 void lv_ambiq_get_path_aabb(NEMA_VG_PATH_HANDLE vg_path, float* x_min, float* y_min, float* x_max, float* y_max);
 
-
+/**
+ * @brief Applies a two-pass separable blur (horizontal then vertical) to the corner shadow region.
+ *
+ * This function performs a box blur on a square region of shadow data stored in texidx1.
+ * It uses texidx2 as a temporary buffer with extended borders to facilitate boundary-safe calculations.
+ *
+ * @param size     The size of the original square region (size x size) to be blurred.
+ * @param sw       The blur strength factor. Each pixel will be averaged with its surrounding values within a ±sw range.
+ * @param texidx1  Texture ID which bind to the buffer containing the original corner shadow data.
+ *                 The final blurred result will also be written back into this buffer.
+ * @param texidx2  Texture ID which bind to a temporary buffer with size (size + sw) x (size + sw).
+ *                 This buffer is used to store horizontally blurred intermediate data and to extend borders
+ *                 for safe vertical blur computation without special casing edges.
+ */
+void lv_ambiq_shadow_blur_corner(int32_t size, int32_t sw, nema_tex_t texidx1, nema_tex_t texidx2);
 
 
 #ifdef __cplusplus
