@@ -243,7 +243,7 @@ am_gpu_init(void)
     //
     // Initialize NemaVG.
     //
-#if LV_USE_DRAW_AMBIQ_VG
+#if LV_USE_AMBIQ_VG
     nema_buffer_t stencil_buffer = {.base_phys = 0, .base_virt = 0, .size = 0, .fd = 0};
     nema_vg_init_stencil_prealloc(LV_AMBIQ_DISPLAY_BUFFER_RESX, LV_AMBIQ_DISPLAY_BUFFER_RESY, stencil_buffer);
     if (NEMA_ERR_NO_ERROR != nema_get_error())

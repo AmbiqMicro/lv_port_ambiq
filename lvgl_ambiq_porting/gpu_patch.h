@@ -147,6 +147,25 @@ void lv_ambiq_get_path_aabb(NEMA_VG_PATH_HANDLE vg_path, float* x_min, float* y_
  */
 void lv_ambiq_shadow_blur_corner(int32_t size, int32_t sw, nema_tex_t texidx1, nema_tex_t texidx2);
 
+/**
+ * @brief Retrieve the segment list and vertex data buffers of a VG path.
+ *
+ * This function extracts the number of path segments, the size of the vertex buffer,
+ * and returns pointers to the internal segment list and vertex coordinate buffers
+ * associated with the specified vector graphics path handle. The segment list defines
+ * the sequence of VG commands, and the data buffer contains the corresponding coordinates.
+ *
+ * @param vg_path   The handle to the VG path object.
+ * @param seg_size  Pointer to a variable where the number of path segments will be stored.
+ * @param data_size Pointer to a variable where the number of floats in the vertex buffer will be stored.
+ * @param seg       Pointer to a pointer where the segment list buffer address will be stored.
+ * @param data      Pointer to a pointer where the vertex coordinate buffer address will be stored.
+ *
+ * @warning The function assumes all pointer parameters are valid and non-NULL. Undefined behavior may occur otherwise.
+ */
+void lv_ambiq_get_path_vbuf(NEMA_VG_PATH_HANDLE vg_path, uint32_t* seg_size, uint32_t* data_size, 
+                                                         uint8_t** seg, float** data);
+
 
 #ifdef __cplusplus
 }
