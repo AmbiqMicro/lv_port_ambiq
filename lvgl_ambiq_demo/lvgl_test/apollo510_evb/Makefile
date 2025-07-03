@@ -95,6 +95,8 @@ DEFINES+= -DLV_AMBIQ_USE_DIRECT_MODE=1
 DEFINES+= -DLV_AMBIQ_DRAW_BUFFER_RATIO=1
 DEFINES+= -DLV_CONF_INCLUDE_SIMPLE
 DEFINES+= -DLV_LVGL_H_INCLUDE_SIMPLE
+DEFINES+= -DCPU_RUN_IN_HP_MODE
+DEFINES+= -DGPU_RUN_IN_HP_MODE
 
 DEFINES+= -DNEMA_PLATFORM=apollo510_nemagfx
 DEFINES+= -DVMEM_SIZE=0x3FFFF
@@ -237,6 +239,7 @@ LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/render -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/vector_graphic -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/widgets -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/benchmark -type f -name '*.c')
+LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/music -type f -name '*.c')
 
 CSRC += $(notdir $(LVGL_CSRCS))
 
@@ -292,7 +295,6 @@ SRC += rtos.c
 SRC += am_resources.c
 SRC += gui_task.c
 SRC += lvgl_test.c
-SRC += display_task.c
 
 
 
@@ -321,7 +323,7 @@ CFLAGS+= -MMD -MP -std=c99 -Wall -g
 CFLAGS+= -Wimplicit-fallthrough -Wundef -Wpointer-arith
 CFLAGS+= -Wshadow -Wredundant-decls -Wstrict-prototypes
 CFLAGS+= -Wno-sign-compare -Wno-unknown-pragmas -Wno-psabi
-CFLAGS+= -O0
+CFLAGS+= -O3
 CFLAGS+= $(DEFINES)
 CFLAGS+= $(INCLUDES)
 CFLAGS+= 
@@ -334,7 +336,7 @@ CXXFLAGS+= -MMD -MP -std=c++11 -Wall -g
 CXXFLAGS+= -Wimplicit-fallthrough -Wundef -Wpointer-arith
 CXXFLAGS+= -Wshadow -Wredundant-decls
 CXXFLAGS+= -Wno-sign-compare -Wno-unknown-pragmas -Wno-psabi
-CXXFLAGS+= -O0
+CXXFLAGS+= -O3
 CXXFLAGS+= $(DEFINES)
 CXXFLAGS+= $(INCLUDES)
 CXXFLAGS+= 

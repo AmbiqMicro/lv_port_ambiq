@@ -124,7 +124,8 @@ GuiTask(void *pvParameters)
         vTaskDelete(NULL);
     }
 
-    lv_demo_benchmark();
+    // lv_demo_benchmark();
+    lv_demo_music();
     //lv_demo_scroll();
     //lv_demo_vector_graphic_not_buffered();    
     //lv_example_style_5();
