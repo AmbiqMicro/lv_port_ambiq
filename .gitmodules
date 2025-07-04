@@ -3,3 +3,6 @@
 	path = LVGL
 	url = git@github.com:AmbiqMicro/LVGL.git
 	branch = ambiq-stable
+[submodule "modules/freetype"]
+	path = modules/freetype
+	url = git@github.com:freetype/freetype.git

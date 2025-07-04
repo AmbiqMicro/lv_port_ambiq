@@ -46,7 +46,7 @@
 // This is part of revision release_sdk5p0p0-5f68a8286b of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
-#include "lvgl_test.h"
+#include "lvgl_ttf.h"
 #include "lvgl.h"
 
 //*****************************************************************************
