@@ -79,7 +79,41 @@ void lv_example_style_5(void)
     lv_obj_add_style(obj, &style, 0);
     lv_obj_center(obj);
 }
+void lv_example_loading_font(void)
+{
+    /*Change the active screen's background color*/
+    lv_obj_set_style_bg_color(lv_screen_active(), lv_color_hex(0x003a57), LV_PART_MAIN);
 
+    /*Create a white label, set its text and align it to the center*/
+    lv_obj_t * label = lv_label_create(lv_screen_active());
+    lv_label_set_text(label, "Hello world");
+    lv_obj_set_style_text_color(lv_screen_active(), lv_color_hex(0xffffff), LV_PART_MAIN);
+    lv_obj_align(label, LV_ALIGN_TOP_MID, 0, 40);
+
+    lv_obj_t * label2 = lv_label_create(lv_screen_active());
+
+    char az_text[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    lv_label_set_text(label2, az_text);
+    lv_obj_align(label2, LV_ALIGN_TOP_MID, 0, 100);
+    lv_obj_set_width(label2, 300);
+    lv_label_set_long_mode(label2, LV_LABEL_LONG_WRAP);
+    lv_obj_set_style_text_font(label2, &lv_font_montserrat_26, 0);
+
+    char az_text_1[] = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+    lv_obj_t * label3 = lv_label_create(lv_screen_active());
+    lv_label_set_text(label3, az_text_1);
+    lv_obj_set_width(label3, 300);
+    lv_label_set_long_mode(label3, LV_LABEL_LONG_WRAP);
+    lv_font_t *my_font = lv_binfont_create("E:/ubuntu.bin");
+    if (my_font == NULL)
+    {
+        LV_LOG_ERROR("Failed to load font from E:/ubuntu.bin");
+        return;
+    }
+    lv_obj_set_style_text_font(label3, my_font, 0);
+    lv_obj_align(label3, LV_ALIGN_TOP_MID, 0, 150);
+}
 //*****************************************************************************
 //
 // Task function.
@@ -91,7 +125,11 @@ GuiTask(void *pvParameters)
     int ret;
 
     am_util_stdio_printf("Gui task start!\n");
-
+    //
+    // Init file system
+    //
+    LV_LOG_INFO("Init file system...\r\n");
+    lv_ambiq_fs_init();
     //
     // Init LVGL.
     //
@@ -125,11 +163,11 @@ GuiTask(void *pvParameters)
     }
 
     // lv_demo_benchmark();
-    lv_demo_music();
+    //lv_demo_music();
     //lv_demo_scroll();
-    //lv_demo_vector_graphic_not_buffered();    
+    //lv_demo_vector_graphic_not_buffered();
     //lv_example_style_5();
-
+    lv_example_loading_font();
     while(1)
     {
         uint32_t time_till_next;
