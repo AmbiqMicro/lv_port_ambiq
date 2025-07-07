@@ -69,7 +69,11 @@ GuiTask(void *pvParameters)
     int ret;
 
     am_util_stdio_printf("Gui task start!\n");
-
+    //
+    // Init file system
+    //
+    LV_LOG_INFO("Init file system...\r\n");
+    lv_ambiq_fs_init();
     //
     // Init LVGL.
     //
@@ -81,11 +85,6 @@ GuiTask(void *pvParameters)
     lv_log_register_print_cb(lv_ambiq_log_printf);
 #endif
 
-    //
-    // Init file system
-    //
-    LV_LOG_INFO("setup file system...\r\n");
-    lv_ambiq_fs_init();
 
     //
     // Iint display
