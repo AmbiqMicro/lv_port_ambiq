@@ -192,13 +192,16 @@ LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/tick -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/widgets -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/libs/bin_decoder -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/libs/fsdrv -type f -name '*.c')
-
+LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/libs/gif -type f -name '*.c')
+LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/libs/lodepng -type f -name '*.c')
 LVGL_CSRCS += $(LVGL_PATH)/src/lv_init.c
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/scroll -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/render -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/vector_graphic -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/widgets -type f -name '*.c')
 LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/benchmark -type f -name '*.c')
+LVGL_CSRCS += $(shell find $(LVGL_PATH)/examples/libs/gif -type f -name '*.c')
+LVGL_CSRCS += $(shell find $(LVGL_PATH)/examples/libs/lodepng -type f -name '*.c')
 
 CSRC += $(notdir $(LVGL_CSRCS))
 VPATH += $(sort $(dir $(LVGL_CSRCS)))
