@@ -105,10 +105,10 @@ void lv_example_loading_font(void)
     lv_label_set_text(label3, az_text_1);
     lv_obj_set_width(label3, 300);
     lv_label_set_long_mode(label3, LV_LABEL_LONG_WRAP);
-    lv_font_t *my_font = lv_binfont_create("E:/ubuntu.bin");
+    lv_font_t *my_font = lv_binfont_create("A:/ubuntu.bin");
     if (my_font == NULL)
     {
-        LV_LOG_ERROR("Failed to load font from E:/ubuntu.bin");
+        LV_LOG_ERROR("Failed to load font from A:/ubuntu.bin");
         return;
     }
     lv_obj_set_style_text_font(label3, my_font, 0);
@@ -167,7 +167,9 @@ GuiTask(void *pvParameters)
     //lv_demo_scroll();
     //lv_demo_vector_graphic_not_buffered();
     //lv_example_style_5();
-    lv_example_loading_font();
+    // lv_example_loading_font();
+    // lv_example_gif_1();
+    lv_example_lodepng_1();
     while(1)
     {
         uint32_t time_till_next;
