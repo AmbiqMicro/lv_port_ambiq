@@ -1,0 +1,9 @@
+device AP510NFA-CBR
+if swd
+speed 1000
+connect
+loadbin ./apollo510_evb/tinyusb_cdc_msc_emmc.bin 0x00410000
+r
+g
+q
+
