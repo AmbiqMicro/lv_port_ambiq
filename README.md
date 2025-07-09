@@ -8,7 +8,7 @@ This repository covers the following key components:
 
 ### 1. Ambiq GPU Hardware Acceleration
 
-Provides Ambiq GPU-based hardware acceleration for a wide range of LVGL graphic rendering interfaces. This includes—but is not limited to—rectangle filling, image rendering, layer blending, text rendering, line drawing, arc rendering, and other complex vector graphics operations. These enhancements significantly improve the rendering performance and visual experience of LVGL applications. 
+Provides Ambiq GPU-based hardware acceleration for a wide range of LVGL graphic rendering interfaces. This includes—but is not limited to—rectangle filling, image rendering, layer blending, text rendering, line drawing, arc rendering, and other complex vector graphics operations. These enhancements significantly improve the rendering performance and visual experience of LVGL applications.
 
 ### 2. Integration of Graphics-Related LVGL Functionalities
 
@@ -33,7 +33,7 @@ We provide a well-designed memory heap management model that offers fine-grained
 * NemaSDK internal used buffers
 * CPU-only memory used internally by LVGL
 
-This structure ensures optimal performance and efficient memory usage in resource-constrained embedded environments. 
+This structure ensures optimal performance and efficient memory usage in resource-constrained embedded environments.
 
 ### 4. Ready-to-Use Detailed Demo Examples
 
@@ -85,8 +85,6 @@ lv_port_ambiq
 │   ├── tests
 │   ├── xmls
 │   └── zephyr
-├── bsp
-│   └── gpu
 ├── lvgl_ambiq_demo
 │   ├── lvgl_smartwatch
 │   └── lvgl_test
