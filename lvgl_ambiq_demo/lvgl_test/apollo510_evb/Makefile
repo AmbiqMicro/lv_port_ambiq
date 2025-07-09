@@ -76,6 +76,8 @@ LVGL_CSRCS += \
     $(wildcard $(LVGL_PATH)/demos/render/*.c) \
     $(wildcard $(LVGL_PATH)/demos/vector_graphic/*.c) \
     $(wildcard $(LVGL_PATH)/demos/benchmark/*.c) \
+    $(wildcard $(LVGL_PATH)/demos/music/*.c) \
+    $(wildcard $(LVGL_PATH)/demos/music/assets/*.c) \
     $(wildcard $(LVGL_PATH)/examples/libs/gif/*.c) \
     $(wildcard $(LVGL_PATH)/examples/libs/lodepng/*.c)
 # Common makefile
