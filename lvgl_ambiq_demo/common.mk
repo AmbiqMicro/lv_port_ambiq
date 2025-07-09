@@ -61,12 +61,16 @@ AMBIQSUITE_PATH ?= $(TOP_DIR)/AmbiqSuite
 
 LVGL_PATH = $(TOP_DIR)/LVGL
 LVGL_AMBIQ_PORTING_PATH = $(TOP_DIR)/lvgl_ambiq_porting
+FREETYPE_PATH = $(TOP_DIR)/modules/freetype
 
 ifeq ($(wildcard $(AMBIQSUITE_PATH)),)
 $(error The AmbiqSuite directory $(AMBIQSUITE_PATH) does not exist.)
 endif
 ifeq ($(wildcard $(LVGL_PATH)),)
 $(error The LVGL directory $(LVGL_PATH) does not exist.)
+endif
+ifeq ($(wildcard $(FREETYPE_PATH)),)
+$(error The FREETYPE_PATH directory $(FREETYPE_PATH) does not exist.)
 endif
 
 #### Setup ####
@@ -109,17 +113,9 @@ endif
 SHELL:=bash
 .SHELLFLAGS:=-euo pipefail -c
 
-DEFINES+= -DAM_PART_APOLLO510
-DEFINES+= -DLV_AMBIQ_DISPLAY_BUFFER_RESX=392
-DEFINES+= -DLV_AMBIQ_DISPLAY_BUFFER_RESY=392
-DEFINES+= -DCPU_RUN_IN_HP_MODE
-DEFINES+= -DGPU_RUN_IN_HP_MODE
 
-DEFINES+= -DLV_AMBIQ_USE_DIRECT_MODE=1
-DEFINES+= -DLV_AMBIQ_DRAW_BUFFER_RATIO=1
 DEFINES+= -DLV_CONF_INCLUDE_SIMPLE
 DEFINES+= -DLV_LVGL_H_INCLUDE_SIMPLE
-
 DEFINES+= -DNEMA_PLATFORM=apollo510_nemagfx
 DEFINES+= -DVMEM_SIZE=0x3FFFF
 DEFINES+= -DWAIT_IRQ_BINARY_SEMAPHORE=1
@@ -136,7 +132,7 @@ INCLUDES+= -I$(AMBIQSUITE_PATH)/third_party/ThinkSi/NemaGFX_SDK/include/tsi/Nema
 INCLUDES+= -I$(AMBIQSUITE_PATH)/third_party/ThinkSi/NemaGFX_SDK/include/tsi/NemaVG
 INCLUDES+= -I$(AMBIQSUITE_PATH)/third_party/ThinkSi/NemaGFX_SDK/include/tsi/common
 
-# AmbiqSuite/gpu
+# AmbiqSuite/FatFs
 INCLUDES+= -I$(AMBIQSUITE_PATH)/third_party/FatFs/apollo_driver/mmc_apollo5
 INCLUDES+= -I$(AMBIQSUITE_PATH)/third_party/FatFs/source
 
@@ -241,7 +237,8 @@ LVGL_CSRCS += \
     $(wildcard $(LVGL_PATH)/src/libs/bin_decoder/*.c) \
     $(wildcard $(LVGL_PATH)/src/libs/fsdrv/*.c) \
     $(wildcard $(LVGL_PATH)/src/libs/gif/*.c) \
-    $(wildcard $(LVGL_PATH)/src/libs/lodepng/*.c)
+    $(wildcard $(LVGL_PATH)/src/libs/lodepng/*.c) \
+    $(wildcard $(LVGL_PATH)/src/libs/freetype/*.c)
 
 LVGL_CSRCS += $(LVGL_PATH)/src/lv_init.c
 

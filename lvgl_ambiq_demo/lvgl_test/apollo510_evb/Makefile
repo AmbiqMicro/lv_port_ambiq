@@ -37,13 +37,15 @@
 # This is part of revision release_sdk_4_5_0-a1ef3b89f9 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
-TARGET := lvgl_test
-
+# CPU
 PART = apollo510
 CPU = cortex-m55
 FPU = auto
 FABI = hard
 
+DEFINES+= -DAM_PART_APOLLO510
+
+# BSP
 BSP = apollo510_evb
 DEFINES+= -Dapollo510_evb
 # AmbiqSuite/boards
@@ -60,26 +62,8 @@ SRC += am_devices_display_generic.c
 # SRC += am_devices_tma525.c
 SRC += am_devices_chsc5816_ap5.c
 
-# lvgl_test
 
-INCLUDES+= -I../src
-VPATH+=:../src
-
-SRC += rtos.c
-SRC += am_resources.c
-SRC += gui_task.c
-SRC += lvgl_test.c
-
-# LVGL sources
-LVGL_CSRCS += \
-    $(wildcard $(LVGL_PATH)/demos/scroll/*.c) \
-    $(wildcard $(LVGL_PATH)/demos/render/*.c) \
-    $(wildcard $(LVGL_PATH)/demos/vector_graphic/*.c) \
-    $(wildcard $(LVGL_PATH)/demos/benchmark/*.c) \
-    $(wildcard $(LVGL_PATH)/demos/music/*.c) \
-    $(wildcard $(LVGL_PATH)/demos/music/assets/*.c) \
-    $(wildcard $(LVGL_PATH)/examples/libs/gif/*.c) \
-    $(wildcard $(LVGL_PATH)/examples/libs/lodepng/*.c)
 # Common makefile
+include  ../demo_common.mk
 include ../../common.mk
 
