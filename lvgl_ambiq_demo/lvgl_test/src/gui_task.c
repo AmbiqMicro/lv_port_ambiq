@@ -163,13 +163,13 @@ GuiTask(void *pvParameters)
     }
 
     // lv_demo_benchmark();
-    //lv_demo_music();
+    lv_demo_music();
     //lv_demo_scroll();
     //lv_demo_vector_graphic_not_buffered();
     //lv_example_style_5();
     // lv_example_loading_font();
     // lv_example_gif_1();
-    lv_example_lodepng_1();
+    // lv_example_lodepng_1();
     while(1)
     {
         uint32_t time_till_next;
