@@ -38,13 +38,11 @@
 # This is part of revision release_sdk_4_5_0-a1ef3b89f9 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
-TARGET := lvgl_smartwatch
 COMPILERNAME := gcc
-PROJECT := lvgl_test_gcc
 CONFIG := bin
 
 SHELL:=/bin/bash
-TOP_DIR :=
+TOP_DIR := ../../..
 
 # Check for Bash availability
 ifeq (, $(shell which bash))
@@ -57,11 +55,12 @@ Q:=@
 endif
 
 # Set the default AmbiqSuite path
-AMBIQSUITE_PATH ?= /../../../AmbiqSuite
+AMBIQSUITE_PATH ?= $(TOP_DIR)/AmbiqSuite
 # Set your AmbiqSuit path
-AMBIQSUITE_PATH = ../../../../ambiqsuite
-LVGL_PATH = ../../../LVGL
-LVGL_AMBIQ_PORTING_PATH = ../../../lvgl_ambiq_porting
+# AMBIQSUITE_PATH = $(TOP_DIR)/../ambiqsuite
+
+LVGL_PATH = $(TOP_DIR)/LVGL
+LVGL_AMBIQ_PORTING_PATH = $(TOP_DIR)/lvgl_ambiq_porting
 
 ifeq ($(wildcard $(AMBIQSUITE_PATH)),)
 $(error The AmbiqSuite directory $(AMBIQSUITE_PATH) does not exist.)
@@ -177,29 +176,74 @@ SRC += am_util_stdio.c
 INCLUDES+= -I$(LVGL_PATH)
 INCLUDES+= -I$(LVGL_PATH)/src/draw/ambiq
 
-LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/core -type f -name '*.c')
-LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/display -type f -name '*.c')
-LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/draw -type f -name '*.c')
-LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/font -type f -name '*.c')
-LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/indev -type f -name '*.c')
-LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/layouts -type f -name '*.c')
-LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/misc -type f -name '*.c')
-LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/osal -type f -name '*.c')
-LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/others -type f -name '*.c')
-LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/stdlib -type f -name '*.c')
-LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/themes -type f -name '*.c')
-LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/tick -type f -name '*.c')
-LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/widgets -type f -name '*.c')
-LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/libs/bin_decoder -type f -name '*.c')
-LVGL_CSRCS += $(shell find $(LVGL_PATH)/src/libs/fsdrv -type f -name '*.c')
+LVGL_CSRCS += \
+    $(wildcard $(LVGL_PATH)/src/core/*.c) \
+    $(wildcard $(LVGL_PATH)/src/display/*.c) \
+    $(wildcard $(LVGL_PATH)/src/draw/*.c) \
+    $(wildcard $(LVGL_PATH)/src/draw/ambiq/*.c) \
+    $(wildcard $(LVGL_PATH)/src/draw/sw/*.c) \
+    $(wildcard $(LVGL_PATH)/src/draw/sw/blend/*.c) \
+    $(wildcard $(LVGL_PATH)/src/draw/sw/grid/*.c) \
+    $(wildcard $(LVGL_PATH)/src/font/*.c) \
+    $(wildcard $(LVGL_PATH)/src/indev/*.c) \
+    $(wildcard $(LVGL_PATH)/src/layouts/*.c) \
+    $(wildcard $(LVGL_PATH)/src/layouts/flex/*.c) \
+    $(wildcard $(LVGL_PATH)/src/layouts/grid/*.c) \
+    $(wildcard $(LVGL_PATH)/src/misc/*.c) \
+    $(wildcard $(LVGL_PATH)/src/misc/cache/*.c) \
+    $(wildcard $(LVGL_PATH)/src/osal/*.c) \
+    $(wildcard $(LVGL_PATH)/src/others/*.c) \
+    $(wildcard $(LVGL_PATH)/src/others/sysmon/*.c) \
+    $(wildcard $(LVGL_PATH)/src/others/observer/*.c) \
+    $(wildcard $(LVGL_PATH)/src/stdlib/*.c) \
+    $(wildcard $(LVGL_PATH)/src/stdlib/builtin/*.c) \
+    $(wildcard $(LVGL_PATH)/src/stdlib/clib/*.c) \
+    $(wildcard $(LVGL_PATH)/src/themes/*.c) \
+    $(wildcard $(LVGL_PATH)/src/themes/default/*.c) \
+    $(wildcard $(LVGL_PATH)/src/themes/mono/*.c) \
+    $(wildcard $(LVGL_PATH)/src/themes/simple/*.c) \
+    $(wildcard $(LVGL_PATH)/src/tick/*.c) \
+    $(wildcard $(LVGL_PATH)/src/widgets/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/animimage/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/arc/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/bar/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/button/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/buttonmatrix/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/calendar/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/canvas/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/chart/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/checkbox/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/dropdown/*.c) \
+    $(wildcard $(LVGL_PATH)/src/widgets/image/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/imagebutton/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/keyboard/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/label/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/led/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/line/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/list/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/lottie/*.c) \
+    $(wildcard $(LVGL_PATH)/src/widgets/menu/*.c) \
+    $(wildcard $(LVGL_PATH)/src/widgets/msgbox/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/objx_templ/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/objx_templ/property/*.c) \
+    $(wildcard $(LVGL_PATH)/src/widgets/roller/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/scale/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/slider/*.c) \
+    $(wildcard $(LVGL_PATH)/src/widgets/span/*.c) \
+    $(wildcard $(LVGL_PATH)/src/widgets/spinbox/*.c) \
+    $(wildcard $(LVGL_PATH)/src/widgets/spinner/*.c) \
+    $(wildcard $(LVGL_PATH)/src/widgets/switch/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/table/*.c) \
+    $(wildcard $(LVGL_PATH)/src/widgets/tabview/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/textarea/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/tileview/*.c) \
+	$(wildcard $(LVGL_PATH)/src/widgets/win/*.c) \
+    $(wildcard $(LVGL_PATH)/src/libs/bin_decoder/*.c) \
+    $(wildcard $(LVGL_PATH)/src/libs/fsdrv/*.c) \
+    $(wildcard $(LVGL_PATH)/src/libs/gif/*.c) \
+    $(wildcard $(LVGL_PATH)/src/libs/lodepng/*.c)
 
 LVGL_CSRCS += $(LVGL_PATH)/src/lv_init.c
-# LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/scroll -type f -name '*.c')
-# LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/render -type f -name '*.c')
-# LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/vector_graphic -type f -name '*.c')
-# LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/widgets -type f -name '*.c')
-# LVGL_CSRCS += $(shell find $(LVGL_PATH)/demos/benchmark -type f -name '*.c')
-LVGL_CSRCS += $(shell find ../src/gui -type f -name '*.c')
 
 CSRC += $(notdir $(LVGL_CSRCS))
 VPATH += $(sort $(dir $(LVGL_CSRCS)))
@@ -226,8 +270,8 @@ SRC += port_systick_stimer.c
 SRC += portasm.c
 
 # tlsf
-INCLUDES+= -I../../../modules/tlsf
-VPATH+=:../../../modules/tlsf
+INCLUDES+= -I$(TOP_DIR)/modules/tlsf
+VPATH+=:$(TOP_DIR)/modules/tlsf
 SRC += tlsf.c
 
 # lvgl_ambiq_porting
@@ -240,16 +284,6 @@ SRC += am_mem.c
 SRC += lv_ambiq_touch.c
 SRC += lv_ambiq_fs.c
 SRC += lv_ambiq_display.c
-
-# lvgl_test
-INCLUDES+= -I../src
-INCLUDES+= -I../src/gui
-VPATH+=:../src
-
-SRC += rtos.c
-SRC += am_resources.c
-SRC += gui_task.c
-SRC += lvgl_smartwatch.c
 
 # AmbiqSuite/cmsis
 INCLUDES+= -I$(AMBIQSUITE_PATH)/CMSIS/ARM/Include
@@ -324,7 +358,7 @@ else
         JLINK := JLinkExe
     else ifeq ($(UNAME_S),Darwin)
         JLINK := JLinkExe
-	else
+    else
         $(error OS not support)
     endif
 endif
