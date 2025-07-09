@@ -37,6 +37,8 @@
 # This is part of revision release_sdk_4_5_0-a1ef3b89f9 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
+TARGET := lvgl_smartwatch
+
 PART = apollo510
 CPU = cortex-m55
 FPU = auto
@@ -58,4 +60,23 @@ SRC += am_devices_display_generic.c
 # SRC += am_devices_tma525.c
 SRC += am_devices_chsc5816_ap5.c
 
-include ../common.mk
+# lvgl_smartwatch
+INCLUDES+= -I../src
+INCLUDES+= -I../src/gui
+
+VPATH+=:../src
+
+SRC += rtos.c
+SRC += am_resources.c
+SRC += gui_task.c
+SRC += lvgl_smartwatch.c
+
+LVGL_CSRCS += \
+    $(wildcard ../src/gui/*.c) \
+    $(wildcard ../src/gui/components/*.c) \
+    $(wildcard ../src/gui/fonts/*.c) \
+    $(wildcard ../src/gui/images/*.c) \
+    $(wildcard ../src/gui/screens/*.c)
+
+# Common makefile
+include ../../common.mk
