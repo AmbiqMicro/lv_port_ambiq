@@ -276,7 +276,7 @@ display_flush_cb(lv_display_t * display, const lv_area_t * area, uint8_t * px_ma
 
         am_devices_display_transfer_frame(LV_AMBIQ_DISPLAY_BUFFER_RESX,
                                           LV_AMBIQ_DISPLAY_BUFFER_RESY,
-                                          display_buffer->data,
+                                          (uintptr_t)display_buffer->data,
                                           transfer_complete_cb, 
                                           (void*)display_buffer_lock);
     }
@@ -360,19 +360,22 @@ lv_ambiq_display_init(void)
         if(ret == AM_DEVICES_DISPLAY_STATUS_OUT_OF_RANGE)
         {
             //Check the dsi frequency does exceed the limit of the screen or not, if it is exceeded, set it according to the screen maximum
-            #if (LV_AMBIQ_DISPALY_PANEL_FORMAT == COLOR_FORMAT_RGB565)
+            if (LV_AMBIQ_DISPLAY_PANEL_FORMAT == COLOR_FORMAT_RGB565)
+            {
                 if ((g_sDispCfg.eDsiFreq & 0x0f) > (AM_HAL_DSI_FREQ_TRIM_X13 & 0x0f))
                 {
                     g_sDispCfg.eDsiFreq = AM_HAL_DSI_FREQ_TRIM_X13;
                     LV_LOG_WARN("Warning: The dsi frequency exceeds screen limit, reset to AM_HAL_DSI_FREQ_TRIM_X13\n");
                 }
-            #elif (LV_AMBIQ_DISPALY_PANEL_FORMAT == COLOR_FORMAT_RGB888)
+            }
+            else if (LV_AMBIQ_DISPLAY_PANEL_FORMAT == COLOR_FORMAT_RGB888)
+            {
                 if ((g_sDispCfg.eDsiFreq & 0x0f) >= (AM_HAL_DSI_FREQ_TRIM_X20 & 0x0f))
                 {
                     g_sDispCfg.eDsiFreq = AM_HAL_DSI_FREQ_TRIM_X20;
                     LV_LOG_WARN("Warning: The dsi frequency exceeds screen limit, reset to AM_HAL_DSI_FREQ_TRIM_X20\n");
                 }
-            #endif
+            }
 
             //reinit
             ret = am_devices_display_init(LV_AMBIQ_DISPLAY_BUFFER_RESX,
