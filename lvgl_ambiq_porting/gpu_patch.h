@@ -167,6 +167,78 @@ void lv_ambiq_get_path_vbuf(NEMA_VG_PATH_HANDLE vg_path, uint32_t* seg_size, uin
                                                          uint8_t** seg, float** data);
 
 
+typedef struct {
+    /** Pointer to the raw bitmap data of the glyph. This data is typically alpha-only. */
+    const void* bitmap;
+
+    /** The width of the source bitmap in pixels. */
+    uint32_t bitmap_w;
+
+    /** The height of the source bitmap in pixels. */
+    uint32_t bitmap_h; 
+    
+    /** The X coordinate of the top-left corner where the glyph should be rendered on the destination. */
+    int32_t raster_start_x;
+
+    /** The Y coordinate of the top-left corner where the glyph should be rendered on the destination. */
+    int32_t raster_start_y;
+
+    /** The width of the destination rendering area in pixels. This may differ from bitmap_w due to clipping. */
+    uint32_t raster_w;
+
+    /** The height of the destination rendering area in pixels. This may differ from bitmap_h due to clipping. */
+    uint32_t raster_h;
+
+    /** The pixel format of the source bitmap (e.g., NEMA_A1, NEMA_A4), which defines the bits-per-pixel. */
+    nema_tex_format_t nema_format;
+
+    /** The color to be modulated with the bitmap's alpha values to render the glyph. */
+    uint32_t color;
+
+    /** A flag indicating if the bitmap data has special alignment properties that allow for a more optimized rendering path. */
+    bool aligned;
+
+    /** The rotation angle for the glyph, often in high-precision units (e.g., 1/10th of a degree). */
+    int32_t rotate_angle;
+
+    /** The X coordinate of the rotation pivot point, relative to the glyph's bitmap. */
+    int32_t pivot_x;
+
+    /** The Y coordinate of the rotation pivot point, relative to the glyph's bitmap. */
+    int32_t pivot_y;
+
+    /** An output flag set to true if the temporary buffer was used. */
+    bool temp_buffer_used;
+
+    /** Pointer to a temporary buffer used for complex rendering scenarios. */
+    void* temp_buffer;
+
+    /** The width of the temporary buffer in pixels. */
+    uint32_t temp_buffer_w;
+
+    /** The height of the temporary buffer in pixels. */
+    uint32_t temp_buffer_h;
+
+    /** The color format of the temporary buffer (e.g., NEMA_A8). */
+    nema_tex_format_t temp_buffer_cf;
+
+    /** The stride of the temporary buffer in bytes (bytes per row). */
+    uint32_t temp_buffer_stride;
+} lv_ambiq_draw_bitmap_glyph_t;
+
+/**
+ * @brief Draws a bitmap glyph, handling various optimizations and fallback strategies.
+ *
+ * This function renders a bitmap, typically representing a font character (glyph). It employs several
+ * conditional paths to optimize rendering based on the bitmap's properties, such as memory alignment,
+ * size, and rotation. If the bitmap does not meet the criteria for a direct, single-pass draw,
+ * it utilizes a more complex, iterative approach. This iterative method may use a temporary buffer 
+ * to composite the final image, which is then blended and transformed to the destination.
+ *
+ * @param bitmap_glyph A pointer to a struct containing all parameters for the glyph to be drawn.
+ */
+void lv_ambiq_draw_bitmap_glyph(lv_ambiq_draw_bitmap_glyph_t *bitmap_glyph );                                                       
+
 #ifdef __cplusplus
 }
 #endif
