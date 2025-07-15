@@ -33,6 +33,7 @@ extern am_mem_control_t psram_heap;
 extern void am_mem_heap_init(void);
 extern void* am_mem_heap_malloc(am_mem_control_t *heap, size_t size);
 extern void* am_mem_heap_malloc_align(am_mem_control_t *heap, size_t size, size_t align);
+extern void* am_mem_heap_realloc(am_mem_control_t *heap, void * p, size_t new_size);
 extern void am_mem_heap_free(am_mem_control_t *heap, void *p);
 extern void am_mem_heap_monitor(am_mem_control_t *heap, am_mem_monitor_t * mon_p);
 

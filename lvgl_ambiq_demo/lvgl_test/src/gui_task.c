@@ -51,7 +51,7 @@ extern am_util_stdio_print_char_t g_pfnCharPrint;
 
 void lv_ambiq_log_printf(lv_log_level_t level, const char * buf)
 {
-    g_pfnCharPrint(buf);
+    g_pfnCharPrint((char *)buf);
 }
 
 void lv_example_style_5(void)

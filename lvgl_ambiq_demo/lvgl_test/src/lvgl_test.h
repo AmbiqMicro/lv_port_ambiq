@@ -101,6 +101,9 @@
 #include "rtos.h"
 #include "am_mem.h"
 #include "am_common.h"
+#include "lv_ambiq_display.h"
+#include "lv_ambiq_fs.h"
+#include "lv_ambiq_touch.h"
 
 #if defined(BAREMETAL) && defined(SYSTEM_VIEW)
 #error SYSTEM_VIEW cannot be used in baremetal!
