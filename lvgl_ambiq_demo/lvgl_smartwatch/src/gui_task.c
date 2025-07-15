@@ -55,7 +55,7 @@ extern am_util_stdio_print_char_t g_pfnCharPrint;
 
 void lv_ambiq_log_printf(lv_log_level_t level, const char * buf)
 {
-    g_pfnCharPrint(buf);
+    g_pfnCharPrint((char * )buf);
 }
 
 //*****************************************************************************
@@ -66,8 +66,6 @@ void lv_ambiq_log_printf(lv_log_level_t level, const char * buf)
 void
 GuiTask(void *pvParameters)
 {
-    int ret;
-
     am_util_stdio_printf("Gui task start!\n");
     //
     // Init file system

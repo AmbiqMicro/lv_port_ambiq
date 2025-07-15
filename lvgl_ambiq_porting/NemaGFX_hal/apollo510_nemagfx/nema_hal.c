@@ -27,6 +27,7 @@
 #include "task.h"
 #include "nema_hal.h"
 #include "nema_regs.h"
+#include "nema_vg.h"
 #include "nema_ringbuffer.h"
 #include "nema_error.h"
 #include "nema_vg_context.h"

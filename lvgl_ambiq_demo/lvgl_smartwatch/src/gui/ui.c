@@ -7,22 +7,22 @@
 #include "ui_helpers.h"
 
 ///////////////////// VARIABLES ////////////////////
-void sec_Animation( lv_obj_t *TargetObject, int delay);
-void min_Animation( lv_obj_t *TargetObject, int delay);
-void hour_Animation( lv_obj_t *TargetObject, int delay);
-void left_Animation( lv_obj_t *TargetObject, int delay);
-void right_Animation( lv_obj_t *TargetObject, int delay);
-void opa_on_Animation( lv_obj_t *TargetObject, int delay);
-void dots_Animation( lv_obj_t *TargetObject, int delay);
-void top_Animation( lv_obj_t *TargetObject, int delay);
-void cloud_Animation( lv_obj_t *TargetObject, int delay);
-void blood2_Animation( lv_obj_t *TargetObject, int delay);
-void blood1_Animation( lv_obj_t *TargetObject, int delay);
-void heart_Animation( lv_obj_t *TargetObject, int delay);
+// void sec_Animation( lv_obj_t *TargetObject, int delay);
+// void min_Animation( lv_obj_t *TargetObject, int delay);
+// void hour_Animation( lv_obj_t *TargetObject, int delay);
+// void left_Animation( lv_obj_t *TargetObject, int delay);
+// void right_Animation( lv_obj_t *TargetObject, int delay);
+// void opa_on_Animation( lv_obj_t *TargetObject, int delay);
+// void dots_Animation( lv_obj_t *TargetObject, int delay);
+// void top_Animation( lv_obj_t *TargetObject, int delay);
+// void cloud_Animation( lv_obj_t *TargetObject, int delay);
+// void blood2_Animation( lv_obj_t *TargetObject, int delay);
+// void blood1_Animation( lv_obj_t *TargetObject, int delay);
+// void heart_Animation( lv_obj_t *TargetObject, int delay);
 
 // SCREEN: ui_watch_digital
-void ui_watch_digital_screen_init(void);
-void ui_event_watch_digital( lv_event_t * e);
+//void ui_watch_digital_screen_init(void);
+//void ui_event_watch_digital( lv_event_t * e);
 lv_obj_t *ui_watch_digital;
 lv_obj_t *ui_watch_digital_bg_1;
 lv_obj_t *ui_watch_digital_hour_group;
@@ -35,9 +35,9 @@ lv_obj_t *ui_watch_digital_weather_group_1;
 lv_obj_t *ui_watch_digital_weather_title_group_1;
 lv_obj_t *ui_watch_digital_step_group;
 lv_obj_t *ui_watch_digital_daily_mission_group;
-void ui_event_watch_digital_button_top_buttontop( lv_event_t * e);
+//void ui_event_watch_digital_button_top_buttontop( lv_event_t * e);
 lv_obj_t *ui_watch_digital_button_top;
-void ui_event_watch_digital_button_down_buttondown( lv_event_t * e);
+//void ui_event_watch_digital_button_down_buttondown( lv_event_t * e);
 lv_obj_t *ui_watch_digital_button_down;
 lv_obj_t *ui_watch_digital_sec_dot;
 lv_obj_t *ui_watch_digital_weather_dots_group2;
@@ -46,8 +46,8 @@ lv_obj_t *ui_watch_digital_dot15;
 // CUSTOM VARIABLES
 
 // SCREEN: ui_watch_analog
-void ui_watch_analog_screen_init(void);
-void ui_event_watch_analog( lv_event_t * e);
+//void ui_watch_analog_screen_init(void);
+//void ui_event_watch_analog( lv_event_t * e);
 lv_obj_t *ui_watch_analog;
 lv_obj_t *ui_watch_analog_bg_2;
 lv_obj_t *ui_watch_analog_clock;
@@ -63,9 +63,9 @@ lv_obj_t *ui_watch_analog_degree_7;
 lv_obj_t *ui_watch_analog_cloud_fog_3;
 lv_obj_t *ui_watch_analog_step_group2;
 lv_obj_t *ui_watch_analog_daily_mission_group1;
-void ui_event_watch_analog_button_top1_buttontop( lv_event_t * e);
+//void ui_event_watch_analog_button_top1_buttontop( lv_event_t * e);
 lv_obj_t *ui_watch_analog_button_top1;
-void ui_event_watch_analog_button_down1_buttondown( lv_event_t * e);
+//void ui_event_watch_analog_button_down1_buttondown( lv_event_t * e);
 lv_obj_t *ui_watch_analog_button_down1;
 lv_obj_t *ui_watch_analog_clock_group;
 lv_obj_t *ui_watch_analog_sec;
@@ -77,28 +77,28 @@ lv_obj_t *ui_watch_analog_dot17;
 // CUSTOM VARIABLES
 
 // SCREEN: ui_call
-void ui_call_screen_init(void);
-void ui_event_call( lv_event_t * e);
+//void ui_call_screen_init(void);
+//void ui_event_call( lv_event_t * e);
 lv_obj_t *ui_call;
 lv_obj_t *ui_call_bg_3;
 lv_obj_t *ui_call_avatar;
 lv_obj_t *ui_call_avatar_label;
 lv_obj_t *ui_call_call_time;
 lv_obj_t *ui_call_mute;
-void ui_event_call_button_down2_buttondown( lv_event_t * e);
+//void ui_event_call_button_down2_buttondown( lv_event_t * e);
 lv_obj_t *ui_call_button_down2;
 lv_obj_t *ui_call_volume_group;
 lv_obj_t *ui_call_volume_percent;
 lv_obj_t *ui_call_volume_image;
-void ui_event_call_volume_arc( lv_event_t * e);
+//void ui_event_call_volume_arc( lv_event_t * e);
 lv_obj_t *ui_call_volume_arc;
-void ui_event_call_button_top2_buttontop( lv_event_t * e);
+//void ui_event_call_button_top2_buttontop( lv_event_t * e);
 lv_obj_t *ui_call_button_top2;
 // CUSTOM VARIABLES
 
 // SCREEN: ui_weather_1
-void ui_weather_1_screen_init(void);
-void ui_event_weather_1( lv_event_t * e);
+//void ui_weather_1_screen_init(void);
+//void ui_event_weather_1( lv_event_t * e);
 lv_obj_t *ui_weather_1;
 lv_obj_t *ui_weather_1_bg_4;
 lv_obj_t *ui_weather_1_city_gruop_1;
@@ -116,13 +116,13 @@ lv_obj_t *ui_weather_1_dot2;
 lv_obj_t *ui_weather_1_weather_image_group;
 lv_obj_t *ui_weather_1_sun;
 lv_obj_t *ui_weather_1_clouds;
-void ui_event_weather_1_button_down3_buttondown( lv_event_t * e);
+//void ui_event_weather_1_button_down3_buttondown( lv_event_t * e);
 lv_obj_t *ui_weather_1_button_down3;
 // CUSTOM VARIABLES
 
 // SCREEN: ui_weather_2
-void ui_weather_2_screen_init(void);
-void ui_event_weather_2( lv_event_t * e);
+//void ui_weather_2_screen_init(void);
+//void ui_event_weather_2( lv_event_t * e);
 lv_obj_t *ui_weather_2;
 lv_obj_t *ui_weather_2_bg5;
 lv_obj_t *ui_weather_2_weather_dots_group1;
@@ -149,19 +149,19 @@ lv_obj_t *ui_weather_2_forecast_group3;
 lv_obj_t *ui_weather_2_forecast_group4;
 lv_obj_t *ui_weather_2_forecast_group5;
 lv_obj_t *ui_weather_2_space;
-void ui_event_weather_2_button_down4_buttondown( lv_event_t * e);
+//void ui_event_weather_2_button_down4_buttondown( lv_event_t * e);
 lv_obj_t *ui_weather_2_button_down4;
 // CUSTOM VARIABLES
 
 // SCREEN: ui_blood_oxy
-void ui_blood_oxy_screen_init(void);
-void ui_event_blood_oxy( lv_event_t * e);
+//void ui_blood_oxy_screen_init(void);
+//void ui_event_blood_oxy( lv_event_t * e);
 lv_obj_t *ui_blood_oxy;
 lv_obj_t *ui_blood_oxy_bg6;
 lv_obj_t *ui_blood_oxy_title_group_1;
-void ui_event_blood_oxy_button_down5_buttondown( lv_event_t * e);
+//void ui_event_blood_oxy_button_down5_buttondown( lv_event_t * e);
 lv_obj_t *ui_blood_oxy_button_down5;
-void ui_event_blood_oxy_button_round_buttonround( lv_event_t * e);
+//void ui_event_blood_oxy_button_round_buttonround( lv_event_t * e);
 lv_obj_t *ui_blood_oxy_button_round;
 lv_obj_t *ui_blood_oxy_blood_presure_group;
 lv_obj_t *ui_blood_oxy_blood_oxygen;
@@ -180,15 +180,15 @@ lv_obj_t *ui_blood_oxy_dot19;
 // CUSTOM VARIABLES
 
 // SCREEN: ui_ecg
-void ui_ecg_screen_init(void);
-void ui_event_ecg( lv_event_t * e);
+//void ui_ecg_screen_init(void);
+//void ui_event_ecg( lv_event_t * e);
 lv_obj_t *ui_ecg;
 lv_obj_t *ui_ecg_Image1;
 lv_obj_t *ui_ecg_bg1;
 lv_obj_t *ui_ecg_title_group_2;
-void ui_event_ecg_button_down6_buttondown( lv_event_t * e);
+//void ui_event_ecg_button_down6_buttondown( lv_event_t * e);
 lv_obj_t *ui_ecg_button_down6;
-void ui_event_ecg_button_round1_buttonround( lv_event_t * e);
+//void ui_event_ecg_button_round1_buttonround( lv_event_t * e);
 lv_obj_t *ui_ecg_button_round1;
 lv_obj_t *ui_ecg_pulse_group1;
 lv_obj_t *ui_ecg_health_dots_group1;
@@ -203,15 +203,15 @@ lv_obj_t *ui_ecg_chart_ecg_Yaxis2;
 // CUSTOM VARIABLES
 
 // SCREEN: ui_blood_pressure
-void ui_blood_pressure_screen_init(void);
-void ui_event_blood_pressure( lv_event_t * e);
+//void ui_blood_pressure_screen_init(void);
+//void ui_event_blood_pressure( lv_event_t * e);
 lv_obj_t *ui_blood_pressure;
 lv_obj_t *ui_blood_pressure_bg2;
 lv_obj_t *ui_blood_pressure_Image3;
 lv_obj_t *ui_blood_pressure_title_group_3;
-void ui_event_blood_pressure_button_down7_buttondown( lv_event_t * e);
+//void ui_event_blood_pressure_button_down7_buttondown( lv_event_t * e);
 lv_obj_t *ui_blood_pressure_button_down7;
-void ui_event_blood_pressure_button_round2_buttonround( lv_event_t * e);
+//void ui_event_blood_pressure_button_round2_buttonround( lv_event_t * e);
 lv_obj_t *ui_blood_pressure_button_round2;
 lv_obj_t *ui_blood_pressure_blood_presure_group1;
 lv_obj_t *ui_blood_pressure_sys_group;
@@ -231,8 +231,8 @@ lv_obj_t *ui_blood_pressure_dot11;
 // CUSTOM VARIABLES
 
 // SCREEN: ui_measuing
-void ui_measuing_screen_init(void);
-void ui_event_measuing( lv_event_t * e);
+//void ui_measuing_screen_init(void);
+//void ui_event_measuing( lv_event_t * e);
 lv_obj_t *ui_measuing;
 lv_obj_t *ui_measuing_bg7;
 lv_obj_t *ui_measuing_pulse_group3;
@@ -242,13 +242,13 @@ lv_obj_t *ui_measuing_blood_group;
 lv_obj_t *ui_measuing_blood1;
 lv_obj_t *ui_measuing_blood_fill;
 lv_obj_t *ui_measuing_blood2;
-void ui_event_measuing_x_button( lv_event_t * e);
+//void ui_event_measuing_x_button( lv_event_t * e);
 lv_obj_t *ui_measuing_x_button;
 lv_obj_t *ui_measuing_x;
 // CUSTOM VARIABLES
 
 // EVENTS
-void ui_event____initial_actions0( lv_event_t * e);
+//void ui_event____initial_actions0( lv_event_t * e);
 lv_obj_t *ui____initial_actions0;
 
 // IMAGES AND IMAGE SETS
