@@ -30,19 +30,19 @@ load_emmc_file(char *str, uint8_t *buf, uint32_t len)
          res = lv_fs_read(&f, buf, len, &read_cnt);
          if((res != LV_FS_RES_OK) || (read_cnt == 0))
          {
-           am_util_stdio_printf("File Read Error!\n");
+           LV_LOG_ERROR("File Read Error!\n");
            return res;
          }
 
          res = lv_fs_close(&f);
          if(res != LV_FS_RES_OK)
          {
-           am_util_stdio_printf("Fail to close file\n");
+           LV_LOG_ERROR("Fail to close file\n");
          }
     }
     else
     {
-        am_util_stdio_printf("Fail to open file!\n");
+        LV_LOG_ERROR("Fail to open file!\n");
     }
     return res;
 }
@@ -70,7 +70,7 @@ lv_obj_t *ui_dynamic_wallpaper_create(lv_obj_t *comp_parent)
     lv_obj_set_style_bg_color(lv_anim, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT );
     lv_obj_set_style_bg_opa(lv_anim, LV_OPA_COVER, LV_PART_MAIN| LV_STATE_DEFAULT);
     lv_obj_remove_flag(lv_anim, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
-    lv_animimg_set_src(lv_anim, (lv_img_dsc_t **)img_wallpaper, WALLPAPER_NUMBER);
+    lv_animimg_set_src(lv_anim, (const void **)img_wallpaper, WALLPAPER_NUMBER);
     lv_animimg_set_duration(lv_anim, 3500);
     lv_animimg_set_repeat_count(lv_anim, LV_ANIM_REPEAT_INFINITE);
     lv_obj_move_background(lv_anim);
