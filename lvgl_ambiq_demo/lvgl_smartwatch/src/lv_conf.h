@@ -242,6 +242,7 @@
 #if LV_USE_DRAW_AMBIQ
 #define LV_USE_AMBIQ_VG 1
 #define LV_AMBIQ_CPU_GPU_ASYNC 0
+#define LV_AMBIQ_GPU_POWER_SAVE 1
 
 
 /* The command list is divided into `LV_AMBIQ_COMMAND_LIST_SECTOR` sectors,
