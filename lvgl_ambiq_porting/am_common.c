@@ -223,10 +223,6 @@ am_gpu_init(void)
 #endif
 
     //
-    // If NEMA_GFX_POWERSAVE is defined, we keep GPU power off until an GPU CL is ready to submit.
-    //
-#ifndef NEMA_GFX_POWERSAVE
-    //
     // Power on GPU
     //
     am_hal_pwrctrl_periph_enable(AM_HAL_PWRCTRL_PERIPH_GFX);
@@ -252,6 +248,11 @@ am_gpu_init(void)
     }
 #endif
 
+#if LV_AMBIQ_GPU_POWER_SAVE 
+    //
+    // If LV_AMBIQ_GPU_POWER_SAVE is defined, we keep GPU power off until an GPU CL is ready to submit.
+    //
+    nemagfx_power_control(AM_HAL_SYSCTRL_DEEPSLEEP, true);
 #endif
 }
 
