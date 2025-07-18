@@ -164,6 +164,15 @@ int32_t nema_sys_init (void)
     return 0;
 }
 
+bool nema_sdk_initialized (void)
+{
+    //
+    // Check if the GPU has been initialized by examining the internal ring buffer state.
+    // If the ring buffer has already been initialized, the gpu is considered initialized.
+    //
+    return (ring_buffer_str.bo.base_phys != 0U);
+}
+
 int nema_wait_irq (void)
 {
     /* Wait for the interrupt */

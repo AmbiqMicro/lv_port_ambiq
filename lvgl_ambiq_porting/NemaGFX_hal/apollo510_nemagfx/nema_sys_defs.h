@@ -230,6 +230,19 @@ int nema_get_last_submission_id(void);
 
 //*****************************************************************************
 //
+//! @brief Check if the NemaSDK has been initialized.
+//! 
+//! This function returns true if the internal ring buffer
+//! has already been initialized, which indicates that
+//! the NemaSDK is ready for use.
+//!
+//! @return true if initialized, false otherwise.
+//
+//*****************************************************************************
+bool nema_sdk_initialized (void);
+
+//*****************************************************************************
+//
 //! @brief declaration of DC's interrupt callback initialize function
 //!
 //! @param  fnTECallback                - DC TE interrupt callback function
