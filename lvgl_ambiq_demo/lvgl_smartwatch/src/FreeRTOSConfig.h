@@ -76,7 +76,7 @@
 
 /* Constants that build features in or out. */
 #define configUSE_MUTEXES                               1
-#define configUSE_TICKLESS_IDLE                         0
+#define configUSE_TICKLESS_IDLE                         2
 #define configUSE_APPLICATION_TASK_TAG                  0
 #define configUSE_NEWLIB_REENTRANT                      0
 #define configUSE_COUNTING_SEMAPHORES                   1
@@ -163,5 +163,16 @@
 
 #define traceTASK_SWITCHED_OUT() lv_freertos_task_switch_out()
 #define traceTASK_SWITCHED_IN()  lv_freertos_task_switch_in(pxCurrentTCB->pcTaskName)
+
+extern uint32_t am_freertos_sleep(uint32_t);
+extern void am_freertos_wakeup(uint32_t);
+
+#define configPRE_SLEEP_PROCESSING(time)                                       \
+    do                                                                         \
+    {                                                                          \
+        (time) = am_freertos_sleep(time);                                      \
+    } while (0);
+
+#define configPOST_SLEEP_PROCESSING(time) am_freertos_wakeup(time)
 
 #endif /* FREERTOS_CONFIG_H */
