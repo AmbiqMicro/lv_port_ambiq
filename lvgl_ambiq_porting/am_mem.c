@@ -313,6 +313,12 @@ void am_mem_heap_free(am_mem_control_t *heap, void *p)
         return;
     }
 
+    uint32_t start_addr_pool = heap->start_addr;
+    uint32_t end_addr_pool = heap->start_addr + heap->pool_size;
+    uint32_t ptr_uint = (uint32_t)p;
+
+    LV_ASSERT_MSG((ptr_uint > start_addr_pool) && (ptr_uint < end_addr_pool), "Pointer address out of heap bounds");
+
     if (xSemaphoreTake(heap->mutex, portMAX_DELAY) == pdTRUE)
     {
         size_t size = tlsf_block_size(p);
