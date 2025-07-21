@@ -245,7 +245,7 @@ ft_lv_fs_stream_close(FT_Stream  stream)
 {
     lv_fs_file_t * file_p = STREAM_FILE(stream);
     lv_fs_close(file_p);
-    am_mem_ssram_free(file_p);
+    lv_free(file_p);
 
     stream->descriptor.pointer = NULL;
     stream->size               = 0;
