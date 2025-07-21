@@ -154,8 +154,12 @@ SemaphoreHandle_t display_buffer_lock = NULL;
 //! @return 0, success, -1, failed.
 //
 //*****************************************************************************
-void buffer_sync(const lv_area_t * area, lv_display_render_mode_t render_mode, void* src, bool wait_GPU)
+void buffer_sync(const lv_area_t * area, void* src, bool wait_GPU)
 {
+    lv_area_t display_buffer_area = {0, 0, LV_AMBIQ_DISPLAY_BUFFER_RESX - 1, LV_AMBIQ_DISPLAY_BUFFER_RESY - 1};
+    if(area == NULL) {
+        area = (const lv_area_t *)&display_buffer_area;
+    }
 
     int32_t w = lv_area_get_width(area);
     int32_t h = lv_area_get_height(area);
@@ -174,34 +178,15 @@ void buffer_sync(const lv_area_t * area, lv_display_render_mode_t render_mode, v
     lv_ambiq_set_blend_blit(NULL, NEMA_BL_SRC);
 
     //Bind source buffer
-    uint32_t source_width;
-    uint32_t source_hight;
-    if((render_mode==LV_DISPLAY_RENDER_MODE_DIRECT) || (render_mode==LV_DISPLAY_RENDER_MODE_FULL))
-    {
-        source_width = LV_AMBIQ_DISPLAY_BUFFER_RESX;
-        source_hight = LV_AMBIQ_DISPLAY_BUFFER_RESY;
-    }
-    else
-    {
-        source_width = w;
-        source_hight = h;
-    }
     nema_bind_src_tex((uintptr_t)src,
-                  source_width,
-                  source_hight,
+                  w,
+                  h,
                   LV_AMBIQ_DRAW_BUFFER_FORMAT_NEMA,
                   -1,
                   NEMA_FILTER_PS);
 
     //Blit
-    if((render_mode==LV_DISPLAY_RENDER_MODE_DIRECT) || (render_mode==LV_DISPLAY_RENDER_MODE_FULL))
-    {
-        nema_blit_subrect(area->x1, area->y1, w, h, area->x1, area->y1);
-    }
-    else
-    {
-        nema_blit_rect(area->x1, area->y1, w, h);
-    }
+    nema_blit_rect(area->x1, area->y1, w, h);
 
     lv_draw_ambiq_common_end(wait_GPU);
 
@@ -243,6 +228,14 @@ display_flush_cb(lv_display_t * display, const lv_area_t * area, uint8_t * px_ma
     // and start transfer the display buffer to display panel.
     bool is_last = lv_display_flush_is_last(display);
 
+    if((LV_AMBIQ_RENDER_MODE != LV_DISPLAY_RENDER_MODE_PARTIAL) && !is_last)
+    {
+        // Inform LVGL that the draw buffer is available to be used.
+        lv_disp_flush_ready(display); 
+        
+        return;
+    }
+
     // Lock display buffer, prevent display interface from reading this buffer.
     bool ret = xSemaphoreTake(display_buffer_lock, DISPLAY_REFRESH_TIMEOUT);
     if(ret == pdFALSE)
@@ -260,7 +253,10 @@ display_flush_cb(lv_display_t * display, const lv_area_t * area, uint8_t * px_ma
 #endif
 
     // Copy draw buffer to display buffer.
-    buffer_sync(&area_display, LV_AMBIQ_RENDER_MODE, (void*)px_map, wait_GPU);
+    if(LV_AMBIQ_RENDER_MODE == LV_DISPLAY_RENDER_MODE_PARTIAL)
+        buffer_sync(&area_display, (void*)px_map, wait_GPU);
+    else
+        buffer_sync(NULL, (void*)px_map, wait_GPU);
 
     // Unlock this buffer.
     xSemaphoreGive(display_buffer_lock);
