@@ -238,7 +238,32 @@ typedef struct {
  * @param bitmap_glyph A pointer to a struct containing all parameters for the glyph to be drawn.
  */
 void lv_ambiq_draw_bitmap_glyph(lv_ambiq_draw_bitmap_glyph_t *bitmap_glyph );                                                       
+/**
+ * @brief Renders a rounded-corner shadow using a radial gradient with vector graphics.
+ *
+ * This function draws a quarter-circle corner shadow using VG.
+ * The shadow has a smooth radial gradient, the gradient smoothly fades within the sw range.
+ *
+ * @param size     The size of the corner region (width and height in pixels).
+ * @param sw       Blur extent.
+ * @param sh_buf   Destination buffer where the VG-rendered corner shadow will be stored.
+ * @param paint    VG paint handle.
+ * @param grad     VG gradient handle.
+ */
+void lv_ambiq_shadow_blur_corner_vg(float size, float sw, uint32_t* sh_buf, NEMA_VG_PAINT_HANDLE paint, NEMA_VG_GRAD_HANDLE grad);
 
+/**
+ * @brief Create a rounded corner mask for shadow rendering.
+ *
+ * This function generates a circular (rounded) corner mask used for
+ * rendering smooth shadows. The generated mask is written into the 
+ * provided buffer.
+ *
+ * @param size    The radius of the rounded corner.
+ * @param sw      The total shadow width.
+ * @param sh_buf  Pointer to the buffer where the generated mask will be stored.
+ */
+void lv_ambiq_create_corner_mask(uint32_t size, uint32_t sw, uint32_t* sh_buf);
 #ifdef __cplusplus
 }
 #endif
