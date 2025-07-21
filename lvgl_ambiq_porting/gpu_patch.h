@@ -237,7 +237,8 @@ typedef struct {
  *
  * @param bitmap_glyph A pointer to a struct containing all parameters for the glyph to be drawn.
  */
-void lv_ambiq_draw_bitmap_glyph(lv_ambiq_draw_bitmap_glyph_t *bitmap_glyph );                                                       
+void lv_ambiq_draw_bitmap_glyph(lv_ambiq_draw_bitmap_glyph_t *bitmap_glyph );
+
 /**
  * @brief Renders a rounded-corner shadow using a radial gradient with vector graphics.
  *
@@ -264,6 +265,29 @@ void lv_ambiq_shadow_blur_corner_vg(float size, float sw, uint32_t* sh_buf, NEMA
  * @param sh_buf  Pointer to the buffer where the generated mask will be stored.
  */
 void lv_ambiq_create_corner_mask(uint32_t size, uint32_t sw, uint32_t* sh_buf);
+
+/**
+ * @brief Convert an L8 format image to L4 format using GPU acceleration.
+ *
+ * This function performs a hardware-accelerated conversion from L8 
+ * format to L4 format using the NemaGFX raster engine. The input L8 image must have
+ * an even width due to the 4-bit per pixel packing requirement.
+ *
+ * @param l8_ptr   Pointer to the input buffer containing L8 image data.
+ * @param l4_ptr   Pointer to the output buffer to store the converted L4 image data.
+ * @param width    Width of the input image (must be even).
+ * @param height   Height of the input image.
+ *
+ * @return Returns 0 on successful execution. If the width is not even, returns 0 and performs no operation.
+ *
+ * @note This function assumes that `l8_ptr` and `l4_ptr` are valid non-null pointers,
+ *       and that both the L8 input image and L4 output image share the same pixel dimensions
+ *       (i.e., width × height pixels). The `l8_ptr` buffer must be at least (width × height) bytes,
+ *       as each pixel is stored with 8-bit. The `l4_ptr` buffer must be at least
+ *       ((width × height) / 2) bytes, since two 4-bit alpha values are packed into each byte (L4).
+ *       No memory allocation or bounds checking is performed within the function.
+ */
+uint32_t lv_ambiq_l8_l4_convert(void* l8_ptr, void* l4_ptr, uint32_t width, uint32_t height);
 #ifdef __cplusplus
 }
 #endif
