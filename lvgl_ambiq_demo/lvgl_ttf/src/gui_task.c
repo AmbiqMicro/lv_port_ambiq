@@ -27,6 +27,7 @@
 #include "gui_task.h"
 #include "lvgl_ttf.h"
 #include "demos/lv_demos.h"
+#include "lv_ambiq_ttf.h"
 
 //*****************************************************************************
 //
@@ -72,6 +73,7 @@ static void canvas_destroy(lv_obj_t * canvas)
     lv_obj_delete(canvas);
 }
 
+#if LV_USE_FREETYPE
 void test_draw_sin_wave(void)
 {
     const char * string = "lol~ I'm wavvvvvvving~";
@@ -144,6 +146,118 @@ void test_draw_sin_wave(void)
 
     lv_canvas_finish_layer(canvas, &layer);
 }
+#endif
+
+#if LV_USE_AMBIQ_TTF
+/**
+ * @brief Creates a new LVGL font from a binary font file with a selectable loading strategy.
+ * @details This function can either load the font directly from the filesystem or, for
+ *          better performance, pre-load the entire file into a PSRAM buffer first.
+ *
+ *          **File Mode (`load_into_psram = false`):**
+ *          - Calls `lv_ambiq_ttf_create_file`.
+ *          - The font loader will keep the file handle open and perform I/O operations
+ *            on demand when glyph shapes are needed.
+ *          - Lower initial RAM usage.
+ *
+ *          **PSRAM Mode (`load_into_psram = true`):**
+ *          - Reads the entire font file into a buffer in PSRAM.
+ *          - Calls `lv_ambiq_ttf_create_data` using the buffer.
+ *          - All subsequent operations read from fast PSRAM, eliminating file I/O lag.
+ *          - The PSRAM buffer is attached to `font->user_data` and freed by
+ *            `lv_ambiq_ttf_destroy`.
+ *
+ * @param font_size The initial desired font height in pixels.
+ * @param load_into_psram If `true`, the font is loaded into PSRAM. If `false`, it is loaded directly from the file.
+ * @return A pointer to the newly created `lv_font_t` object, or `NULL` on failure.
+ */
+lv_font_t * lv_example_ambiq_ttf_create(uint32_t font_size, bool load_into_psram)
+{
+    const char* path = "E:SourceHanSansSC-Light_1_1.bin"; // Path on the LVGL virtual filesystem
+
+    // --- Strategy 1: Load directly from file ---
+    if (!load_into_psram) {
+        LV_LOG_INFO("Loading font directly from file: %s", path);
+        // This is the simpler path. The lv_ambiq_ttf library will handle all file operations.
+        return lv_ambiq_ttf_create_file(path, font_size);
+    }
+
+    // --- Strategy 2: Pre-load the entire file into PSRAM for performance ---
+    LV_LOG_INFO("Pre-loading font file '%s' into PSRAM.", path);
+    
+    lv_fs_file_t file;
+    lv_fs_res_t res = lv_fs_open(&file, path, LV_FS_MODE_RD);
+    if (res != LV_FS_RES_OK) {
+        LV_LOG_ERROR("Failed to open font file: %s (error: %d)", path, res);
+        return NULL;
+    }
+
+    // --- Get file length ---
+    uint32_t length = 0;
+    res = lv_fs_seek(&file, 0, LV_FS_SEEK_END);
+    if (res == LV_FS_RES_OK) {
+        res = lv_fs_tell(&file, &length);
+    }
+    if (res != LV_FS_RES_OK) {
+        LV_LOG_ERROR("Failed to get file size for: %s", path);
+        lv_fs_close(&file);
+        return NULL;
+    }
+
+    // Rewind the file to the beginning before reading.
+    lv_fs_seek(&file, 0, LV_FS_SEEK_SET);
+    
+    if (length == 0) {
+        LV_LOG_ERROR("Font file is empty: %s", path);
+        lv_fs_close(&file);
+        return NULL;
+    }
+
+    // --- Allocate PSRAM and read the file content into it ---
+    LV_LOG_INFO("Allocating %d bytes in PSRAM for font file.", length);
+    uint8_t *bin_data = am_mem_psram_malloc(length);
+    if (bin_data == NULL) {
+        LV_LOG_ERROR("Failed to allocate %d bytes in PSRAM.", length);
+        lv_fs_close(&file);
+        return NULL;
+    }
+
+    uint32_t bytes_read = 0;
+    res = lv_fs_read(&file, bin_data, length, &bytes_read);
+
+    // After reading, the file is no longer needed.
+    lv_fs_close(&file);
+
+    if (res != LV_FS_RES_OK || bytes_read != length) {
+        LV_LOG_ERROR("Failed to read the full font file into buffer. Read %d of %d bytes.", bytes_read, length);
+        am_mem_psram_free(bin_data); // CRITICAL: Free the buffer on failure.
+        return NULL;
+    }
+
+    // --- Create the font from the in-memory buffer ---
+    lv_font_t * new_font = lv_ambiq_ttf_create_data(bin_data, length, font_size);
+    if (new_font == NULL) {
+        LV_LOG_ERROR("Font creation from buffer failed.");
+        am_mem_psram_free(bin_data); // CRITICAL: Free the buffer if creation fails.
+        return NULL;
+    }
+
+    // --- IMPORTANT: Attach the buffer to the font for proper memory management ---
+    new_font->user_data = bin_data;
+
+    return new_font;
+}
+#endif
+
+#if LV_USE_FREETYPE
+lv_font_t * lv_example_freetype_create(uint32_t font_size)
+{
+    return lv_freetype_font_create("E:SourceHanSansSC-Normal.ttf",
+                                               LV_FREETYPE_FONT_RENDER_MODE_OUTLINE,
+                                               font_size,
+                                               LV_FREETYPE_FONT_STYLE_NORMAL);
+}
+#endif
 
 
 /*
@@ -172,11 +286,11 @@ void lv_example_freetype_2_vector_font(uint32_t font_size, uint32_t border_width
         "whereavailable,ensuringoptimalperformance.Apracticalreferencefor"
         "developersenhancingLVGLwithprofessional-gradetextrendering.";
 
-    lv_font_t * font = lv_freetype_font_create("E:SourceHanSansSC-Normal.ttf",
-                                               LV_FREETYPE_FONT_RENDER_MODE_OUTLINE,
-                                               font_size,
-                                               LV_FREETYPE_FONT_STYLE_NORMAL);
 
+    // LV_UNUSED(border_width); // Use this if border_width is not used
+    // LV_UNUSED(entxt);      // Use this if entxt is not used
+
+    lv_font_t * font = lv_example_ambiq_ttf_create(font_size, true);
 
     if(!font) {
         LV_LOG_ERROR("Freetype font create failed.");
@@ -195,21 +309,51 @@ void lv_example_freetype_2_vector_font(uint32_t font_size, uint32_t border_width
      * This step ensures that necessary glyphs are loaded into memory*/
     lv_obj_t * label = lv_label_create(lv_screen_active());
     lv_obj_add_style(label, &style, 0);
-    lv_obj_set_width(label, lv_pct(100));
+    lv_obj_set_width(label, lv_pct(80)); // Use less than 100% to see movement
     lv_label_set_long_mode(label, LV_LABEL_LONG_WRAP);
     lv_label_set_text(label, cntxt);
     lv_obj_center(label);
 
-    /* Create a second label to test rendering performance under ideal conditions,
-     * assuming all required glyphs are already loaded into memory. */
-    lv_obj_t * label2 = lv_label_create(lv_screen_active());
-    lv_obj_add_style(label2, &style, 0);
-    lv_obj_set_width(label2, lv_pct(100));
-    lv_label_set_long_mode(label, LV_LABEL_LONG_WRAP);
-    lv_label_set_text(label2, cntxt);
-    lv_obj_center(label2);
+    // /* Create a second label to test rendering performance under ideal conditions,
+    //  * assuming all required glyphs are already loaded into memory. */
+    // lv_obj_t * label2 = lv_label_create(lv_screen_active());
+    // lv_obj_add_style(label2, &style, 0);
+    // lv_obj_set_width(label2, lv_pct(80));
+    // lv_label_set_long_mode(label2, LV_LABEL_LONG_WRAP); // Corrected: target label2
+    // lv_label_set_text(label2, entxt); // Use the English text for variety
+    // // Position label2 below label1
+    // lv_obj_align_to(label2, label, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
+
+
+    // --- ADDED: Animation for the first label ---
+    LV_LOG_INFO("Starting animation for the first label.");
+    static lv_anim_t a;
+    lv_anim_init(&a);
+
+    /* Set the object to animate */
+    lv_anim_set_var(&a, label);
+
+    /* Define the animation path (start and end values) */
+    // We will animate the Y-coordinate relative to its current centered position.
+    int32_t start_y = lv_obj_get_y(label) - 15; // Move 15 pixels up
+    int32_t end_y   = lv_obj_get_y(label) + 15; // Move 15 pixels down
+
+    lv_anim_set_values(&a, start_y, end_y);
+
+    /* Set the function that will apply the animation value */
+    // lv_obj_set_y is the function to change the Y-coordinate.
+    lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t)lv_obj_set_y);
+
+    /* Set animation properties */
+    lv_anim_set_time(&a, 2000); // Duration of one-way animation (2 seconds)
+    lv_anim_set_playback_time(&a, 2000); // Duration of the return animation (2 seconds)
+    lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINITE); // Loop forever
+
+    /* Start the animation */
+    lv_anim_start(&a);
 }
 
+#if LV_USE_FREETYPE
 /**
  * Load a font with FreeType
  */
@@ -248,6 +392,7 @@ void lv_example_freetype_2(void)
     lv_label_set_text(label, "Hello world\nI'm a font created with FreeType 😀");
     lv_obj_center(label);
 }
+#endif
 
 //*****************************************************************************
 //
