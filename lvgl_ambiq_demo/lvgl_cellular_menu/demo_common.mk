@@ -1,7 +1,7 @@
 TARGET := lvgl_cellular_menu
 
-DEFINES+= -DLV_AMBIQ_DISPLAY_BUFFER_RESX=468
-DEFINES+= -DLV_AMBIQ_DISPLAY_BUFFER_RESY=468
+DEFINES+= -DLV_AMBIQ_DISPLAY_BUFFER_RESX=464
+DEFINES+= -DLV_AMBIQ_DISPLAY_BUFFER_RESY=464
 DEFINES+= -DCPU_RUN_IN_HP_MODE
 DEFINES+= -DGPU_RUN_IN_HP_MODE
 DEFINES+= -DLV_AMBIQ_USE_DIRECT_MODE=1
@@ -17,10 +17,3 @@ SRC += rtos.c
 SRC += am_resources.c
 SRC += gui_task.c
 SRC += lvgl_cellular_menu.c
-
-LVGL_CSRCS += \
-    $(wildcard ../src/gui/*.c) \
-    $(wildcard ../src/gui/components/*.c) \
-    $(wildcard ../src/gui/fonts/*.c) \
-    $(wildcard ../src/gui/images/*.c) \
-    $(wildcard ../src/gui/screens/*.c)
