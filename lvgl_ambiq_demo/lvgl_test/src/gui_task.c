@@ -114,6 +114,20 @@ void lv_example_loading_font(void)
     lv_obj_set_style_text_font(label3, my_font, 0);
     lv_obj_align(label3, LV_ALIGN_TOP_MID, 0, 150);
 }
+
+void initArc(void)
+{
+    lv_obj_t * arc = lv_arc_create(lv_screen_active());
+    lv_obj_set_size(arc, 240, 240);
+    lv_arc_set_rotation(arc, 135);
+    lv_arc_set_bg_angles(arc, 0, 270);
+    lv_arc_set_value(arc, 40);
+    lv_obj_set_style_arc_width(arc, 0, LV_PART_MAIN);
+    lv_obj_set_style_arc_width(arc, 20, LV_PART_INDICATOR);
+    // lv_obj_set_style_arc_color(arc, lv_color_make(0xff,0xc3,0x56), LV_PART_INDICATOR);
+    // lv_obj_remove_style(arc, NULL, LV_PART_KNOB);
+    lv_obj_center(arc);
+}
 //*****************************************************************************
 //
 // Task function.
@@ -164,12 +178,13 @@ GuiTask(void *pvParameters)
 
     // lv_demo_benchmark();
     lv_demo_music();
-    //lv_demo_scroll();
-    //lv_demo_vector_graphic_not_buffered();
-    //lv_example_style_5();
+    // lv_demo_scroll();
+    // lv_demo_vector_graphic_not_buffered();
+    // lv_example_style_5();
     // lv_example_loading_font();
     // lv_example_gif_1();
     // lv_example_lodepng_1();
+    // initArc();
     while(1)
     {
         uint32_t time_till_next;
