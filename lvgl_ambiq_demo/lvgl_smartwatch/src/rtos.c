@@ -67,18 +67,7 @@ TaskHandle_t xSetupTask;
 //*****************************************************************************
 uint32_t am_freertos_sleep(uint32_t idleTime)
 {
-
-    //
-    // Prepare for deepsleep while SWO is still enabled
-    //
-    am_bsp_debug_printf_deepsleep_prepare(true);
-
     am_hal_sysctrl_sleep(AM_HAL_SYSCTRL_SLEEP_DEEP);
-
-    //
-    // Restore from deepsleep
-    //
-    am_bsp_debug_printf_deepsleep_prepare(false);
     return 0;
 }
 
