@@ -195,8 +195,8 @@ typedef struct {
     /** The color to be modulated with the bitmap's alpha values to render the glyph. */
     uint32_t color;
 
-    /** A flag indicating if the bitmap data has special alignment properties that allow for a more optimized rendering path. */
-    bool aligned;
+    /** Stride of the glyph. */
+    uint32_t stride;
 
     /** The rotation angle for the glyph, often in high-precision units (e.g., 1/10th of a degree). */
     int32_t rotate_angle;
