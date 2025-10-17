@@ -60,7 +60,7 @@
 #endif
 
 #ifndef PSRAM_POOL_SIZE
-#define PSRAM_POOL_SIZE 0x1F00000
+#define PSRAM_POOL_SIZE 0x1E00000
 #endif
 
 #ifndef SSRAM_CACHE_ENABLE
