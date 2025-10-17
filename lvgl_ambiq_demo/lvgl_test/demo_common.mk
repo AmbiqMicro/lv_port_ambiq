@@ -21,8 +21,11 @@ SRC += lvgl_test.c
 LVGL_CSRCS += \
     $(wildcard $(LVGL_PATH)/demos/scroll/*.c) \
     $(wildcard $(LVGL_PATH)/demos/render/*.c) \
+    $(wildcard $(LVGL_PATH)/demos/widgets/*.c) \
+    $(wildcard $(LVGL_PATH)/demos/widgets/assets/*.c) \
     $(wildcard $(LVGL_PATH)/demos/vector_graphic/*.c) \
     $(wildcard $(LVGL_PATH)/demos/benchmark/*.c) \
+    $(wildcard $(LVGL_PATH)/demos/benchmark/assets/*.c) \
     $(wildcard $(LVGL_PATH)/demos/music/*.c) \
     $(wildcard $(LVGL_PATH)/demos/music/assets/*.c) \
     $(wildcard $(LVGL_PATH)/examples/libs/gif/*.c) \
