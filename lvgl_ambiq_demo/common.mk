@@ -187,6 +187,8 @@ LVGL_CSRCS += \
     $(wildcard $(LVGL_PATH)/src/layouts/grid/*.c) \
     $(wildcard $(LVGL_PATH)/src/misc/*.c) \
     $(wildcard $(LVGL_PATH)/src/misc/cache/*.c) \
+    $(wildcard $(LVGL_PATH)/src/misc/cache/class/*.c) \
+    $(wildcard $(LVGL_PATH)/src/misc/cache/instance/*.c) \
     $(wildcard $(LVGL_PATH)/src/osal/*.c) \
     $(wildcard $(LVGL_PATH)/src/others/*.c) \
     $(wildcard $(LVGL_PATH)/src/others/sysmon/*.c) \
