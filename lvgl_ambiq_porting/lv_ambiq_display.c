@@ -139,60 +139,6 @@ lv_draw_buf_t* display_buffer = NULL;
 //*****************************************************************************
 SemaphoreHandle_t display_buffer_lock = NULL;
 
-//*****************************************************************************
-//
-//! @brief GPU memcpy, use the GPU do the memcpy, this much faster than CPU memcpy.
-//!
-//! @param resx - X resolution.
-//! @param resy - Y resolution.
-//! @param format - Color format.
-//! @param des - Destination buffer.
-//! @param src - Source buffer.
-//!
-//! @note The src and des buffers must have the same resolution and color format.
-//!
-//! @return 0, success, -1, failed.
-//
-//*****************************************************************************
-void buffer_sync(const lv_area_t * area, void* src, bool wait_GPU)
-{
-    lv_area_t display_buffer_area = {0, 0, LV_AMBIQ_DISPLAY_BUFFER_RESX - 1, LV_AMBIQ_DISPLAY_BUFFER_RESY - 1};
-    if(area == NULL) {
-        area = (const lv_area_t *)&display_buffer_area;
-    }
-
-    int32_t w = lv_area_get_width(area);
-    int32_t h = lv_area_get_height(area);
-
-    if((w <= 0) || (h <= 0))
-        return;
-
-    lv_result_t ret = lv_draw_ambiq_common_start(display_buffer, area, false);
-    if(ret != LV_RESULT_OK)
-    {
-        return;
-    }
-
-
-    //Set blend mode
-    lv_ambiq_set_blend_blit(NULL, NEMA_BL_SRC);
-
-    //Bind source buffer
-    nema_bind_src_tex((uintptr_t)src,
-                  w,
-                  h,
-                  LV_AMBIQ_DRAW_BUFFER_FORMAT_NEMA,
-                  -1,
-                  NEMA_FILTER_PS);
-
-    //Blit
-    nema_blit_rect(area->x1, area->y1, w, h);
-
-    lv_draw_ambiq_common_end(wait_GPU);
-
-    return;
-}
-
 void transfer_complete_cb(void* args)
 {
     SemaphoreHandle_t sem = (SemaphoreHandle_t)args;
@@ -243,20 +189,9 @@ display_flush_cb(lv_display_t * display, const lv_area_t * area, uint8_t * px_ma
         LV_LOG_ERROR("display buffer transfer timer out!");
     }
 
-    /**
-     * If CPU and GPU are working in asynchronous mode, and the current updated area is not the last area to be updated,
-     * it is not necessary to wait for the GPU to complete the memcpy operation, which can improve overall performance.
-     */
-    bool wait_GPU = true;
-#if LV_AMBIQ_CPU_GPU_ASYNC
-    wait_GPU = is_last;
-#endif
-
     // Copy draw buffer to display buffer.
-    if(LV_AMBIQ_RENDER_MODE == LV_DISPLAY_RENDER_MODE_PARTIAL)
-        buffer_sync(&area_display, (void*)px_map, wait_GPU);
-    else
-        buffer_sync(NULL, (void*)px_map, wait_GPU);
+	lv_area_t *target_area = (LV_AMBIQ_RENDER_MODE == LV_DISPLAY_RENDER_MODE_PARTIAL) ? &area_display : NULL;
+	lv_draw_ambiq_display_buffer_sync(display_buffer, target_area, (void*)px_map, LV_AMBIQ_DRAW_BUFFER_FORMAT);
 
     // Unlock this buffer.
     xSemaphoreGive(display_buffer_lock);
