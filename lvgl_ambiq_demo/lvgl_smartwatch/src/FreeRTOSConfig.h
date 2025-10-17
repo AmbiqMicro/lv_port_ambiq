@@ -76,6 +76,7 @@
 
 /* Constants that build features in or out. */
 #define configUSE_MUTEXES                               1
+#define configOVERRIDE_DEFAULT_TICK_CONFIGURATION       1
 #define configUSE_TICKLESS_IDLE                         2
 #define configUSE_APPLICATION_TASK_TAG                  0
 #define configUSE_NEWLIB_REENTRANT                      0
