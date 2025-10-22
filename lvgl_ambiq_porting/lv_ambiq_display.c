@@ -28,15 +28,6 @@
 #include "task.h"
 #include "semphr.h"
 #include "event_groups.h"
-#include "nema_hal.h"
-#include "nema_math.h"
-#include "nema_core.h"
-#include "nema_regs.h"
-#include "nema_utils.h"
-#include "nema_event.h"
-#include "nema_graphics.h"
-#include "nema_programHW.h"
-#include "nema_error.h"
 #include "lv_ambiq_display.h"
 
 //*****************************************************************************
@@ -100,27 +91,19 @@
 //*****************************************************************************
 #if LV_COLOR_DEPTH==8
     #define LV_AMBIQ_DRAW_BUFFER_FORMAT             LV_COLOR_FORMAT_L8
-    #define LV_AMBIQ_DRAW_BUFFER_FORMAT_NEMA        NEMA_L8
     #define LV_AMBIQ_DISPLAY_BUFFER_FORMAT          LV_COLOR_FORMAT_L8    
-    #define LV_AMBIQ_DISPLAY_BUFFER_FORMAT_NEMA     NEMA_L8
     #define LV_AMBIQ_DISPLAY_PANEL_FORMAT           COLOR_FORMAT_8BIT
 #elif LV_COLOR_DEPTH==16
     #define LV_AMBIQ_DRAW_BUFFER_FORMAT             LV_COLOR_FORMAT_RGB565
-    #define LV_AMBIQ_DRAW_BUFFER_FORMAT_NEMA        NEMA_RGB565
     #define LV_AMBIQ_DISPLAY_BUFFER_FORMAT          LV_COLOR_FORMAT_RGB565    
-    #define LV_AMBIQ_DISPLAY_BUFFER_FORMAT_NEMA     NEMA_RGB565
     #define LV_AMBIQ_DISPLAY_PANEL_FORMAT           COLOR_FORMAT_RGB565
 #elif LV_COLOR_DEPTH==24
     #define LV_AMBIQ_DRAW_BUFFER_FORMAT             LV_COLOR_FORMAT_RGB888
-    #define LV_AMBIQ_DRAW_BUFFER_FORMAT_NEMA        NEMA_BGR24
-    #define LV_AMBIQ_DISPLAY_BUFFER_FORMAT          LV_COLOR_FORMAT_RGB888
-    #define LV_AMBIQ_DISPLAY_BUFFER_FORMAT_NEMA     NEMA_RGB24  
+    #define LV_AMBIQ_DISPLAY_BUFFER_FORMAT          LV_COLOR_FORMAT_BGR888
     #define LV_AMBIQ_DISPLAY_PANEL_FORMAT           COLOR_FORMAT_RGB888
 #elif LV_COLOR_DEPTH==32
     #define LV_AMBIQ_DRAW_BUFFER_FORMAT             LV_COLOR_FORMAT_XRGB8888
-    #define LV_AMBIQ_DRAW_BUFFER_FORMAT_NEMA        NEMA_BGRX8888
-    #define LV_AMBIQ_DISPLAY_BUFFER_FORMAT          LV_COLOR_FORMAT_RGB888
-    #define LV_AMBIQ_DISPLAY_BUFFER_FORMAT_NEMA     NEMA_RGB24     
+    #define LV_AMBIQ_DISPLAY_BUFFER_FORMAT          LV_COLOR_FORMAT_BGR888    
     #define LV_AMBIQ_DISPLAY_PANEL_FORMAT           COLOR_FORMAT_RGB888
 #endif
 
