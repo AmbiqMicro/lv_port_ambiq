@@ -62,7 +62,7 @@
 #include "nema_vg_font.h"
 
 
-#if defined(apollo510_evb)
+#if defined(apollo510_evb) || defined(apollo510b_evb)
 #include "am_devices_mspi_psram_aps25616ba_1p2v.h"
 #else
 #include "am_devices_mspi_psram_aps25616n.h"
@@ -185,7 +185,7 @@ void psram_mspi_isr(void)
 
 mspi_device_func_t mspi_device_func =
 {
-#if defined(apollo510_evb)
+#if defined(apollo510_evb) || defined(apollo510b_evb)
     .devName = "MSPI PSRAM APS25616BA",
     .mspi_init = am_devices_mspi_psram_aps25616ba_ddr_init,
     .mspi_init_timing_check = am_devices_mspi_psram_aps25616ba_ddr_init_timing_check,
@@ -272,7 +272,7 @@ void am_mspi_init(void)
     am_util_stdio_printf("Starting MSPI DDR Timing Scan: \n");
     if ( AM_DEVICES_MSPI_PSRAM_STATUS_SUCCESS == mspi_device_func.mspi_init_timing_check(MSPI_PSRAM_MODULE, &g_sMspiPsramConfig, &MSPIDdrTimingConfig) )
     {
-#if defined(apollo510_evb)
+#if defined(apollo510_evb) || defined(apollo510b_evb)
         am_util_stdio_printf("==== Scan Result: RXDQSDELAY0 = %d \n", MSPIDdrTimingConfig.sTimingCfg.ui8RxDQSDelay);
 #else
         am_util_stdio_printf("==== Scan Result: RXDQSDELAY0 = %d \n", MSPIDdrTimingConfig.ui32Rxdqsdelay);
