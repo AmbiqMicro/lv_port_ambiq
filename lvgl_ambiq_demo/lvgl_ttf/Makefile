@@ -38,14 +38,18 @@
 #
 #******************************************************************************
 
-all: AP510_EVB AP5B_EB_REVB
+all: AP510_EVB AP510B_EVB AP5B_EB_REVB
 
 AP510_EVB:
 	$(MAKE) -C ./apollo510_evb
+	
+AP510B_EVB:
+	$(MAKE) -C ./apollo510b_evb
 
 AP5B_EB_REVB:
 	$(MAKE) -C ./apollo5b_eb_revb
 
 clean:
 	$(MAKE) -C ./apollo510_evb clean
+	$(MAKE) -C ./apollo510b_evb clean
 	$(MAKE) -C ./apollo5b_eb_revb clean

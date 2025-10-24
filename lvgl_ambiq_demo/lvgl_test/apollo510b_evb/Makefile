@@ -1,6 +1,6 @@
 #******************************************************************************
 #
-# Makefile - Rules for compiling
+# Makefile - Rules for building the libraries, examples and docs.
 #
 # Copyright (c) 2024, Ambiq Micro, Inc.
 # All rights reserved.
@@ -37,19 +37,36 @@
 # This is part of revision release_sdk_4_5_0-a1ef3b89f9 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
+# CPU
+PART = apollo510
+CPU = cortex-m55
+FPU = auto
+FABI = hard
 
-all: AP510_EVB AP510B_EVB AP5B_EB_REVB
+DEFINES+= -DAM_PART_APOLLO510
 
-AP510_EVB:
-	$(MAKE) -C ./apollo510_evb
+# BSP
+BSP = apollo510b_evb
+DEFINES+= -Dapollo510b_evb
+# AmbiqSuite/boards
+INCLUDES+= -I$(AMBIQSUITE_PATH)/boards/$(BSP)/bsp
+INCLUDES+= -I$(AMBIQSUITE_PATH)/third_party/cordio/wsf/sources/port/freertos
+INCLUDES+= -I$(AMBIQSUITE_PATH)/third_party/cordio/wsf/sources/util
+VPATH+=:$(AMBIQSUITE_PATH)/boards/$(BSP)/bsp
 
-AP510B_EVB:
-	$(MAKE) -C ./apollo510b_evb
+SRC += am_bsp.c
+SRC += am_bsp_pins.c
+SRC += system_apollo510.c
 
-AP5B_EB_REVB:
-	$(MAKE) -C ./apollo5b_eb_revb
+# AmbiqSuite/devices
+SRC += am_devices_mspi_psram_aps25616ba_1p2v.c
+SRC += am_devices_display_generic.c
+# SRC += am_devices_tma525.c
+SRC += am_devices_chsc5816_ap5.c
+SRC += am_devices_em9305.c
 
-clean:
-	$(MAKE) -C ./apollo510_evb clean
-	$(MAKE) -C ./apollo510b_evb clean
-	$(MAKE) -C ./apollo5b_eb_revb clean
+
+# Common makefile
+include  ../demo_common.mk
+include ../../common.mk
+
