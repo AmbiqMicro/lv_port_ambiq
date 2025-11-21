@@ -1,13 +1,38 @@
 name: Hello from My PC
 
 on:
-  workflow_dispatch:  # 允许手动触发
-  push:               # 也支持 push 触发
+  # 支持手动触发（在 GitHub Actions 页面可以看到 "Run workflow" 按钮）
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Custom message to display'
+        required: false
+        default: 'Hi from my local computer!'
+        type: string
+  # 也支持 push 触发
+  push:
     branches: [ ci-runner ]
 
 jobs:
   local-run:
     runs-on: self-hosted
     steps:
+      - name: Show trigger info
+        run: |
+          echo "=========================================="
+          echo "Hello Workflow Triggered"
+          echo "=========================================="
+          echo "Triggered by: ${{ github.event_name }}"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "This is a manual trigger!"
+            echo "Custom message: ${{ github.event.inputs.message }}"
+          else
+            echo "This is an automatic trigger (push)"
+          fi
+          echo "Runner: $(hostname)"
+          echo "Date: $(date)"
+          echo "=========================================="
+
       - name: Say hello
-        run: echo "Hi from my local computer!"
+        run: |
+          echo "${{ github.event.inputs.message || 'Hi from my local computer!' }}"
