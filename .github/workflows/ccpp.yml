@@ -3,11 +3,11 @@ name: C/C++ CI
 on:
   # 支持手动触发
   workflow_dispatch:
-  # 可选：也支持 push 和 pull_request 触发
+  # 支持 push 和 pull_request 触发
   push:
-    branches: [ master, main ]
+    branches: [ master, main, ci-runner ]  # 添加 ci-runner 分支
   pull_request:
-    branches: [ master, main ]
+    branches: [ master, main, ci-runner ]  # 添加 ci-runner 分支
 
 jobs:
   build-ambiq:
