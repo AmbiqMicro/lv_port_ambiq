@@ -1,0 +1,13 @@
+name: Hello from My PC
+
+on:
+  workflow_dispatch:  # 允许手动触发
+  push:               # 也支持 push 触发
+    branches: [ ci-runner ]
+
+jobs:
+  local-run:
+    runs-on: self-hosted
+    steps:
+      - name: Say hello
+        run: echo "Hi from my local computer!"

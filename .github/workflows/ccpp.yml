@@ -1,0 +1,157 @@
+name: C/C++ CI
+
+on:
+  # 支持手动触发
+  workflow_dispatch:
+  # 可选：也支持 push 和 pull_request 触发
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  build-ambiq:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Show environment info
+        run: |
+          echo "=========================================="
+          echo "Environment Information"
+          echo "=========================================="
+          echo "OS: $(uname -a)"
+          echo "Working Directory: $(pwd)"
+          echo "User: $(whoami)"
+          echo "Date: $(date)"
+          echo "Git Version: $(git --version 2>/dev/null || echo 'Git not found')"
+          echo "=========================================="
+
+      - name: Checkout repository with submodules
+        uses: actions/checkout@v4
+        with:
+          # 拉取所有 submodule（递归）
+          submodules: recursive
+          # 使用 token 来访问私有 submodule（如果需要）
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # 获取完整历史（某些 submodule 可能需要）
+          fetch-depth: 0
+
+      - name: Log checkout results
+        run: |
+          echo "=========================================="
+          echo "Checkout Results"
+          echo "=========================================="
+          echo "Repository root: $(pwd)"
+          echo "Repository contents:"
+          ls -la
+          echo ""
+          echo "Git information:"
+          git log -1 --oneline || echo "No git history"
+          echo "=========================================="
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Log Python environment
+        run: |
+          echo "=========================================="
+          echo "Python Environment"
+          echo "=========================================="
+          echo "Python version: $(python3 --version)"
+          echo "Python path: $(which python3)"
+          echo "Pip version: $(pip3 --version || echo 'pip not found')"
+          echo "Python packages:"
+          pip3 list 2>/dev/null | head -20 || echo "Cannot list packages"
+          echo "=========================================="
+
+      - name: Verify submodules
+        run: |
+          echo "=========================================="
+          echo "Submodule Verification"
+          echo "=========================================="
+          echo "Checking submodules status..."
+          git submodule status
+          echo ""
+          echo "Submodule URLs from .gitmodules:"
+          cat .gitmodules || echo ".gitmodules not found"
+          echo ""
+          echo "LVGL submodule:"
+          if [ -d "LVGL" ]; then
+            echo "  ✓ LVGL directory exists"
+            echo "  Size: $(du -sh LVGL 2>/dev/null | cut -f1)"
+            echo "  Contents (first 10 items):"
+            ls -la LVGL/ | head -15
+            echo "  Git info:"
+            (cd LVGL && git log -1 --oneline 2>/dev/null) || echo "  No git info"
+          else
+            echo "  ✗ LVGL submodule not found"
+          fi
+          echo ""
+          echo "FreeType submodule:"
+          if [ -d "modules/freetype" ]; then
+            echo "  ✓ freetype directory exists"
+            echo "  Size: $(du -sh modules/freetype 2>/dev/null | cut -f1)"
+            echo "  Contents (first 10 items):"
+            ls -la modules/freetype/ | head -15
+            echo "  Git info:"
+            (cd modules/freetype && git log -1 --oneline 2>/dev/null) || echo "  No git info"
+          else
+            echo "  ✗ freetype submodule not found"
+          fi
+          echo "=========================================="
+
+      - name: Check build directory
+        run: |
+          echo "=========================================="
+          echo "Build Directory Check"
+          echo "=========================================="
+          if [ -d "lvgl_ambiq_demo" ]; then
+            echo "✓ lvgl_ambiq_demo directory exists"
+            echo "Contents:"
+            ls -la lvgl_ambiq_demo/
+            echo ""
+            echo "Makefile check:"
+            if [ -f "lvgl_ambiq_demo/Makefile" ]; then
+              echo "  ✓ Makefile found"
+              echo "  First 20 lines:"
+              head -20 lvgl_ambiq_demo/Makefile
+            else
+              echo "  ✗ Makefile not found"
+            fi
+          else
+            echo "✗ lvgl_ambiq_demo directory not found"
+            echo "Current directory contents:"
+            ls -la
+          fi
+          echo "=========================================="
+
+      - name: Build
+        run: |
+          echo "=========================================="
+          echo "Starting Build Process"
+          echo "=========================================="
+          echo "Build command: make -C lvgl_ambiq_demo test"
+          echo "Working directory: $(pwd)"
+          echo "Timestamp: $(date)"
+          echo ""
+          echo "Running build with verbose output..."
+          echo "=========================================="
+          set -x  # 启用命令追踪
+          make -C lvgl_ambiq_demo test VERBOSE=1 || {
+            echo ""
+            echo "=========================================="
+            echo "Build Failed!"
+            echo "=========================================="
+            echo "Checking for error logs..."
+            find lvgl_ambiq_demo -name "*.log" -o -name "*error*" 2>/dev/null | head -10
+            exit 1
+          }
+          set +x
+          echo ""
+          echo "=========================================="
+          echo "Build Completed Successfully!"
+          echo "=========================================="
+          echo "Build artifacts:"
+          find lvgl_ambiq_demo/build -type f 2>/dev/null | head -20 || echo "No build artifacts found"
+          echo "=========================================="

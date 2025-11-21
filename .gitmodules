@@ -1,8 +1,8 @@
 
 [submodule "LVGL"]
 	path = LVGL
-	url = git@github.com:AmbiqMicro/LVGL.git
+	url = https://github.com/AmbiqMicro/LVGL.git
 	branch = ambiq-stable
 [submodule "modules/freetype"]
 	path = modules/freetype
-	url = git@github.com:freetype/freetype.git
+	url = https://github.com/freetype/freetype.git
