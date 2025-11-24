@@ -40,9 +40,18 @@
 #******************************************************************************
 COMPILERNAME := gcc
 CONFIG := bin
-
 SHELL:=/bin/bash
-TOP_DIR := ../../..
+
+
+# TOP_DIR should be set by calling Makefile via export
+# If not set (backward compatibility), calculate from common.mk location
+ifndef TOP_DIR
+    # Calculate TOP_DIR based on common.mk location
+    # common.mk is in lvgl_ambiq_demo/, TOP_DIR should be parent directory
+    COMMON_MK_PATH := $(lastword $(filter %common.mk,$(MAKEFILE_LIST)))
+    COMMON_MK_DIR := $(dir $(abspath $(COMMON_MK_PATH)))
+    TOP_DIR := $(abspath $(COMMON_MK_DIR)/..)
+endif
 
 # Check for Bash availability
 ifeq (, $(shell which bash))
@@ -57,7 +66,7 @@ endif
 # Set the default AmbiqSuite path
 AMBIQSUITE_PATH ?= $(TOP_DIR)/AmbiqSuite
 # Set your AmbiqSuit path
-# AMBIQSUITE_PATH = $(TOP_DIR)/../ambiqsuite
+AMBIQSUITE_PATH = $(TOP_DIR)/../ambiqsuite
 
 LVGL_PATH = $(TOP_DIR)/LVGL
 LVGL_AMBIQ_PORTING_PATH = $(TOP_DIR)/lvgl_ambiq_porting
@@ -73,12 +82,106 @@ ifeq ($(wildcard $(FREETYPE_PATH)),)
 $(error The FREETYPE_PATH directory $(FREETYPE_PATH) does not exist.)
 endif
 
+# At the beginning of common.mk, after TOP_DIR definition
+# Support for top-level building
+ifneq ($(PROJECT),)
+    # Building from top-level, set paths accordingly
+    PROJECT_SRC := $(PROJECT)/src
+    # Output goes to build/$(PROJECT)/$(BOARD)/
+    CONFIG ?= build/$(PROJECT)/$(BOARD)
+else
+    # Building from subdirectory (backward compatibility)
+    CONFIG ?= bin
+endif
+
+# # After VPATH setup, add:
+# $(info LVGL_CSRCS sample: $(wordlist 1,3,$(LVGL_CSRCS)))
+# $(info LVGL_DIRS sample: $(wordlist 1,3,$(LVGL_DIRS)))
+# $(info VPATH sample: $(wordlist 1,5,$(VPATH)))
+
 #### Setup ####
 
 TOOLCHAIN ?= arm-none-eabi
 
-LINKER_FILE := ./linker_script.ld
-STARTUP_FILE := ./startup_$(COMPILERNAME).c
+#### BSP Configuration ####
+# BSP should be set in board-specific Makefile (e.g., apollo510_evb, apollo510b_evb, apollo5b_eb_revb)
+# BSP_DIR points to the shared BSP files for this board
+# common.mk is always in lvgl_ambiq_demo/, so bsp/ is in the same directory
+
+# Determine common.mk directory
+# When building from top-level (PROJECT is set), CURDIR is lvgl_ambiq_demo/
+# When building from subdirectory, calculate from common.mk location
+ifneq ($(PROJECT),)
+    # Building from top-level Makefile
+    COMMON_MK_DIR := $(CURDIR)/
+else
+    # Building from subdirectory, find common.mk location
+    COMMON_MK_PATH := $(lastword $(filter %common.mk,$(MAKEFILE_LIST)))
+    ifeq ($(COMMON_MK_PATH),)
+        # Fallback: try to find common.mk
+        COMMON_MK_PATH := $(abspath common.mk)
+        ifeq ($(wildcard $(COMMON_MK_PATH)),)
+            COMMON_MK_PATH := $(abspath ../common.mk)
+            ifeq ($(wildcard $(COMMON_MK_PATH)),)
+                COMMON_MK_PATH := $(abspath ../../common.mk)
+            endif
+        endif
+    endif
+    COMMON_MK_DIR := $(dir $(abspath $(COMMON_MK_PATH)))
+    COMMON_MK_DIR := $(if $(filter %/,$(COMMON_MK_DIR)),$(COMMON_MK_DIR),$(COMMON_MK_DIR)/)
+endif
+
+# BSP directory is relative to common.mk location
+BSP_DIR ?= $(COMMON_MK_DIR)bsp/$(BSP)
+
+# Verify BSP is set
+ifeq ($(BSP),)
+$(error BSP variable must be set in board Makefile (e.g., BSP=apollo510_evb))
+endif
+
+# Verify BSP directory exists
+ifeq ($(wildcard $(BSP_DIR)),)
+$(error BSP directory $(BSP_DIR) does not exist. Please create it or set BSP correctly.)
+endif
+
+# Set linker and startup file paths (can be overridden in board Makefile)
+LINKER_FILE ?= $(BSP_DIR)/linker_script.ld
+STARTUP_FILE ?= $(BSP_DIR)/startup_$(COMPILERNAME).c
+
+# Verify files exist
+ifeq ($(wildcard $(LINKER_FILE)),)
+$(error Linker script $(LINKER_FILE) not found in BSP directory $(BSP_DIR))
+endif
+ifeq ($(wildcard $(STARTUP_FILE)),)
+$(error Startup file $(STARTUP_FILE) not found in BSP directory $(BSP_DIR))
+endif
+
+STARTUP_FILE ?= $(BSP_DIR)/startup_$(COMPILERNAME).c
+
+# Verify files exist
+ifeq ($(wildcard $(LINKER_FILE)),)
+$(error Linker script $(LINKER_FILE) not found in BSP directory $(BSP_DIR))
+endif
+ifeq ($(wildcard $(STARTUP_FILE)),)
+$(error Startup file $(STARTUP_FILE) not found in BSP directory $(BSP_DIR))
+endif
+
+# Verify files exist
+ifeq ($(wildcard $(LINKER_FILE)),)
+$(error Linker script $(LINKER_FILE) not found in BSP directory $(BSP_DIR))
+endif
+ifeq ($(wildcard $(STARTUP_FILE)),)
+$(error Startup file $(STARTUP_FILE) not found in BSP directory $(BSP_DIR))
+endif
+
+# Add startup file to source list
+STARTUP_SRC := $(notdir $(STARTUP_FILE))
+ifneq ($(STARTUP_SRC),)
+    SRC += $(STARTUP_SRC)
+endif
+
+#### Required Executables ####
+
 
 #### Required Executables ####
 CC = $(TOOLCHAIN)-gcc
@@ -244,9 +347,16 @@ LVGL_CSRCS += \
 
 LVGL_CSRCS += $(LVGL_PATH)/src/lv_init.c
 
+# 生成 CSRC
 CSRC += $(notdir $(LVGL_CSRCS))
+
+# 保持相对路径（原来的方式）
 VPATH += $(sort $(dir $(LVGL_CSRCS)))
 
+# After VPATH setup, add:
+$(info LVGL_CSRCS sample: $(wordlist 1,3,$(LVGL_CSRCS)))
+$(info LVGL_DIRS sample: $(wordlist 1,3,$(LVGL_DIRS)))
+$(info VPATH sample: $(wordlist 1,5,$(VPATH)))
 # freertos
 INCLUDES+= -I$(AMBIQSUITE_PATH)/third_party/FreeRTOSv10.5.1/Source/include
 INCLUDES+= -I$(AMBIQSUITE_PATH)/third_party/FreeRTOSv10.5.1/Source/portable/GCC/AMapollo5

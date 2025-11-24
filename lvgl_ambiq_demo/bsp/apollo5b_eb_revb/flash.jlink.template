@@ -1,0 +1,10 @@
+device AP510NFA-CBR
+if swd
+speed 1000
+connect
+loadbin bin/$(TARGET).bin 0x00410000
+r
+q
+
+
+
