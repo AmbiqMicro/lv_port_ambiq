@@ -8,13 +8,43 @@
 
 //*****************************************************************************
 //
-// ${copyright}
+// Copyright (c) 2025, Ambiq Micro, Inc.
+// All rights reserved.
 //
-// This is part of revision ${version} of the AmbiqSuite Development Package.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+//
+// 1. Redistributions of source code must retain the above copyright notice,
+// this list of conditions and the following disclaimer.
+//
+// 2. Redistributions in binary form must reproduce the above copyright
+// notice, this list of conditions and the following disclaimer in the
+// documentation and/or other materials provided with the distribution.
+//
+// 3. Neither the name of the copyright holder nor the names of its
+// contributors may be used to endorse or promote products derived from this
+// software without specific prior written permission.
+//
+// Third party software included in this distribution is subject to the
+// additional license terms as defined in the /docs/licenses directory.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE.
+//
+// This is part of revision release_sdk5_2_a_3-3d89ad467 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
-#include "apollo510.h"
+#include "apollo510L.h"
 
 //*****************************************************************************
 //
@@ -38,8 +68,6 @@ extern void am_brownout_isr(void)           __attribute ((weak, alias ("am_defau
 extern void am_watchdog_isr(void)           __attribute ((weak, alias ("am_default_isr")));
 extern void am_rtc_isr(void)                __attribute ((weak, alias ("am_default_isr")));
 extern void am_vcomp_isr(void)              __attribute ((weak, alias ("am_default_isr")));
-extern void am_ioslave_ios_isr(void)        __attribute ((weak, alias ("am_default_isr")));
-extern void am_ioslave_acc_isr(void)        __attribute ((weak, alias ("am_default_isr")));
 extern void am_iomaster0_isr(void)          __attribute ((weak, alias ("am_default_isr")));
 extern void am_iomaster1_isr(void)          __attribute ((weak, alias ("am_default_isr")));
 extern void am_iomaster2_isr(void)          __attribute ((weak, alias ("am_default_isr")));
@@ -48,11 +76,10 @@ extern void am_iomaster4_isr(void)          __attribute ((weak, alias ("am_defau
 extern void am_iomaster5_isr(void)          __attribute ((weak, alias ("am_default_isr")));
 extern void am_iomaster6_isr(void)          __attribute ((weak, alias ("am_default_isr")));
 extern void am_iomaster7_isr(void)          __attribute ((weak, alias ("am_default_isr")));
-extern void am_ctimer_isr(void)             __attribute ((weak, alias ("am_default_isr")));
 extern void am_uart_isr(void)               __attribute ((weak, alias ("am_default_isr")));
 extern void am_uart1_isr(void)              __attribute ((weak, alias ("am_default_isr")));
-extern void am_uart2_isr(void)              __attribute ((weak, alias ("am_default_isr")));
-extern void am_uart3_isr(void)              __attribute ((weak, alias ("am_default_isr")));
+extern void am_ipc_pend_msg_isr(void)       __attribute ((weak, alias ("am_default_isr")));
+extern void am_ipc_err_isr(void)            __attribute ((weak, alias ("am_default_isr")));
 extern void am_adc_isr(void)                __attribute ((weak, alias ("am_default_isr")));
 extern void am_mspi0_isr(void)              __attribute ((weak, alias ("am_default_isr")));
 extern void am_mspi1_isr(void)              __attribute ((weak, alias ("am_default_isr")));
@@ -120,7 +147,25 @@ extern void am_ioslave_fd0_isr(void)        __attribute ((weak, alias ("am_defau
 extern void am_ioslave_fd0_acc_isr(void)    __attribute ((weak, alias ("am_default_isr")));
 extern void am_ioslave_fd1_isr(void)        __attribute ((weak, alias ("am_default_isr")));
 extern void am_ioslave_fd1_acc_isr(void)    __attribute ((weak, alias ("am_default_isr")));
+extern void am_i3c0_isr(void)               __attribute ((weak, alias ("am_default_isr")));
 extern void am_default_isr(void)            __attribute ((weak));
+
+extern void am_secure_watchdog_isr(void)           __attribute ((weak, alias ("am_default_isr")));
+extern void am_secure_rtc_isr(void)                __attribute ((weak, alias ("am_default_isr")));
+extern void am_secure_timer00_isr(void)            __attribute ((weak, alias ("am_default_isr")));
+extern void am_secure_timer01_isr(void)            __attribute ((weak, alias ("am_default_isr")));
+extern void am_secure_timer02_isr(void)            __attribute ((weak, alias ("am_default_isr")));
+extern void am_secure_timer03_isr(void)            __attribute ((weak, alias ("am_default_isr")));
+extern void am_secure_timer04_isr(void)            __attribute ((weak, alias ("am_default_isr")));
+extern void am_secure_stimer_cmpr0_isr(void)       __attribute ((weak, alias ("am_default_isr")));
+extern void am_secure_stimer_cmpr1_isr(void)       __attribute ((weak, alias ("am_default_isr")));
+extern void am_secure_stimer_cmpr2_isr(void)       __attribute ((weak, alias ("am_default_isr")));
+extern void am_secure_stimer_cmpr3_isr(void)       __attribute ((weak, alias ("am_default_isr")));
+extern void am_secure_stimer_cmpr4_isr(void)       __attribute ((weak, alias ("am_default_isr")));
+extern void am_secure_stimer_cmpr5_isr(void)       __attribute ((weak, alias ("am_default_isr")));
+extern void am_secure_stimer_cmpr6_isr(void)       __attribute ((weak, alias ("am_default_isr")));
+extern void am_secure_stimer_cmpr7_isr(void)       __attribute ((weak, alias ("am_default_isr")));
+extern void am_secure_stimerof_isr(void)           __attribute ((weak, alias ("am_default_isr")));
 
 //*****************************************************************************
 //
@@ -135,10 +180,10 @@ extern int main(void);
 //
 //*****************************************************************************
 __attribute__ ((section(".stack")))
-static uint32_t g_pui32Stack[0x400];
+static uint32_t g_pui32Stack[0xac0];
 
 __attribute__ ((section(".heap"))) __attribute__ ((__used__))
-static uint32_t g_pui32Heap[0x400];
+static uint32_t g_pui32Heap[0x100];
 
 #define AM_STACK_SIZE   (sizeof(g_pui32Stack))
 #define AM_STACK_LIMIT  ((uint32_t)&g_pui32Stack)
@@ -188,11 +233,11 @@ void (* const __Vectors[])(void) =
     // Peripheral Interrupts
     //
     am_brownout_isr,                        //  0: Brownout (rstgen)
-    am_watchdog_isr,                        //  1: Watchdog (WDT)
-    am_rtc_isr,                             //  2: RTC
+    am_secure_watchdog_isr,                 //  1: Secure Watchdog (WDT)
+    am_secure_rtc_isr,                      //  2: Secure RTC
     am_vcomp_isr,                           //  3: Voltage Comparator
-    am_ioslave_ios_isr,                     //  4: I/O Slave general
-    am_ioslave_acc_isr,                     //  5: I/O Slave access
+    am_default_isr,                         //  4: Reserved
+    am_default_isr,                         //  5: Reserved
     am_iomaster0_isr,                       //  6: I/O Master 0
     am_iomaster1_isr,                       //  7: I/O Master 1
     am_iomaster2_isr,                       //  8: I/O Master 2
@@ -201,11 +246,11 @@ void (* const __Vectors[])(void) =
     am_iomaster5_isr,                       // 11: I/O Master 5
     am_iomaster6_isr,                       // 12: I/O Master 6 (I3C/I2C/SPI)
     am_iomaster7_isr,                       // 13: I/O Master 7 (I3C/I2C/SPI)
-    am_ctimer_isr,                          // 14: OR of all timerX interrupts
+    am_default_isr,                         // 14: Reserved
     am_uart_isr,                            // 15: UART0
     am_uart1_isr,                           // 16: UART1
-    am_uart2_isr,                           // 17: UART2
-    am_uart3_isr,                           // 18: UART3
+    am_ipc_pend_msg_isr,                    // 17: IPC Data Pending Message
+    am_ipc_err_isr,                         // 18: IPC Error
     am_adc_isr,                             // 19: ADC
     am_mspi0_isr,                           // 20: MSPI0
     am_mspi1_isr,                           // 21: MSPI1
@@ -218,21 +263,21 @@ void (* const __Vectors[])(void) =
     am_gpu_isr,                             // 28: GPU
     am_disp_isr,                            // 29: DISP
     am_dsi_isr,                             // 30: DSI
-    am_default_isr,                         // 31: Reserved
-    am_stimer_cmpr0_isr,                    // 32: System Timer Compare0
-    am_stimer_cmpr1_isr,                    // 33: System Timer Compare1
-    am_stimer_cmpr2_isr,                    // 34: System Timer Compare2
-    am_stimer_cmpr3_isr,                    // 35: System Timer Compare3
-    am_stimer_cmpr4_isr,                    // 36: System Timer Compare4
-    am_stimer_cmpr5_isr,                    // 37: System Timer Compare5
-    am_stimer_cmpr6_isr,                    // 38: System Timer Compare6
-    am_stimer_cmpr7_isr,                    // 39: System Timer Compare7
-    am_stimerof_isr,                        // 40: System Timer Cap Overflow
-    am_default_isr,                         // 41: Reserved
+    am_watchdog_isr,                        // 31: Watchdog (WDT)
+    am_secure_stimer_cmpr0_isr,             // 32: Secure System Timer Compare0
+    am_secure_stimer_cmpr1_isr,             // 33: Secure System Timer Compare1
+    am_secure_stimer_cmpr2_isr,             // 34: Secure System Timer Compare2
+    am_secure_stimer_cmpr3_isr,             // 35: Secure System Timer Compare3
+    am_secure_stimer_cmpr4_isr,             // 36: Secure System Timer Compare4
+    am_secure_stimer_cmpr5_isr,             // 37: Secure System Timer Compare5
+    am_secure_stimer_cmpr6_isr,             // 38: Secure System Timer Compare6
+    am_secure_stimer_cmpr7_isr,             // 39: Secure System Timer Compare7
+    am_secure_stimerof_isr,                 // 40: Secure System Timer Cap Overflow
+    am_rtc_isr,                             // 41: RTC
     am_audadc0_isr,                         // 42: Audio ADC
     am_default_isr,                         // 43: Reserved
     am_dspi2s0_isr,                         // 44: I2S0
-    am_dspi2s1_isr,                         // 45: I2S1
+    am_default_isr,                         // 45: Reserved
     am_default_isr,                         // 46: Reserved
     am_default_isr,                         // 47: Reserved
     am_pdm0_isr,                            // 48: PDM0
@@ -241,7 +286,7 @@ void (* const __Vectors[])(void) =
     am_default_isr,                         // 51: Reserved
     am_default_isr,                         // 52: Reserved
     am_default_isr,                         // 53: Reserved
-    am_mspi3_isr,                           // 54: MSPI3
+    am_default_isr,                         // 54: Reserved
     am_default_isr,                         // 55: Reserved
     am_gpio0_001f_isr,                      // 56: GPIO N0 pins  0-31
     am_gpio0_203f_isr,                      // 57: GPIO N0 pins 32-63
@@ -254,25 +299,25 @@ void (* const __Vectors[])(void) =
     am_default_isr,                         // 64: Reserved
     am_default_isr,                         // 65: Reserved
     am_default_isr,                         // 66: Reserved
-    am_timer00_isr,                         // 67: timer0
-    am_timer01_isr,                         // 68: timer1
-    am_timer02_isr,                         // 69: timer2
-    am_timer03_isr,                         // 70: timer3
-    am_timer04_isr,                         // 71: timer4
-    am_timer05_isr,                         // 72: timer5
-    am_timer06_isr,                         // 73: timer6
-    am_timer07_isr,                         // 74: timer7
-    am_timer08_isr,                         // 75: timer8
-    am_timer09_isr,                         // 76: timer9
-    am_timer10_isr,                         // 77: timer10
-    am_timer11_isr,                         // 78: timer11
-    am_timer12_isr,                         // 79: timer12
-    am_timer13_isr,                         // 80: timer13
-    am_timer14_isr,                         // 81: timer14
-    am_timer15_isr,                         // 82: timer15
+    am_secure_timer00_isr,                  // 67: Secure timer0
+    am_secure_timer01_isr,                  // 68: Secure timer1
+    am_secure_timer02_isr,                  // 69: Secure timer2
+    am_secure_timer03_isr,                  // 70: Secure timer3
+    am_secure_timer04_isr,                  // 71: Secure timer4
+    am_default_isr,                         // 72: Reserved
+    am_default_isr,                         // 73: Reserved
+    am_default_isr,                         // 74: Reserved
+    am_default_isr,                         // 75: Reserved
+    am_default_isr,                         // 76: Reserved
+    am_default_isr,                         // 77: Reserved
+    am_default_isr,                         // 78: Reserved
+    am_default_isr,                         // 79: Reserved
+    am_default_isr,                         // 80: Reserved
+    am_default_isr,                         // 81: Reserved
+    am_default_isr,                         // 82: Reserved
     am_default_isr,                         // 83: Reserved
     am_sdio1_isr,                           // 84: SDIO1
-    am_default_isr,                         // 85: Reserved
+    am_i3c0_isr,                            // 85: I3C0
     am_default_isr,                         // 86: Reserved
     am_default_isr,                         // 87: Reserved
     am_default_isr,                         // 88: Reserved
@@ -283,35 +328,35 @@ void (* const __Vectors[])(void) =
     am_software1_isr,                       // 93: SOFTWARE1
     am_software2_isr,                       // 94: SOFTWARE2
     am_software3_isr,                       // 95: SOFTWARE3
-    am_ioslave_fd0_isr,                     // 96: Reserved
-    am_ioslave_fd0_acc_isr,                 // 97: Reserved
-    am_ioslave_fd1_isr,                     // 98: Reserved
-    am_ioslave_fd1_acc_isr,                 // 99: Reserved
-    am_default_isr,                         // 100: Reserved
-    am_default_isr,                         // 101: Reserved
-    am_default_isr,                         // 102: Reserved
-    am_default_isr,                         // 103: Reserved
-    am_default_isr,                         // 104: Reserved
-    am_default_isr,                         // 105: Reserved
-    am_default_isr,                         // 106: Reserved
-    am_default_isr,                         // 107: Reserved
-    am_default_isr,                         // 108: Reserved
-    am_default_isr,                         // 109: Reserved
-    am_default_isr,                         // 110: Reserved
-    am_default_isr,                         // 111: Reserved
-    am_default_isr,                         // 112: Reserved
-    am_default_isr,                         // 113: Reserved
-    am_default_isr,                         // 114: Reserved
-    am_default_isr,                         // 115: Reserved
-    am_default_isr,                         // 116: Reserved
-    am_default_isr,                         // 117: Reserved
-    am_default_isr,                         // 118: Reserved
-    am_default_isr,                         // 119: Reserved
-    am_default_isr,                         // 120: Reserved
-    am_default_isr,                         // 121: Reserved
-    am_default_isr,                         // 122: Reserved
-    am_default_isr,                         // 123: Reserved
-    am_default_isr,                         // 124: Reserved
+    am_ioslave_fd0_isr,                     // 96: IOSFD0
+    am_ioslave_fd0_acc_isr,                 // 97: IOSFDACC0
+    am_ioslave_fd1_isr,                     // 98: IOSFD1
+    am_ioslave_fd1_acc_isr,                 // 99: IOSFDACC1
+    am_stimer_cmpr0_isr,                    // 100: System Timer Compare0
+    am_stimer_cmpr1_isr,                    // 101: System Timer Compare1
+    am_stimer_cmpr2_isr,                    // 102: System Timer Compare2
+    am_stimer_cmpr3_isr,                    // 103: System Timer Compare3
+    am_stimer_cmpr4_isr,                    // 104: System Timer Compare4
+    am_stimer_cmpr5_isr,                    // 105: System Timer Compare5
+    am_stimer_cmpr6_isr,                    // 106: System Timer Compare6
+    am_stimer_cmpr7_isr,                    // 107: System Timer Compare7
+    am_stimerof_isr,                        // 108: System Timer Cap Overflow
+    am_timer00_isr,                         // 109: timer0
+    am_timer01_isr,                         // 110: timer1
+    am_timer02_isr,                         // 111: timer2
+    am_timer03_isr,                         // 112: timer3
+    am_timer04_isr,                         // 113: timer4
+    am_timer05_isr,                         // 114: timer5
+    am_timer06_isr,                         // 115: timer6
+    am_timer07_isr,                         // 116: timer7
+    am_timer08_isr,                         // 117: timer8
+    am_timer09_isr,                         // 118: timer9
+    am_timer10_isr,                         // 119: timer10
+    am_timer11_isr,                         // 120: timer11
+    am_timer12_isr,                         // 121: timer12
+    am_timer13_isr,                         // 122: timer13
+    am_timer14_isr,                         // 123: timer14
+    am_timer15_isr,                         // 124: timer15
     am_gpio1_001f_isr,                      // 125: GPIO N1 pins  0-31
     am_gpio1_203f_isr,                      // 126: GPIO N1 pins 32-63
     am_gpio1_405f_isr,                      // 127: GPIO N1 pins 64-95
@@ -423,16 +468,16 @@ Reset_Handler(void)
           "        blt     copy_loop\n");
 
     //
-    // Copy the ITCM text from flash to ITCM.
+    // Copy the DTCM text from flash to DTCM.
     //
-    __asm("    ldr     r0, =_init_itcm_text\n"
-          "    ldr     r1, =_s_itcm_text\n"
-          "    ldr     r2, =_e_itcm_text\n"
-          "copy_loop_itcm:\n"
+    __asm("    ldr     r0, =_init_dtcm_text\n"
+          "    ldr     r1, =_s_dtcm_text\n"
+          "    ldr     r2, =_e_dtcm_text\n"
+          "copy_loop_dtcm:\n"
           "    ldr     r3, [r0], #4\n"
           "    str     r3, [r1], #4\n"
           "    cmp     r1, r2\n"
-          "    blt     copy_loop_itcm\n");
+          "    blt     copy_loop_dtcm\n");
 
     //
     // Zero fill the bss segment.
