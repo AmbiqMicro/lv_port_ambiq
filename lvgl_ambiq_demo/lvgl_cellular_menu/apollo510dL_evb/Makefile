@@ -52,9 +52,14 @@ DEFINES+= -Dapollo510dL_evb
 INCLUDES+= -I$(AMBIQSUITE_PATH)/boards/$(BSP)/bsp
 VPATH+=:$(AMBIQSUITE_PATH)/boards/$(BSP)/bsp
 
+# AmbiqSuite/mcu for apollo510L
+INCLUDES+= -I$(AMBIQSUITE_PATH)/mcu/apollo510L
+INCLUDES+= -I$(AMBIQSUITE_PATH)/mcu/apollo510L/hal
+LIBS += $(AMBIQSUITE_PATH)/mcu/apollo510L/hal/mcu/gcc/bin/libam_hal.a
+
 SRC += am_bsp.c
 SRC += am_bsp_pins.c
-SRC += system_apollo510.c
+SRC += system_apollo510L.c
 
 # AmbiqSuite/devices
 SRC += am_devices_mspi_psram_aps25616ba_1p2v.c
@@ -62,9 +67,6 @@ SRC += am_devices_display_generic.c
 # SRC += am_devices_tma525.c
 SRC += am_devices_chsc5816_ap5.c
 
-# AmbiqSuite/mcu - apollo510L specific
-INCLUDES+= -I$(AMBIQSUITE_PATH)/mcu/apollo510L
-INCLUDES+= -I$(AMBIQSUITE_PATH)/mcu/apollo510L/hal
 
 # Common makefile
 include  ../demo_common.mk
