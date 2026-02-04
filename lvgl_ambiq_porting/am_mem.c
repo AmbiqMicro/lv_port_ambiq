@@ -52,11 +52,11 @@
 #include "am_mem.h"
 
 #ifndef DTCM_POOL_SIZE
-#define DTCM_POOL_SIZE 0x40000
+#define DTCM_POOL_SIZE 0x20000
 #endif
 
 #ifndef SSRAM_POLL_SIZE
-#define SSRAM_POOL_SIZE 0x280000
+#define SSRAM_POOL_SIZE 0x150000
 #endif
 
 #ifndef PSRAM_POOL_SIZE
