@@ -105,10 +105,17 @@ main(void)
     //
     // CPU switch to HP mode.
     //
+#if defined( AM_PART_APOLLO510 ) 
     if ( am_hal_pwrctrl_mcu_mode_select(AM_HAL_PWRCTRL_MCU_MODE_HIGH_PERFORMANCE) != AM_HAL_STATUS_SUCCESS )
     {
         am_util_stdio_printf("CPU enter HP mode failed!\n");
     }
+#elif defined( AM_PART_APOLLO510L )
+    if ( am_hal_pwrctrl_mcu_mode_select(AM_HAL_PWRCTRL_MCU_MODE_HIGH_PERFORMANCE2) != AM_HAL_STATUS_SUCCESS )
+    {
+        am_util_stdio_printf("CPU enter HP mode failed!\n");
+    }
+#endif
 #endif
 
     //

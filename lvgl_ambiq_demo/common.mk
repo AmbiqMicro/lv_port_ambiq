@@ -116,8 +116,8 @@ SHELL:=bash
 
 DEFINES+= -DLV_CONF_INCLUDE_SIMPLE
 DEFINES+= -DLV_LVGL_H_INCLUDE_SIMPLE
-DEFINES+= -DNEMA_PLATFORM=apollo510_nemagfx
-DEFINES+= -DVMEM_SIZE=0x3FFFF
+DEFINES+= -DNEMA_PLATFORM=apollo510L_nemagfx
+DEFINES+= -DVMEM_SIZE=0x1FFFF
 DEFINES+= -DWAIT_IRQ_BINARY_SEMAPHORE=1
 
 DEFINES+= -Dgcc
@@ -146,18 +146,18 @@ SRC += ffunicode.c
 SRC += diskio.c
 
 # NemaGFX_hal
-INCLUDES+= -I$(LVGL_AMBIQ_PORTING_PATH)/NemaGFX_hal/apollo510_nemagfx
-VPATH+=:$(LVGL_AMBIQ_PORTING_PATH)/NemaGFX_hal/apollo510_nemagfx
+INCLUDES+= -I$(LVGL_AMBIQ_PORTING_PATH)/NemaGFX_hal/apollo510L_nemagfx
+VPATH+=:$(LVGL_AMBIQ_PORTING_PATH)/NemaGFX_hal/apollo510L_nemagfx
 
 SRC += nema_dc_hal.c
 SRC += nema_hal.c
 
-LIBS += $(AMBIQSUITE_PATH)/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a
+LIBS += $(AMBIQSUITE_PATH)/third_party/ThinkSi/config/apollo510L_nemagfx/gcc/bin/lib_nema_apollo510L_nemagfx.a
 
 # AmbiqSuite/mcu
-INCLUDES+= -I$(AMBIQSUITE_PATH)/mcu/apollo510
-INCLUDES+= -I$(AMBIQSUITE_PATH)/mcu/apollo510/hal
-LIBS += $(AMBIQSUITE_PATH)/mcu/apollo510/hal/mcu/gcc/bin/libam_hal.a
+INCLUDES+= -I$(AMBIQSUITE_PATH)/mcu/apollo510L
+INCLUDES+= -I$(AMBIQSUITE_PATH)/mcu/apollo510L/hal
+LIBS += $(AMBIQSUITE_PATH)/mcu/apollo510L/hal/mcu/gcc/bin/libam_hal.a
 # VPATH+=:$(AMBIQSUITE_PATH)/mcu/apollo510/hal/
 # VPATH+=:$(AMBIQSUITE_PATH)/mcu/apollo510/hal/mcu
 
