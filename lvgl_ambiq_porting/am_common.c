@@ -208,7 +208,7 @@ mspi_device_func_t mspi_device_func =
 void
 am_gpu_init(void)
 {
-#ifdef GPU_RUN_IN_HP_MODE
+#if defined(GPU_RUN_IN_HP_MODE) && !defined(apollo510dL_evb)
     am_hal_pwrctrl_periph_disable(AM_HAL_PWRCTRL_PERIPH_GFX);
     //
     //Switch to HP mode.
