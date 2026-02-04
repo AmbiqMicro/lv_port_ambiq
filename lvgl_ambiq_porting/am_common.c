@@ -62,7 +62,7 @@
 #include "nema_vg_font.h"
 
 
-#if defined(apollo510_evb) || defined(apollo510b_evb)
+#if defined(apollo510_evb) || defined(apollo510b_evb) || defined(apollo510dL_evb)
 #include "am_devices_mspi_psram_aps25616ba_1p2v.h"
 #else
 #include "am_devices_mspi_psram_aps25616n.h"
@@ -152,10 +152,10 @@ am_devices_mspi_psram_config_t g_sMspiPsramConfig =
 //
 //*****************************************************************************
 
-/* defined on linker script file */
-extern uint32_t __external_start;
-extern uint32_t __external_end;
-extern uint32_t __external_load_start;
+/* defined on linker script file, with weak fallback if not defined */
+__attribute__((weak)) uint32_t __external_start = 0;
+__attribute__((weak)) uint32_t __external_end = 0;
+__attribute__((weak)) uint32_t __external_load_start = 0;
 
 //
 // Take over the interrupt handler for whichever MSPI we're using.
@@ -185,7 +185,7 @@ void psram_mspi_isr(void)
 
 mspi_device_func_t mspi_device_func =
 {
-#if defined(apollo510_evb) || defined(apollo510b_evb)
+#if defined(apollo510_evb) || defined(apollo510b_evb) || defined(apollo510dL_evb)
     .devName = "MSPI PSRAM APS25616BA",
     .mspi_init = am_devices_mspi_psram_aps25616ba_ddr_init,
     .mspi_init_timing_check = am_devices_mspi_psram_aps25616ba_ddr_init_timing_check,
@@ -213,10 +213,10 @@ am_gpu_init(void)
     //
     //Switch to HP mode.
     //
-    am_hal_pwrctrl_gpu_mode_e current_mode;
-    am_hal_pwrctrl_gpu_mode_select(AM_HAL_PWRCTRL_GPU_MODE_HIGH_PERFORMANCE);
+    am_hal_pwrctrl_mcu_mode_e current_mode;
+    am_hal_pwrctrl_gpu_mode_select(AM_HAL_PWRCTRL_MCU_MODE_HIGH_PERFORMANCE2);
     am_hal_pwrctrl_gpu_mode_status(&current_mode);
-    if ( AM_HAL_PWRCTRL_GPU_MODE_HIGH_PERFORMANCE != current_mode )
+    if ( AM_HAL_PWRCTRL_MCU_MODE_HIGH_PERFORMANCE2 != current_mode )
     {
         am_util_stdio_printf("gpu switch to HP mode failed!\n");
     }
@@ -272,7 +272,7 @@ void am_mspi_init(void)
     am_util_stdio_printf("Starting MSPI DDR Timing Scan: \n");
     if ( AM_DEVICES_MSPI_PSRAM_STATUS_SUCCESS == mspi_device_func.mspi_init_timing_check(MSPI_PSRAM_MODULE, &g_sMspiPsramConfig, &MSPIDdrTimingConfig) )
     {
-#if defined(apollo510_evb) || defined(apollo510b_evb)
+#if defined(apollo510_evb) || defined(apollo510b_evb) || #if defined(apollo510dL_evb)
         am_util_stdio_printf("==== Scan Result: RXDQSDELAY0 = %d \n", MSPIDdrTimingConfig.sTimingCfg.ui8RxDQSDelay);
 #else
         am_util_stdio_printf("==== Scan Result: RXDQSDELAY0 = %d \n", MSPIDdrTimingConfig.ui32Rxdqsdelay);
@@ -332,11 +332,17 @@ void am_relocate_init_data_to_psram(void)
     ui32ExternalStart = (uint32_t)&__external_start;
     ui32TextureSectionLength = (uint32_t)&__external_end - (uint32_t)&__external_start;
     ui32CodeSectionLoadAddr = (uint32_t)&__external_load_start;
-    memcpy((void * )ui32ExternalStart, (const void * )ui32CodeSectionLoadAddr, ui32TextureSectionLength);
+    
+    // Only perform relocation if the external section is properly defined
+    // (i.e., not using weak symbols with zero values)
+    if (ui32ExternalStart != 0 && ui32TextureSectionLength > 0 && ui32CodeSectionLoadAddr != 0)
+    {
+        memcpy((void * )ui32ExternalStart, (const void * )ui32CodeSectionLoadAddr, ui32TextureSectionLength);
 
-    // Clean the cache for the texture section.
-    am_hal_cachectrl_range_t Range;
-    Range.ui32Size = ui32TextureSectionLength;
-    Range.ui32StartAddr = ui32ExternalStart;
-    am_hal_cachectrl_dcache_clean(&Range);
+        // Clean the cache for the texture section.
+        am_hal_cachectrl_range_t Range;
+        Range.ui32Size = ui32TextureSectionLength;
+        Range.ui32StartAddr = ui32ExternalStart;
+        am_hal_cachectrl_dcache_clean(&Range);
+    }
 }
