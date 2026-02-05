@@ -72,6 +72,11 @@ main(void)
     }
 #endif
 
+    if ( am_hal_pwrctrl_mcu_mode_select(AM_HAL_PWRCTRL_MCU_MODE_HIGH_PERFORMANCE2) != AM_HAL_STATUS_SUCCESS )
+    {
+        am_util_stdio_printf("CPU enter HP mode failed!\n");
+    }
+
     //
     // Init mspi.
     //
