@@ -1,8 +1,8 @@
-device AP510DLA-CBR
+device AP510L
 if swd
 speed 1000
 connect
-loadbin bin/lvgl_cellular_menu.bin 0x00410000
+loadbin bin/lvgl_test.bin 0x00410000
 r
 q
 

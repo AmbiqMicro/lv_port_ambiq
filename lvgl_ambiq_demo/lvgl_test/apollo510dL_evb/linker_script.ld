@@ -12,6 +12,8 @@ MEMORY
     SHARED_SRAM  (rwx) : ORIGIN = 0x20080000, LENGTH = 1835008
     STACK        (rw)  : ORIGIN = 0x2003D000, LENGTH = 12288
     HEAP         (rw)  : ORIGIN = 0x2003C000, LENGTH = 4096
+    PSRAM_TEX    (rw)  : ORIGIN = 0x60000000, LENGTH = 0x00100000
+    PSRAM_HEAP   (rw)  : ORIGIN = 0x60100000, LENGTH = 0x01F00000
 }
 
 SECTIONS
@@ -48,6 +50,16 @@ SECTIONS
         *(.ARM.exidx* .gnu.linkonce.armexidx.*)
         __exidx_end = .;
     } > MCU_MRAM
+
+    .external_tex :
+    {
+        . = ALIGN(4);
+        __external_load_start = LOADADDR(.external_tex);
+        __external_start = .;
+        *(.external_tex)
+        . = ALIGN(4);
+        __external_end = .;
+    } > PSRAM_TEX AT>MCU_MRAM
 
     .dtcm_text :
     {
@@ -95,7 +107,7 @@ SECTIONS
     /* used by startup to initialize data */
     _init_data = LOADADDR(.data);
 
-    .bss :
+    .bss (NOLOAD) :
     {
         . = ALIGN(4);
         _sbss = .;
@@ -104,7 +116,7 @@ SECTIONS
         *(COMMON)
         . = ALIGN(4);
         _ebss = .;
-    } > MCU_TCM
+    } > SHARED_SRAM
 
     .shared (NOLOAD):
     {
@@ -113,5 +125,13 @@ SECTIONS
         KEEP(*(.shared))
         . = ALIGN(4);
     } > SHARED_SRAM AT>MCU_MRAM
+
+    .external (NOLOAD):
+    {
+        . = ALIGN(4);
+        KEEP(*(.external))
+        . = ALIGN(4);
+    } > PSRAM_HEAP
+
     .ARM.attributes 0 : { *(.ARM.attributes) }
 }
