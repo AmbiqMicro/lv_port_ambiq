@@ -47,11 +47,15 @@
 #define NEMA_MULTI_MEM_POOLS_CNT	1
 #endif
 
-//memory pool definitions
-#define NEMA_MEM_POOL_CL            0
-#define NEMA_MEM_POOL_FB            1
-#define NEMA_MEM_POOL_ASSETS        2
-#define NEMA_MEM_POOL_CLIPPED_PATH  3
+//Memory pool definition
+#define NEMA_MEM_POOL_CL_RB         0
+#define NEMA_MEM_POOL_FB_TEX        1
+#define NEMA_MEM_POOL_MISC          2
+
+//Alias for the memory pool. These are defined to provide backward compatibility.
+#define NEMA_MEM_POOL_CL            NEMA_MEM_POOL_CL_RB
+#define NEMA_MEM_POOL_FB            NEMA_MEM_POOL_FB_TEX
+#define NEMA_MEM_POOL_ASSETS        NEMA_MEM_POOL_FB_TEX
 #define MIP_WA
 //End of User Definitions
 //-------------------------
@@ -227,19 +231,6 @@ int nema_get_last_cl_id(void);
 //
 //*****************************************************************************
 int nema_get_last_submission_id(void);
-
-//*****************************************************************************
-//
-//! @brief Check if the NemaSDK has been initialized.
-//! 
-//! This function returns true if the internal ring buffer
-//! has already been initialized, which indicates that
-//! the NemaSDK is ready for use.
-//!
-//! @return true if initialized, false otherwise.
-//
-//*****************************************************************************
-bool nema_sdk_initialized (void);
 
 //*****************************************************************************
 //
