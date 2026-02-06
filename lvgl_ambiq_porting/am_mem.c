@@ -56,7 +56,7 @@
 #endif
 
 #ifndef SSRAM_POLL_SIZE
-#define SSRAM_POOL_SIZE 0x150000
+#define SSRAM_POOL_SIZE 0x165000
 #endif
 
 #ifndef PSRAM_POOL_SIZE

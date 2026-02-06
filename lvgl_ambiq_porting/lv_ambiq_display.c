@@ -226,7 +226,7 @@ void lv_disp_drv_setup(void)
 
     // Set display offset, the display refresh area is always in the center of the display panel.
     uint32_t offset_x = (LV_AMBIQ_DISPLAY_BUFFER_RESX < g_sDispCfg.ui16ResX) ? \
-                        (((g_sDispCfg.ui16ResX - LV_AMBIQ_DISPLAY_BUFFER_RESY) >> 2) << 1) : 0;
+                        (((g_sDispCfg.ui16ResX - LV_AMBIQ_DISPLAY_BUFFER_RESX) >> 2) << 1) : 0;
     uint32_t offset_y = (LV_AMBIQ_DISPLAY_BUFFER_RESY < g_sDispCfg.ui16ResY) ? \
                          (((g_sDispCfg.ui16ResY - LV_AMBIQ_DISPLAY_BUFFER_RESY) >> 2) << 1) : 0;
     lv_display_set_offset(display, offset_x, offset_y);

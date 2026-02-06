@@ -64,7 +64,35 @@
 
 
 #ifdef NEMA_USE_CUSTOM_MALLOC
-    #include NEMA_CUSTOM_MALLOC_INCLUDE
+    #include "nema_sys_defs.h"
+    static inline am_mem_control_t* nema_custom_get_heap(int pool)
+    {
+        switch (pool)
+        {
+            case NEMA_MEM_POOL_FB_TEX:
+                return &psram_heap;
+            case NEMA_MEM_POOL_CL_RB:
+            case NEMA_MEM_POOL_MISC:
+            default:
+                return &ssram_heap;
+        }
+    }
+    static inline void* nema_custom_malloc_impl(int pool, size_t size)
+    {
+        return am_mem_heap_malloc(nema_custom_get_heap(pool), size);
+    }
+    static inline void nema_custom_free_impl(void *p)
+    {
+        if (p == NULL) return;
+        uint32_t ptr_uint = (uint32_t)(uintptr_t)p;
+        if (ptr_uint >= psram_heap.start_addr &&
+            ptr_uint < psram_heap.start_addr + psram_heap.pool_size)
+            am_mem_heap_free(&psram_heap, p);
+        else
+            am_mem_heap_free(&ssram_heap, p);
+    }
+    #define NEMA_CUSTOM_MALLOC(pool, size) nema_custom_malloc_impl(pool, size)
+    #define NEMA_CUSTOM_FREE(ptr) nema_custom_free_impl(ptr)
 #else
     #include "tsi_malloc.h"
 
@@ -73,7 +101,7 @@
     #endif   //VMEM_BASEADDR
 
     #ifndef VMEM_SIZE
-        #define VMEM_SIZE           (0x140000)
+        #define VMEM_SIZE           (0x160000)
     #endif //VMEM_SIZE
 
     #if VMEM_BASEADDR==tsi_buffer
@@ -511,19 +539,6 @@ void nema_buffer_flush(nema_buffer_t * bo)
     nema_mutex_unlock(MUTEX_FLUSH);
 }
 
-/**
- * @brief Retrieve the memory heap based on the specified memory pool.
- *
- * This function returns a pointer to the memory heap corresponding to the given memory pool identifier.
- *
- * @param pool The memory pool identifier. Possible values are:
- *             - NEMA_MEM_POOL_FB_TEX: Returns the psram_heap.
- *             - NEMA_MEM_POOL_CL_RB: Returns the ssram_heap.
- *             - NEMA_MEM_POOL_MISC: Returns the ssram_heap.
- *             - Any other value: Returns the ssram_heap.
- *
- * @return A pointer to the corresponding memory heap.
- */
 static am_mem_control_t* get_heap(int pool)
 {
     switch (pool)

@@ -272,7 +272,7 @@ void am_mspi_init(void)
     am_util_stdio_printf("Starting MSPI DDR Timing Scan: \n");
     if ( AM_DEVICES_MSPI_PSRAM_STATUS_SUCCESS == mspi_device_func.mspi_init_timing_check(MSPI_PSRAM_MODULE, &g_sMspiPsramConfig, &MSPIDdrTimingConfig) )
     {
-#if defined(apollo510_evb) || defined(apollo510b_evb) || #if defined(apollo510dL_evb)
+#if defined(apollo510_evb) || defined(apollo510b_evb) || defined(apollo510dL_evb)
         am_util_stdio_printf("==== Scan Result: RXDQSDELAY0 = %d \n", MSPIDdrTimingConfig.sTimingCfg.ui8RxDQSDelay);
 #else
         am_util_stdio_printf("==== Scan Result: RXDQSDELAY0 = %d \n", MSPIDdrTimingConfig.ui32Rxdqsdelay);
