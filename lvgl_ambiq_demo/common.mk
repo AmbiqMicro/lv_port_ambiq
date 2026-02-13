@@ -114,9 +114,13 @@ SHELL:=bash
 .SHELLFLAGS:=-euo pipefail -c
 
 
+# PART is set by board Makefile (apollo510 or apollo510L)
+PART ?= apollo510L
+NEMA_PLATFORM = $(PART)_nemagfx
+
 DEFINES+= -DLV_CONF_INCLUDE_SIMPLE
 DEFINES+= -DLV_LVGL_H_INCLUDE_SIMPLE
-DEFINES+= -DNEMA_PLATFORM=apollo510L_nemagfx
+DEFINES+= -DNEMA_PLATFORM=$(NEMA_PLATFORM)
 DEFINES+= -DVMEM_SIZE=0x1FFFF
 DEFINES+= -DWAIT_IRQ_BINARY_SEMAPHORE=1
 
@@ -145,21 +149,19 @@ SRC += ffsystem.c
 SRC += ffunicode.c
 SRC += diskio.c
 
-# NemaGFX_hal
-INCLUDES+= -I$(LVGL_AMBIQ_PORTING_PATH)/NemaGFX_hal/apollo510L_nemagfx
-VPATH+=:$(LVGL_AMBIQ_PORTING_PATH)/NemaGFX_hal/apollo510L_nemagfx
+# NemaGFX_hal (apollo510 or apollo510L)
+INCLUDES+= -I$(LVGL_AMBIQ_PORTING_PATH)/NemaGFX_hal/$(NEMA_PLATFORM)
+VPATH+=:$(LVGL_AMBIQ_PORTING_PATH)/NemaGFX_hal/$(NEMA_PLATFORM)
 
 SRC += nema_dc_hal.c
 SRC += nema_hal.c
 
-LIBS += $(AMBIQSUITE_PATH)/third_party/ThinkSi/config/apollo510L_nemagfx/gcc/bin/lib_nema_apollo510L_nemagfx.a
+LIBS += $(AMBIQSUITE_PATH)/third_party/ThinkSi/config/$(NEMA_PLATFORM)/gcc/bin/lib_nema_$(NEMA_PLATFORM).a
 
-# AmbiqSuite/mcu
-INCLUDES+= -I$(AMBIQSUITE_PATH)/mcu/apollo510L
-INCLUDES+= -I$(AMBIQSUITE_PATH)/mcu/apollo510L/hal
-LIBS += $(AMBIQSUITE_PATH)/mcu/apollo510L/hal/mcu/gcc/bin/libam_hal.a
-# VPATH+=:$(AMBIQSUITE_PATH)/mcu/apollo510/hal/
-# VPATH+=:$(AMBIQSUITE_PATH)/mcu/apollo510/hal/mcu
+# AmbiqSuite/mcu (apollo510 or apollo510L)
+INCLUDES+= -I$(AMBIQSUITE_PATH)/mcu/$(PART)
+INCLUDES+= -I$(AMBIQSUITE_PATH)/mcu/$(PART)/hal
+LIBS += $(AMBIQSUITE_PATH)/mcu/$(PART)/hal/mcu/gcc/bin/libam_hal.a
 
 # AmbiqSuite/utils
 INCLUDES+= -I$(AMBIQSUITE_PATH)/utils
@@ -284,10 +286,10 @@ SRC += lv_ambiq_touch.c
 SRC += lv_ambiq_fs.c
 SRC += lv_ambiq_display.c
 
-# AmbiqSuite/cmsis
+# AmbiqSuite/cmsis (use response file to avoid Windows command line length limit)
+CMSIS_DSP_LIB := $(AMBIQSUITE_PATH)/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a
 INCLUDES+= -I$(AMBIQSUITE_PATH)/CMSIS/ARM/Include
 INCLUDES+= -I$(AMBIQSUITE_PATH)/CMSIS/AmbiqMicro/Include
-LIBS += $(AMBIQSUITE_PATH)/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a
 VPATH += $(AMBIQSUITE_PATH)/CMSIS/AmbiqMicro/Source
 
 # AmbiqSuite/devices
@@ -314,7 +316,7 @@ CFLAGS+= -MMD -MP -std=c99 -Wall -g
 CFLAGS+= -Wimplicit-fallthrough -Wundef -Wpointer-arith
 CFLAGS+= -Wshadow -Wredundant-decls -Wstrict-prototypes
 CFLAGS+= -Wno-sign-compare -Wno-unknown-pragmas -Wno-psabi
-CFLAGS+= -O3
+CFLAGS+= -O0
 CFLAGS+= $(DEFINES)
 CFLAGS+= $(INCLUDES)
 CFLAGS+=
@@ -335,7 +337,7 @@ CXXFLAGS+=
 LFLAGS = -mthumb -mcpu=$(CPU) -mfpu=$(FPU) -mfloat-abi=$(FABI)
 LFLAGS+= -nostartfiles -static
 LFLAGS+= -Wl,--gc-sections,--entry,Reset_Handler,-Map,$(CONFIG)/$(TARGET).map
-LFLAGS+= -Wl,--start-group -lm -lc -lgcc -lnosys -lstdc++ $(LIBS) -Wl,--end-group
+LFLAGS+= -Wl,--start-group -lm -lc -lgcc -lnosys -lstdc++ $(LIBS) -Wl,@$(CONFIG)/cmsis_dsp.rsp -Wl,--end-group
 LFLAGS+=
 
 # Additional user specified CFLAGS
@@ -375,6 +377,9 @@ directories: $(CONFIG)
 $(CONFIG):
 	@mkdir -p $@
 
+$(CONFIG)/cmsis_dsp.rsp: $(CONFIG)
+	@echo '"$(CMSIS_DSP_LIB)"' > $@
+
 $(CONFIG)/%.o: %.c $(CONFIG)/%.d
 	@echo " Compiling $(COMPILERNAME) $<"
 	$(Q) $(CC) -c $(CFLAGS) $< -o $@
@@ -387,7 +392,7 @@ $(CONFIG)/%.o: %.s $(CONFIG)/%.d
 	@echo " Assembling $(COMPILERNAME) $<"
 	$(Q) $(CC) -c $(CFLAGS) $< -o $@
 
-$(CONFIG)/$(TARGET).axf: $(OBJS) $(LIBS)
+$(CONFIG)/$(TARGET).axf: $(OBJS) $(filter %.a,$(LIBS)) $(CONFIG)/cmsis_dsp.rsp
 	@echo " Linking $(COMPILERNAME) $@"
 	$(Q) $(CC) -Wl,-T,$(LINKER_FILE) -o $@ $(OBJS) $(LFLAGS)
 
@@ -395,7 +400,7 @@ $(CONFIG)/$(TARGET).bin: $(CONFIG)/$(TARGET).axf
 	@echo " Copying $(COMPILERNAME) $@..."
 	$(Q) $(CP) $(CPFLAGS) $< $@
 	$(Q) $(OD) $(ODFLAGS) $< > $(CONFIG)/$(TARGET).lst
-	$(Q) $(SIZE) $(OBJS) $(LIBS) $(CONFIG)/$(TARGET).axf >$(CONFIG)/$(TARGET).size
+	$(Q) $(SIZE) $(OBJS) $(filter %.a,$(LIBS)) $(CONFIG)/$(TARGET).axf >$(CONFIG)/$(TARGET).size
 
 clean:
 	@echo "Cleaning..."
