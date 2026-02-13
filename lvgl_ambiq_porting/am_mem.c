@@ -52,11 +52,23 @@
 #include "am_mem.h"
 
 #ifndef DTCM_POOL_SIZE
+#if defined(AM_PART_APOLLO510)
+#define DTCM_POOL_SIZE 0x40000
+#elif defined(AM_PART_APOLLO510L)
+#define DTCM_POOL_SIZE 0x20000
+#else
 #define DTCM_POOL_SIZE 0x20000
 #endif
+#endif
 
-#ifndef SSRAM_POLL_SIZE
+#ifndef SSRAM_POOL_SIZE
+#if defined(AM_PART_APOLLO510)
+#define SSRAM_POOL_SIZE 0x280000
+#elif defined(AM_PART_APOLLO510L)
 #define SSRAM_POOL_SIZE 0x165000
+#else
+#define SSRAM_POOL_SIZE 0x165000
+#endif
 #endif
 
 #ifndef PSRAM_POOL_SIZE
