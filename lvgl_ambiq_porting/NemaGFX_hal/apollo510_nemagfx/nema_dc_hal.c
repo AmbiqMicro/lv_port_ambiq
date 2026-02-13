@@ -685,20 +685,13 @@ dc_transfer_frame(bool bAutoLaunch, bool bContinue)
             nemadc_dsi_ct(NemaDC_dt_DCS_long_write, // Unused parameter
                           NemaDC_dt_DCS_long_write, // Unused parameter
                           NemaDC_dcs_datacmd);
-#ifdef MANUALLY_CONTROL_DBIB_CSX
-            nemadc_MIPI_CFG_out(ui32Cfg | MIPICFG_SPI_HOLD | MIPICFG_FRC_CSX_0);
-            //
-            // Send DCS write_memory_start command
-            //
-            nemadc_MIPI_out(MIPI_DBIB_CMD | ui32MemWrCmd);
-#else
+
             nemadc_MIPI_CFG_out(ui32Cfg | MIPICFG_SPI_HOLD);
             //
             // Send DCS write_memory_start command
             //
             nemadc_MIPI_out(MIPI_DBIB_CMD | ui32MemWrCmd);
             wait_dbi_idle(DC_STATUS_dbi_busy, 0x0U);
-#endif
         }
         else
         {
@@ -871,11 +864,7 @@ nemadc_transfer_frame_end(void)
         //
         if (ui32Cfg & (MIPICFG_EXT_CTRL | MIPICFG_BLANKING_EN))
         {
-#ifdef MANUALLY_CONTROL_DBIB_CSX
-            nemadc_MIPI_CFG_out(ui32Cfg & ~(MIPICFG_SPI_HOLD | MIPICFG_FRC_CSX_0));
-#else
             nemadc_MIPI_CFG_out(ui32Cfg & (~MIPICFG_SPI_HOLD));
-#endif
             nemadc_reg_write(NEMADC_REG_CLKCTRL_CG, NemaDC_clkctrl_cg_clk_en); // enable clock gating
             nemadc_reg_write(NEMADC_REG_GPIO, nemadc_reg_read(NEMADC_REG_GPIO) | 0x1); // LP
         }
@@ -2023,7 +2012,7 @@ nemadc_wait_vsync(void)
     else if (0x3FF & nemadc_reg_read(NEMADC_REG_FORMAT_CTRL3))
     {
         //
-        // Called after the frame end for MiP(JDI) interface
+        // Called after the frame end for MiP(JDI) interface 
         //
         wait_mip_idle();
     }
