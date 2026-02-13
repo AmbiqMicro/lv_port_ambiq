@@ -77,9 +77,14 @@
                 return &ssram_heap;
         }
     }
+    /* NemaGFX requires CL buffer to be 8-byte aligned (CL_ALIGNMENT_MASK). Use aligned alloc for CL pool. */
+    #define NEMA_CL_BUFFER_ALIGNMENT 8U
     static inline void* nema_custom_malloc_impl(int pool, size_t size)
     {
-        return am_mem_heap_malloc(nema_custom_get_heap(pool), size);
+        am_mem_control_t *heap = nema_custom_get_heap(pool);
+        if (pool == NEMA_MEM_POOL_CL_RB)
+            return am_mem_heap_malloc_align(heap, size, NEMA_CL_BUFFER_ALIGNMENT);
+        return am_mem_heap_malloc(heap, size);
     }
     static inline void nema_custom_free_impl(void *p)
     {
