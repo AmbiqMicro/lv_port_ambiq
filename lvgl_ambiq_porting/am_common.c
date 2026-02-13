@@ -208,15 +208,15 @@ mspi_device_func_t mspi_device_func =
 void
 am_gpu_init(void)
 {
-#if defined(GPU_RUN_IN_HP_MODE) && !defined(apollo510dL_evb)
+#if defined(GPU_RUN_IN_HP_MODE) && !defined(AM_PART_APOLLO510L)
     am_hal_pwrctrl_periph_disable(AM_HAL_PWRCTRL_PERIPH_GFX);
     //
     //Switch to HP mode.
     //
     am_hal_pwrctrl_mcu_mode_e current_mode;
-    am_hal_pwrctrl_gpu_mode_select(AM_HAL_PWRCTRL_MCU_MODE_HIGH_PERFORMANCE2);
+    am_hal_pwrctrl_gpu_mode_select(AM_HAL_PWRCTRL_MCU_MODE_HIGH_PERFORMANCE);
     am_hal_pwrctrl_gpu_mode_status(&current_mode);
-    if ( AM_HAL_PWRCTRL_MCU_MODE_HIGH_PERFORMANCE2 != current_mode )
+    if ( AM_HAL_PWRCTRL_MCU_MODE_HIGH_PERFORMANCE != current_mode )
     {
         am_util_stdio_printf("gpu switch to HP mode failed!\n");
     }
