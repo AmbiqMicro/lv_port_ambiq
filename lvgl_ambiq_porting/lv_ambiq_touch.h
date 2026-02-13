@@ -29,11 +29,11 @@
 //
 //*****************************************************************************
 #ifndef DISPLAY_TOUCH_RESX
-    #define DISPLAY_TOUCH_RESX (466U)
+    #define DISPLAY_TOUCH_RESX (468U)
 #endif
 
 #ifndef DISPLAY_TOUCH_RESY
-    #define DISPLAY_TOUCH_RESY (466U)
+    #define DISPLAY_TOUCH_RESY (468U)
 #endif
 
 
