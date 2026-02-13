@@ -33,7 +33,7 @@
 // Macro definitions
 //
 //*****************************************************************************
-#define TP_IOM_MODULE              2
+#define TP_IOM_MODULE              AM_BSP_TP_IOM_MODULE
 #define TP_IOM_MODE                AM_HAL_IOM_I2C_MODE
 
 //*****************************************************************************
