@@ -173,7 +173,7 @@ void test_draw_sin_wave(void)
  */
 lv_font_t * lv_example_ambiq_ttf_create(uint32_t font_size, bool load_into_psram)
 {
-    const char* path = "E:SourceHanSansSC-Light_1_1.bin"; // Path on the LVGL virtual filesystem
+    const char* path = "E:SourceHanSansSC-Normal.bin"; // Path on the LVGL virtual filesystem
 
     // --- Strategy 1: Load directly from file ---
     if (!load_into_psram) {
