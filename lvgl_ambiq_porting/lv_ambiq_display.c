@@ -21,6 +21,7 @@
 #include "am_bsp.h"
 #include "am_util.h"
 #include "am_devices_display_generic.h"
+#include "am_debug_pin.h"
 
 #include "lvgl.h"
 #include "lv_draw_ambiq_private.h"
@@ -29,6 +30,8 @@
 #include "semphr.h"
 #include "event_groups.h"
 #include "lv_ambiq_display.h"
+
+
 
 //*****************************************************************************
 //
@@ -126,6 +129,8 @@ void transfer_complete_cb(void* args)
 {
     SemaphoreHandle_t sem = (SemaphoreHandle_t)args;
 
+    AM_DEBUG_PIN_CLEAR(DEBUG_PIN_2);
+
     if(xPortIsInsideInterrupt())
     {
         xSemaphoreGiveFromISR(sem, NULL);
@@ -188,6 +193,8 @@ display_flush_cb(lv_display_t * display, const lv_area_t * area, uint8_t * px_ma
         // It will be released when display interface transfer complete.
         xSemaphoreTake(display_buffer_lock, portMAX_DELAY);       
 
+        AM_DEBUG_PIN_SET(DEBUG_PIN_2);
+
         am_devices_display_transfer_frame(LV_AMBIQ_DISPLAY_BUFFER_RESX,
                                           LV_AMBIQ_DISPLAY_BUFFER_RESY,
                                           (uintptr_t)display_buffer->data,
@@ -195,6 +202,19 @@ display_flush_cb(lv_display_t * display, const lv_area_t * area, uint8_t * px_ma
                                           (void*)display_buffer_lock);
     }
 }
+
+#ifdef USE_DEBUG_PIN
+static void display_event_cb(lv_event_t * e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    if(code == LV_EVENT_RENDER_START) {
+        AM_DEBUG_PIN_SET(DEBUG_PIN_1);
+    }
+    else if(code == LV_EVENT_RENDER_READY) {
+        AM_DEBUG_PIN_CLEAR(DEBUG_PIN_1);
+    }
+}
+#endif
 
 //*****************************************************************************
 //
@@ -211,6 +231,11 @@ void lv_disp_drv_setup(void)
 
     // Set flush cb
     lv_display_set_flush_cb(display, display_flush_cb);
+
+#ifdef USE_DEBUG_PIN
+    lv_display_add_event_cb(display, display_event_cb, LV_EVENT_RENDER_START, NULL);
+    lv_display_add_event_cb(display, display_event_cb, LV_EVENT_RENDER_READY, NULL);
+#endif
 
     // Create draw buffer.
     draw_buffer = lv_draw_buf_create(LV_AMBIQ_DISPLAY_BUFFER_RESX, LV_AMBIQ_DISPLAY_BUFFER_RESY/LV_AMBIQ_DRAW_BUFFER_RATIO, LV_AMBIQ_DRAW_BUFFER_FORMAT, 0);
@@ -244,14 +269,6 @@ lv_ambiq_display_init(void)
 
     LV_LOG_INFO("Display Init!\n");
 
-#ifdef USE_DEBUG_PIN
-    am_hal_gpio_pinconfig(DEBUG_PIN_1, am_hal_gpio_pincfg_output); //keep high when the GPU memcpy is working
-    am_hal_gpio_pinconfig(DEBUG_PIN_2, am_hal_gpio_pincfg_output); //Toggle when the GPU finished his work
-    am_hal_gpio_pinconfig(DEBUG_PIN_3, am_hal_gpio_pincfg_output); //Keep high when the display task is active
-    am_hal_gpio_pinconfig(DEBUG_PIN_4, am_hal_gpio_pincfg_output); //Keep high when the display data transfer is active
-    am_hal_gpio_pinconfig(DEBUG_PIN_5, am_hal_gpio_pincfg_output);
-    am_hal_gpio_pinconfig(DEBUG_PIN_6, am_hal_gpio_pincfg_output);
-#endif
 
     display_buffer_lock = xSemaphoreCreateBinary();
     if( display_buffer_lock == NULL )

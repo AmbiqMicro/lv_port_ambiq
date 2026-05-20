@@ -39,6 +39,8 @@
 
 #include <stdlib.h>
 
+#include "am_debug_pin.h"
+
 #define NEMA_BASEADDR       GPU_BASE
 
 // IRQ number
@@ -65,6 +67,8 @@ static nema_ringbuffer_t ring_buffer_str = {{0}};
 static void prvNemaInterruptHandler( void *pvUnused )
 {
 
+    AM_DEBUG_PIN_SET(DEBUG_PIN_3);
+
     int current_cl_id = (int)nema_reg_read(NEMA_CLID);
     int previous_cl_id;
 
@@ -87,6 +91,9 @@ static void prvNemaInterruptHandler( void *pvUnused )
     /* Public the last_cl_id */
     last_cl_id = current_cl_id;
 
+    if(last_cl_id == ring_buffer_str.last_submission_id)
+        AM_DEBUG_PIN_CLEAR(DEBUG_PIN_4);
+
     BaseType_t xHigherPriorityTaskWoken;
 
     xSemaphoreGiveFromISR(xSemaphore, &xHigherPriorityTaskWoken);
@@ -101,6 +108,8 @@ static void prvNemaInterruptHandler( void *pvUnused )
     {
         nemagfx_cb(last_cl_id);
     }
+
+    AM_DEBUG_PIN_CLEAR(DEBUG_PIN_3);
 }
 
 //*****************************************************************************
@@ -208,6 +217,12 @@ uint32_t nema_reg_read (uint32_t reg)
 
 void nema_reg_write (uint32_t reg,uint32_t value)
 {
+    if((reg == NEMA_CMDRINGSTOP))
+    {
+        if(last_cl_id != ring_buffer_str.last_submission_id)
+             AM_DEBUG_PIN_SET(DEBUG_PIN_4);
+    }
+
     volatile uint32_t *ptr = (volatile uint32_t *)(nema_regs + reg);
     *ptr = value;
 }

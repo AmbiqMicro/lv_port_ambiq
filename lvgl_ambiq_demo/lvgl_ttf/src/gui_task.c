@@ -242,6 +242,8 @@ lv_font_t * lv_example_ambiq_ttf_create(uint32_t font_size, bool load_into_psram
         return NULL;
     }
 
+    new_font->fallback = &lv_font_montserrat_14;
+
     // --- IMPORTANT: Attach the buffer to the font for proper memory management ---
     new_font->user_data = bin_data;
 
