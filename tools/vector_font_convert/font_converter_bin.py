@@ -86,8 +86,6 @@ class FontConverter:
                 
                 if c_outline.n_points > 0: # Extra safety check
                     original_bbox = self.face.glyph.outline.get_bbox()
-                    if original_bbox.xMin < 0:
-                        freetype.FT_Outline_Translate(c_outline_ptr, -original_bbox.xMin, 0)
                     
                     user_data = ctypes.py_object(decomposer)
                     freetype.FT_Outline_Decompose(c_outline_ptr, ctypes.byref(outline_funcs), ctypes.pointer(user_data))

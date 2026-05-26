@@ -288,6 +288,24 @@ void lv_ambiq_create_corner_mask(uint32_t size, uint32_t sw, uint32_t* sh_buf);
  *       No memory allocation or bounds checking is performed within the function.
  */
 uint32_t lv_ambiq_l8_l4_convert(void* l8_ptr, void* l4_ptr, uint32_t width, uint32_t height);
+
+/**
+ * @brief Renders a vector graphics path into a bitmap buffer.
+ *
+ * This function uses the NemaVG raster engine to render a given vector graphics path
+ * into a provided bitmap memory buffer. The resulting bitmap is typically rendered
+ * in A8 (Alpha 8-bit) format, suitable for anti-aliased font glyphs or shape masks.
+ * A scaling factor is applied to the path before rendering.
+ *
+ * @param path          A handle to the vector graphics path (NEMA_VG_PATH_HANDLE) to be rendered.
+ * @param width_bitmap  The width (stride) of the destination bitmap buffer in pixels.
+ * @param height_bitmap The height of the destination bitmap buffer in pixels.
+ * @param ptr_bitmap    Pointer to the destination buffer where the pixel data will be stored.
+ *                      The buffer must be properly allocated to hold width_bitmap * height_bitmap bytes.
+ * @param scale         The scaling factor applied to the vector path before rasterization.
+ */
+void lv_ambiq_vector_path_to_bitmap(NEMA_VG_PATH_HANDLE path, uint32_t width_bitmap, uint32_t height_bitmap, void *ptr_bitmap, float scale);
+
 #ifdef __cplusplus
 }
 #endif

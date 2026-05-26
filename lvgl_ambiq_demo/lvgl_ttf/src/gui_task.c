@@ -175,13 +175,17 @@ lv_font_t * lv_example_ambiq_ttf_create(uint32_t font_size, bool load_into_psram
 {
     const char* path = "E:SourceHanSansSC-Normal.bin"; // Path on the LVGL virtual filesystem
 
+    lv_ambiq_ttf_handle_t * vg_font;
+    uint8_t *bin_data = NULL;
+
     // --- Strategy 1: Load directly from file ---
     if (!load_into_psram) {
         LV_LOG_INFO("Loading font directly from file: %s", path);
         // This is the simpler path. The lv_ambiq_ttf library will handle all file operations.
-        return lv_ambiq_ttf_create_file(path, font_size);
+        vg_font = lv_ambiq_ttf_load(path, 256, 256);
     }
-
+    else
+    {
     // --- Strategy 2: Pre-load the entire file into PSRAM for performance ---
     LV_LOG_INFO("Pre-loading font file '%s' into PSRAM.", path);
     
@@ -214,10 +218,10 @@ lv_font_t * lv_example_ambiq_ttf_create(uint32_t font_size, bool load_into_psram
     }
 
     // --- Allocate PSRAM and read the file content into it ---
-    LV_LOG_INFO("Allocating %d bytes in PSRAM for font file.", length);
-    uint8_t *bin_data = am_mem_psram_malloc(length);
+    LV_LOG_INFO("Allocating %lu bytes in PSRAM for font file.", (unsigned long)length);
+    bin_data = am_mem_psram_malloc(length);
     if (bin_data == NULL) {
-        LV_LOG_ERROR("Failed to allocate %d bytes in PSRAM.", length);
+        LV_LOG_ERROR("Failed to allocate %lu bytes in PSRAM.", (unsigned long)length);
         lv_fs_close(&file);
         return NULL;
     }
@@ -229,18 +233,17 @@ lv_font_t * lv_example_ambiq_ttf_create(uint32_t font_size, bool load_into_psram
     lv_fs_close(&file);
 
     if (res != LV_FS_RES_OK || bytes_read != length) {
-        LV_LOG_ERROR("Failed to read the full font file into buffer. Read %d of %d bytes.", bytes_read, length);
+        LV_LOG_ERROR("Failed to read the full font file into buffer. Read %lu of %lu bytes.", (unsigned long)bytes_read, (unsigned long)length);
         am_mem_psram_free(bin_data); // CRITICAL: Free the buffer on failure.
         return NULL;
     }
 
     // --- Create the font from the in-memory buffer ---
-    lv_font_t * new_font = lv_ambiq_ttf_create_data(bin_data, length, font_size);
-    if (new_font == NULL) {
-        LV_LOG_ERROR("Font creation from buffer failed.");
-        am_mem_psram_free(bin_data); // CRITICAL: Free the buffer if creation fails.
-        return NULL;
-    }
+    vg_font = lv_ambiq_ttf_load_from_buffer(bin_data, length);
+
+}
+
+    lv_font_t * new_font =  lv_ambiq_ttf_create(vg_font, font_size, 256);
 
     new_font->fallback = &lv_font_montserrat_14;
 
