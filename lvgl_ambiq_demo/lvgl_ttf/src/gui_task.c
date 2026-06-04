@@ -243,7 +243,7 @@ lv_font_t * lv_example_ambiq_ttf_create(uint32_t font_size, bool load_into_psram
 
 }
 
-    lv_font_t * new_font =  lv_ambiq_ttf_create(vg_font, font_size, 256);
+    lv_font_t * new_font =  lv_ambiq_ttf_create(vg_font, font_size, 10);
 
     new_font->fallback = &lv_font_montserrat_14;
 

@@ -153,7 +153,7 @@ VPATH+=:$(LVGL_AMBIQ_PORTING_PATH)/NemaGFX_hal/apollo510_nemagfx
 SRC += nema_dc_hal.c
 SRC += nema_hal.c
 
-LIBS += $(AMBIQSUITE_PATH)/third_party/ThinkSi/config/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a
+LIBS += $(LVGL_AMBIQ_PORTING_PATH)/NemaGFX_hal/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a
 
 # AmbiqSuite/mcu
 INCLUDES+= -I$(AMBIQSUITE_PATH)/mcu/apollo510
@@ -328,7 +328,7 @@ CXXFLAGS+= -MMD -MP -std=c++11 -Wall -g
 CXXFLAGS+= -Wimplicit-fallthrough -Wundef -Wpointer-arith
 CXXFLAGS+= -Wshadow -Wredundant-decls
 CXXFLAGS+= -Wno-sign-compare -Wno-unknown-pragmas -Wno-psabi
-CXXFLAGS+= -O3
+CXXFLAGS+= -O0
 CXXFLAGS+= $(DEFINES)
 CXXFLAGS+= $(INCLUDES)
 CXXFLAGS+=
