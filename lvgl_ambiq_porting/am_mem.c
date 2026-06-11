@@ -43,6 +43,8 @@
 //
 //*****************************************************************************
 #include <string.h>
+#include "src/misc/lv_assert.h"
+#include "src/misc/lv_log.h"
 #include "tlsf.h"
 #include "am_mcu_apollo.h"
 #include "am_util.h"
@@ -217,19 +219,11 @@ static void set_ssram_psram_heap_noncacheable(void)
 static void _am_mem_heap_init(am_mem_control_t *heap, void *pool, size_t pool_size)
 {
     heap->tlsf = tlsf_create_with_pool(pool, pool_size);
-    if (heap->tlsf == NULL)
-    {
-        am_util_stdio_printf("TLSF memory pool creation failed!\n");
-        while(1);
-    }
+    LV_ASSERT_MSG(heap->tlsf != NULL, "TLSF memory pool creation failed!");
 
     /*Init mutex for exclusive access*/
     heap->mutex = xSemaphoreCreateMutex();
-    if (heap->mutex == NULL)
-    {
-        am_util_stdio_printf("TLSF mutex creation failed!\n");
-        while(1);
-    }
+    LV_ASSERT_MSG(heap->mutex != NULL, "TLSF mutex creation failed!");
 
     heap->cur_used = 0;
     heap->max_used = 0;
@@ -249,6 +243,8 @@ void *am_mem_heap_malloc(am_mem_control_t *heap, size_t size)
     if (xSemaphoreTake(heap->mutex, portMAX_DELAY) == pdTRUE)
     {
         p = tlsf_malloc(heap->tlsf, size);
+        LV_ASSERT_MSG(p != NULL, "am_mem_heap_malloc failed");
+
         if (p)
         {
             heap->cur_used += tlsf_block_size(p);
@@ -272,6 +268,8 @@ void *am_mem_heap_malloc_align(am_mem_control_t *heap, size_t size, size_t align
     if (xSemaphoreTake(heap->mutex, portMAX_DELAY) == pdTRUE)
     {
         p = tlsf_memalign(heap->tlsf, align, size);
+        LV_ASSERT_MSG(p != NULL, "am_mem_heap_malloc_align failed");
+
         if (p)
         {
             heap->cur_used += tlsf_block_size(p);
@@ -289,9 +287,9 @@ void *am_mem_heap_realloc(am_mem_control_t *heap, void * p, size_t new_size)
 
     if (xSemaphoreTake(heap->mutex, portMAX_DELAY) == pdTRUE)
     {
-
         size_t old_size = tlsf_block_size(p);
         p_new = tlsf_realloc(heap->tlsf, p, new_size);
+        LV_ASSERT_MSG(p_new != NULL, "am_mem_heap_realloc failed");
 
         if(p_new) {
             heap->cur_used -= old_size;
