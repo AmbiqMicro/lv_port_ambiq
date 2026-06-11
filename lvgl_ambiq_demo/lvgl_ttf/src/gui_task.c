@@ -243,7 +243,7 @@ lv_font_t * lv_example_ambiq_ttf_create(uint32_t font_size, bool load_into_psram
 
 }
 
-    lv_font_t * new_font =  lv_ambiq_ttf_create(vg_font, font_size, 10);
+    lv_font_t * new_font =  lv_ambiq_ttf_create(vg_font, font_size, 256);
 
     new_font->fallback = &lv_font_montserrat_14;
 
@@ -579,6 +579,32 @@ void run_text_scroll_scenario(lv_font_t * font, const char * tag)
 // Task function.
 //
 //*****************************************************************************
+
+static void mem_monitor_timer_cb(lv_timer_t * timer)
+{
+    (void)timer;
+    am_mem_monitor_t ssram_mon;
+    am_mem_monitor_t psram_mon;
+
+    am_mem_ssram_monitor(&ssram_mon);
+    am_mem_psram_monitor(&psram_mon);
+
+    LV_LOG_USER("--- MEMORY MONITOR ---");
+    LV_LOG_USER("SSRAM: Total %zu B, Used %zu B (%d%%), Free %zu B, Max Used %zu B",
+                ssram_mon.total_size, 
+                ssram_mon.total_size - ssram_mon.free_size, 
+                ssram_mon.used_pct, 
+                ssram_mon.free_size, 
+                ssram_mon.max_used);
+                
+    LV_LOG_USER("PSRAM: Total %zu B, Used %zu B (%d%%), Free %zu B, Max Used %zu B",
+                psram_mon.total_size, 
+                psram_mon.total_size - psram_mon.free_size, 
+                psram_mon.used_pct, 
+                psram_mon.free_size, 
+                psram_mon.max_used);
+}
+
 void
 GuiTask(void *pvParameters)
 {
@@ -623,6 +649,9 @@ GuiTask(void *pvParameters)
     // === Continuous Text Scroll scenario, vector font ===
     lv_font_t * tr_font = lv_example_ambiq_ttf_create(22, true);
     run_text_scroll_scenario(tr_font, "TR-Vec");
+
+    // Add a periodic timer to print memory stats every 3 seconds
+    lv_timer_create(mem_monitor_timer_cb, 5000, NULL);
 
     while(1)
     {
