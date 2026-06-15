@@ -153,7 +153,7 @@
  */
 #define LV_DRAW_THREAD_STACK_SIZE    (8 * 1024)         /**< [bytes]*/
 
-#define LV_USE_DRAW_SW 1
+#define LV_USE_DRAW_SW 0
 #if LV_USE_DRAW_SW == 1
     /*
      * Selectively disable color format support in order to reduce code size.
