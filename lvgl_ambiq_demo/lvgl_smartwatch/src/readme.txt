@@ -19,10 +19,7 @@ Apollo510 EVB
 
 1. **Flash the Resource Loader Program**
 
-   Use J-Link to flash the provided binary to the Apollo510:
-
-   - **Binary File**: tinyusb_cdc_msc_emmc.bin, placed in lvgl_smartwatch\src\gui\img_wallpaper
-   - **Flash Address**: `0x410000`
+   Use J-Link to flash the provided binary to the Apollo510, see `tools/LoadTexture/readme.md` for details. 
 
 2. **Connect Apollo510 to PC via USB**
 
