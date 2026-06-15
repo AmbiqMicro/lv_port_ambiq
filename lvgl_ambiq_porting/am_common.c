@@ -139,7 +139,7 @@ void            *g_pMSPIPsramHandle;
 am_devices_mspi_psram_config_t g_sMspiPsramConfig =
 {
     .eDeviceConfig            = AM_HAL_MSPI_FLASH_HEX_DDR_CE0,
-    .eClockFreq               = AM_HAL_MSPI_CLK_250MHZ,
+    .eClockFreq               = AM_HAL_MSPI_CLK_192MHZ,
     .ui32NBTxnBufLength       = 0,
     .pNBTxnBuf                = NULL,
     .ui32ScramblingStartAddr  = 0,
