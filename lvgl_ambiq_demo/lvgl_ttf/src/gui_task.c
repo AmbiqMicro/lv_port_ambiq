@@ -173,15 +173,19 @@ void test_draw_sin_wave(void)
  */
 lv_font_t * lv_example_ambiq_ttf_create(uint32_t font_size, bool load_into_psram)
 {
-    const char* path = "E:SourceHanSansSC-Light_1_1.bin"; // Path on the LVGL virtual filesystem
+    const char* path = "E:SourceHanSansSC-Normal.bin"; // Path on the LVGL virtual filesystem
+
+    lv_ambiq_ttf_handle_t * vg_font;
+    uint8_t *bin_data = NULL;
 
     // --- Strategy 1: Load directly from file ---
     if (!load_into_psram) {
         LV_LOG_INFO("Loading font directly from file: %s", path);
         // This is the simpler path. The lv_ambiq_ttf library will handle all file operations.
-        return lv_ambiq_ttf_create_file(path, font_size);
+        vg_font = lv_ambiq_ttf_load(path, 256, 256);
     }
-
+    else
+    {
     // --- Strategy 2: Pre-load the entire file into PSRAM for performance ---
     LV_LOG_INFO("Pre-loading font file '%s' into PSRAM.", path);
     
@@ -214,10 +218,10 @@ lv_font_t * lv_example_ambiq_ttf_create(uint32_t font_size, bool load_into_psram
     }
 
     // --- Allocate PSRAM and read the file content into it ---
-    LV_LOG_INFO("Allocating %d bytes in PSRAM for font file.", length);
-    uint8_t *bin_data = am_mem_psram_malloc(length);
+    LV_LOG_INFO("Allocating %lu bytes in PSRAM for font file.", (unsigned long)length);
+    bin_data = am_mem_psram_malloc(length);
     if (bin_data == NULL) {
-        LV_LOG_ERROR("Failed to allocate %d bytes in PSRAM.", length);
+        LV_LOG_ERROR("Failed to allocate %lu bytes in PSRAM.", (unsigned long)length);
         lv_fs_close(&file);
         return NULL;
     }
@@ -229,18 +233,19 @@ lv_font_t * lv_example_ambiq_ttf_create(uint32_t font_size, bool load_into_psram
     lv_fs_close(&file);
 
     if (res != LV_FS_RES_OK || bytes_read != length) {
-        LV_LOG_ERROR("Failed to read the full font file into buffer. Read %d of %d bytes.", bytes_read, length);
+        LV_LOG_ERROR("Failed to read the full font file into buffer. Read %lu of %lu bytes.", (unsigned long)bytes_read, (unsigned long)length);
         am_mem_psram_free(bin_data); // CRITICAL: Free the buffer on failure.
         return NULL;
     }
 
     // --- Create the font from the in-memory buffer ---
-    lv_font_t * new_font = lv_ambiq_ttf_create_data(bin_data, length, font_size);
-    if (new_font == NULL) {
-        LV_LOG_ERROR("Font creation from buffer failed.");
-        am_mem_psram_free(bin_data); // CRITICAL: Free the buffer if creation fails.
-        return NULL;
-    }
+    vg_font = lv_ambiq_ttf_load_from_buffer(bin_data, length);
+
+}
+
+    lv_font_t * new_font =  lv_ambiq_ttf_create(vg_font, font_size, 256);
+
+    new_font->fallback = &lv_font_montserrat_14;
 
     // --- IMPORTANT: Attach the buffer to the font for proper memory management ---
     new_font->user_data = bin_data;
@@ -396,9 +401,210 @@ void lv_example_freetype_2(void)
 
 //*****************************************************************************
 //
+// Continuous Text Scroll scenario.
+//
+// An lv_timer auto-drives a continuous downward scroll and recycles at the
+// window boundary, so it "keeps scrolling, keeps turning pages".
+// Rendering is left to the native lv_timer_handler() loop in GuiTask.
+// FPS can be monitored via LVGL's built-in sysmon (LV_USE_PERF_MONITOR).
+//
+//*****************************************************************************
+#define TR_LINE_HEIGHT      28
+#define TR_PAGE_LINES       10
+#define TR_PAGE_HEIGHT      (TR_PAGE_LINES * TR_LINE_HEIGHT)
+#define TR_WINDOW_PAGES     3                                       /* MAX_DISPLAY_PAGE */
+#define TR_VIEWPORT_LINES   9                                       /* MINIMIZED container 9 lines */
+#define TR_VIEWPORT_H       (TR_VIEWPORT_LINES * TR_LINE_HEIGHT)
+#define TR_DISPLAY_WIDTH    500
+#define TR_CHARS_PER_LINE   16
+#define TR_TEXT_BUF_SIZE    (TR_PAGE_LINES * TR_CHARS_PER_LINE * 3 + TR_PAGE_LINES + 1)
+#define TR_SCROLL_STEP_PX   4       /* px advanced per scroll tick (smooth scroll) */
+#define TR_SCROLL_PERIOD_MS 16      /* lv_timer period that drives the scroll */
+#define TR_CJK_BASE         0x4E00u
+#define TR_CJK_SPAN         0x3000u /* codepoint window pages draw their chars from */
+
+/* Self-contained UTF-8 encoder */
+static void tr_encode_utf8(char ** pout, uint32_t cp)
+{
+    char * p = *pout;
+    if(cp < 0x80u) {
+        *p++ = (char)cp;
+    }
+    else if(cp < 0x800u) {
+        *p++ = (char)(0xC0u | (cp >> 6));
+        *p++ = (char)(0x80u | (cp & 0x3Fu));
+    }
+    else {
+        *p++ = (char)(0xE0u |  (cp >> 12));
+        *p++ = (char)(0x80u | ((cp >> 6) & 0x3Fu));
+        *p++ = (char)(0x80u |  (cp & 0x3Fu));
+    }
+    *pout = p;
+}
+
+/* Build TR_PAGE_LINES lines x TR_CHARS_PER_LINE CJK chars for a logical page.
+ * Each page is offset in codepoint space so pages look different and the glyph
+ * cache sees fresh chars across page turns (realistic translation/scroll load). */
+static void tr_fill_page_text(char * buf, uint32_t page_id)
+{
+    char * p = buf;
+    uint32_t page_off = (page_id * TR_PAGE_LINES * TR_CHARS_PER_LINE) % TR_CJK_SPAN;
+    uint32_t k = 0;
+    for(int line = 0; line < TR_PAGE_LINES; line++) {
+        for(int c = 0; c < TR_CHARS_PER_LINE; c++) {
+            uint32_t cp = TR_CJK_BASE + (page_off + k) % TR_CJK_SPAN;
+            tr_encode_utf8(&p, cp);
+            k++;
+        }
+        if(line < TR_PAGE_LINES - 1) {
+            *p++ = '\n';
+        }
+    }
+    *p = '\0';
+}
+
+/* Create a page label. */
+static lv_obj_t * tr_page_label_create(lv_obj_t * parent, lv_font_t * font)
+{
+    lv_obj_t * page_label = lv_label_create(parent);
+    /* full container width so LV_TEXT_ALIGN_CENTER can h-center each line
+     * (LV_SIZE_CONTENT would shrink to the text width, leaving nothing to
+     * center within). */
+    lv_obj_set_width(page_label, lv_pct(100));
+    lv_obj_set_height(page_label, TR_PAGE_HEIGHT);
+    lv_label_set_long_mode(page_label, LV_LABEL_LONG_CLIP);
+    lv_label_set_recolor(page_label, false);
+    lv_obj_set_style_text_color(page_label, lv_color_hex(0xFFFFFF), LV_PART_MAIN);
+    lv_obj_set_style_text_color(page_label, lv_color_hex(0x444444), LV_PART_SELECTED);
+    lv_obj_set_style_bg_color(page_label, lv_color_hex(0x0), LV_PART_SELECTED);
+    lv_obj_set_style_text_font(page_label, font, LV_PART_MAIN);
+    lv_obj_set_style_text_line_space(page_label,
+                                     TR_LINE_HEIGHT - lv_font_get_line_height(font),
+                                     LV_PART_MAIN);
+    lv_obj_set_style_text_align(page_label, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN);
+    lv_label_set_text(page_label, "");
+    return page_label;
+}
+
+/* Scenario state, shared between setup and the scroll lv_timer callback. */
+typedef struct {
+    lv_obj_t * cont;
+    int32_t    scroll_y;
+    uint32_t   window_start;
+    char       buf[TR_TEXT_BUF_SIZE];
+} tr_state_t;
+
+static tr_state_t g_tr;
+
+/* lv_timer callback: advance the scroll one step, recycle a label at the window
+ * boundary (page turn). Rendering happens later in lv_timer_handler(). */
+static void tr_scroll_timer_cb(lv_timer_t * timer)
+{
+    tr_state_t * st = (tr_state_t *)lv_timer_get_user_data(timer);
+
+    st->scroll_y += TR_SCROLL_STEP_PX;
+
+    /* window bottom reached (top line entered the 3rd page) -> switch next:
+     * recycle child0 to index2, refill with the next page, re-anchor one page
+     * up. */
+    if(st->scroll_y >= 2 * TR_PAGE_HEIGHT) {
+        lv_obj_t * lbl = lv_obj_get_child(st->cont, 0);
+        tr_fill_page_text(st->buf, st->window_start + TR_WINDOW_PAGES);
+        lv_label_set_text(lbl, st->buf);
+        lv_obj_move_to_index(lbl, 2);
+        lv_obj_update_layout(st->cont);
+        st->window_start++;
+        st->scroll_y -= TR_PAGE_HEIGHT;
+    }
+
+    lv_obj_scroll_to_y(st->cont, st->scroll_y, LV_ANIM_OFF);
+}
+
+/* Build the scroll UI and start the scroll timer, then return. Rendering is
+ * driven by the native lv_timer_handler() loop in GuiTask; FPS is read from
+ * LVGL's built-in perf monitor. */
+void run_text_scroll_scenario(lv_font_t * font, const char * tag)
+{
+    if(!font) {
+        LV_LOG_ERROR("[%s] font is NULL", tag);
+        return;
+    }
+
+    lv_obj_clean(lv_screen_active());
+    lv_obj_set_style_bg_color(lv_screen_active(), lv_color_hex(0x000000), LV_PART_MAIN);
+    lv_obj_set_style_bg_opa(lv_screen_active(), LV_OPA_COVER, LV_PART_MAIN);
+
+    /* --- scroll_container --- */
+    lv_obj_t * cont = lv_obj_create(lv_screen_active());
+    lv_obj_set_size(cont, TR_DISPLAY_WIDTH, TR_VIEWPORT_H);
+    lv_obj_align(cont, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_style_bg_opa(cont, LV_OPA_TRANSP, LV_PART_MAIN);
+    lv_obj_set_style_border_width(cont, 0, LV_PART_MAIN);
+    lv_obj_set_style_pad_all(cont, 0, LV_PART_MAIN);
+    lv_obj_set_style_radius(cont, 0, LV_PART_MAIN);
+    lv_obj_set_scrollbar_mode(cont, LV_SCROLLBAR_MODE_OFF);
+    lv_obj_add_flag(cont, LV_OBJ_FLAG_SCROLLABLE);
+    lv_obj_set_scroll_dir(cont, LV_DIR_VER);
+    lv_obj_remove_flag(cont, LV_OBJ_FLAG_SCROLL_CHAIN | LV_OBJ_FLAG_SCROLL_ELASTIC | LV_OBJ_FLAG_SCROLL_MOMENTUM);
+    lv_obj_set_flex_flow(cont, LV_FLEX_FLOW_COLUMN);
+    /* main axis START (stack pages top-down), cross axis CENTER (h-center the
+     * content-width labels inside the container). */
+    lv_obj_set_flex_align(cont, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_START);
+    lv_obj_set_style_pad_row(cont, 0, LV_PART_MAIN);
+
+    /* --- pre-create 3 page labels, fill window [0,1,2] --- */
+    g_tr.cont         = cont;
+    g_tr.scroll_y     = 0;
+    g_tr.window_start = 0;
+    for(uint32_t i = 0; i < TR_WINDOW_PAGES; i++) {
+        lv_obj_t * lbl = tr_page_label_create(cont, font);
+        tr_fill_page_text(g_tr.buf, g_tr.window_start + i);   /* set_text copies, buf reuse ok */
+        lv_label_set_text(lbl, g_tr.buf);
+    }
+    lv_obj_update_layout(cont);
+    lv_obj_scroll_to_y(cont, 0, LV_ANIM_OFF);
+
+    LV_LOG_USER("[%s] start: font_line_h=%d line_space=%d viewport=%dx%d page_h=%d",
+                tag, (int)lv_font_get_line_height(font),
+                (int)(TR_LINE_HEIGHT - lv_font_get_line_height(font)),
+                TR_DISPLAY_WIDTH, TR_VIEWPORT_H, TR_PAGE_HEIGHT);
+
+    /* Drive the continuous scroll + page turn; rendering is the lv_timer_handler
+     * loop's job, FPS comes from the built-in perf monitor. */
+    lv_timer_create(tr_scroll_timer_cb, TR_SCROLL_PERIOD_MS, &g_tr);
+}
+
+//*****************************************************************************
+//
 // Task function.
 //
 //*****************************************************************************
+
+static void mem_monitor_timer_cb(lv_timer_t * timer)
+{
+    (void)timer;
+    am_mem_monitor_t ssram_mon;
+    am_mem_monitor_t psram_mon;
+
+    am_mem_ssram_monitor(&ssram_mon);
+    am_mem_psram_monitor(&psram_mon);
+
+    LV_LOG_USER("--- MEMORY MONITOR ---");
+    LV_LOG_USER("SSRAM: Total %zu B, Used %zu B (%d%%), Free %zu B, Max Used %zu B",
+                ssram_mon.total_size, 
+                ssram_mon.total_size - ssram_mon.free_size, 
+                ssram_mon.used_pct, 
+                ssram_mon.free_size, 
+                ssram_mon.max_used);
+                
+    LV_LOG_USER("PSRAM: Total %zu B, Used %zu B (%d%%), Free %zu B, Max Used %zu B",
+                psram_mon.total_size, 
+                psram_mon.total_size - psram_mon.free_size, 
+                psram_mon.used_pct, 
+                psram_mon.free_size, 
+                psram_mon.max_used);
+}
+
 void
 GuiTask(void *pvParameters)
 {
@@ -440,7 +646,12 @@ GuiTask(void *pvParameters)
         vTaskDelete(NULL);
     }
 
-    lv_example_freetype_2_vector_font(24, 2);
+    // === Continuous Text Scroll scenario, vector font ===
+    lv_font_t * tr_font = lv_example_ambiq_ttf_create(22, true);
+    run_text_scroll_scenario(tr_font, "TR-Vec");
+
+    // Add a periodic timer to print memory stats every 3 seconds
+    lv_timer_create(mem_monitor_timer_cb, 5000, NULL);
 
     while(1)
     {

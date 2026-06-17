@@ -73,6 +73,7 @@
 #include "am_common.h"
 #include "lv_ambiq_display.h"
 #include "lv_ambiq_touch.h"
+#include "am_debug_pin.h"
 
 #if defined(BAREMETAL) && defined(SYSTEM_VIEW)
 #error SYSTEM_VIEW cannot be used in baremetal!

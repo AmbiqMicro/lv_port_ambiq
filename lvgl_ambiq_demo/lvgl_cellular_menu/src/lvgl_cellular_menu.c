@@ -139,6 +139,11 @@ main(void)
     am_gpu_init();
 
     //
+    // Init debug pin.
+    //
+    am_debug_pin_init();
+
+    //
     // Run the application.
     //
     run_tasks();

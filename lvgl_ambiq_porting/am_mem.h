@@ -1,3 +1,6 @@
+#ifndef AM_MEM_H
+#define AM_MEM_H
+
 #include "am_mcu_apollo.h"
 #include "tlsf.h"
 #include "FreeRTOS.h"
@@ -52,3 +55,5 @@ extern void am_mem_heap_monitor(am_mem_control_t *heap, am_mem_monitor_t * mon_p
 #define am_mem_dtcm_monitor(mon_p) am_mem_heap_monitor(&dtcm_heap, mon_p)
 #define am_mem_ssram_monitor(mon_p) am_mem_heap_monitor(&ssram_heap, mon_p)
 #define am_mem_psram_monitor(mon_p) am_mem_heap_monitor(&psram_heap, mon_p)
+
+#endif /* AM_MEM_H */

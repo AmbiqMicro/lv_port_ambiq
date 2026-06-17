@@ -88,6 +88,11 @@ main(void)
     am_gpu_init();
 
     //
+    // Init debug pin
+    //
+    am_debug_pin_init();
+
+    //
     // Initialize plotting interface.
     //
     am_util_stdio_printf("lvgl_smartwatch Example\n");

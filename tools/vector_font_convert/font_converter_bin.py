@@ -12,7 +12,7 @@ from typing import List, Dict, Tuple, Optional
 
 # --- Binary File Format Constants ---
 FILE_MAGIC = 0x4E464F4E  # "NFON"
-FILE_VERSION = 5
+FILE_VERSION = 6
 
 # --- Nema VG Primitive Constants ---
 NEMA_VG_PRIM_MOVE, NEMA_VG_PRIM_LINE = 0x01, 0x02
@@ -86,8 +86,6 @@ class FontConverter:
                 
                 if c_outline.n_points > 0: # Extra safety check
                     original_bbox = self.face.glyph.outline.get_bbox()
-                    if original_bbox.xMin < 0:
-                        freetype.FT_Outline_Translate(c_outline_ptr, -original_bbox.xMin, 0)
                     
                     user_data = ctypes.py_object(decomposer)
                     freetype.FT_Outline_Decompose(c_outline_ptr, ctypes.byref(outline_funcs), ctypes.pointer(user_data))
@@ -114,9 +112,11 @@ class FontConverter:
             geometry_offsets = []
             for glyph in sorted_glyphs:
                 geometry_offsets.append(f.tell())
-                data_bytes = struct.pack(f'<{len(glyph.data)}f', *glyph.data)
+                coord_count = len(glyph.data)
+                coord_data_ints = [int(max(-32768, min(32767, round(val)))) for val in glyph.data]
+                data_bytes = struct.pack(f'<{coord_count}h', *coord_data_ints)
                 segment_bytes = struct.pack(f'<{len(glyph.segments)}B', *glyph.segments)
-                f.write(struct.pack('<II', len(data_bytes), len(segment_bytes)))
+                f.write(struct.pack('<II', coord_count, len(segment_bytes)))
                 f.write(data_bytes)
                 f.write(segment_bytes)
             end_of_data_offset = f.tell()

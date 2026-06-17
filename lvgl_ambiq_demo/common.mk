@@ -137,6 +137,7 @@ else
 DEFINES+= -DVMEM_SIZE=0x1FFFF
 endif
 DEFINES+= -DWAIT_IRQ_BINARY_SEMAPHORE=1
+DEFINES+= -DUSE_DEBUG_PIN
 
 DEFINES+= -Dgcc
 
@@ -171,6 +172,7 @@ SRC += nema_dc_hal.c
 SRC += nema_hal.c
 
 LIBS += $(AMBIQSUITE_PATH)/third_party/ThinkSi/config/$(NEMA_PLATFORM)/gcc/bin/lib_nema_$(NEMA_PLATFORM).a
+# LIBS += $(LVGL_AMBIQ_PORTING_PATH)/NemaGFX_hal/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a
 
 # AmbiqSuite/mcu (apollo510 or apollo510L)
 INCLUDES+= -I$(AMBIQSUITE_PATH)/mcu/$(PART)
@@ -343,7 +345,7 @@ CXXFLAGS+= -MMD -MP -std=c++11 -Wall -g
 CXXFLAGS+= -Wimplicit-fallthrough -Wundef -Wpointer-arith
 CXXFLAGS+= -Wshadow -Wredundant-decls
 CXXFLAGS+= -Wno-sign-compare -Wno-unknown-pragmas -Wno-psabi
-CXXFLAGS+= -O3
+CXXFLAGS+= -O0
 CXXFLAGS+= $(DEFINES)
 CXXFLAGS+= $(INCLUDES)
 CXXFLAGS+=
