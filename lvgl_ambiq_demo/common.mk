@@ -322,7 +322,7 @@ CFLAGS+= -MMD -MP -std=c99 -Wall -g
 CFLAGS+= -Wimplicit-fallthrough -Wundef -Wpointer-arith
 CFLAGS+= -Wshadow -Wredundant-decls -Wstrict-prototypes
 CFLAGS+= -Wno-sign-compare -Wno-unknown-pragmas -Wno-psabi
-CFLAGS+= -O0
+CFLAGS+= -O3
 CFLAGS+= $(DEFINES)
 CFLAGS+= $(INCLUDES)
 CFLAGS+=
@@ -343,7 +343,7 @@ CXXFLAGS+=
 LFLAGS = -mthumb -mcpu=$(CPU) -mfpu=$(FPU) -mfloat-abi=$(FABI)
 LFLAGS+= -nostartfiles -static
 LFLAGS+= -Wl,--gc-sections,--entry,Reset_Handler,-Map,$(CONFIG)/$(TARGET).map
-LFLAGS+= -Wl,--start-group -lm -lc -lgcc -lnosys -lstdc++ $(LIBS) -Wl,@$(CONFIG)/cmsis_dsp.rsp -Wl,--end-group
+LFLAGS+= -Wl,--start-group -lm -lc -lgcc -lnosys -lstdc++ $(LIBS) -Wl,--end-group
 LFLAGS+=
 
 # Additional user specified CFLAGS
