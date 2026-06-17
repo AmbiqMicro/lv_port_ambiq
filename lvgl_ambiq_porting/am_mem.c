@@ -69,7 +69,7 @@
 #elif defined(AM_PART_APOLLO510L)
 #define SSRAM_POOL_SIZE 0x165000
 #else
-#define SSRAM_POOL_SIZE 0x165000
+#define SSRAM_POOL_SIZE 0x280000
 #endif
 #endif
 
