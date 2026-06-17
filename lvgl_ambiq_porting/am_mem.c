@@ -74,7 +74,13 @@
 #endif
 
 #ifndef PSRAM_POOL_SIZE
+#if defined(apollo510dL_evb)
+#define PSRAM_POOL_SIZE 0x1F00000
+#elif defined(apollo510b_evb)
+#define PSRAM_POOL_SIZE 0x1E00000
+#else
 #define PSRAM_POOL_SIZE 0x3E00000
+#endif
 #endif
 
 #ifndef SSRAM_CACHE_ENABLE

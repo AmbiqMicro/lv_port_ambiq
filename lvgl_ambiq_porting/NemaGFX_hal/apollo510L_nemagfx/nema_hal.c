@@ -701,6 +701,105 @@ int nema_get_last_submission_id(void)
 
 //*****************************************************************************
 //
+// NemaGFX Garbage Collection (GC) Mechanism Implementation
+//
+//*****************************************************************************
+
+/**
+ * @brief Node for NemaGFX Garbage Collection
+ */
+typedef struct nema_gc_node_t {
+    int cl_id;                                // Command List ID when submitted
+    void *resource;                           // Pointer to the memory to free
+    void (*free_cb)(void *);                  // Callback to free the memory
+    struct nema_gc_node_t *next;              // Pointer to the next node in the list
+} nema_gc_node_t;
+
+// The head and tail of the custom linked list for tracking GC nodes
+static nema_gc_node_t *nema_gc_head = NULL;
+static nema_gc_node_t *nema_gc_tail = NULL;
+
+void nema_gc_add(void * resource, void (*free_cb)(void *))
+{
+    nema_gc_run(); // Opportunistically run GC to keep memory footprint low
+
+    if (!resource || !free_cb) return;
+
+    // Allocate new node using nema_host_malloc
+    nema_gc_node_t * node = (nema_gc_node_t *)nema_host_malloc(sizeof(nema_gc_node_t));
+    uint32_t next_submission_id = nema_get_last_submission_id() + 1;
+    if (node) {
+        // The command list being built currently will be submitted with
+        // ID = last_submission_id + 1. (with wrap-around applied)
+        node->cl_id = next_submission_id > SUBMISSION_ID_MASK ? 0 : next_submission_id;
+        node->resource = resource;
+        node->free_cb = free_cb;
+        node->next = NULL;
+
+        // Append to the tail of the list in O(1) time
+        if (nema_gc_tail == NULL) {
+            nema_gc_head = node;
+            nema_gc_tail = node;
+        } else {
+            nema_gc_tail->next = node;
+            nema_gc_tail = node;
+        }
+    }
+}
+
+void nema_gc_run(void)
+{
+    int last_executed_cl_id = nema_get_last_cl_id();
+
+    nema_gc_node_t * curr = nema_gc_head;
+    nema_gc_node_t * prev = NULL;
+
+    while (curr) {
+        nema_gc_node_t * next = curr->next;
+
+        if (last_executed_cl_id >= curr->cl_id) {
+            // Associated Command List has finished, free resource
+            curr->free_cb(curr->resource);
+
+            // Remove node from list
+            if (prev == NULL) {
+                nema_gc_head = next;
+            } else {
+                prev->next = next;
+            }
+
+            nema_host_free(curr);
+            curr = next;
+        } else {
+            // Since the list is ordered by submission time, if this CL hasn't
+            // finished, no subsequent CLs have finished either.
+            break;
+        }
+    }
+
+    if (nema_gc_head == NULL) {
+        nema_gc_tail = NULL;
+    }
+}
+
+void nema_gc_reset(void)
+{
+    // Forcefully free everything remaining in the GC list and clear the list.
+    // Ensure you have waited for GPU idle before triggering this!
+    nema_gc_node_t * curr = nema_gc_head;
+    while (curr) {
+        nema_gc_node_t * next = curr->next;
+        curr->free_cb(curr->resource);
+        nema_host_free(curr);
+        curr = next;
+    }
+
+    nema_gc_head = NULL;
+    nema_gc_tail = NULL;
+}
+
+//*****************************************************************************
+//
 //! @brief Controls the power state of the GPU peripheral.
 //!
 //! @param ePowerState - The desired power state (e.g., wake, normal sleep, deep sleep).

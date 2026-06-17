@@ -245,6 +245,42 @@ int nema_get_last_submission_id(void);
 
 //*****************************************************************************
 //
+//! @brief Add a resource to the NemaGFX GC list.
+//!        The resource will be scheduled for freeing after the currently
+//!        building command list completes on the GPU.
+//!
+//! @param resource Pointer to the memory to free.
+//! @param free_cb Callback function to free the memory.
+//!
+//! @return None.
+//
+//*****************************************************************************
+void nema_gc_add(void * resource, void (*free_cb)(void *));
+
+//*****************************************************************************
+//
+//! @brief Traverse the GC list and free all resources whose associated
+//!        Command List has finished executing on the GPU.
+//!        Call this periodically in the rendering thread.
+//!
+//! @return None.
+//
+//*****************************************************************************
+void nema_gc_run(void);
+
+//*****************************************************************************
+//
+//! @brief Forcefully free all resources currently in the GC list and clear it.
+//!        This should be called when NemaGFX SUBMISSION_ID_MASK wrap-around occurs.
+//!        Ensure you wait for the GPU to idle before calling this.
+//!
+//! @return None.
+//
+//*****************************************************************************
+void nema_gc_reset(void);
+
+//*****************************************************************************
+//
 //! @brief declaration of DC's interrupt callback initialize function
 //!
 //! @param  fnTECallback                - DC TE interrupt callback function

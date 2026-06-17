@@ -55,17 +55,7 @@ Q:=@
 endif
 
 # Set the default AmbiqSuite path
-# Use AmbiqSuite.apollo510L when building for apollo510L (PART set by board Makefile)
 AMBIQSUITE_PATH ?= $(TOP_DIR)/AmbiqSuite
-ifneq ($(PART),)
-ifeq ($(PART),apollo510L)
-  ifeq ($(wildcard $(TOP_DIR)/AmbiqSuite.apollo510L/mcu/apollo510L/am_mcu_apollo.h),)
-    $(warning AmbiqSuite.apollo510L not found - ensure AMBIQSUITE_PATH points to SDK with apollo510L)
-  else
-    AMBIQSUITE_PATH := $(TOP_DIR)/AmbiqSuite.apollo510L
-  endif
-endif
-endif
 # Set your AmbiqSuit path
 # AMBIQSUITE_PATH = $(TOP_DIR)/../ambiqsuite
 
