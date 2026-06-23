@@ -214,9 +214,9 @@ am_gpu_init(void)
     //Switch to HP mode.
     //
     am_hal_pwrctrl_mcu_mode_e current_mode;
-    am_hal_pwrctrl_gpu_mode_select(AM_HAL_PWRCTRL_MCU_MODE_HIGH_PERFORMANCE);
+    am_hal_pwrctrl_gpu_mode_select(AM_HAL_PWRCTRL_GPU_MODE_HIGH_PERFORMANCE);
     am_hal_pwrctrl_gpu_mode_status(&current_mode);
-    if ( AM_HAL_PWRCTRL_MCU_MODE_HIGH_PERFORMANCE != current_mode )
+    if ( AM_HAL_PWRCTRL_GPU_MODE_HIGH_PERFORMANCE != current_mode )
     {
         am_util_stdio_printf("gpu switch to HP mode failed!\n");
     }
