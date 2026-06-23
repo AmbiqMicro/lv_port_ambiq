@@ -115,16 +115,17 @@ SHELL:=bash
 
 
 # PART is set by board Makefile (apollo510 or apollo510L)
-PART ?= apollo510L
+PART ?= apollo510
 NEMA_PLATFORM = $(PART)_nemagfx
 
 DEFINES+= -DLV_CONF_INCLUDE_SIMPLE
 DEFINES+= -DLV_LVGL_H_INCLUDE_SIMPLE
 DEFINES+= -DNEMA_PLATFORM=$(NEMA_PLATFORM)
-ifeq ($(PART),apollo510)
-DEFINES+= -DVMEM_SIZE=0x3FFFF
-else
+ifeq ($(PART),apollo510L)
 DEFINES+= -DVMEM_SIZE=0x1FFFF
+DEFINES+= -DNEMA_USE_CUSTOM_MALLOC
+else
+DEFINES+= -DVMEM_SIZE=0x3FFFF
 endif
 DEFINES+= -DWAIT_IRQ_BINARY_SEMAPHORE=1
 DEFINES+= -DUSE_DEBUG_PIN
@@ -161,8 +162,11 @@ VPATH+=:$(LVGL_AMBIQ_PORTING_PATH)/NemaGFX_hal/$(NEMA_PLATFORM)
 SRC += nema_dc_hal.c
 SRC += nema_hal.c
 
+ifeq ($(PART),apollo510L)
 LIBS += $(AMBIQSUITE_PATH)/third_party/ThinkSi/config/$(NEMA_PLATFORM)/gcc/bin/lib_nema_$(NEMA_PLATFORM).a
-# LIBS += $(LVGL_AMBIQ_PORTING_PATH)/NemaGFX_hal/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a
+else
+LIBS += $(LVGL_AMBIQ_PORTING_PATH)/NemaGFX_hal/apollo510_nemagfx/gcc/bin/lib_nema_apollo510_nemagfx.a
+endif
 
 # AmbiqSuite/mcu (apollo510 or apollo510L)
 INCLUDES+= -I$(AMBIQSUITE_PATH)/mcu/$(PART)
@@ -292,10 +296,10 @@ SRC += lv_ambiq_touch.c
 SRC += lv_ambiq_fs.c
 SRC += lv_ambiq_display.c
 
-# AmbiqSuite/cmsis (use response file to avoid Windows command line length limit)
-CMSIS_DSP_LIB := $(AMBIQSUITE_PATH)/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a
+# AmbiqSuite/cmsis
 INCLUDES+= -I$(AMBIQSUITE_PATH)/CMSIS/ARM/Include
 INCLUDES+= -I$(AMBIQSUITE_PATH)/CMSIS/AmbiqMicro/Include
+LIBS += $(AMBIQSUITE_PATH)/CMSIS/ARM/Lib/ARM/DSP_LIB_CM55/libarm_cortexM55f_math.a
 VPATH += $(AMBIQSUITE_PATH)/CMSIS/AmbiqMicro/Source
 
 # AmbiqSuite/devices
@@ -383,9 +387,6 @@ directories: $(CONFIG)
 $(CONFIG):
 	@mkdir -p $@
 
-$(CONFIG)/cmsis_dsp.rsp: $(CONFIG)
-	@echo '"$(CMSIS_DSP_LIB)"' > $@
-
 $(CONFIG)/%.o: %.c $(CONFIG)/%.d
 	@echo " Compiling $(COMPILERNAME) $<"
 	$(Q) $(CC) -c $(CFLAGS) $< -o $@
@@ -398,7 +399,7 @@ $(CONFIG)/%.o: %.s $(CONFIG)/%.d
 	@echo " Assembling $(COMPILERNAME) $<"
 	$(Q) $(CC) -c $(CFLAGS) $< -o $@
 
-$(CONFIG)/$(TARGET).axf: $(OBJS) $(filter %.a,$(LIBS)) $(CONFIG)/cmsis_dsp.rsp
+$(CONFIG)/$(TARGET).axf: $(OBJS) $(LIBS)
 	@echo " Linking $(COMPILERNAME) $@"
 	$(Q) $(CC) -Wl,-T,$(LINKER_FILE) -o $@ $(OBJS) $(LFLAGS)
 
@@ -406,7 +407,7 @@ $(CONFIG)/$(TARGET).bin: $(CONFIG)/$(TARGET).axf
 	@echo " Copying $(COMPILERNAME) $@..."
 	$(Q) $(CP) $(CPFLAGS) $< $@
 	$(Q) $(OD) $(ODFLAGS) $< > $(CONFIG)/$(TARGET).lst
-	$(Q) $(SIZE) $(OBJS) $(filter %.a,$(LIBS)) $(CONFIG)/$(TARGET).axf >$(CONFIG)/$(TARGET).size
+	$(Q) $(SIZE) $(OBJS) $(LIBS) $(CONFIG)/$(TARGET).axf >$(CONFIG)/$(TARGET).size
 
 clean:
 	@echo "Cleaning..."
