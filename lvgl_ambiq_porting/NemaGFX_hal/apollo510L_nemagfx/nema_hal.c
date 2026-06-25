@@ -69,7 +69,9 @@
     {
         switch (pool)
         {
-            case NEMA_MEM_POOL_FB_TEX:
+            case NEMA_MEM_POOL_FB:
+                return &ssram_heap;
+            case NEMA_MEM_POOL_ASSETS:
                 return &psram_heap;
             case NEMA_MEM_POOL_CL_RB:
             case NEMA_MEM_POOL_MISC:
@@ -82,7 +84,7 @@
     static inline void* nema_custom_malloc_impl(int pool, size_t size)
     {
         am_mem_control_t *heap = nema_custom_get_heap(pool);
-        if (pool == NEMA_MEM_POOL_CL_RB)
+        if ((pool == NEMA_MEM_POOL_CL_RB) || (pool == NEMA_MEM_POOL_FB))
             return am_mem_heap_malloc_align(heap, size, NEMA_CL_BUFFER_ALIGNMENT);
         return am_mem_heap_malloc(heap, size);
     }
@@ -476,7 +478,7 @@ nema_buffer_t nema_buffer_create_pool (int pool, int size)
     bo.base_virt = NULL;
     bo.base_phys = 0;
     bo.size      = size;
-    bo.fd        = 0;
+    bo.fd        = pool;
 
 #ifdef NEMA_USE_CUSTOM_MALLOC
     bo.base_virt = NEMA_CUSTOM_MALLOC(pool, (size_t)size);
@@ -548,7 +550,9 @@ static am_mem_control_t* get_heap(int pool)
 {
     switch (pool)
     {
-        case NEMA_MEM_POOL_FB_TEX:
+        case NEMA_MEM_POOL_FB:
+            return &ssram_heap;
+        case NEMA_MEM_POOL_ASSETS:
             return &psram_heap;
         case NEMA_MEM_POOL_CL_RB:
         case NEMA_MEM_POOL_MISC:

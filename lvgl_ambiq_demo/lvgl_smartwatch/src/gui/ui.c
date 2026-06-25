@@ -6,6 +6,18 @@
 #include "ui.h"
 #include "ui_helpers.h"
 
+#if !defined(APOLLO510DL_LITE) || defined(APOLLO510DL_LITE_BLOOD_OXY)
+#define UI_HAS_BLOOD_OXY 1
+#endif
+
+#if !defined(APOLLO510DL_LITE) || defined(APOLLO510DL_LITE_WEATHER)
+#define UI_HAS_WEATHER 1
+#endif
+
+#if !defined(APOLLO510DL_LITE) || defined(APOLLO510DL_LITE_CALL)
+#define UI_HAS_CALL 1
+#endif
+
 ///////////////////// VARIABLES ////////////////////
 // void sec_Animation( lv_obj_t *TargetObject, int delay);
 // void min_Animation( lv_obj_t *TargetObject, int delay);
@@ -570,9 +582,59 @@ lv_anim_start(&PropertyAnimation_0);
 
 }
 
+#ifdef APOLLO510DL_LITE
+#define UI_SWIPE_MIN_PX  35
+
+typedef enum {
+    UI_SWIPE_NONE = 0,
+    UI_SWIPE_UP,
+    UI_SWIPE_DOWN,
+} ui_swipe_dir_t;
+
+static int16_t s_swipe_x0;
+static int16_t s_swipe_y0;
+
+static ui_swipe_dir_t ui_swipe_vertical(lv_event_t * e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    lv_indev_t * indev = lv_indev_active();
+    lv_point_t p;
+
+    if(indev == NULL) return UI_SWIPE_NONE;
+
+    if(code == LV_EVENT_PRESSED) {
+        lv_indev_get_point(indev, &p);
+        s_swipe_x0 = p.x;
+        s_swipe_y0 = p.y;
+        return UI_SWIPE_NONE;
+    }
+
+    if(code != LV_EVENT_RELEASED) return UI_SWIPE_NONE;
+
+    lv_indev_get_point(indev, &p);
+    int16_t dx = (int16_t)(p.x - s_swipe_x0);
+    int16_t dy = (int16_t)(p.y - s_swipe_y0);
+
+    if(LV_ABS(dy) < UI_SWIPE_MIN_PX) return UI_SWIPE_NONE;
+    if(LV_ABS(dy) < LV_ABS(dx)) return UI_SWIPE_NONE;
+
+    return (dy < 0) ? UI_SWIPE_UP : UI_SWIPE_DOWN;
+}
+#endif
+
 ///////////////////// FUNCTIONS ////////////////////
 void ui_event_watch_digital( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);
+
+#ifdef APOLLO510DL_LITE
+#ifdef UI_HAS_BLOOD_OXY
+    ui_swipe_dir_t vswipe = ui_swipe_vertical(e);
+    if(vswipe == UI_SWIPE_UP || vswipe == UI_SWIPE_DOWN) {
+      _ui_screen_change( &ui_blood_oxy, LV_SCR_LOAD_ANIM_FADE_ON, 100, 0, &ui_blood_oxy_screen_init);
+      return;
+    }
+#endif
+#endif
 
 if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_active()) == LV_DIR_LEFT  ) {
 lv_indev_wait_release(lv_indev_active());
@@ -588,7 +650,17 @@ if ( event_code == LV_EVENT_SCREEN_LOAD_START) {
       opa_on_Animation(ui_watch_digital_weather_group_1, 300);
       opa_on_Animation(ui_watch_digital_date_group, 500);
       opa_on_Animation(ui_watch_digital_weather_title_group_1, 400);
+#ifdef APOLLO510DL_LITE
+#ifndef UI_HAS_CALL
+      lv_obj_add_flag(ui_watch_digital_button_top, LV_OBJ_FLAG_HIDDEN);
+#endif
+#ifndef UI_HAS_WEATHER
+      lv_obj_add_flag(ui_watch_digital_button_down, LV_OBJ_FLAG_HIDDEN);
+#endif
+#endif
 }
+#ifdef UI_HAS_BLOOD_OXY
+#ifndef APOLLO510DL_LITE
 if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_active()) == LV_DIR_TOP  ) {
 lv_indev_wait_release(lv_indev_active());
       _ui_screen_change( &ui_blood_oxy, LV_SCR_LOAD_ANIM_FADE_ON, 100, 0, &ui_blood_oxy_screen_init);
@@ -597,26 +669,42 @@ if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_active
 lv_indev_wait_release(lv_indev_active());
       _ui_screen_change( &ui_blood_oxy, LV_SCR_LOAD_ANIM_FADE_ON, 100, 0, &ui_blood_oxy_screen_init);
 }
+#endif
+#endif
 }
 
 void ui_event_watch_digital_button_top_buttontop( lv_event_t * e) {
+#ifdef UI_HAS_CALL
     lv_event_code_t event_code = lv_event_get_code(e);
 
 if ( event_code == LV_EVENT_CLICKED) {
       _ui_screen_change( &ui_call, LV_SCR_LOAD_ANIM_FADE_ON, 100, 0, &ui_call_screen_init);
 }
+#endif
 }
 
 void ui_event_watch_digital_button_down_buttondown( lv_event_t * e) {
+#ifdef UI_HAS_WEATHER
     lv_event_code_t event_code = lv_event_get_code(e);
 
 if ( event_code == LV_EVENT_CLICKED) {
       _ui_screen_change( &ui_weather_1, LV_SCR_LOAD_ANIM_FADE_ON, 100, 0, &ui_weather_1_screen_init);
 }
+#endif
 }
 
 void ui_event_watch_analog( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);
+
+#ifdef APOLLO510DL_LITE
+#ifdef UI_HAS_BLOOD_OXY
+    ui_swipe_dir_t vswipe = ui_swipe_vertical(e);
+    if(vswipe == UI_SWIPE_UP || vswipe == UI_SWIPE_DOWN) {
+      _ui_screen_change( &ui_blood_oxy, LV_SCR_LOAD_ANIM_FADE_ON, 100, 0, &ui_blood_oxy_screen_init);
+      return;
+    }
+#endif
+#endif
 
 if ( event_code == LV_EVENT_SCREEN_LOAD_START) {
       min_Animation(ui_watch_analog_min, 0);
@@ -624,6 +712,14 @@ if ( event_code == LV_EVENT_SCREEN_LOAD_START) {
       opa_on_Animation(ui_watch_analog_weather_group_5, 300);
       opa_on_Animation(ui_watch_analog_date_group2, 500);
       opa_on_Animation(ui_watch_analog_weather_title_group_2, 400);
+#ifdef APOLLO510DL_LITE
+#ifndef UI_HAS_CALL
+      lv_obj_add_flag(ui_watch_analog_button_top1, LV_OBJ_FLAG_HIDDEN);
+#endif
+#ifndef UI_HAS_WEATHER
+      lv_obj_add_flag(ui_watch_analog_button_down1, LV_OBJ_FLAG_HIDDEN);
+#endif
+#endif
 }
 if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_active()) == LV_DIR_LEFT  ) {
 lv_indev_wait_release(lv_indev_active());
@@ -633,6 +729,8 @@ if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_active
 lv_indev_wait_release(lv_indev_active());
       _ui_screen_change( &ui_watch_digital, LV_SCR_LOAD_ANIM_FADE_ON, 100, 0, &ui_watch_digital_screen_init);
 }
+#ifdef UI_HAS_BLOOD_OXY
+#ifndef APOLLO510DL_LITE
 if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_active()) == LV_DIR_TOP  ) {
 lv_indev_wait_release(lv_indev_active());
       _ui_screen_change( &ui_blood_oxy, LV_SCR_LOAD_ANIM_FADE_ON, 100, 0, &ui_blood_oxy_screen_init);
@@ -641,24 +739,31 @@ if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_active
 lv_indev_wait_release(lv_indev_active());
       _ui_screen_change( &ui_blood_oxy, LV_SCR_LOAD_ANIM_FADE_ON, 100, 0, &ui_blood_oxy_screen_init);
 }
+#endif
+#endif
 }
 
 void ui_event_watch_analog_button_top1_buttontop( lv_event_t * e) {
+#ifdef UI_HAS_CALL
     lv_event_code_t event_code = lv_event_get_code(e);
 
 if ( event_code == LV_EVENT_CLICKED) {
       _ui_screen_change( &ui_call, LV_SCR_LOAD_ANIM_FADE_ON, 100, 0, &ui_call_screen_init);
 }
+#endif
 }
 
 void ui_event_watch_analog_button_down1_buttondown( lv_event_t * e) {
+#ifdef UI_HAS_WEATHER
     lv_event_code_t event_code = lv_event_get_code(e);
 
 if ( event_code == LV_EVENT_CLICKED) {
       _ui_screen_change( &ui_weather_1, LV_SCR_LOAD_ANIM_FADE_ON, 100, 0, &ui_weather_1_screen_init);
 }
+#endif
 }
 
+#ifdef UI_HAS_CALL
 void ui_event_call( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);
 
@@ -694,6 +799,9 @@ if ( event_code == LV_EVENT_CLICKED) {
 }
 }
 
+#endif
+
+#ifdef UI_HAS_WEATHER
 void ui_event_weather_1( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);
 
@@ -741,8 +849,18 @@ if ( event_code == LV_EVENT_CLICKED) {
 }
 }
 
+#endif
+
 void ui_event_blood_oxy( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);
+
+#ifdef APOLLO510DL_LITE
+    ui_swipe_dir_t vswipe = ui_swipe_vertical(e);
+    if(vswipe == UI_SWIPE_UP || vswipe == UI_SWIPE_DOWN) {
+      _ui_screen_change( &ui_watch_digital, LV_SCR_LOAD_ANIM_FADE_ON, 100, 0, &ui_watch_digital_screen_init);
+      return;
+    }
+#endif
 
 if ( event_code == LV_EVENT_SCREEN_LOAD_START) {
       top_Animation(ui_blood_oxy_blood_presure_group, 0);
@@ -752,6 +870,7 @@ if ( event_code == LV_EVENT_SCREEN_LOAD_START) {
       opa_on_Animation(ui_blood_oxy_blood_presure_group, 0);
       top_Animation(ui_blood_oxy_title_group_1, 0);
 }
+#ifndef APOLLO510DL_LITE
 if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_active()) == LV_DIR_TOP  ) {
 lv_indev_wait_release(lv_indev_active());
       _ui_screen_change( &ui_watch_digital, LV_SCR_LOAD_ANIM_FADE_ON, 100, 0, &ui_watch_digital_screen_init);
@@ -768,6 +887,7 @@ if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_active
 lv_indev_wait_release(lv_indev_active());
       _ui_screen_change( &ui_blood_pressure, LV_SCR_LOAD_ANIM_FADE_ON, 100, 0, &ui_blood_pressure_screen_init);
 }
+#endif
 }
 
 void ui_event_blood_oxy_button_down5_buttondown( lv_event_t * e) {
@@ -779,13 +899,16 @@ if ( event_code == LV_EVENT_CLICKED) {
 }
 
 void ui_event_blood_oxy_button_round_buttonround( lv_event_t * e) {
+#ifndef APOLLO510DL_LITE
     lv_event_code_t event_code = lv_event_get_code(e);
 
 if ( event_code == LV_EVENT_CLICKED) {
       _ui_screen_change( &ui_measuing, LV_SCR_LOAD_ANIM_FADE_ON, 100, 0, &ui_measuing_screen_init);
 }
+#endif
 }
 
+#ifndef APOLLO510DL_LITE
 void ui_event_ecg( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);
 
@@ -882,6 +1005,8 @@ if ( event_code == LV_EVENT_CLICKED) {
 }
 }
 
+#endif
+
 void ui_event____initial_actions0( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);
 
@@ -889,14 +1014,39 @@ if ( event_code == LV_EVENT_SCREEN_LOAD_START) {
       sec_Animation(ui_watch_digital_sec_dot, 0);
       sec_Animation(ui_watch_analog_sec, 0);
       dots_Animation(ui_watch_analog_dots, 0);
+#ifdef UI_HAS_WEATHER
       cloud_Animation(ui_weather_1_clouds, 0);
+#endif
+#ifndef APOLLO510DL_LITE
       blood1_Animation(ui_measuing_blood1, 0);
       blood2_Animation(ui_measuing_blood2, 0);
       heart_Animation(ui_comp_get_child(ui_measuing_pulse_group3, UI_COMP_PULSEGROUP_HEART), 0);
+#endif
 }
 }
 
 ///////////////////// SCREENS ////////////////////
+
+#ifdef APOLLO510DL_LITE
+static void ui_clear_scrollable(lv_obj_t * obj)
+{
+    lv_obj_remove_flag(obj, LV_OBJ_FLAG_SCROLLABLE | LV_OBJ_FLAG_SCROLL_CHAIN);
+    uint32_t i, cnt = lv_obj_get_child_count(obj);
+    for(i = 0; i < cnt; i++) {
+        ui_clear_scrollable(lv_obj_get_child(obj, i));
+    }
+}
+
+static void ui_enable_event_bubble_children(lv_obj_t * obj)
+{
+    uint32_t i, cnt = lv_obj_get_child_count(obj);
+    for(i = 0; i < cnt; i++) {
+        lv_obj_t * child = lv_obj_get_child(obj, i);
+        lv_obj_add_flag(child, LV_OBJ_FLAG_EVENT_BUBBLE);
+        ui_enable_event_bubble_children(child);
+    }
+}
+#endif
 
 void ui_init( void )
 {LV_EVENT_GET_COMP_CHILD = lv_event_register_id();
@@ -907,13 +1057,47 @@ wallpaper_texture_init();
 lv_disp_set_theme(dispp, theme);
 ui_watch_digital_screen_init();
 ui_watch_analog_screen_init();
-ui_call_screen_init();
+#ifdef UI_HAS_BLOOD_OXY
+ui_blood_oxy_screen_init();
+#endif
+#ifdef UI_HAS_WEATHER
 ui_weather_1_screen_init();
 ui_weather_2_screen_init();
-ui_blood_oxy_screen_init();
+#endif
+#ifdef UI_HAS_CALL
+ui_call_screen_init();
+#endif
+#ifdef APOLLO510DL_LITE
+ui_clear_scrollable(ui_watch_digital);
+ui_clear_scrollable(ui_watch_analog);
+#ifdef UI_HAS_BLOOD_OXY
+ui_clear_scrollable(ui_blood_oxy);
+#endif
+#ifdef UI_HAS_WEATHER
+ui_clear_scrollable(ui_weather_1);
+ui_clear_scrollable(ui_weather_2);
+#endif
+#ifdef UI_HAS_CALL
+ui_clear_scrollable(ui_call);
+#endif
+ui_enable_event_bubble_children(ui_watch_digital);
+ui_enable_event_bubble_children(ui_watch_analog);
+#ifdef UI_HAS_BLOOD_OXY
+ui_enable_event_bubble_children(ui_blood_oxy);
+#endif
+#ifdef UI_HAS_WEATHER
+ui_enable_event_bubble_children(ui_weather_1);
+ui_enable_event_bubble_children(ui_weather_2);
+#endif
+#ifdef UI_HAS_CALL
+ui_enable_event_bubble_children(ui_call);
+#endif
+#endif
+#ifndef APOLLO510DL_LITE
 ui_ecg_screen_init();
 ui_blood_pressure_screen_init();
 ui_measuing_screen_init();
+#endif
 ui____initial_actions0 = lv_obj_create(NULL);
 lv_obj_add_event_cb(ui____initial_actions0, ui_event____initial_actions0, LV_EVENT_ALL, NULL);
 

@@ -3,7 +3,9 @@
 #include "lvgl_private.h"
 #define BIN_PATH_PREFIX "E:wallpaper"
 #define BIN_PATH_SUFFIX ".bin"
+#ifndef WALLPAPER_NUMBER
 #define WALLPAPER_NUMBER  63
+#endif
 #define WALLPAPER_WIDTH   397
 #define WALLPAPER_HEIGHT  370
 #define WALLPAPER_FORMAT  LV_COLOR_FORMAT_NATIVE

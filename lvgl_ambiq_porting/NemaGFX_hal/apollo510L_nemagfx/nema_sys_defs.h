@@ -45,13 +45,13 @@
 
 //Memory pool definition
 #define NEMA_MEM_POOL_CL_RB         0
-#define NEMA_MEM_POOL_FB_TEX        1
-#define NEMA_MEM_POOL_MISC          2
+#define NEMA_MEM_POOL_FB            1
+#define NEMA_MEM_POOL_ASSETS        2
+#define NEMA_MEM_POOL_MISC          3
 
 //Alias for the memory pool. These are defined to provide backward compatibility.
 #define NEMA_MEM_POOL_CL            NEMA_MEM_POOL_CL_RB
-#define NEMA_MEM_POOL_FB            NEMA_MEM_POOL_FB_TEX
-#define NEMA_MEM_POOL_ASSETS        NEMA_MEM_POOL_FB_TEX
+#define NEMA_MEM_POOL_FB_TEX        NEMA_MEM_POOL_ASSETS
 #define MIP_WA
 //End of User Definitions
 //-------------------------

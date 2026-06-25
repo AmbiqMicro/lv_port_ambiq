@@ -41,6 +41,15 @@
 COMPILERNAME := gcc
 CONFIG := bin
 
+# Use all CPU cores for parallel builds unless -j is already specified.
+ifeq ($(filter -j%,$(MAKEFLAGS)),)
+ifeq ($(OS),Windows_NT)
+MAKEFLAGS += -j$(NUMBER_OF_PROCESSORS)
+else
+MAKEFLAGS += -j$(shell nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4)
+endif
+endif
+
 SHELL:=/bin/bash
 TOP_DIR := ../../..
 

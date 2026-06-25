@@ -241,8 +241,14 @@
 
 #if LV_USE_DRAW_AMBIQ
 #define LV_USE_AMBIQ_VG 1
+#if defined(apollo510dL_evb)
+/* Apollo510L: async like apollo510; keep GPU awake (no HP-mode switch on 510L). */
+#define LV_AMBIQ_CPU_GPU_ASYNC 1
+#define LV_AMBIQ_GPU_POWER_SAVE 0
+#else
 #define LV_AMBIQ_CPU_GPU_ASYNC 1
 #define LV_AMBIQ_GPU_POWER_SAVE 1
+#endif
 #define LV_USE_AMBIQ_TTF 0
 
 
@@ -454,6 +460,10 @@
  *  If size is 0, the cache function is not enabled and the decoded memory will be
  *  released immediately after use. */
 #define LV_CACHE_DEF_SIZE       10*1024*1024U  /**< [bytes] */
+#if defined(apollo510dL_evb)
+#undef LV_CACHE_DEF_SIZE
+#define LV_CACHE_DEF_SIZE       (4*1024*1024U)
+#endif
 
 /** Default number of image header cache entries. The cache is used to store the headers of images
  *  The main logic is like `LV_CACHE_DEF_SIZE` but for image headers. */
@@ -859,7 +869,9 @@
 #endif
 
 /** API for FATFS (needs to be added separately). Uses f_open, f_read, etc. */
+#ifndef LV_USE_FS_FATFS
 #define LV_USE_FS_FATFS 1
+#endif
 #if LV_USE_FS_FATFS
     #define LV_FS_FATFS_LETTER 'E'     /**< Set an upper-case driver-identifier letter for this driver (e.g. 'A'). */
     #define LV_FS_FATFS_PATH ""         /**< Set the working directory. File/directory paths will be appended to it. */
