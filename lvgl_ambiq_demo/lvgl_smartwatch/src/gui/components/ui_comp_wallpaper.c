@@ -79,3 +79,33 @@ lv_obj_t *ui_dynamic_wallpaper_create(lv_obj_t *comp_parent)
     lv_animimg_start(lv_anim);
     return lv_anim;
 }
+
+#ifdef APOLLO510DL_LITE
+#define SAMATHA_BIN_PATH   "E:samatha.bin"
+#define SAMATHA_WIDTH      397
+#define SAMATHA_HEIGHT     213
+#define SAMATHA_FORMAT     LV_COLOR_FORMAT_NATIVE_WITH_ALPHA
+
+lv_image_dsc_t ui_img_samatha_png;
+
+void samatha_texture_init(void)
+{
+    lv_draw_buf_t * buf = lv_draw_buf_create_ex(&LV_GLOBAL_DEFAULT()->image_cache_draw_buf_handlers,
+                                                SAMATHA_WIDTH, SAMATHA_HEIGHT, SAMATHA_FORMAT, 0);
+    if(buf == NULL) {
+        LV_LOG_ERROR("samatha: alloc failed");
+        return;
+    }
+
+    lv_draw_buf_to_image(buf, &ui_img_samatha_png);
+    if(load_emmc_file(SAMATHA_BIN_PATH, (void *)ui_img_samatha_png.data,
+                      ui_img_samatha_png.data_size) != LV_FS_RES_OK) {
+        LV_LOG_ERROR("samatha: load failed %s", SAMATHA_BIN_PATH);
+        lv_draw_buf_destroy(buf);
+        lv_memzero(&ui_img_samatha_png, sizeof(ui_img_samatha_png));
+        return;
+    }
+
+    lv_draw_buf_flush_cache(buf, NULL);
+}
+#endif

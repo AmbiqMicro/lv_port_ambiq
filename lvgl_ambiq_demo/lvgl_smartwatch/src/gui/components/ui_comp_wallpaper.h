@@ -9,6 +9,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+#ifdef APOLLO510DL_LITE
+void samatha_texture_init(void);
+#endif
 void wallpaper_texture_init(void);
 lv_obj_t *ui_dynamic_wallpaper_create(lv_obj_t *comp_parent);
 

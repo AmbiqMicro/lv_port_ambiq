@@ -20,19 +20,6 @@ lv_obj_set_align( ui_call_bg_3, LV_ALIGN_CENTER );
 lv_obj_add_flag( ui_call_bg_3, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
 lv_obj_remove_flag( ui_call_bg_3, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 
-#ifdef APOLLO510DL_LITE
-ui_call_avatar = lv_obj_create(ui_call);
-lv_obj_set_width( ui_call_avatar, 120);
-lv_obj_set_height( ui_call_avatar, 120);
-lv_obj_set_align( ui_call_avatar, LV_ALIGN_TOP_MID );
-lv_obj_remove_flag( ui_call_avatar, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
-lv_obj_set_style_radius(ui_call_avatar, LV_RADIUS_CIRCLE, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_bg_color(ui_call_avatar, lv_color_hex(0x4A90D9), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_bg_opa(ui_call_avatar, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_border_width(ui_call_avatar, 3, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_border_color(ui_call_avatar, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_border_opa(ui_call_avatar, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-#else
 ui_call_avatar = lv_image_create(ui_call);
 lv_image_set_src(ui_call_avatar, &ui_img_samatha_png);
 lv_obj_set_width( ui_call_avatar, LV_SIZE_CONTENT);  /// 1
@@ -40,7 +27,6 @@ lv_obj_set_height( ui_call_avatar, LV_SIZE_CONTENT);   /// 1
 lv_obj_set_align( ui_call_avatar, LV_ALIGN_TOP_MID );
 lv_obj_add_flag( ui_call_avatar, LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
 lv_obj_remove_flag( ui_call_avatar, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
-#endif
 
 ui_call_avatar_label = lv_label_create(ui_call);
 lv_obj_set_width( ui_call_avatar_label, LV_SIZE_CONTENT);  /// 1

@@ -276,7 +276,11 @@ LV_IMG_DECLARE( ui_img_clockwise_sec_png);   // assets/clockwise_sec.png
 LV_IMG_DECLARE( ui_img_clockwise_min_png);   // assets/clockwise_min.png
 LV_IMG_DECLARE( ui_img_clockwise_hour_png);   // assets/clockwise_hour.png
 LV_IMG_DECLARE( ui_img_bg3_png);   // assets/bg3.png
+#ifdef APOLLO510DL_LITE
+extern lv_image_dsc_t ui_img_samatha_png;   // loaded from eMMC at runtime
+#else
 LV_IMG_DECLARE( ui_img_samatha_png);   // assets/samatha.png
+#endif
 LV_IMG_DECLARE( ui_img_mute_png);   // assets/mute.png
 LV_IMG_DECLARE( ui_img_unmute_png);   // assets/unmute.png
 LV_IMG_DECLARE( ui_img_house_png);   // assets/house.png
