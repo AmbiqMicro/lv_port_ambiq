@@ -178,11 +178,16 @@ LVGL_CSRCS += \
     $(wildcard $(LVGL_PATH)/src/display/*.c) \
     $(wildcard $(LVGL_PATH)/src/draw/*.c) \
     $(wildcard $(LVGL_PATH)/src/draw/convert/*.c) \
+    $(wildcard $(LVGL_PATH)/src/draw/snapshot/*.c) \
     $(wildcard $(LVGL_PATH)/src/draw/ambiq/*.c) \
     $(wildcard $(LVGL_PATH)/src/draw/sw/*.c) \
     $(wildcard $(LVGL_PATH)/src/draw/sw/blend/*.c) \
     $(wildcard $(LVGL_PATH)/src/draw/sw/grid/*.c) \
     $(wildcard $(LVGL_PATH)/src/font/*.c) \
+    $(wildcard $(LVGL_PATH)/src/font/fmt_txt/*.c) \
+    $(wildcard $(LVGL_PATH)/src/font/binfont_loader/*.c) \
+    $(wildcard $(LVGL_PATH)/src/font/imgfont/*.c) \
+    $(wildcard $(LVGL_PATH)/src/font/font_manager/*.c) \
     $(wildcard $(LVGL_PATH)/src/indev/*.c) \
     $(wildcard $(LVGL_PATH)/src/layouts/*.c) \
     $(wildcard $(LVGL_PATH)/src/layouts/flex/*.c) \
@@ -193,7 +198,7 @@ LVGL_CSRCS += \
     $(wildcard $(LVGL_PATH)/src/misc/cache/instance/*.c) \
     $(wildcard $(LVGL_PATH)/src/osal/*.c) \
     $(wildcard $(LVGL_PATH)/src/others/*.c) \
-    $(wildcard $(LVGL_PATH)/src/others/sysmon/*.c) \
+    $(wildcard $(LVGL_PATH)/src/debugging/sysmon/*.c) \
     $(wildcard $(LVGL_PATH)/src/others/observer/*.c) \
     $(wildcard $(LVGL_PATH)/src/stdlib/*.c) \
     $(wildcard $(LVGL_PATH)/src/stdlib/builtin/*.c) \

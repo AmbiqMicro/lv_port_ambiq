@@ -19,6 +19,7 @@ SRC += lvgl_test.c
 
 # LVGL sources
 LVGL_CSRCS += \
+    $(wildcard $(LVGL_PATH)/demos/*.c) \
     $(wildcard $(LVGL_PATH)/demos/scroll/*.c) \
     $(wildcard $(LVGL_PATH)/demos/render/*.c) \
     $(wildcard $(LVGL_PATH)/demos/widgets/*.c) \
