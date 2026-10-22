@@ -177,6 +177,7 @@ LVGL_CSRCS += \
     $(wildcard $(LVGL_PATH)/src/core/*.c) \
     $(wildcard $(LVGL_PATH)/src/display/*.c) \
     $(wildcard $(LVGL_PATH)/src/draw/*.c) \
+    $(wildcard $(LVGL_PATH)/src/draw/convert/*.c) \
     $(wildcard $(LVGL_PATH)/src/draw/ambiq/*.c) \
     $(wildcard $(LVGL_PATH)/src/draw/sw/*.c) \
     $(wildcard $(LVGL_PATH)/src/draw/sw/blend/*.c) \
