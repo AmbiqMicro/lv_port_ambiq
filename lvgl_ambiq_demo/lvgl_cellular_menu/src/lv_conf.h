@@ -25,8 +25,9 @@
    COLOR SETTINGS
  *====================*/
 
-/** Color depth: 1 (I1), 8 (L8), 16 (RGB565), 24 (RGB888), 32 (XRGB8888) */
-#define LV_COLOR_DEPTH 16
+/** Default color format of displays and draw buffers. LVGL 9.6 derives
+ *  LV_COLOR_DEPTH (16) from it, which lv_ambiq_display.c still reads. */
+#define LV_COLOR_FORMAT_DEFAULT LV_COLOR_FORMAT_RGB565
 
 /*=========================
    STDLIB WRAPPER SETTINGS
@@ -418,7 +419,6 @@
 #define LV_USE_ASSERT_OBJ           0   /**< Check the object's type and existence (e.g. not deleted). (Slow) */
 
 /** Add a custom handler when assert happens e.g. to restart MCU. */
-#define LV_ASSERT_HANDLER_INCLUDE <stdint.h>
 #define LV_ASSERT_HANDLER while(1);     /**< Halt by default */
 
 /*-------------

@@ -43,8 +43,7 @@
 //
 //*****************************************************************************
 #include <string.h>
-#include "src/misc/lv_assert.h"
-#include "src/misc/lv_log.h"
+#include "lvgl.h"
 #include "tlsf.h"
 #include "am_mcu_apollo.h"
 #include "am_util.h"
