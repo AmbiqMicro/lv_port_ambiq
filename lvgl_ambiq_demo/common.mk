@@ -199,6 +199,8 @@ LVGL_CSRCS += \
     $(wildcard $(LVGL_PATH)/src/osal/*.c) \
     $(wildcard $(LVGL_PATH)/src/others/*.c) \
     $(wildcard $(LVGL_PATH)/src/debugging/sysmon/*.c) \
+    $(wildcard $(LVGL_PATH)/src/debugging/profiler/*.c) \
+    $(wildcard $(LVGL_PATH)/src/logging/*.c) \
     $(wildcard $(LVGL_PATH)/src/others/observer/*.c) \
     $(wildcard $(LVGL_PATH)/src/stdlib/*.c) \
     $(wildcard $(LVGL_PATH)/src/stdlib/builtin/*.c) \
@@ -243,11 +245,12 @@ LVGL_CSRCS += \
 	$(wildcard $(LVGL_PATH)/src/widgets/textarea/*.c) \
 	$(wildcard $(LVGL_PATH)/src/widgets/tileview/*.c) \
 	$(wildcard $(LVGL_PATH)/src/widgets/win/*.c) \
-    $(wildcard $(LVGL_PATH)/src/libs/bin_decoder/*.c) \
-    $(wildcard $(LVGL_PATH)/src/libs/fsdrv/*.c) \
+    $(wildcard $(LVGL_PATH)/src/image/*.c) \
+    $(wildcard $(LVGL_PATH)/src/fs/*.c) \
     $(wildcard $(LVGL_PATH)/src/libs/gif/*.c) \
+    $(wildcard $(LVGL_PATH)/src/widgets/gif/*.c) \
     $(wildcard $(LVGL_PATH)/src/libs/lodepng/*.c) \
-    $(wildcard $(LVGL_PATH)/src/libs/freetype/*.c)
+    $(wildcard $(LVGL_PATH)/src/font/freetype/*.c)
 
 LVGL_CSRCS += $(LVGL_PATH)/src/lv_init.c
 
