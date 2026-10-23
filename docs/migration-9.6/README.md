@@ -249,6 +249,10 @@ What makes `feat-lvgl-v9.6` differ from `release/v9.6`, outside `src/draw/ambiq/
 
 ## Open items
 
+What 9.4–9.6 require of the GPU draw unit beyond compiling (point-array lines,
+failed-task handling, assertions off by default, `_real_area` clipping, blur,
+gradients, colorkey, …) is reviewed in [UPGRADE_REPORT.md](UPGRADE_REPORT.md).
+
 - **Vector glyph outlines are not stroked** since the 9.5 vector-font merge.
   Restoring them means drawing a stroke from the glyph path in the Ambiq vector
   font path, or adopting upstream's new generic font callback.
