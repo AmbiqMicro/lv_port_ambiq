@@ -200,6 +200,7 @@ LVGL_CSRCS += \
     $(wildcard $(LVGL_PATH)/src/others/*.c) \
     $(wildcard $(LVGL_PATH)/src/debugging/sysmon/*.c) \
     $(wildcard $(LVGL_PATH)/src/others/observer/*.c) \
+    $(wildcard $(LVGL_PATH)/src/others/translation/*.c) \
     $(wildcard $(LVGL_PATH)/src/stdlib/*.c) \
     $(wildcard $(LVGL_PATH)/src/stdlib/builtin/*.c) \
     $(wildcard $(LVGL_PATH)/src/stdlib/clib/*.c) \
