@@ -169,6 +169,15 @@ VPATH+=:$(AMBIQSUITE_PATH)/utils
 SRC += am_util_delay.c
 SRC += am_util_stdio.c
 
+# Optional: record the display to the eMMC, see tools/lvgl_frames_capture.
+#   make LV_FRAMES_CAPTURE_SECONDS=10
+ifdef LV_FRAMES_CAPTURE_SECONDS
+INCLUDES+= -I$(TOP_DIR)/tools/lvgl_frames_capture
+VPATH+=:$(TOP_DIR)/tools/lvgl_frames_capture
+SRC += lv_frames_capture.c
+DEFINES+= -DLV_FRAMES_CAPTURE_SECONDS=$(LV_FRAMES_CAPTURE_SECONDS)
+endif
+
 # lvgl
 INCLUDES+= -I$(LVGL_PATH)
 INCLUDES+= -I$(LVGL_PATH)/src/draw/ambiq

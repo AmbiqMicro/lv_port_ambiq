@@ -67,3 +67,6 @@ AmbiqSuite/
 
 *.idx
 compile_commands.json
+
+# Recordings pulled by tools/lvgl_frames_capture/scripts/pull.sh
+lvgl_ambiq_demo/*/*/lvcap/

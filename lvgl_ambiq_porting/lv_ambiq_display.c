@@ -28,6 +28,9 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "semphr.h"
+#ifdef LV_FRAMES_CAPTURE_SECONDS
+#include "lv_frames_capture.h"
+#endif
 #include "event_groups.h"
 #include "lv_ambiq_display.h"
 
@@ -329,4 +332,15 @@ lv_ambiq_display_init(void)
     // Set up LVGL display driver.
     //
     lv_disp_drv_setup();
+
+#ifdef LV_FRAMES_CAPTURE_SECONDS
+    //
+    // Built with LV_FRAMES_CAPTURE_SECONDS=<n>: record the display to the
+    // eMMC for n seconds (tools/lvgl_frames_capture).
+    //
+    lv_frames_capture_cfg_t capture_cfg;
+    lv_frames_capture_cfg_init(&capture_cfg);
+    capture_cfg.seconds = LV_FRAMES_CAPTURE_SECONDS;
+    lv_frames_capture_start(&capture_cfg);
+#endif
 }
