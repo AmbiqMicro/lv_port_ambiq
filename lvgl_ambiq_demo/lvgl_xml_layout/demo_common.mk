@@ -16,3 +16,10 @@ SRC += rtos.c
 SRC += am_resources.c
 SRC += gui_task.c
 SRC += lvgl_xml_layout.c
+SRC += xml_assets.c
+
+# xml_assets.c .incbin's the files under ../xml; rebuild it when one changes.
+# This file is included before common.mk, so name its CONFIG (bin) directly
+# and keep "all" as the default goal rather than this first rule.
+bin/xml_assets.o: $(wildcard ../xml/*.xml)
+.DEFAULT_GOAL := all
